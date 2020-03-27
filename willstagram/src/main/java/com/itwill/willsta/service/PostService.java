@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.ui.Model;
 
-import com.itwill.willstar.domain.Post;
+import com.itwill.willsta.domain.Post;
 
 public interface PostService {
 	

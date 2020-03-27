@@ -3,8 +3,7 @@ package com.itwill.willsta.repository;
 import java.util.List;
 import java.util.Map;
 
-
-import com.itwill.willstar.domain.Post;
+import com.itwill.willsta.domain.Post;
 
 public interface PostDao {
 	

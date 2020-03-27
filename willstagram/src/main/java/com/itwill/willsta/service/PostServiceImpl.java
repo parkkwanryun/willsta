@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.itwill.willstar.domain.Post;
-import com.itwill.willstar.repository.PostDao;
+import com.itwill.willsta.domain.Post;
+import com.itwill.willsta.repository.PostDao;
 @Service
 public class PostServiceImpl implements PostService {
 	@Autowired
