@@ -3,7 +3,6 @@
 <jsp:include page="include_header_css.jsp"/>
 <body>
 	<div class="wrapper">		
-
 		<header>
 			<div class="container">
 				<div class="header-data">

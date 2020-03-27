@@ -4,9 +4,6 @@
 <body>	
 
 	<div class="wrapper">
-		
-
-
 		<header>
 			<div class="container">
 				<div class="header-data">
