@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="include_header_css.jsp"/>
+<jsp:include page="include_js.jsp"/>
 <body>
-
 	<div class="wrapper">	
 
 		<header>
@@ -703,15 +703,9 @@
 					<img class="fl-rgt" src="images/logo2.png" alt="">
 				</div>
 			</div>
-		</footer>		
+		</footer>	
+			
 
 
-
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/popper.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/jquery.range-min.js"></script>
-<script type="text/javascript" src="lib/slick/slick.min.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
