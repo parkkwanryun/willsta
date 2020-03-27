@@ -343,7 +343,7 @@
 							</div>
 							<div class="col-lg-6 col-md-8 no-pd">
 								<div class="main-ws-sec">
-								<!-- 최상단에 버튼이 필요한 경우 살려서 쓸것 -->
+									<!-- 최상단에 버튼이 필요한 경우 살려서 쓸것 -->
 									<div class="post-topbar" style="display:none">
 										<div class="user-picy">
 											<img src="images/resources/user-pic.png" alt="">
@@ -479,7 +479,6 @@
 												<div class="bounce3"></div>
 											</div>
 										</div><!--process-comm end-->
-									</div><!--posts-section end-->
 								</div><!--main-ws-sec end-->
 							</div>
 							<div class="col-lg-3 pd-right-none no-pd">
