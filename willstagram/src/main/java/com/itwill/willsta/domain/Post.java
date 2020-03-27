@@ -1,36 +1,40 @@
 package com.itwill.willsta.domain;
 
 public class Post {
-	private String pNo;
+	private Integer pNo;
 	private String mId;
+	private String mName;
 	private String pTitle;
 	private String pContents;
 	private String hasTag;
-	private String pViewCount;
+	private Integer pViewCount;
 	private String pDate;
-	
+	private Integer likeCount; //좋아요갯수
+	private String[] tagArray;
 	
 	public Post() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Post(String pNo, String mId, String pTitle, String pContents, String hasTag, String pViewCount,
-			String pDate) {
+	public Post(Integer pNo, String mId, String mName, String pTitle, String pContents, String hasTag, Integer pViewCount,
+			String pDate, Integer likeCount) {
 		super();
 		this.pNo = pNo;
 		this.mId = mId;
+		this.mName = mName;
 		this.pTitle = pTitle;
 		this.pContents = pContents;
 		this.hasTag = hasTag;
 		this.pViewCount = pViewCount;
 		this.pDate = pDate;
+		this.likeCount = likeCount;
 	}
 
-	public String getpNo() {
+	public Integer getpNo() {
 		return pNo;
 	}
 
-	public void setpNo(String pNo) {
+	public void setpNo(Integer pNo) {
 		this.pNo = pNo;
 	}
 
@@ -66,11 +70,11 @@ public class Post {
 		this.hasTag = hasTag;
 	}
 
-	public String getpViewCount() {
+	public Integer getpViewCount() {
 		return pViewCount;
 	}
 
-	public void setpViewCount(String pViewCount) {
+	public void setpViewCount(Integer pViewCount) {
 		this.pViewCount = pViewCount;
 	}
 
@@ -82,12 +86,41 @@ public class Post {
 		this.pDate = pDate;
 	}
 
+	
+	
+	
+	public String[] getTagArray() {
+		return tagArray;
+	}
+
+	public void setTagArray(String[] tagArray) {
+		this.tagArray = tagArray;
+	}
+
+	public String getmName() {
+		return mName;
+	}
+
+	public void setmName(String mName) {
+		this.mName = mName;
+	}
+
+	public Integer getLikeCount() {
+		return likeCount;
+	}
+
+	public void setLikeCount(Integer likeCount) {
+		this.likeCount = likeCount;
+	}
+
 	@Override
 	public String toString() {
 		return "post [pNo=" + pNo + ", mId=" + mId + ", pTitle=" + pTitle + ", pContents=" + pContents + ", hasTag="
-				+ hasTag + ", pViewCount=" + pViewCount + ", pDate=" + pDate + "]";
+				+ hasTag + ", pViewCount=" + pViewCount + ", pDate=" + pDate + ",  likeCount="
+				+ likeCount + "]\n";
 	}
-	
+
+
 	
 	
 }

@@ -30,6 +30,5 @@ public class PostImage {
 		this.fileName = fileName;
 	}
 
-
 	
 }
