@@ -21,9 +21,12 @@ public interface CommentsDao {
 	//댓글 전체 조회
 	public abstract List<Comments> findCommentsList() throws Exception;
 	
-	//하나의 포스트에 따른 한 맴버의 댓글 수 조회
-	public abstract int postCommentsCount(String pNo, String mId) throws Exception;
+	//하나의 포스트에 따른 한 맴버의 댓글 수
+	public abstract int postCommentsCountBymId(int pNo, String mId) throws Exception;
 	
 	//한 맴버가 작성한 총 댓글 수
-	public abstract int totalCommentsCount(String mid) throws Exception;
+	public abstract int totalCommentsCountBymId(String mid) throws Exception;
+	
+	//하나의 포스트에 달린 총 댓글 수
+	public abstract int postCommentsCount(int pNo) throws Exception;
 }

@@ -37,11 +37,15 @@ public interface CommentsMapper {
 			"FROM	comments")
 	public List<Comments> findCommentsList();
 	
-	//하나의 포스트에 따른 한 맴버의 댓글 수 조회
+	//하나의 포스트에 따른 한 맴버의 댓글 수
 	@Select("SELECT count(*) FROM comments WHERE pNo = #{pNo} AND mId = #{mId}")
-	public Integer postCommentsCount(@Param("pNo") String pNo, @Param("mId") String mId);
+	public Integer postCommentsCountBymId(@Param("pNo") int pNo, @Param("mId") String mId);
 	
 	//한 맴버가 작성한 총 댓글 수
 	@Select("SELECT count(*) FROM comments WHERE mId = #{mId}")
-	public Integer totalCommentsCount(@Param("mId") String mId);
+	public Integer totalCommentsCountBymId(@Param("mId") String mId);
+	
+	//하나의 포스트에 달린 총 댓글 수
+	@Select("SELECT count(*) FROM comments WHERE pNo = #{pNo}")
+	public Integer postCommentsCount(@Param("pNo") int pNo);
 }

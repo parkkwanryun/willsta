@@ -43,16 +43,22 @@ public class CommentsDaoImpl implements CommentsDao {
 		return commentsMapper.findCommentsList();
 	}
 
-	//하나의 포스트에 따른 한 맴버의 댓글 수 조회
+	//하나의 포스트에 따른 한 맴버의 댓글 수
 	@Override
-	public int postCommentsCount(String pNo, String mId) throws Exception {
-		return commentsMapper.postCommentsCount(pNo, mId);
+	public int postCommentsCountBymId(int pNo, String mId) throws Exception {
+		return commentsMapper.postCommentsCountBymId(pNo, mId);
 	}
 
 	//한 맴버가 작성한 총 댓글 수
 	@Override
-	public int totalCommentsCount(String mId) throws Exception {
-		return commentsMapper.totalCommentsCount(mId);
+	public int totalCommentsCountBymId(String mId) throws Exception {
+		return commentsMapper.totalCommentsCountBymId(mId);
+	}
+
+	////하나의 포스트에 달린 총 댓글 수
+	@Override
+	public int postCommentsCount(int pNo) throws Exception {
+		return commentsMapper.postCommentsCount(pNo);
 	}
 	
 }
