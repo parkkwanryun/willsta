@@ -16,7 +16,7 @@ public interface MemberMapper {
 	
 	/*회원 가입*/
 	@Insert("INSERT INTO MEMBER VALUES (#{mId},#{mPass},#{mName},#{mEmail},#{mPhone},#{mImage},#{mRetire})")
-	public boolean insertMember(Member member);
+	public boolean insertMember(@Param("member") Member member);
 	
 	/*회원정보 로딩*/
 	@Select("SELECT mId, mPass, mName, mEmail, mPhone, mImage FROM MEMBER")
@@ -41,7 +41,7 @@ public interface MemberMapper {
 	/*비밀번호 찾기*/
 	@Select("SELECT mPass FROM MEMBER WHERE mId=#{mId} and mName=#{mName}")
 	//SELECT mPass FROM MEMBER WHERE mId = 'pkr' AND mName = '세미'
-	public Member findPw(String mId, String mName);
+	public Member findPw(@Param("mId") String mId, @Param("mName")String mName);
 	
 	/*임시비밀번호 발급*/
 	@Update("UPDATE MEMBER SET mPass=#{mPass} WHERE mId=#{mId}")
