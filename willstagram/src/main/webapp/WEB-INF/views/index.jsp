@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -182,11 +183,18 @@
 												</div>
 											</div>
 											<!-- 여기에 사진(컨텐츠)들어옴 -->
-											<div class="image" style="display: block;">
-												<a href="#"><img class="center-block" style="margin:10px 0px;"
-													src="contents/post_contents/${post.fileName}" alt="여기에이미지들어옴"
-													width="500" height="300" ></a>
-											</div>
+											<c:if test="${fn:startsWith(post.fileName, 'img')}">
+												<div class="image" style="display: block;">
+													<a href="#"><img class="center-block" style="margin:10px 0px;"
+														src="contents/post_contents/${post.fileName}" alt="여기에이미지들어옴"
+														width="500" height="300" ></a>
+												</div>
+											</c:if>
+											<c:if test="${fn:startsWith(post.fileName, 'mov')}">
+												<div class="embed-responsive embed-responsive-4by3">
+												  <iframe class="embed-responsive-item" src="contents/post_contents/${post.fileName}"></iframe>
+												</div>
+											</c:if>
 											<div class="job_descp">
 												<h3>${post.pTitle}</h3>
 												<p>${post.pContents}<a href="#" title="">view more</a></p>
