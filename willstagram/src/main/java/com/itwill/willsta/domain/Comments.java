@@ -76,7 +76,7 @@ public class Comments {
 	@Override
 	public String toString() {
 		return "comments [cNo=" + cNo + ", pNo=" + pNo + ", mId=" + mId + ", cContents=" + cContents + ", cTime="
-				+ cTime + "]";
+				+ cTime + "]\n";
 	}
 	
 	
