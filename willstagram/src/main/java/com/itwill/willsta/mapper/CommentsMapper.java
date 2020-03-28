@@ -19,7 +19,7 @@ public interface CommentsMapper {
 	public Integer createComments(Comments comments);
 	
 	//댓글 수정
-	@Update("UPDATE comments SET (cContents = #{cContents}) WHERE cNo = #{cNo}")
+	@Update("UPDATE comments SET cContents = #{cContents} WHERE cNo = #{cNo}")
 	public Integer updateComments(Comments comments);
 	
 	//댓글 삭제
@@ -33,7 +33,7 @@ public interface CommentsMapper {
 	public Comments findComments(@Param("cNo") int cNo);
 	
 	//댓글 전체 조회
-	@Select("SELECT	cNo, pNo, mId, cContents, cTime" + 
+	@Select("SELECT	cNo, pNo, mId, cContents, cTime " + 
 			"FROM	comments")
 	public List<Comments> findCommentsList();
 	
