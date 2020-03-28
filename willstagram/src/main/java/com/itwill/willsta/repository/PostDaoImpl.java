@@ -31,8 +31,8 @@ public class PostDaoImpl implements PostDao {
 	}
 
 	@Override
-	public int delete(Integer bNo) {
-		return postMapper.delete(bNo);
+	public int delete(Integer pNo) {
+		return postMapper.delete(pNo);
 	}
 
 	@Override

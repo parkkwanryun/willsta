@@ -14,22 +14,18 @@ public class PostServiceImpl implements PostService {
 	PostDao postDao;
 	
 	@Override
-	public int createBoard(Model model) {
-		Post post;
-		//postDao.insert(post);
-		return 0;
+	public int createPost(Post post) {
+		return postDao.insert(post);
 	}
 
 	@Override
-	public int modifyBoard(Post post) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int modifyPost(Post post) {
+		return postDao.update(post);
 	}
 
 	@Override
-	public int removeBoard(Integer bNo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int removePost(Integer pNo) {
+		return postDao.delete(pNo);
 	}
 
 	@Override

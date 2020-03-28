@@ -13,7 +13,7 @@ public interface PostDao {
 	
 	public int update(Post post);
 	
-	public int delete(Integer bNo);
+	public int delete(Integer pNo);
 	
 	public List<Post> selectMyList(String userId);
 }
