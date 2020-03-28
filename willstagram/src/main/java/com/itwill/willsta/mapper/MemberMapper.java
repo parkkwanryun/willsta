@@ -22,17 +22,28 @@ public interface MemberMapper {
 	public Member selectById(String mId, String mPhone);
 	
 	/*회원정보 수정*/
-	@Update("UPDATE MEMBER SET #{mPass}, #{mName}, #{mPhone} WHERE mId=#{mId}")
+	@Update("UPDATE MEMBER SET mPass=#{mPass}, mName=#{mName}, mPhone=#{mPhone} WHERE mId=#{mId}")
 	public boolean updateMember(Member memeber);
 	
 	/*회원 탈퇴*/
-	@Update("UPDATE MEMBER SET mRetire =#{T} WHERE mId=#{mId}")
+	@Update("UPDATE MEMBER SET mRetire =#{mRetire} WHERE mId=#{mId}")
 	public boolean deleteMember(String mRetire);
 	
 	/*아이디 중복체크*/
-	@Select("SELECT count(*) cnt FROM MEMBER WHERE mId= #{mId}")
+	@Select("SELECT count(*) cnt FROM MEMBER WHERE mId=#{mId}")
 	public boolean existedMember(String mId);
 	
+	/*아이디 찾기*/
+	@Select("SELECT #{mId}, #{mName}, #{mPhone}, #{mEmail}, #{mPass}, #{mImage} FROM MEMBER WHERE mId=#{mId}")
+	public Member findId(String mEmail, String mName);
+	
+	/*비밀번호 찾기*/
+	@Select("SELECT * FROM MEMBER WHERE mId=#{mId} and mName=#{mName}")
+	public Member findPw(String mId, String mName);
+	
+	/*임시비밀번호 발급*/
+	@Update("UPDATE MEMBER SET mPass=#{mPass} WHERE mId=#{mId}")
+	public Member getTempPw(Member findMember);
 	
 	
 	@Select("SELECT mid, mname, mimage FROM member")
