@@ -56,14 +56,12 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Override
 	public List<Member> memberList() {
-		// TODO Auto-generated method stub
-		return null;
+		return memberMapper.memberList();
 	}
 	
 	@Override
 	public List<Member> findMemberList(String mid) {
-		// TODO Auto-generated method stub
-		return null;
+		return memberMapper.findMemberList(mid);
 	}
 	
 }
