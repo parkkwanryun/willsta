@@ -15,11 +15,11 @@ public class MemberDaoImpl implements MemberDao{
 	
 	@Override
 	public boolean insertMember(Member member) {
-		return memberMapper.insert(member);
+		return memberMapper.insertMember(member);
 	}	
 	@Override
 	public Member selectById(String mId, String mPhone) {
-		return null;
+		return memberMapper.selectById(mId, mPhone);
 	}
 
 	@Override
