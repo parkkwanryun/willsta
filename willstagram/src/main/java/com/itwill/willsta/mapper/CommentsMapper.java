@@ -39,7 +39,7 @@ public interface CommentsMapper {
 	
 	//하나의 포스트에 따른 한 맴버의 댓글 수
 	@Select("SELECT count(*) " +
-			"FROM comments "+ 
+			"FROM comments " + 
 			"WHERE pNo = #{pNo} " +
 			"AND mId = #{mId}")
 	public Integer postCommentsCountBymId(@Param("pNo") int pNo, @Param("mId") String mId);
