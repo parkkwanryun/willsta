@@ -184,15 +184,16 @@
 											</div>
 											<!-- 여기에 사진(컨텐츠)들어옴 -->
 											<c:if test="${fn:startsWith(post.fileName, 'img')}">
-												<div class="image" style="display: block;">
+												<div class="image">
 													<a href="#"><img class="center-block" style="margin:10px 0px;"
 														src="contents/post_contents/${post.fileName}" alt="여기에이미지들어옴"
 														width="500" height="300" ></a>
 												</div>
 											</c:if>
 											<c:if test="${fn:startsWith(post.fileName, 'mov')}">
-												<div class="embed-responsive embed-responsive-4by3">
-												  <iframe class="embed-responsive-item" src="contents/post_contents/${post.fileName}"></iframe>
+												<div class="embed-responsive embed-responsive-4by3" style="margin-bottom:10px;" >
+												  <iframe class="embed-responsive-item" style="padding-top:10px;"
+												  			src="contents/post_contents/${post.fileName}"></iframe>
 												</div>
 											</c:if>
 											<div class="job_descp">
@@ -455,64 +456,10 @@
 				</div> 
 			</div>
 		</main>
-
-
-
-
-		<div class="post-popup pst-pj">
-			<div class="post-project">
-				<h3>Post a project</h3>
-				<div class="post-project-fields">
-					<form>
-						<div class="row">
-							<div class="col-lg-12">
-								<input type="text" name="title" placeholder="Title">
-							</div>
-							<div class="col-lg-12">
-								<div class="inp-field">
-									<select>
-										<option>Category</option>
-										<option>Category 1</option>
-										<option>Category 2</option>
-										<option>Category 3</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<input type="text" name="skills" placeholder="Skills">
-							</div>
-							<div class="col-lg-12">
-								<div class="price-sec">
-									<div class="price-br">
-										<input type="text" name="price1" placeholder="Price">
-										<i class="la la-dollar"></i>
-									</div>
-									<span>To</span>
-									<div class="price-br">
-										<input type="text" name="price1" placeholder="Price">
-										<i class="la la-dollar"></i>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<textarea name="description" placeholder="Description"></textarea>
-							</div>
-							<div class="col-lg-12">
-								<ul>
-									<li><button class="active" type="submit" value="post">Post</button></li>
-									<li><a href="#" title="">Cancel</a></li>
-								</ul>
-							</div>
-						</div>
-					</form>
-				</div><!--post-project-fields end-->
-				<a href="#" title=""><i class="la la-times-circle-o"></i></a>
-			</div><!--post-project end-->
-		</div><!--post-project-popup end-->
-
+		<!-- 글쓰기 팝업 -->
 		<div class="post-popup job_post">
 			<div class="post-project">
-				<h3>Post a job</h3>
+				<h3>글쓰기</h3>
 				<div class="post-project-fields">
 					<form>
 						<div class="row">
@@ -520,31 +467,7 @@
 								<input type="text" name="title" placeholder="Title">
 							</div>
 							<div class="col-lg-12">
-								<div class="inp-field">
-									<select>
-										<option>Category</option>
-										<option>Category 1</option>
-										<option>Category 2</option>
-										<option>Category 3</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<input type="text" name="skills" placeholder="Skills">
-							</div>
-							<div class="col-lg-6">
-								<div class="price-br">
-									<input type="text" name="price1" placeholder="Price">
-									<i class="la la-dollar"></i>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="inp-field">
-									<select>
-										<option>Full Time</option>
-										<option>Half time</option>
-									</select>
-								</div>
+								<input type="text" name="tag" placeholder="tag">
 							</div>
 							<div class="col-lg-12">
 								<textarea name="description" placeholder="Description"></textarea>
