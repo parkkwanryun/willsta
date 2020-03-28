@@ -1,5 +1,7 @@
 package com.itwill.willsta.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -29,4 +31,10 @@ public interface MemberMapper {
 	//
 	@Delete("")
 	public boolean deleteMember(String mId);
+	
+	@Select("SELECT mid, mname, mimage FROM member")
+	public List<Member> memberList();
+	
+	@Select("SELECT mid, mname, mimage FROM member where mid like ‘%’||#{mid}||’%’")
+	public List<Member> findMemberList(String mid);
 }
