@@ -29,6 +29,7 @@
 					url:'write_post',
 					method:'POST',
 					data:e.target.serialize(),
+					 
 					
 				});
 			});
