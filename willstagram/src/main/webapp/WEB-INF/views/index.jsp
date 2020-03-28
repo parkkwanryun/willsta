@@ -242,7 +242,7 @@
 										<div class="user-profile">
 											<div class="username-dt">
 												<div class="usr-pic">
-													<img src="images/resources/user-pic.png" alt="">
+													<img src="contents/member_image/hjs.jpg" alt="">
 												</div>
 											</div><!--username-dt end-->
 											<div class="user-specs">
@@ -382,9 +382,9 @@
 											</div>
 											<!-- 여기에 사진(컨텐츠)들어옴 -->
 											<div class="image" style="display: block;">
-												<a	href="#"><img class="center-block"
-													src="" alt="여기에이미지들어옴"
-													width="298" height="300"></a>
+												<a href="#"><img class="center-block" style="margin:10px 0px;"
+													src="contents/post_contents/${post.fileName}" alt="여기에이미지들어옴"
+													width="500" height="300" ></a>
 											</div>
 											<div class="job_descp">
 												<h3>${post.pTitle}</h3>

@@ -37,7 +37,8 @@ public interface PostMapper {
 	
 	//로그인 후 리스트 자신과 자신의 팔로잉 멤버의 글을 리스트를 작성일이 최신인 것 순으로 정렬
 	@Select(" SELECT P.PNO, P.PTITLE, P.PCONTENTS, P.HASTAG, P.PDATE, P.MID, M.MNAME, "
-			+"         (SELECT COUNT(*) FROM LIKES X WHERE X.PNO = P.PNO) AS LIKECNT "
+			+"         (SELECT COUNT(*) FROM LIKES X WHERE X.PNO = P.PNO) AS LIKECNT, "
+			+"         (SELECT MIN(X.FILENAME) AS FILENAME FROM POST_IMAGE X WHERE X.PNO = P.PNO) AS FILENAME "
 			+" FROM POST P INNER JOIN MEMBER M ON P.MID = M.MID "
 			+" WHERE (P.MID = #{mId} "
 			+"       OR P.MID IN (SELECT mIdYou FROM FOLLOW WHERE MID = #{mId})) "

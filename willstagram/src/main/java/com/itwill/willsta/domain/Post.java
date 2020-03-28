@@ -1,5 +1,7 @@
 package com.itwill.willsta.domain;
 
+import java.util.Arrays;
+
 public class Post {
 	private Integer pNo;
 	private String mId;
@@ -11,13 +13,14 @@ public class Post {
 	private String pDate;
 	private Integer likeCount; //좋아요갯수
 	private String[] tagArray;
+	private String fileName;
 	
 	public Post() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Post(Integer pNo, String mId, String mName, String pTitle, String pContents, String hasTag, Integer pViewCount,
-			String pDate, Integer likeCount) {
+			String pDate, Integer likeCount, String fileName) {
 		super();
 		this.pNo = pNo;
 		this.mId = mId;
@@ -28,6 +31,7 @@ public class Post {
 		this.pViewCount = pViewCount;
 		this.pDate = pDate;
 		this.likeCount = likeCount;
+		this.fileName = fileName;
 	}
 
 	public Integer getpNo() {
@@ -89,6 +93,14 @@ public class Post {
 	
 	
 	
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
 	public String[] getTagArray() {
 		return tagArray;
 	}
@@ -115,10 +127,12 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "post [pNo=" + pNo + ", mId=" + mId + ", pTitle=" + pTitle + ", pContents=" + pContents + ", hasTag="
-				+ hasTag + ", pViewCount=" + pViewCount + ", pDate=" + pDate + ",  likeCount="
-				+ likeCount + "]\n";
+		return "Post [pNo=" + pNo + ", mId=" + mId + ", mName=" + mName + ", pTitle=" + pTitle + ", pContents="
+				+ pContents + ", hasTag=" + hasTag + ", pViewCount=" + pViewCount + ", pDate=" + pDate + ", likeCount="
+				+ likeCount + ", tagArray=" + Arrays.toString(tagArray) + ", fileName=" + fileName + "]\n";
 	}
+
+
 
 
 	
