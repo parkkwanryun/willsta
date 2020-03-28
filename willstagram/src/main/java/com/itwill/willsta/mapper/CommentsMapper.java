@@ -19,7 +19,7 @@ public interface CommentsMapper {
 	public Integer createComments(Comments comments);
 	
 	//댓글 수정
-	@Update("UPDATE comments SET (cContents = #{cContents}) WHERE cNo = #{cNo}")
+	@Update("UPDATE comments SET cContents = #{cContents} WHERE cNo = #{cNo}")
 	public Integer updateComments(Comments comments);
 	
 	//댓글 삭제
