@@ -6,14 +6,14 @@ public class DmContents {
 	private Integer dmNo;
 	private Integer dmContentsNo;
 	private String dmContentsMessage;
-	private Date dmContentsDate;
+	private String dmContentsDate;
 	private String dmContentsImage;
 	
 	public DmContents() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DmContents(Integer dmNo, Integer dmContentsNo, String dmContentsMessage, Date dmContentsDate,
+	public DmContents(Integer dmNo, Integer dmContentsNo, String dmContentsMessage, String dmContentsDate,
 			String dmContentsImage) {
 		super();
 		this.dmNo = dmNo;
@@ -47,11 +47,11 @@ public class DmContents {
 		this.dmContentsMessage = dmContentsMessage;
 	}
 
-	public Date getDmContentsDate() {
+	public String getDmContentsDate() {
 		return dmContentsDate;
 	}
 
-	public void setDmContentsDate(Date dmContentsDate) {
+	public void setDmContentsDate(String dmContentsDate) {
 		this.dmContentsDate = dmContentsDate;
 	}
 
