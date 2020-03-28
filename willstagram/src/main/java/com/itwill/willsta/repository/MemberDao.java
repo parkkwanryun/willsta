@@ -1,5 +1,36 @@
 package com.itwill.willsta.repository;
 
-public class MemberDao {
+import java.util.List;
 
+import com.itwill.willsta.domain.Member;
+
+public interface MemberDao {
+	
+	/*Create(회원가입)*/
+	boolean insertMember(Member member);
+	
+	/*Read One(회원정보로딩)*/
+	Member selectById(String mId, String mPhone);
+	
+	/*Update One(회원정보 수정)*/
+	boolean updateMember(Member memeber);
+	
+	/*Delete One(회원탈퇴)*/
+	boolean delelteMember(String mId);
+	
+	/*아이디 중복체크*/
+	boolean existedMember(String mId);
+	
+	/*아이디 찾기*/
+	Member findId(String mEmail, String mName);
+	
+	/*비밀번호 찾기*/
+	Member findPw(String mId, String mName);
+	
+	/*임시비밀번호 발급*/
+	Member getTempPw(Member findMember);
+	
+	/*Read All*/
+	List<Member> selectAllMemberList(String mId);
+	
 }

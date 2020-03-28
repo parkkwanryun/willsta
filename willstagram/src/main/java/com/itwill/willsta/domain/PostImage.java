@@ -29,6 +29,4 @@ public class PostImage {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-
-	
 }
