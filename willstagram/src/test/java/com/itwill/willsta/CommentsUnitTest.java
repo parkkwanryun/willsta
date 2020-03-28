@@ -63,6 +63,11 @@ public class CommentsUnitTest {
     	commentsDao.updateComments(comments);
     }
     
+    @Test //하나의 포스트에 따른 한 맴버의 댓글 수 조회
+    public void postCommentsCount() throws Exception {
+    	///int postCommentsCount = commentsDao.postCommentsCount(pNo, mId)
+    }
+    
     
 	
 }
