@@ -30,7 +30,9 @@ public interface MemberDao {
 	/*임시비밀번호 발급*/
 	Member getTempPw(Member findMember);
 	
-	/*Read All*/
-	List<Member> selectAllMemberList(String mId);
+	/*사용자 전체목록*/
+	List<Member> memberList();
 	
+	/*사용자 검색*/
+	List<Member> findMemberList(String mid);
 }
