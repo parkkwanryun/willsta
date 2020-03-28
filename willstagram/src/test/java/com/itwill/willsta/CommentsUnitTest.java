@@ -86,5 +86,10 @@ public class CommentsUnitTest {
     	Assert.assertEquals(10, postCommentsCount);
     }
     
+    @Test //한 맴버의 댓글 전체 조회
+    public void findCommentsListBymId() throws Exception {
+    	List<Comments> commentsListBymId = commentsDao.findCommentsListBymId("hjs");
+    	System.out.println("### findCommentsListBymId: "+commentsListBymId);
+    }
 	
 }
