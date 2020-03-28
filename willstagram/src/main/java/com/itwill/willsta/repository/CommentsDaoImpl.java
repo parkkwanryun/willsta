@@ -42,6 +42,12 @@ public class CommentsDaoImpl implements CommentsDao {
 	public List<Comments> findCommentsList() throws Exception {
 		return commentsMapper.findCommentsList();
 	}
+	
+	//한 맴버의 댓글 전체 조회
+	@Override
+	public List<Comments> findCommentsListBymId(String mId) throws Exception {
+		return commentsMapper.findCommentsListBymId(mId);
+	}
 
 	//하나의 포스트에 따른 한 맴버의 댓글 수
 	@Override
