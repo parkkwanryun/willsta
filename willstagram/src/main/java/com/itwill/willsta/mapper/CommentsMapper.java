@@ -27,8 +27,8 @@ public interface CommentsMapper {
 	public Integer removeComments(@Param("cNo") int cNo);
 	
 	//댓글 조회
-	@Select("SELECT cNo, pNo, mId, cContents, cTime" +
-			"FROM	comments" +
+	@Select("SELECT cNo, pNo, mId, cContents, cTime " +
+			"FROM	comments " +
 			"WHERE  cNo = #{cNo}")
 	public Comments findComments(@Param("cNo") int cNo);
 	
