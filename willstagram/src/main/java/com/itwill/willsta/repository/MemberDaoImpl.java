@@ -17,6 +17,7 @@ public class MemberDaoImpl implements MemberDao{
 	public boolean insertMember(Member member) {
 		return memberMapper.insertMember(member);
 	}	
+	
 	@Override
 	public Member selectById(String mId, String mPhone) {
 		return memberMapper.selectById(mId, mPhone);
@@ -24,34 +25,32 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Override
 	public boolean updateMember(Member memeber) {
-
-		return false;
+		return memberMapper.updateMember(memeber);
 	}
 
 	@Override
-	public boolean delelteMember(String mId) {
-		
-		return false;
+	public boolean delelteMember(String mRetire) {
+		return memberMapper.deleteMember(mRetire);
 	}
+	
 	@Override
 	public boolean existedMember(String mId) {
-		return false;
+		return memberMapper.existedMember(mId);
 	}
 
 	@Override
 	public Member findId(String mEmail, String mName) {
-		return null;
+		return memberMapper.findId(mEmail, mName);
 	}
 
 	@Override
 	public Member findPw(String mId, String mName) {
-		return null;
+		return memberMapper.findPw(mId, mName);
 	}
 
 	@Override
 	public Member getTempPw(Member findMember) {
-		// TODO Auto-generated method stub
-		return null;
+		return memberMapper.getTempPw(findMember);
 	}
 
 	@Override
