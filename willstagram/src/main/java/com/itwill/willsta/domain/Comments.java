@@ -2,15 +2,35 @@ package com.itwill.willsta.domain;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component("comments")
 public class Comments {
 	private Integer cNo;
 	private Integer pNo;
 	private String mId;
 	private String cContents;
-	private Date cTime;
+	private Date cTime; //Default: SYSDATE
 	
 	public Comments() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public Comments(Integer cNo, Integer pNo, String mId, String cContents, Date cTime) {
+		super();
+		this.cNo = cNo;
+		this.pNo = pNo;
+		this.mId = mId;
+		this.cContents = cContents;
+		this.cTime = cTime;
+	}
+
+	public Comments(Integer cNo, Integer pNo, String mId, String cContents) {
+		super();
+		this.cNo = cNo;
+		this.pNo = pNo;
+		this.mId = mId;
+		this.cContents = cContents;
 	}
 
 	public Integer getcNo() {
