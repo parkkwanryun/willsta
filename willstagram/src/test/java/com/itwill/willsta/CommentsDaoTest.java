@@ -29,6 +29,4 @@ public class CommentsDaoTest {
     	comments = commentsDao.findComments(3);
     	System.out.println(comments);
     }
-
-	
 }

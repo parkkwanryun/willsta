@@ -29,8 +29,9 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
-	public boolean delelteMember(String mRetire) {
-		return memberMapper.deleteMember(mRetire);
+	public boolean delelteMember(String mId) {
+		
+		return memberMapper.deleteMember(mId);
 	}
 	
 	@Override

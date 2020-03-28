@@ -26,8 +26,8 @@ public interface MemberMapper {
 	public boolean updateMember(Member memeber);
 	
 	/*회원 탈퇴*/
-	@Update("UPDATE MEMBER SET mRetire =#{mRetire} WHERE mId=#{mId}")
-	public boolean deleteMember(String mRetire);
+	@Update("UPDATE MEMBER SET mRetire = 'T' WHERE mId = #{mId}")
+	public boolean deleteMember(String mId);
 	
 	/*아이디 중복체크*/
 	@Select("SELECT count(*) cnt FROM MEMBER WHERE mId=#{mId}")
