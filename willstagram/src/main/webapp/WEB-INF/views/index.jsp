@@ -246,7 +246,7 @@
 												</div>
 											</div><!--username-dt end-->
 											<div class="user-specs">
-												<h3>John Doe</h3>
+												<h3>예준수</h3>
 												<span>Graphic Designer at Self Employed</span>
 											</div>
 										</div><!--user-profile end-->
