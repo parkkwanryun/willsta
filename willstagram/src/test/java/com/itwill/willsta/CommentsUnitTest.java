@@ -56,6 +56,7 @@ public class CommentsUnitTest {
     }
     
     @Test //댓글 수정
+    @Ignore
     public void updateCommentsTest() throws Exception {
     	Comments comments = commentsDao.findComments(3);
     	comments.setcContents("Dao 댓글 변경 Test");
