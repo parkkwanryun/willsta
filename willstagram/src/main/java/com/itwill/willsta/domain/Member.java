@@ -7,13 +7,14 @@ public class Member {
 	private String mEmail;
 	private String mPhone;
 	private String mImage;
+	private String mRetire;
 	
 	public Member() {
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public Member(String mId, String mPass, String mName, String mEmail, String mPhone, String mImage) {
+	public Member(String mId, String mPass, String mName, String mEmail, String mPhone, String mImage, String mRetire) {
 		super();
 		this.mId = mId;
 		this.mPass = mPass;
@@ -21,6 +22,7 @@ public class Member {
 		this.mEmail = mEmail;
 		this.mPhone = mPhone;
 		this.mImage = mImage;
+		this.mRetire = mRetire;
 	}
 
 
@@ -82,6 +84,18 @@ public class Member {
 		this.mImage = mImage;
 	}
 	
+	
+	
+	public String getmRetire() {
+		return mRetire;
+	}
+
+
+	public void setmRetire(String mRetire) {
+		this.mRetire = mRetire;
+	}
+
+
 	public boolean isMatchPassword(String mPass){
 		boolean isMatch=false;
 		if(this.mPass.equals(mPass)){
@@ -90,11 +104,14 @@ public class Member {
 		return isMatch;
 	}
 
+
 	@Override
 	public String toString() {
-		return "member [mId=" + mId + ", mPass=" + mPass + ", mName=" + mName + ", mEmail=" + mEmail + ", mPhone="
-				+ mPhone + ", mNick=" + ", mImage=" + mImage + "]";
+		return "Member [mId=" + mId + ", mPass=" + mPass + ", mName=" + mName + ", mEmail=" + mEmail + ", mPhone="
+				+ mPhone + ", mImage=" + mImage + ", mRetire=" + mRetire + "]";
 	}
+
+	
 	
 	
 }
