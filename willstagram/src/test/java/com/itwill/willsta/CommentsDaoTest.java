@@ -9,17 +9,14 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.itwill.willsta.domain.Comments;
-import com.itwill.willsta.repository.CommentsDao;
 import com.itwill.willsta.repository.CommentsDaoImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml", "file:src/main/webapp/WEB-INF/spring/appsurvlet/survlet-context.xml"})
+@ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/spring/root-context.xml")
 public class CommentsDaoTest {
 	@Autowired
 	private ApplicationContext applicationContext;
-	
-	private CommentsDao commentsDao;
-	private Comments comments;
+	private CommentsDaoImpl commentsDao;
 	
 	@Before
     public void setUp() {
@@ -27,10 +24,10 @@ public class CommentsDaoTest {
     }
     
     @Test
-    public void commentsInsertTest() throws Exception {
-    	comments = new Comments(-999, 22, "hjs", "DAO test insert");
-    	
-    	commentsDao.createComments(comments);
+    public void findCommentsTest() throws Exception {
+    	Comments comments = new Comments();
+    	comments = commentsDao.findComments(3);
+    	System.out.println(comments);
     }
 
 	
