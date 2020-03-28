@@ -18,19 +18,22 @@ public interface MemberMapper {
 	public boolean insertMember(Member member);
 	
 	/*회원정보 로딩*/
-	
 	@Select("SELECT mId, mPass, mName, mEmail, mPhone, mImage FROM MEMBER")
 	public Member selectById(String mId, String mPhone);
 	
 	/*회원정보 수정*/
-	//"update member set m_pw = ?, m_name = ?, m_phone = ? where m_id = ?;
-	@Update("UPDATE MEMBER SET #{mPass}, #{mName}, #{mPhone} where mId=#{mId}")
+	@Update("UPDATE MEMBER SET #{mPass}, #{mName}, #{mPhone} WHERE mId=#{mId}")
 	public boolean updateMember(Member memeber);
 	
 	/*회원 탈퇴*/
-	//
-	@Delete("")
-	public boolean deleteMember(String mId);
+	@Update("UPDATE MEMBER SET mRetire =#{T} WHERE mId=#{mId}")
+	public boolean deleteMember(String mRetire);
+	
+	/*아이디 중복체크*/
+	@Select("SELECT count(*) cnt FROM MEMBER WHERE mId= #{mId}")
+	public boolean existedMember(String mId);
+	
+	
 	
 	@Select("SELECT mid, mname, mimage FROM member")
 	public List<Member> memberList();
