@@ -3,70 +3,64 @@ package com.itwill.willsta.domain;
 import java.util.Date;
 
 public class DmContents {
-	private Integer dm_no;
-	private Integer dm_contents_no;
-	private String dm_contents_message;
-	private String dImage;
-	private Date dm_contents_date;
+	private Integer dmNo;
+	private Integer dmContentsNo;
+	private String dmContentsMessage;
+	private Date dmContentsDate;
+	private String dmContentsImage;
 	
 	public DmContents() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DmContents(Integer dm_no, Integer dm_contents_no, String dm_contents_message, String dImage,
-			Date dm_contents_date) {
+	public DmContents(Integer dmNo, Integer dmContentsNo, String dmContentsMessage, Date dmContentsDate,
+			String dmContentsImage) {
 		super();
-		this.dm_no = dm_no;
-		this.dm_contents_no = dm_contents_no;
-		this.dm_contents_message = dm_contents_message;
-		this.dImage = dImage;
-		this.dm_contents_date = dm_contents_date;
+		this.dmNo = dmNo;
+		this.dmContentsNo = dmContentsNo;
+		this.dmContentsMessage = dmContentsMessage;
+		this.dmContentsDate = dmContentsDate;
+		this.dmContentsImage = dmContentsImage;
 	}
 
-	public Integer getDm_no() {
-		return dm_no;
+	public Integer getDmNo() {
+		return dmNo;
 	}
 
-	public void setDm_no(Integer dm_no) {
-		this.dm_no = dm_no;
+	public void setDmNo(Integer dmNo) {
+		this.dmNo = dmNo;
 	}
 
-	public Integer getDm_contents_no() {
-		return dm_contents_no;
+	public Integer getDmContentsNo() {
+		return dmContentsNo;
 	}
 
-	public void setDm_contents_no(Integer dm_contents_no) {
-		this.dm_contents_no = dm_contents_no;
+	public void setDmContentsNo(Integer dmContentsNo) {
+		this.dmContentsNo = dmContentsNo;
 	}
 
-	public String getDm_contents_message() {
-		return dm_contents_message;
+	public String getDmContentsMessage() {
+		return dmContentsMessage;
 	}
 
-	public void setDm_contents_message(String dm_contents_message) {
-		this.dm_contents_message = dm_contents_message;
+	public void setDmContentsMessage(String dmContentsMessage) {
+		this.dmContentsMessage = dmContentsMessage;
 	}
 
-	public String getdImage() {
-		return dImage;
+	public Date getDmContentsDate() {
+		return dmContentsDate;
 	}
 
-	public void setdImage(String dImage) {
-		this.dImage = dImage;
+	public void setDmContentsDate(Date dmContentsDate) {
+		this.dmContentsDate = dmContentsDate;
 	}
 
-	public Date getDm_contents_date() {
-		return dm_contents_date;
+	public String getDmContentsImage() {
+		return dmContentsImage;
 	}
 
-	public void setDm_contents_date(Date dm_contents_date) {
-		this.dm_contents_date = dm_contents_date;
-	}
-
-	@Override
-	public String toString() {
-		return "DmContents [dm_no=" + dm_no + ", dm_contents_no=" + dm_contents_no + ", dm_contents_message="
-				+ dm_contents_message + ", dImage=" + dImage + ", dm_contents_date=" + dm_contents_date + "]";
+	public void setDmContentsImage(String dmContentsImage) {
+		this.dmContentsImage = dmContentsImage;
 	}
 	
 	
