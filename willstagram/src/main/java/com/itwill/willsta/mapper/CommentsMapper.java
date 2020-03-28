@@ -33,7 +33,7 @@ public interface CommentsMapper {
 	public Comments findComments(@Param("cNo") int cNo);
 	
 	//댓글 전체 조회
-	@Select("SELECT	cNo, pNo, mId, cContents, cTime" + 
+	@Select("SELECT	cNo, pNo, mId, cContents, cTime " + 
 			"FROM	comments")
 	public List<Comments> findCommentsList();
 	
