@@ -26,11 +26,11 @@ public interface MemberMapper {
 	@Update("UPDATE MEMBER SET mPass=#{mPass}, mName=#{mName}, mPhone=#{mPhone} WHERE mId=#{mId}")
 	public boolean updateMember(Member memeber);
 	
-	/*회원 탈퇴*/
+	/*회원 탈퇴(test 완)*/
 	@Update("UPDATE MEMBER SET mRetire = 'T' WHERE mId = #{mId}")
 	public boolean deleteMember(String mId);
 	
-	/*아이디 중복체크*/
+	/*아이디 중복체크(완)*/
 	@Select("SELECT count(*) cnt FROM MEMBER WHERE mId=#{mId}")
 	public boolean existedMember(String mId);
 	
@@ -39,7 +39,8 @@ public interface MemberMapper {
 	public Member findId(String mEmail, String mName);
 	
 	/*비밀번호 찾기*/
-	@Select("SELECT * FROM MEMBER WHERE mId=#{mId} and mName=#{mName}")
+	@Select("SELECT mPass FROM MEMBER WHERE mId=#{mId} and mName=#{mName}")
+	//SELECT mPass FROM MEMBER WHERE mId = 'pkr' AND mName = '세미'
 	public Member findPw(String mId, String mName);
 	
 	/*임시비밀번호 발급*/
