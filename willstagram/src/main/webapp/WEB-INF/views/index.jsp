@@ -21,6 +21,20 @@
 	<link rel="stylesheet" type="text/css" href="lib/slick/slick-theme.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/responsive.css">
+	<script type="text/javascript">
+		$(function(){
+			$('#postWrite').on('submit', function(e){
+				e.preventDefault();
+				$.ajax({
+					url:'write_post',
+					method:'POST',
+					data:e.target.serialize(),
+					 
+					
+				});
+			});
+		});
+	</script>
 </head>
 
 <body>	
@@ -461,7 +475,7 @@
 			<div class="post-project">
 				<h3>글쓰기</h3>
 				<div class="post-project-fields">
-					<form>
+					<form id="postWrite">
 						<div class="row">
 							<div class="col-lg-12">
 								<input type="text" name="title" placeholder="Title">
@@ -474,8 +488,8 @@
 							</div>
 							<div class="col-lg-12">
 								<ul>
-									<li><button class="active" type="submit" value="post">Post</button></li>
-									<li><a href="#" title="">Cancel</a></li>
+									<li><button class="active" type="submit" value="post">완료</button></li>
+									<li><a href="#" title="">취소</a></li>
 								</ul>
 							</div>
 						</div>

@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.willsta.domain.Post;
@@ -29,15 +31,26 @@ public class PostController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/write_post", method = RequestMethod.POST)
-	public ModelAndView write_post() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("write_post");
-		return mv;
+	@ResponseBody
+	@RequestMapping(value="/write_post", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
+	public String write(Post post) {
+		//1.데이터 저장처리
+		try {
+			int rn = postService.createPost(post);
+			if(rn >0) {
+				return "success";
+			}
+		} catch (Exception e) {
+			return "fail";
+		}
+		
+		return "fail";
+		
 	}
+	
 	/*
-	@RequestMapping(value="/write_post", method = RequestMethod.POST)
-	public String productUpdate(Post post, 
+	 * 	@RequestMapping(value="/write_post", method = RequestMethod.POST)
+	public String write(Post post, 
 								HttpServletRequest request) throws Exception {
 		String filename="";
 		//String fileSavePath="/image/";
@@ -66,6 +79,7 @@ public class PostController {
 		
 		return "forward:adminlist";
 	}
-	*/
+	 */
+	
 	
 }
