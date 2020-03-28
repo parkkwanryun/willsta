@@ -1,18 +1,19 @@
 package com.itwill.willsta.domain;
 
-import java.util.Date;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class DM {
 	private Integer dmNo;
 	private String mId;
 	private String mIdYou;
-	private Date dmDate;
+	private String dmDate;
 	
 	public DM() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DM(Integer dmNo, String mId, String mIdYou, Date dmDate) {
+	public DM(Integer dmNo, String mId, String mIdYou, String dmDate) {
 		this.dmNo = dmNo;
 		this.mId = mId;
 		this.mIdYou = mIdYou;
@@ -43,11 +44,11 @@ public class DM {
 		this.mIdYou = mIdYou;
 	}
 
-	public Date getDmDate() {
+	public String getDmDate() {
 		return dmDate;
 	}
 
-	public void setDmDate(Date dmDate) {
+	public void setDmDate(String dmDate) {
 		this.dmDate = dmDate;
 	}
 
