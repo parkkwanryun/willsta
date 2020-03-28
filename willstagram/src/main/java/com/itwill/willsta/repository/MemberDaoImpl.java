@@ -55,8 +55,15 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
-	public List<Member> selectAllMemberList(String mId) {
+	public List<Member> memberList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public List<Member> findMemberList(String mid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }
