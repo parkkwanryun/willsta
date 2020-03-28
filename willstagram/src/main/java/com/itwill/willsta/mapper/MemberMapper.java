@@ -38,6 +38,6 @@ public interface MemberMapper {
 	@Select("SELECT mid, mname, mimage FROM member")
 	public List<Member> memberList();
 	
-	@Select("SELECT mid, mname, mimage FROM member where mid like ‘%’||#{mid}||’%’")
+	@Select("SELECT mid, mname, mimage FROM member where mid like ‘%'||#{mid}||'%’ ")
 	public List<Member> findMemberList(String mid);
 }
