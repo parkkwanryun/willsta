@@ -21,21 +21,7 @@
 	<link rel="stylesheet" type="text/css" href="lib/slick/slick-theme.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/responsive.css">
-	<script type="text/javascript">
-		$(function(){
-			$('#postWrite').on('submit', function(e){
-				e.preventDefault();
-				$.ajax({
-					url:'write_post',
-					method:'POST',
-					data:e.target.serialize(),
-					 
-					
-				});
-			});
-		});
-	</script>
-</head>
+	
 
 <body>	
 
@@ -478,13 +464,13 @@
 					<form id="postWrite">
 						<div class="row">
 							<div class="col-lg-12">
-								<input type="text" name="title" placeholder="Title">
+								<input type="text" name="pTitle" placeholder="Title">
 							</div>
 							<div class="col-lg-12">
-								<input type="text" name="tag" placeholder="tag">
+								<input type="text" name="hasTag" placeholder="tag">
 							</div>
 							<div class="col-lg-12">
-								<textarea name="description" placeholder="Description"></textarea>
+								<textarea name="pContents" placeholder="Description"></textarea>
 							</div>
 							<div class="col-lg-12">
 								<ul>
@@ -498,8 +484,6 @@
 				<a href="#" title=""><i class="la la-times-circle-o"></i></a>
 			</div><!--post-project end-->
 		</div><!--post-project-popup end-->
-
-
 
 		<div class="chatbox-list">
 			<div class="chatbox">
@@ -660,6 +644,40 @@
 <script type="text/javascript" src="lib/slick/slick.min.js"></script>
 <script type="text/javascript" src="js/scrollbar.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
-
+<script type="text/javascript">
+	
+	//document ready
+		$(function(){
+			
+			$(document).on('submit','#postWrite',function(e){
+				var params = $(this).serialize();
+				alert(params);
+				$.ajax({
+					url:'write_post',
+					method:'POST',
+					data:params,
+					dataType:'text',
+					success: function(resultText){
+						if(resultText.trim()=='success'){
+							alert('sucess');
+						}else{
+							alert('fail');
+						}
+					}
+					
+				});
+				
+				 $(".post-popup.job_post").removeClass("active");
+			     $(".wrapper").removeClass("overlay");
+				
+				e.preventDefault();
+			});
+		});
+	
+		
+	
+	
+	</script>
+</head>
 </body>
 </html>

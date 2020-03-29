@@ -34,6 +34,8 @@ public class PostController {
 	@ResponseBody
 	@RequestMapping(value="/write_post", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
 	public String write(Post post) {
+		System.out.println("###"+post);
+		post.setmId("hjs");
 		//1.데이터 저장처리
 		try {
 			int rn = postService.createPost(post);

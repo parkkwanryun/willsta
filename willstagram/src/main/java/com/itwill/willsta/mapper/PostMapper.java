@@ -13,7 +13,7 @@ import com.itwill.willsta.domain.Post;
 
 @Mapper
 public interface PostMapper {
-	@Insert("INSERT INTO POST VALUES (post_number_seq.NEXTVAL, #{mId}, #{pTitle}, #{pContents}, #{hasTag}, #{pViewCount}, sysdate)")
+	@Insert("INSERT INTO POST VALUES (post_number_seq.NEXTVAL, #{mId}, #{pTitle}, #{pContents}, #{hasTag}, 0, sysdate)")
 	public int insert(Post post);
 
 	//컨텐트이름들은 리스트맵으로 컨트롤
