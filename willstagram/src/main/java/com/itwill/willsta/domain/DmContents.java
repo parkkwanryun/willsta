@@ -62,6 +62,13 @@ public class DmContents {
 	public void setDmContentsImage(String dmContentsImage) {
 		this.dmContentsImage = dmContentsImage;
 	}
+
+	@Override
+	public String toString() {
+		return "DmContents [dmNo=" + dmNo + ", dmContentsNo=" + dmContentsNo + ", dmContentsMessage="
+				+ dmContentsMessage + ", dmContentsDate=" + dmContentsDate + ", dmContentsImage=" + dmContentsImage
+				+ "]\n";
+	}
 	
 	
 }

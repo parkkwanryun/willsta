@@ -52,17 +52,44 @@ public class CommentsUnitTest {
     @Test //댓글 삭제
     @Ignore
     public void removeCommentsTest() throws Exception {
-    	commentsDao.removeComments(9);
+    	int removeResult = commentsDao.removeComments(9);
+    	Assert.assertEquals(1, removeResult);
     }
     
     @Test //댓글 수정
     @Ignore
     public void updateCommentsTest() throws Exception {
-    	Comments comments = commentsDao.findComments(3);
+    	Comments comments = commentsDao.findComments(11);
     	comments.setcContents("Dao 댓글 변경 Test");
-    	commentsDao.updateComments(comments);
+    	int updateResult = commentsDao.updateComments(comments);
+    	Assert.assertEquals(1, updateResult);
     }
     
+    @Test //하나의 포스트에 따른 한 맴버의 댓글 수
+    @Ignore
+    public void postCommentsCountBymId() throws Exception {
+    	int postCommentsCount = commentsDao.postCommentsCountBymId(10, "KJS");
+    	Assert.assertEquals(3, postCommentsCount);
+    }
+     
+    @Test //한 맴버가 작성한 총 댓글 수
+    @Ignore
+    public void totalCommentsCount() throws Exception {
+    	int totalCommentsCount = commentsDao.totalCommentsCountBymId("KJS");
+    	Assert.assertEquals(5, totalCommentsCount);
+    }
     
+    @Test //하나의 포스트에 달린 총 댓글 수
+    @Ignore
+    public void postCommentsCount() throws Exception {
+    	int postCommentsCount = commentsDao.postCommentsCount(15);
+    	Assert.assertEquals(10, postCommentsCount);
+    }
+    
+    @Test //한 맴버의 댓글 전체 조회
+    public void findCommentsListBymId() throws Exception {
+    	List<Comments> commentsListBymId = commentsDao.findCommentsListBymId("hjs");
+    	System.out.println("### findCommentsListBymId: "+commentsListBymId);
+    }
 	
 }
