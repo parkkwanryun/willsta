@@ -162,7 +162,7 @@
 									<!-- post-bar가 반복되면 됨 -->
 								<c:forEach var="post" items="${postList}">
 								
-										<div class="post-bar">
+										<div class="post-bar" post_no="${post.pNo}">
 											<div class="post_topbar">
 												<div class="usy-dt">
 													<img src="images/resources/us-pic.png" alt="">
@@ -174,11 +174,9 @@
 												<div class="ed-opts">
 													<a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
 													<ul class="ed-options">
-														<li><a href="#" title="">Edit Post</a></li>
-														<li><a href="#" title="">Unsaved</a></li>
-														<li><a href="#" title="">Unbid</a></li>
-														<li><a href="#" title="">Close</a></li>
-														<li><a href="#" title="">Hide</a></li>
+														<li><a class="updatePost" href="#" title="">Edit Post</a></li>
+														<li><a class="deletePost" href="#" title="">Unsaved</a></li>
+														<li><a class="hiddenPost" href="#" title="">Hide</a></li>
 													</ul>
 												</div>
 											</div>
@@ -648,7 +646,7 @@
 	
 	//document ready
 		$(function(){
-			
+			//post쓰기
 			$(document).on('submit','#postWrite',function(e){
 				var params = $(this).serialize();
 				alert(params);
@@ -672,6 +670,30 @@
 				
 				e.preventDefault();
 			});
+			
+			//post삭제
+			$('ul.ed-options a.deletePost').on('click',function(e){
+				var $post = $(e.target).parents('div.post-bar');
+				var params = "pNo="+ $post.attr('post_no');
+				$.ajax({
+					url:'delete_post',
+					method:'POST',
+					data:params,
+					dataType:'text',
+					success: function(resultText){
+						if(resultText.trim()=='success'){
+							$post.remove();
+						}else{
+							alert('delete fail');
+						}
+					}
+					
+				});
+				
+				e.preventDefault();
+			});
+			
+			
 		});
 	
 		

@@ -40,4 +40,11 @@ public class PostDaoImpl implements PostDao {
 		 return postMapper.selectMyList(userId);
 	}
 
+	@Override
+	public Post selectPost(Integer pNo) {
+		 return postMapper.selectOne(pNo);
+	}
+
+
+
 }

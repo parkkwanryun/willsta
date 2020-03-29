@@ -31,24 +31,44 @@ public class PostController {
 		return mv;
 	}
 	
+	
 	@ResponseBody
 	@RequestMapping(value="/write_post", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
 	public String write(Post post) {
-		System.out.println("###"+post);
 		post.setmId("hjs");
 		//1.데이터 저장처리
 		try {
 			int rn = postService.createPost(post);
 			if(rn >0) {
+				//성공인 경우 해당 포스트를 전송해 줌 1개의 포스트를  jsp 로 구성해서 던져줌.
+				System.out.println("###"+post);
 				return "success";
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			return "fail";
 		}
-		
+		return "fail";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/delete_post", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
+	public String delete(@RequestParam(value="pNo", required = true) int pNo) {
+		//1.데이터 저장처리
+		try {
+			int rn = postService.removePost(pNo);
+			if(rn >0) {
+				return "success";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+
 		return "fail";
 		
 	}
+	
 	
 	/*
 	 * 	@RequestMapping(value="/write_post", method = RequestMethod.POST)

@@ -33,4 +33,9 @@ public class PostServiceImpl implements PostService {
 		return postDao.selectMyList(userId);
 	}
 
+	@Override
+	public Post selectPost(Integer pNo) {
+		return postDao.selectPost(pNo);
+	}
+
 }

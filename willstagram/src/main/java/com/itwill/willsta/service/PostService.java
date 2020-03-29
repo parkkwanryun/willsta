@@ -13,5 +13,8 @@ public interface PostService {
 	int removePost(Integer pNo);
 
 	List<Post> selectMyList(String userId);
+	
+	Post selectPost(Integer pNo);
+
 
 }
