@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.itwill.willsta.domain.Post;
+import com.itwill.willsta.domain.PostImage;
 
 public interface PostDao {
 	
@@ -18,4 +19,6 @@ public interface PostDao {
 	public List<Post> selectMyList(String userId);
 	
 	public Post selectPost(Integer pNo);
+	
+	public PostImage selectContents(Integer pNo);
 }

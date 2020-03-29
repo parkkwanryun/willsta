@@ -1,8 +1,6 @@
 package com.itwill.willsta.controller;
 
-import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.willsta.domain.Post;
+import com.itwill.willsta.domain.PostImage;
 import com.itwill.willsta.service.PostService;
 
 @RestController
@@ -37,9 +36,11 @@ public class PostController {
 		ModelAndView mv = new ModelAndView();
 		Post post = postService.selectPost(pNo);
 		post.setTagArray(post.getHasTag().split(" "));
+		PostImage postImages = postService.selectContents(pNo);
 		
 		mv.addObject("post", post);
-		mv.setViewName("redirect:post.jsp");
+		mv.addObject("postImages", postImages);
+		mv.setViewName("detail");
 		return mv;
 	}
 	

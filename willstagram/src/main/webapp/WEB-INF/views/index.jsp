@@ -483,6 +483,12 @@
 			</div><!--post-project end-->
 		</div><!--post-project-popup end-->
 
+<!-- 상세보기Modal -->
+		<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  
+		</div>
+
+
 		<div class="chatbox-list">
 			<div class="chatbox">
 				<div class="chat-mg">

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.itwill.willsta.domain.Post;
+import com.itwill.willsta.domain.PostImage;
 import com.itwill.willsta.repository.PostDao;
 @Service
 public class PostServiceImpl implements PostService {
@@ -36,6 +37,11 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public Post selectPost(Integer pNo) {
 		return postDao.selectPost(pNo);
+	}
+
+	@Override
+	public PostImage selectContents(Integer pNo) {
+		return postDao.selectContents(pNo);
 	}
 
 }

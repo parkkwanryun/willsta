@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
 
 import com.itwill.willsta.domain.Post;
+import com.itwill.willsta.domain.PostImage;
 
 @Mapper
 public interface PostMapper {
@@ -55,6 +56,11 @@ public interface PostMapper {
 				+" FROM POST P INNER JOIN MEMBER M ON P.MID = M.MID "
 				+" WHERE pNo = #{pNo}")
 		public Post selectOne(Integer pNo);
+		
+//POST 한개의 전체 콘텐츠 불러들임
+		@Select(" select pno, filename from post_image "
+				+" WHERE pNo = #{pNo}")
+		public PostImage selectContents(Integer pNo);
 	
 	
 	

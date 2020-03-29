@@ -3,6 +3,7 @@ package com.itwill.willsta.service;
 import java.util.List;
 
 import com.itwill.willsta.domain.Post;
+import com.itwill.willsta.domain.PostImage;
 
 public interface PostService {
 
@@ -16,5 +17,6 @@ public interface PostService {
 	
 	Post selectPost(Integer pNo);
 
+	PostImage selectContents(Integer pNo);
 
 }
