@@ -187,7 +187,7 @@ $(window).on("load", function() {
     //  ================== Edit Options Function =================
 
 
-    $(".ed-opts-open").on("click", function(){
+    $(document).on("click", ".ed-opts-open", function(){
         $(this).next(".ed-options").toggleClass("active");
         return false;
     });

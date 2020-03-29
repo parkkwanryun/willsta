@@ -649,18 +649,13 @@
 			//post쓰기
 			$(document).on('submit','#postWrite',function(e){
 				var params = $(this).serialize();
-				alert(params);
 				$.ajax({
 					url:'write_post',
 					method:'POST',
 					data:params,
-					dataType:'text',
+					dataType:'html',
 					success: function(resultText){
-						if(resultText.trim()=='success'){
-							alert('sucess');
-						}else{
-							alert('fail');
-						}
+							$('div.posts-section').prepend(resultText);
 					}
 					
 				});
@@ -672,7 +667,7 @@
 			});
 			
 			//post삭제
-			$('ul.ed-options a.deletePost').on('click',function(e){
+			$(document).on('click','ul.ed-options a.deletePost',function(e){
 				var $post = $(e.target).parents('div.post-bar');
 				var params = "pNo="+ $post.attr('post_no');
 				$.ajax({
@@ -687,17 +682,11 @@
 							alert('delete fail');
 						}
 					}
-					
 				});
-				
 				e.preventDefault();
 			});
 			
-			
 		});
-	
-		
-	
 	
 	</script>
 </head>

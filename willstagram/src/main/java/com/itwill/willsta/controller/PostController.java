@@ -1,20 +1,21 @@
 package com.itwill.willsta.controller;
 
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.willsta.domain.Post;
 import com.itwill.willsta.service.PostService;
 
-@Controller
+@RestController
 public class PostController {
 	@Autowired
 	PostService postService;
@@ -31,24 +32,38 @@ public class PostController {
 		return mv;
 	}
 	
+	@RequestMapping(value="/post" , produces = "text/html;charset=utf-8")
+	public ModelAndView selectPost(@RequestParam(value="pNo", required = true) Integer pNo) {
+		ModelAndView mv = new ModelAndView();
+		Post post = postService.selectPost(pNo);
+		post.setTagArray(post.getHasTag().split(" "));
+		
+		mv.addObject("post", post);
+		mv.setViewName("redirect:post.jsp");
+		return mv;
+	}
 	
-	@ResponseBody
-	@RequestMapping(value="/write_post", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
-	public String write(Post post) {
+	@RequestMapping(value="/write_post", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public ModelAndView write(Post post) {
+		ModelAndView mv = new ModelAndView();
 		post.setmId("hjs");
 		//1.데이터 저장처리
 		try {
 			int rn = postService.createPost(post);
 			if(rn >0) {
 				//성공인 경우 해당 포스트를 전송해 줌 1개의 포스트를  jsp 로 구성해서 던져줌.
-				System.out.println("###"+post);
-				return "success";
+				Post postOne = postService.selectPost(post.getpNo());
+				postOne.setTagArray(postOne.getHasTag().split(" "));
+				mv.addObject("post", postOne);
+				mv.setViewName("post");
+				
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "fail";
+			mv.setViewName("error");
 		}
-		return "fail";
+		return mv;
 	}
 	
 	@ResponseBody
