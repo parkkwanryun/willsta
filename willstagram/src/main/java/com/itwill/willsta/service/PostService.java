@@ -19,7 +19,7 @@ public interface PostService {
 	List<Post> selectMyList(String userId);
 	
 	Post selectPost(Integer pNo);
-
+ 
 	List<PostImage> selectContents(Integer pNo);
 
 }
