@@ -4,7 +4,7 @@
 	<jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
 	<body>
 	<div class="wrapper">	
-		<jsp:include page="include_head_menu.jsp"/><!--header end-->	
+		<jsp:include page="/WEB-INF/commons/include_head_menu.jsp"/><!--header end-->	
 
 		<main>
 			<div class="main-section">
@@ -618,110 +618,8 @@
 
 
 
-		<div class="post-popup pst-pj">
-			<div class="post-project">
-				<h3>Post a project</h3>
-				<div class="post-project-fields">
-					<form>
-						<div class="row">
-							<div class="col-lg-12">
-								<input type="text" name="title" placeholder="Title">
-							</div>
-							<div class="col-lg-12">
-								<div class="inp-field">
-									<select>
-										<option>Category</option>
-										<option>Category 1</option>
-										<option>Category 2</option>
-										<option>Category 3</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<input type="text" name="skills" placeholder="Skills">
-							</div>
-							<div class="col-lg-12">
-								<div class="price-sec">
-									<div class="price-br">
-										<input type="text" name="price1" placeholder="Price">
-										<i class="la la-dollar"></i>
-									</div>
-									<span>To</span>
-									<div class="price-br">
-										<input type="text" name="price1" placeholder="Price">
-										<i class="la la-dollar"></i>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<textarea name="description" placeholder="Description"></textarea>
-							</div>
-							<div class="col-lg-12">
-								<ul>
-									<li><button class="active" type="submit" value="post">Post</button></li>
-									<li><a href="#" title="">Cancel</a></li>
-								</ul>
-							</div>
-						</div>
-					</form>
-				</div><!--post-project-fields end-->
-				<a href="#" title=""><i class="la la-times-circle-o"></i></a>
-			</div><!--post-project end-->
-		</div><!--post-project-popup end-->
-
-		<div class="post-popup job_post">
-			<div class="post-project">
-				<h3>Post a job</h3>
-				<div class="post-project-fields">
-					<form>
-						<div class="row">
-							<div class="col-lg-12">
-								<input type="text" name="title" placeholder="Title">
-							</div>
-							<div class="col-lg-12">
-								<div class="inp-field">
-									<select>
-										<option>Category</option>
-										<option>Category 1</option>
-										<option>Category 2</option>
-										<option>Category 3</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<input type="text" name="skills" placeholder="Skills">
-							</div>
-							<div class="col-lg-6">
-								<div class="price-br">
-									<input type="text" name="price1" placeholder="Price">
-									<i class="la la-dollar"></i>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="inp-field">
-									<select>
-										<option>Full Time</option>
-										<option>Half time</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<textarea name="description" placeholder="Description"></textarea>
-							</div>
-							<div class="col-lg-12">
-								<ul>
-									<li><button class="active" type="submit" value="post">Post</button></li>
-									<li><a href="#" title="">Cancel</a></li>
-								</ul>
-							</div>
-						</div>
-					</form>
-				</div><!--post-project-fields end-->
-				<a href="#" title=""><i class="la la-times-circle-o"></i></a>
-			</div><!--post-project end-->
-		</div><!--post-project-popup end-->
-
-
+	<!--post pop up-->	
+	 <jsp:include page="/WEB-INF/commons/include_postpopup_js.jsp"/>
 
 		<div class="chatbox-list">
 			<div class="chatbox">
@@ -870,11 +768,14 @@
 				</div><!--conversation-box end-->
 			</div>
 		</div><!--chatbox-list end-->
+	</div>
+	<!--theme-layout end-->
 
-	</div><!--theme-layout end-->
-
-
-
-	<jsp:include page="/WEB-INF/commons/include_footer_js.jsp"/>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/popper.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.range-min.js"></script>
+<script type="text/javascript" src="lib/slick/slick.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>

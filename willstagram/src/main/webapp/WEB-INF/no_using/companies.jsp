@@ -3,7 +3,7 @@
 <jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
 <body>
 	<div class="wrapper">
-		<jsp:include page="/include_head_menu.jsp"/><!--header end-->	
+		<jsp:include page="/WEB-INF/commons/include_head_menu.jsp"/><!--header end-->	
 		<section class="companies-info">
 			<div class="container">
 				<div class="company-title">
