@@ -228,7 +228,7 @@
 						<!-- 
 						<c:if test="${status.index eq 0}">
 						</c:if>
-						 -->
+						 --> 
 						<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 							<div class="company_profile_info">
 								<div class="company-up-info">
