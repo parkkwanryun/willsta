@@ -46,7 +46,8 @@ public class CommentsUnitTest {
     @Ignore
     public void createCommentsTest() throws Exception {
     	Comments comments = new Comments(-999, 8, "hjs", "DAO insert test");
-    	commentsDao.createComments(comments);
+    	int createResult = commentsDao.createComments(comments);
+    	Assert.assertEquals(1, createResult);
     }
     
     @Test //댓글 삭제

@@ -6,7 +6,7 @@
    <div class="modal-content">
      <div class="modal-header">
        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-       <h4 class="modal-title text-center" id="myModalLabel">${post.title}</h4>
+       <h4 class="modal-title text-center" id="myModalLabel">${post.pTitle}</h4>
      </div>
      <div class="modal-body" id="myModalBody">
         <div id="carousel-product" class="carousel slide center-block" data-ride="carousel" data-interval="5000">
@@ -20,13 +20,19 @@
 		
 		      <!-- Wrapper for slides -->
 		      <div class="carousel-inner" role="listbox">
-		      	<c:forEach var="pi" items="${imgList}" varStatus="vs">	
+		      	<c:forEach var="pi" items="${postImages}" varStatus="vs">	
 		      		<div class="item 
 		      		<c:if test="${vs.index==0}">
 		      			active
 		      		</c:if>
 			        	">
-			          <img class="center-block" src="/myshop/image/${pi.imgName}" alt="${pi.imgName}" >
+			          	<c:if test="${fn:startsWith(pi.fileName, 'img')}">
+							<img class="center-block" src="contents/post_contents/${pi.fileName}" alt="${pi.fileName}" >
+						</c:if>
+						<c:if test="${fn:startsWith(pi.fileName, 'mov')}">
+							  <iframe class="embed-responsive-item" style="padding-top:10px;"
+							  			src="contents/post_contents/${pi.fileName}"></iframe>
+						</c:if>
 			        </div>
 		        </c:forEach>
 		      </div>
@@ -43,8 +49,6 @@
 	    </div>
      </div>
      <div class="modal-footer">
-     	<button type="button" id="btnModify" class="btn btn-default" data-dismiss="modal">수정</button>
-     	<button type="button" id="btnRemove" class="btn btn-default" data-dismiss="modal">삭제</button>
        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
      </div>
    </div>

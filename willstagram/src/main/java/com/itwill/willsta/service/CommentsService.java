@@ -20,14 +20,12 @@ public class CommentsService {
 	
 	//댓글 수정
 	public int updateComments(Comments comments) throws Exception {
-		
 		return 0;
 	}
 	
 	//댓글 삭제
 	public int removeComments(int cNo) throws Exception {
-		
-		return 0;
+		return commentsDao.removeComments(cNo);
 	}
 	
 	//댓글 조회
@@ -37,7 +35,13 @@ public class CommentsService {
 	
 	//댓글 전체 조회
 	public List<Comments> findCommentsList() throws Exception {
-		
-		return null;
+		List<Comments> findCommentsList = commentsDao.findCommentsList();
+		return findCommentsList;
+	}
+	
+	//한 맴버의 댓글 전체 조회
+	public List<Comments> findCommentsListBymId(String mId) throws Exception {
+		List<Comments> findCommentsListBymId = commentsDao.findCommentsListBymId(mId);
+		return findCommentsListBymId;
 	}
 }
