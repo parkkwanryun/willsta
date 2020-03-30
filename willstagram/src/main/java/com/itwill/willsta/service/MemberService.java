@@ -8,5 +8,5 @@ public interface MemberService {
 		
 	
 	List<Member> memberList();
-	List<Member> findMemberList(String mid);
+	List<Member> findMemberList(String mId);
 }
