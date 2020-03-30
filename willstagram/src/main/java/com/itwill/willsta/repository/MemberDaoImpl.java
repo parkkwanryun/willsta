@@ -29,7 +29,7 @@ public class MemberDaoImpl implements MemberDao{
 	}//
 
 	@Override
-	public boolean delelteMember(String mId) {
+	public boolean deleteMember(String mId) {
 		
 		return memberMapper.deleteMember(mId);
 	}//

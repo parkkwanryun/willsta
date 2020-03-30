@@ -16,7 +16,7 @@ public interface MemberDao {
 	boolean updateMember(Member memeber);
 	
 	/*Delete One(회원탈퇴)(mRetire F --> T)*/
-	boolean delelteMember(String mId);
+	boolean deleteMember(String mId);
 	
 	/*아이디 중복체크*/
 	boolean existedMember(String mId);
