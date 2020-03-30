@@ -1,13 +1,11 @@
 package com.itwill.willsta.controller;
 
-<<<<<<< HEAD
-=======
+
 import java.io.File;
->>>>>>> branch 'master' of https://github.com/parkkwanryun/willsta.git
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
