@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%><!DOCTYPE html>
-<jsp:include page="include_header_css.jsp"/>
+<jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
 <body>
 	<div class="wrapper">
 		<header>
@@ -2442,6 +2442,6 @@
 
 
 
-<jsp:include page="include_js.jsp"/>
+<jsp:include page="/WEB-INF/commons/include_footer_js.jsp"/>
 </body>
 </html>
