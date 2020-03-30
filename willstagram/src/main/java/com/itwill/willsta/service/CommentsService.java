@@ -2,61 +2,35 @@ package com.itwill.willsta.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.itwill.willsta.domain.Comments;
-import com.itwill.willsta.repository.CommentsDao;
 
-@Service
-public class CommentsService {
-	@Autowired
-	private CommentsDao commentsDao;
-	
+public interface CommentsService {
+
 	//댓글 작성
-	public int createComment(Comments comments) throws Exception {
-		return commentsDao.createComments(comments);
-	}
-	
+	int createComment(Comments comments) throws Exception;
+
 	//댓글 수정
-	public int updateComments(Comments comments) throws Exception {
-		return commentsDao.updateComments(comments);
-	}
-	
+	int updateComments(Comments comments) throws Exception;
+
 	//댓글 삭제
-	public int removeComments(int cNo) throws Exception {
-		return commentsDao.removeComments(cNo);
-	}
-	
+	int removeComments(int cNo) throws Exception;
+
 	//댓글 조회
-	public Comments findComments(int cNo) throws Exception {
-		return commentsDao.findComments(cNo);
-	}
-	
+	Comments findComments(int cNo) throws Exception;
+
 	//댓글 전체 조회
-	public List<Comments> findCommentsList() throws Exception {
-		List<Comments> findCommentsList = commentsDao.findCommentsList();
-		return findCommentsList;
-	}
-	
+	List<Comments> findCommentsList() throws Exception;
+
 	//한 맴버의 댓글 전체 조회
-	public List<Comments> findCommentsListBymId(String mId) throws Exception {
-		List<Comments> findCommentsListBymId = commentsDao.findCommentsListBymId(mId);
-		return findCommentsListBymId;
-	}
-	
+	List<Comments> findCommentsListBymId(String mId) throws Exception;
+
 	//하나의 포스트에 따른 한 맴버의 댓글 수
-	public int postCommentsCountBymId(int pNo, String mId) throws Exception {
-		return commentsDao.postCommentsCountBymId(pNo, mId);
-	}
-	
+	int postCommentsCountBymId(int pNo, String mId) throws Exception;
+
 	//한 맴버가 작성한 총 댓글 수
-	public int totalCommentsCountBymId(String mId) throws Exception {
-		return commentsDao.totalCommentsCountBymId(mId);
-	}
-	
+	int totalCommentsCountBymId(String mId) throws Exception;
+
 	//하나의 포스트에 달린 총 댓글 수
-	public int postCommentsCount(int pNo) throws Exception {
-		return commentsDao.postCommentsCount(pNo);
-	}
+	int postCommentsCount(int pNo) throws Exception;
+
 }
