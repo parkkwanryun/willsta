@@ -26,6 +26,7 @@
     <mvc:resources mapping="/vendor/**" location="/vendor/" />
     -->
     <mvc:resources mapping="/**" location="/" />
+    
     <beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>	
 	 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
