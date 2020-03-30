@@ -26,11 +26,11 @@ public interface MemberMapper {
 	@Update("UPDATE MEMBER SET mPass=#{mPass}, mName=#{mName}, mEmail=#{mEmail}, mPhone=#{mPhone}, mImage=#{mImage} WHERE mId=#{mId}")
 	public boolean updateMember(Member memeber);
 	
-	/*회원 탈퇴(test 완)*/
+	/*회원 탈퇴*/
 	@Update("UPDATE MEMBER SET mRetire = 'T' WHERE mId = #{mId}")
 	public boolean deleteMember(@Param("mId") String mId);
 	
-	/*아이디 중복체크(완)*/
+	/*아이디 중복체크*/
 	@Select("SELECT count(*) cnt FROM MEMBER WHERE mId=#{mId}")
 	public boolean existedMember(@Param("mId") String mId);
 	
