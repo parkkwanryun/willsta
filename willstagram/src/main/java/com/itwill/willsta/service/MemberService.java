@@ -23,5 +23,5 @@ public interface MemberService {
 	Member getTempPw(String mPass, String mId);
 	
 	List<Member> memberList();
-	List<Member> findMemberList(String mid);
+	List<Member> findMemberList(String mId);
 }
