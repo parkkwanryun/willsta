@@ -30,8 +30,9 @@
 							<img class="center-block" src="contents/post_contents/${pi.fileName}" alt="${pi.fileName}" >
 						</c:if>
 						<c:if test="${fn:startsWith(pi.fileName, 'mov')}">
-							  <iframe class="embed-responsive-item" style="padding-top:10px;"
-							  			src="contents/post_contents/${pi.fileName}"></iframe>
+							<div class="embed-responsive embed-responsive-4by3">
+							  	<iframe class="embed-responsive-item" src="contents/post_contents/${pi.fileName}"></iframe>
+							</div>
 						</c:if>
 			        </div>
 		        </c:forEach>
