@@ -34,6 +34,12 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
+		<multipart-config>
+			<location>C:\eclipse-workspace5\myShop\src\main\webapp\contents\post_contents</location>
+			<max-file-size>-1</max-file-size>
+			<max-request-size>-1</max-request-size>
+			<file-size-threshold>1024</file-size-threshold>
+		</multipart-config>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 

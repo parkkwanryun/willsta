@@ -21,7 +21,7 @@ public interface PostMapper {
 
 	//컨텐트이름들은 리스트맵으로 컨트롤
 	@Insert("INSERT INTO POST_IMAGE VALUES(#{fileName}, #{pNo}")
-	public int insertImg(List<Map> listMap);
+	public int insertImg(PostImage pi);
 	
 	@Update({"<script> ", 
 			"	UPDATE POST ", 

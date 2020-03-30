@@ -1,6 +1,10 @@
 package com.itwill.willsta.controller;
 
+import java.util.Collection;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,12 +49,37 @@ public class PostController {
 	}
 	
 	@RequestMapping(value="/write_post", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
-	public ModelAndView write(Post post) {
+	public ModelAndView write(Post post, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		post.setmId("hjs");
 		//1.데이터 저장처리
 		try {
 			int rn = postService.createPost(post);
+			System.out.println(request.getContentType());
+			//2.파일처리(파일네임은DB에 저장 하고 파일은 image폴더에 저장)
+			if(request.getContentType()!=null && request.getContentType().toLowerCase().startsWith("multipart/")) {
+				Collection<Part> parts = request.getParts();
+				String filename="";
+				PostImage pi;
+				for (Part part : parts) {
+					System.out.println(part.getName());
+					System.out.println(filename);
+
+					filename = part.getSubmittedFileName();
+					System.out.println("*******"+part.getContentType());
+					if (!(filename == null || filename.equals(""))) {
+						pi = new PostImage(post.getpNo(), filename);	
+						postService.insertImg(pi);
+						if(part.getSize()>0) {
+							part.write(filename);
+							part.delete();
+						}
+					}
+					
+				}
+			}
+			
+			
 			if(rn >0) {
 				//성공인 경우 해당 포스트를 전송해 줌 1개의 포스트를  jsp 로 구성해서 던져줌.
 				Post postOne = postService.selectPost(post.getpNo());

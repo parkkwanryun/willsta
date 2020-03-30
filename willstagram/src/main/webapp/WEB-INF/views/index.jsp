@@ -21,7 +21,7 @@
 	<link rel="stylesheet" type="text/css" href="lib/slick/slick-theme.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/responsive.css">
-	
+	<link href="http://hayageek.github.io/jQuery-Upload-File/4.0.11/uploadfile.css" rel="stylesheet">
 
 <body>	
 
@@ -184,17 +184,15 @@
 											<div class="contents">
 												<c:if test="${fn:startsWith(post.fileName, 'img')}">
 													<div class="image">
-														<a href="#"><img class="center-block" style="margin:10px 0px;"
+														<img class="center-block" style="margin:10px 0px;"
 															src="contents/post_contents/${post.fileName}" alt="여기에이미지들어옴"
-															width="500" height="300" ></a>
+															width="500" height="300" >
 													</div>
 												</c:if>
 												<c:if test="${fn:startsWith(post.fileName, 'mov')}">
 													<div class="embed-responsive embed-responsive-4by3" style="margin-bottom:10px;" >
-														<a href="#">
 													  		<iframe class="embed-responsive-item" style="padding-top:10px;"
 													  			src="contents/post_contents/${post.fileName}"></iframe>
-													  	</a>
 													</div>
 												</c:if>
 											</div>
@@ -475,6 +473,13 @@
 								<textarea name="pContents" placeholder="Description"></textarea>
 							</div>
 							<div class="col-lg-12">
+								<input type=file name=file1 size=400 class="TXTFLD">
+								<input type=file name=file2 size=400 class="TXTFLD">
+								<input type=file name=file3 size=400 class="TXTFLD">
+								<input type=file name=file4 size=400 class="TXTFLD">
+								<input type=file name=file5 size=400 class="TXTFLD">
+						    </div>
+							<div class="col-lg-12">
 								<ul>
 									<li><button class="active" type="submit" value="post">완료</button></li>
 									<li><a href="#" title="">취소</a></li>
@@ -652,6 +657,7 @@
 <script type="text/javascript" src="lib/slick/slick.min.js"></script>
 <script type="text/javascript" src="js/scrollbar.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
+<script src="http://hayageek.github.io/jQuery-Upload-File/4.0.11/jquery.uploadfile.min.js"></script>
 <script type="text/javascript">
 	
 	//document ready
@@ -659,9 +665,11 @@
 			//post쓰기
 			$(document).on('submit','#postWrite',function(e){
 				var params = $(this).serialize();
+				alert(params);
 				$.ajax({
 					url:'write_post',
 					method:'POST',
+					enctype: false,
 					data:params,
 					dataType:'html',
 					success: function(resultText){
@@ -697,7 +705,7 @@
 			});
 			
 			//컨텐츠 보기 detail
-			$(document).on('click','div.contents a',function(e){
+			$(document).on('click','div.job_descp a',function(e){
 				var $post = $(e.target).parents('div.post-bar');
 				var params = "pNo="+ $post.attr('post_no');
 				$.ajax({
