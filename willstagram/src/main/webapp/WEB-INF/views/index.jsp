@@ -487,8 +487,8 @@
 			</div><!--post-project end-->
 		</div><!--post-project-popup end-->
 
-<!-- 상세보기Modal  aria-labelledby="myModalLabel" aria-hidden="true" -->
-		<div class="modal" id="myModal" tabindex="-1" role="dialog" >
+<!-- 상세보기Modal  id="myModal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"-->
+		<div class="post-popup post_deatil" >
 		  
 		</div>
 
@@ -700,21 +700,26 @@
 			$(document).on('click','div.contents a',function(e){
 				var $post = $(e.target).parents('div.post-bar');
 				var params = "pNo="+ $post.attr('post_no');
-				alert(params);
 				$.ajax({
 					url:'get_post',
 					method:'POST',
 					data:params,
 					dataType:'text',
 					success: function(resultText){
-						alert(resultText);
-						$('div.modal').append(resultText);
-						$('div.modal').addClass("active");
-						
+						$('div.post_deatil').html(resultText);
+						$('div.post_deatil').addClass("active");
+						$(".wrapper").addClass("overlay");
 					}
 				});
 				e.preventDefault();
 			});
+			
+			$(document).on('click','button.btn-default',function(e){
+				$('div.post_deatil').removeClass("active");
+				$(".wrapper").removeClass("overlay");
+				e.preventDefault();
+			});
+			
 			
 		});
 	
