@@ -20,7 +20,7 @@ public class CommentsService {
 	
 	//댓글 수정
 	public int updateComments(Comments comments) throws Exception {
-		return 0;
+		return commentsDao.updateComments(comments);
 	}
 	
 	//댓글 삭제
@@ -43,5 +43,20 @@ public class CommentsService {
 	public List<Comments> findCommentsListBymId(String mId) throws Exception {
 		List<Comments> findCommentsListBymId = commentsDao.findCommentsListBymId(mId);
 		return findCommentsListBymId;
+	}
+	
+	//하나의 포스트에 따른 한 맴버의 댓글 수
+	public int postCommentsCountBymId(int pNo, String mId) throws Exception {
+		return commentsDao.postCommentsCountBymId(pNo, mId);
+	}
+	
+	//한 맴버가 작성한 총 댓글 수
+	public int totalCommentsCountBymId(String mId) throws Exception {
+		return commentsDao.totalCommentsCountBymId(mId);
+	}
+	
+	//하나의 포스트에 달린 총 댓글 수
+	public int postCommentsCount(int pNo) throws Exception {
+		return commentsDao.postCommentsCount(pNo);
 	}
 }
