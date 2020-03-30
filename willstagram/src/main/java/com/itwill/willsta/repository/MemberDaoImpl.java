@@ -16,43 +16,43 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public boolean insertMember(Member member) {
 		return memberMapper.insertMember(member);
-	}	
+	}//
 	
 	@Override
 	public Member selectById(String mId, String mPhone) {
 		return memberMapper.selectById(mId, mPhone);
-	}
+	}//
 
 	@Override
 	public boolean updateMember(Member memeber) {
 		return memberMapper.updateMember(memeber);
-	}
+	}//
 
 	@Override
 	public boolean delelteMember(String mId) {
 		
 		return memberMapper.deleteMember(mId);
-	}
+	}//
 	
 	@Override
 	public boolean existedMember(String mId) {
 		return memberMapper.existedMember(mId);
-	}
+	}//
 
 	@Override
 	public Member findId(String mEmail, String mName) {
 		return memberMapper.findId(mEmail, mName);
-	}
+	}//
 
 	@Override
 	public Member findPw(String mId, String mName) {
 		return memberMapper.findPw(mId, mName);
-	}
+	}//
 
 	@Override
-	public Member getTempPw(Member findMember) {
-		return memberMapper.getTempPw(findMember);
-	}
+	public Member getTempPw(String mPass, String mId) {
+		return memberMapper.getTempPw(mPass, mId);
+	}//
 
 	@Override
 	public List<Member> memberList() {
