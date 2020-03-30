@@ -228,10 +228,14 @@
 						<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 							<div class="company_profile_info">
 								<div class="company-up-info">
-									<c:if test="${member.mImage==null}">
-										<img src="contents/member_image/default.png" alt="">
-									</c:if>
-									<img src="contents/member_image/${member.mImage}" alt="">
+									<c:choose>
+										<c:when test="${member.mImage==null}">
+											<img src="contents/member_image/default.png" alt="">
+										</c:when>	
+										<c:otherwise >
+											<img src="contents/member_image/${member.mImage}" alt="">
+										</c:otherwise>
+									</c:choose>
 									<h3>${member.mId}</h3>
 									<h4>${member.mName}</h4>
 									<ul>
