@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.itwill.willsta.domain.DM;
 import com.itwill.willsta.mapper.DMMapper;
 
-@Repository(value = "dmDao")
+@Repository
 public class DmDaoImpl implements DmDao {
 	@Autowired
 	private DMMapper dmMapper;
