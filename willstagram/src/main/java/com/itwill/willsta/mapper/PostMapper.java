@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
 
 import com.itwill.willsta.domain.Post;
+import com.itwill.willsta.domain.PostImage;
 
 @Mapper
 public interface PostMapper {
@@ -20,7 +21,7 @@ public interface PostMapper {
 
 	//컨텐트이름들은 리스트맵으로 컨트롤
 	@Insert("INSERT INTO POST_IMAGE VALUES(#{fileName}, #{pNo}")
-	public int insertImg(List<Map> listMap);
+	public int insertImg(PostImage pi);
 	
 	@Update({"<script> ", 
 			"	UPDATE POST ", 
@@ -55,6 +56,11 @@ public interface PostMapper {
 				+" FROM POST P INNER JOIN MEMBER M ON P.MID = M.MID "
 				+" WHERE pNo = #{pNo}")
 		public Post selectOne(Integer pNo);
+		
+//POST 한개의 전체 콘텐츠 불러들임
+		@Select(" select pno, filename from post_image "
+				+" WHERE pNo = #{pNo}")
+		public List<PostImage> selectContents(Integer pNo);
 	
 	
 	

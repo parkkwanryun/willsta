@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.itwill.willsta.domain.Post;
+import com.itwill.willsta.domain.PostImage;
 import com.itwill.willsta.mapper.PostMapper;
 
 @Repository
@@ -20,9 +21,8 @@ public class PostDaoImpl implements PostDao {
 	}
 
 	@Override
-	public int insertImg(List<Map> listMaop) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insertImg(PostImage pi) {
+		return postMapper.insertImg(pi);
 	}
 
 	@Override
@@ -43,6 +43,11 @@ public class PostDaoImpl implements PostDao {
 	@Override
 	public Post selectPost(Integer pNo) {
 		 return postMapper.selectOne(pNo);
+	}
+
+	@Override
+	public List<PostImage> selectContents(Integer pNo) {
+		return postMapper.selectContents(pNo);
 	}
 
 

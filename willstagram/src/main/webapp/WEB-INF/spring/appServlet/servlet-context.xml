@@ -13,7 +13,10 @@
 	<mvc:annotation-driven/>
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure 
 	<mvc:default-servlet-handler/>
+	<beans:bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
 	-->
+	
+	
 	<!--  
 	<mvc:resources mapping="/css/**" location="/css/" />
     <mvc:resources mapping="/fonts/**" location="/fonts/" />
@@ -24,6 +27,7 @@
     -->
     <mvc:resources mapping="/**" location="/" />
     
+    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>	
 	 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

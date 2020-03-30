@@ -13,13 +13,53 @@ public class MemberServiceImpl implements MemberService{
 	MemberDao memberDao;
 	
 	@Override
+	public boolean insertMember(Member member) {
+		return memberDao.insertMember(member);
+	}
+
+	@Override
+	public Member selectById(String mId) {
+		return memberDao.selectById(mId);
+	}
+
+	@Override
+	public boolean updateMember(Member member) {
+		return memberDao.updateMember(member);
+	}
+
+	@Override
+	public boolean deleteMember(String mId) {
+		return memberDao.deleteMember(mId);
+	}
+
+	@Override
+	public boolean existedMember(String mId) {
+		return memberDao.existedMember(mId);
+	}
+
+	@Override
+	public Member findId(String mEmail, String mName) {
+		return memberDao.findId(mEmail, mName);
+	}
+
+	@Override
+	public Member findPw(String mId, String mName) {
+		return memberDao.findPw(mId, mName);
+	}
+
+	@Override
+	public Member getTempPw(String mPass, String mId) {
+		return memberDao.getTempPw(mPass, mId);
+	}
+	
+	@Override
 	public List<Member> memberList() {
 		return memberDao.memberList();
 	}
 
 	@Override
-	public List<Member> findMemberList(String mid) {
-		return memberDao.findMemberList(mid);
+	public List<Member> findMemberList(String mId) {
+		return memberDao.findMemberList(mId);
 	}
 
 }
