@@ -19,8 +19,8 @@ public class MemberDaoImpl implements MemberDao{
 	}//
 	
 	@Override
-	public Member selectById(String mId, String mPhone) {
-		return memberMapper.selectById(mId, mPhone);
+	public Member selectById(String mId) {
+		return memberMapper.selectById(mId);
 	}//
 
 	@Override
@@ -29,7 +29,7 @@ public class MemberDaoImpl implements MemberDao{
 	}//
 
 	@Override
-	public boolean delelteMember(String mId) {
+	public boolean deleteMember(String mId) {
 		
 		return memberMapper.deleteMember(mId);
 	}//
@@ -60,8 +60,8 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	
 	@Override
-	public List<Member> findMemberList(String mid) {
-		return memberMapper.findMemberList(mid);
+	public List<Member> findMemberList(String mId) {
+		return memberMapper.findMemberList(mId);
 	}
 	
 }

@@ -3,7 +3,6 @@ package com.itwill.willsta;
 
 import java.util.List;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -15,11 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.itwill.willsta.domain.Member;
 import com.itwill.willsta.repository.MemberDaoImpl;
-		//MemberDao memberDao = applicationContext.getBean(MemberDaoImpl.class);
-		//System.out.println("회원 탈퇴 "+memberDao.delelteMember("kpr"));
-		//System.out.println("회원 찾기"+memberDao.existedMember("pkr"));
-		//System.out.println("비밀번호 찾기"+memberDao.findPw("pkr", "세미"));
-		//System.out.println("회원 가입"+memberDao.insertMember(new Member("소진이고생하네","111","매퍼소진","sj@naver.com","010"," ","T")));
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/spring/root-context.xml")
 public class MemberUnitTestMain {
@@ -34,26 +29,62 @@ public class MemberUnitTestMain {
 		memberDao=this.applicationContext.getBean(MemberDaoImpl.class);
 		//memberService=this.applicationContext.getBean(MemberServiceImpl.class); 
 	}
+		
+	@Test //회원가입
+	@Ignore
+	public void insertMember() {
+		boolean member = memberDao.insertMember(new Member("r", "12345", "윌스타그램", "bluepk2034@Naver.com","010755555", "","F"));
+		System.out.println("## 회원가입(멤버 추가) :"+member);
+	}
+	
+	@Test //회원탈퇴
+	@Ignore
+	public void delelteMember() {
+		boolean member = memberDao.deleteMember("corona");
+		System.out.println("## 회원탈퇴:"+member);
+	}
+	
+	@Test //아이디 중복 확인 
+	@Ignore
+	public void existedMember() {
+		boolean member = memberDao.existedMember("corona");
+		System.out.println("## 아이디 중복 여부:"+member);
+	}
+	
 	@Test //아이디 찾기 
 	@Ignore
-	public void findMemberById() {
+	public void findId() {
 		Member member = memberDao.findId("mEmail","mName");
-		System.out.println("##멤버 하나 찾기:"+member);
+		System.out.println("##아이디 찾기:"+member);
 	}
-
+	
+	@Test //비밀번호 찾기
+	@Ignore
+	public void findPw() {
+		Member member = memberDao.findPw("소진이고생하네", "매퍼소진");
+		System.out.println("## 비밀번호 찾기:"+member);
+	}
+	
 	@Test //회원정보 수정
 	@Ignore
 	public void updateMember() {
-		boolean member = memberDao.updateMember(new Member("222","변경소진","sj@naver.com","0100",""," ","T"));
+		boolean member = memberDao.updateMember(new Member("222","김소진","sj@naver.com","0100"," ","F","소진이고생하네"));
 		System.out.println("## 회원정보 수정 성공 여부:"+member);
 	}
 	
 	@Test //임시비밀번호 발급
+	@Ignore
 	public void getTempPw() {
 		Member memberTempPw= memberDao.getTempPw("123","소진이고생하네");
 		System.out.println("memberTempPw:"+memberTempPw);
 	}
 	
+	@Test //회원 1명 조회
+	@Ignore
+	public void selectById() {
+		Member member = memberDao.selectById("r");
+		System.out.println("## 회원 1명 불러오기 :"+member);
+	}
 	
 	@Test //유저 목록
 	@Ignore
