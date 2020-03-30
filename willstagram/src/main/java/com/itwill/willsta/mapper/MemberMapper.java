@@ -19,8 +19,8 @@ public interface MemberMapper {
 	public boolean insertMember(Member member);
 	
 	/*회원정보 로딩*/
-	@Select("SELECT mId, mPass, mName, mEmail, mPhone, mImage FROM MEMBER")
-	public Member selectById(@Param("mId") String mId, @Param("mPhone") String mPhone);
+	@Select("SELECT mId, mPass, mName, mEmail, mPhone, mImage FROM MEMBER WHERE mId=#{mId}")
+	public Member selectById(@Param("mId") String mId);
 	
 	/*회원정보 수정*/
 	@Update("UPDATE MEMBER SET mPass=#{mPass}, mName=#{mName}, mEmail=#{mEmail}, mPhone=#{mPhone}, mImage=#{mImage} WHERE mId=#{mId}")
