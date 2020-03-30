@@ -53,8 +53,11 @@ public class MemberUnitTestMain {
 		System.out.println("## 아이디 중복 여부:"+member);
 	}
 	
-	
-	
+	@Test //비밀번호 찾기
+	public void findPw() {
+		Member member = memberDao.findPw("소진이고생하네", "매퍼소진");
+		System.out.println("## 비밀번호 찾기:"+member);
+	}
 	
 	@Test //회원정보 수정
 	@Ignore
