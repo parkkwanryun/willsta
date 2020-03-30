@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>willstagram</title>
+<title>즐거움의 시작 윌스타그램</title>
 <meta http-equiv='Content-Type' content='text/html; charset=euc-kr'>
 <link href='/challenge/neo_include/good2.css' rel='stylesheet'
 	type='text/css'>
