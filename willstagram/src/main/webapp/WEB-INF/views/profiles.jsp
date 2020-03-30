@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>	
-<jsp:include page="include_header_css.jsp"/>
+<jsp:include page="/include_header_css.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <body>
 	<div class="wrapper">
@@ -220,29 +220,34 @@
 				<div class="company-title">
 					<h3>All Companies</h3>
 				</div><!--company-title end-->
-				<!-- loop start -->
-				<c:forEach var="member" items="${memberList}" varStatus="status">
 				<div class="companies-list">
 					<div class="row">
+					<!-- loop start -->
+					<c:forEach var="member" items="${memberList}" varStatus="status">
+						</div>
 						<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 							<div class="company_profile_info">
 								<div class="company-up-info">
-									<img src="images/resources/pf-icon1.png" alt="">
+									<c:if test="${member.mImage==null}">
+										<img src="contents/member_image/default.png" alt="">
+									</c:if>
+									<img src="contents/member_image/${member.mImage}" alt="">
 									<h3>${member.mId}</h3>
 									<h4>${member.mName}</h4>
 									<ul>
 										<li><a href="#" title="" class="follow">Follow</a></li>
 										<li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
 									</ul>
-									
+				 					
 								</div>
 								<a href="user-profile.html" title="" class="view-more-pro">View Profile</a>
 							</div><!--company_profile_info end-->
+							</c:forEach>
+							<!-- loop end -->
 						</div>
 					</div>
 				</div><!--companies-list end-->
-				</c:forEach>
-				<!-- loop end -->
+				
 				<div class="process-comm">
 					<div class="spinner">
 						<div class="bounce1"></div>
