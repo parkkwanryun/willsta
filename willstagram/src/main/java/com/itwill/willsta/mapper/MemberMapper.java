@@ -23,7 +23,7 @@ public interface MemberMapper {
 	public Member selectById(@Param("mId") String mId, @Param("mPhone") String mPhone);
 	
 	/*회원정보 수정*/
-	@Update("UPDATE MEMBER SET mPass=#{mPass}, mName=#{mName}, mEmail=#{mEmail}, mPhone=#{mPhone}, mImage=#{} WHERE mId=#{mId}")
+	@Update("UPDATE MEMBER SET mPass=#{mPass}, mName=#{mName}, mEmail=#{mEmail}, mPhone=#{mPhone}, mImage=#{mImage} WHERE mId=#{mId}")
 	public boolean updateMember(Member memeber);
 	
 	/*회원 탈퇴(test 완)*/
