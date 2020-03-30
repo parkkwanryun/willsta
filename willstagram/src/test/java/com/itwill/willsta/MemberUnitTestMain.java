@@ -3,7 +3,6 @@ package com.itwill.willsta;
 
 import java.util.List;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -41,7 +40,7 @@ public class MemberUnitTestMain {
 	@Test //회원탈퇴
 	@Ignore
 	public void delelteMember() {
-		boolean member = memberDao.delelteMember("corona");
+		boolean member = memberDao.deleteMember("corona");
 		System.out.println("## 회원탈퇴:"+member);
 	}
 	
