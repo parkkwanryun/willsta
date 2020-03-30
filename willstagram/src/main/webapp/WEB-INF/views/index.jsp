@@ -473,11 +473,7 @@
 								<textarea name="pContents" placeholder="Description"></textarea>
 							</div>
 							<div class="col-lg-12">
-								<input type=file name=file1 size=400 class="TXTFLD">
-								<input type=file name=file2 size=400 class="TXTFLD">
-								<input type=file name=file3 size=400 class="TXTFLD">
-								<input type=file name=file4 size=400 class="TXTFLD">
-								<input type=file name=file5 size=400 class="TXTFLD">
+								<input type=file name=file1 size=400 class="TXTFLD" multiple>
 						    </div>
 							<div class="col-lg-12">
 								<ul>
@@ -664,13 +660,27 @@
 		$(function(){
 			//post쓰기
 			$(document).on('submit','#postWrite',function(e){
-				var params = $(this).serialize();
-				alert(params);
+				var formData = new FormData();
+				
+				var paramArray = $(this).serializeArray();
+				
+				for (var i = 0; i < paramArray.length; i++) {
+					formData.append(paramArray[i].name, paramArray[i].value);
+				}
+				
+				var inputFile = $("input[name='file1']");
+				var files = inputFile[0].files;
+				for (var i = 0; i < files.length; i++) {
+					formData.append("uploadFile", files[i]);
+				}
+				
+				
 				$.ajax({
 					url:'write_post',
-					method:'POST',
-					enctype: false,
-					data:params,
+					processData:false, //k:v 방식으로 전달
+					contentType: false, //file전송을 위해서는 false로 줘야 한다.
+					data:formData,
+					type: "POST",
 					dataType:'html',
 					success: function(resultText){
 							$('div.posts-section').prepend(resultText);
