@@ -54,7 +54,7 @@ public class PostController {
 		System.out.println(post);
 		System.out.println(uploadFile);
 		post.setmId("hjs");
-		String uploadFolder = "C:\\eclipse-workspace5\\willsta\\willstagram\\src\\main\\webapp\\contents\\post_contents";
+		String uploadFolder = "C:\\tempimage";
 		//1.데이터 저장처리
 		try {
 			int rn = postService.createPost(post);

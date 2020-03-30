@@ -11,6 +11,7 @@
 	<context:component-scan base-package="com.itwill.willsta" />
 	<!-- RequestMappingHandlerMapping -->
 	<mvc:annotation-driven/>
+	<mvc:default-servlet-handler/>
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure 
 	<mvc:default-servlet-handler/>
 	<beans:bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
