@@ -47,7 +47,7 @@ public class PostDaoImpl implements PostDao {
 	}
 
 	@Override
-	public PostImage selectContents(Integer pNo) {
+	public List<PostImage> selectContents(Integer pNo) {
 		return postMapper.selectContents(pNo);
 	}
 

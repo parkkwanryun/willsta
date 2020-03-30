@@ -17,6 +17,6 @@ public interface PostService {
 	
 	Post selectPost(Integer pNo);
 
-	PostImage selectContents(Integer pNo);
+	List<PostImage> selectContents(Integer pNo);
 
 }

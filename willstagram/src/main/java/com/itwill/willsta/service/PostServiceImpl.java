@@ -40,7 +40,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public PostImage selectContents(Integer pNo) {
+	public List<PostImage> selectContents(Integer pNo) {
 		return postDao.selectContents(pNo);
 	}
 

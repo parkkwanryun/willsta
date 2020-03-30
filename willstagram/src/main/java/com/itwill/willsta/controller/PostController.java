@@ -31,12 +31,12 @@ public class PostController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/post" , produces = "text/html;charset=utf-8")
+	@RequestMapping(value="/get_post" , produces = "text/html;charset=utf-8")
 	public ModelAndView selectPost(@RequestParam(value="pNo", required = true) Integer pNo) {
 		ModelAndView mv = new ModelAndView();
 		Post post = postService.selectPost(pNo);
 		post.setTagArray(post.getHasTag().split(" "));
-		PostImage postImages = postService.selectContents(pNo);
+		List<PostImage> postImages = postService.selectContents(pNo);
 		
 		mv.addObject("post", post);
 		mv.addObject("postImages", postImages);

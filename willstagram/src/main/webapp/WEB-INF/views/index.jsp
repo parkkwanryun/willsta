@@ -181,19 +181,23 @@
 												</div>
 											</div>
 											<!-- 여기에 사진(컨텐츠)들어옴 -->
-											<c:if test="${fn:startsWith(post.fileName, 'img')}">
-												<div class="image">
-													<a href="#"><img class="center-block" style="margin:10px 0px;"
-														src="contents/post_contents/${post.fileName}" alt="여기에이미지들어옴"
-														width="500" height="300" ></a>
-												</div>
-											</c:if>
-											<c:if test="${fn:startsWith(post.fileName, 'mov')}">
-												<div class="embed-responsive embed-responsive-4by3" style="margin-bottom:10px;" >
-												  <iframe class="embed-responsive-item" style="padding-top:10px;"
-												  			src="contents/post_contents/${post.fileName}"></iframe>
-												</div>
-											</c:if>
+											<div class="contents">
+												<c:if test="${fn:startsWith(post.fileName, 'img')}">
+													<div class="image">
+														<a href="#"><img class="center-block" style="margin:10px 0px;"
+															src="contents/post_contents/${post.fileName}" alt="여기에이미지들어옴"
+															width="500" height="300" ></a>
+													</div>
+												</c:if>
+												<c:if test="${fn:startsWith(post.fileName, 'mov')}">
+													<div class="embed-responsive embed-responsive-4by3" style="margin-bottom:10px;" >
+														<a href="#">
+													  		<iframe class="embed-responsive-item" style="padding-top:10px;"
+													  			src="contents/post_contents/${post.fileName}"></iframe>
+													  	</a>
+													</div>
+												</c:if>
+											</div>
 											<div class="job_descp">
 												<h3>${post.pTitle}</h3>
 												<p>${post.pContents}<a href="#" title="">view more</a></p>
@@ -483,8 +487,8 @@
 			</div><!--post-project end-->
 		</div><!--post-project-popup end-->
 
-<!-- 상세보기Modal -->
-		<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- 상세보기Modal  aria-labelledby="myModalLabel" aria-hidden="true" -->
+		<div class="modal" id="myModal" tabindex="-1" role="dialog" >
 		  
 		</div>
 
@@ -687,6 +691,26 @@
 						}else{
 							alert('delete fail');
 						}
+					}
+				});
+				e.preventDefault();
+			});
+			
+			//컨텐츠 보기 detail
+			$(document).on('click','div.contents a',function(e){
+				var $post = $(e.target).parents('div.post-bar');
+				var params = "pNo="+ $post.attr('post_no');
+				alert(params);
+				$.ajax({
+					url:'get_post',
+					method:'POST',
+					data:params,
+					dataType:'text',
+					success: function(resultText){
+						alert(resultText);
+						$('div.modal').append(resultText);
+						$('div.modal').addClass("active");
+						
 					}
 				});
 				e.preventDefault();

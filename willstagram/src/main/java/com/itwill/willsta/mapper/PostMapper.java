@@ -60,7 +60,7 @@ public interface PostMapper {
 //POST 한개의 전체 콘텐츠 불러들임
 		@Select(" select pno, filename from post_image "
 				+" WHERE pNo = #{pNo}")
-		public PostImage selectContents(Integer pNo);
+		public List<PostImage> selectContents(Integer pNo);
 	
 	
 	
