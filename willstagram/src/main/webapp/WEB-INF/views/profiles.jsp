@@ -222,11 +222,9 @@
 					<div class="row">
 					<!-- loop start -->
 					<c:forEach var="member" items="${memberList}" varStatus="status">
-						</div>
-						<!-- 
-						<c:if test="${status.index eq 0}">
+						<c:if test="${status.index!=0}">
+							</div>
 						</c:if>
-						 --> 
 						<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 							<div class="company_profile_info">
 								<div class="company-up-info">
