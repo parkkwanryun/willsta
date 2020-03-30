@@ -1,5 +1,22 @@
 package com.itwill.willsta.service;
 
-public interface DmService {
+import java.util.List;
 
+import com.itwill.willsta.domain.DM;
+
+public interface DmService {
+	// DM 채팅방 생성
+	public int dmInsert(DM dm);
+
+	// DM 채팅방 전체 조회
+	public List<DM> dmSelectAll();
+	
+	// 특정 DM 채팅방 조회
+	public DM dmSelectOne(int dmNo);
+	
+	// DM 채팅방 업데이트
+	public int dmUpdate(DM dm);
+	
+	// DM 채팅방 삭제
+	public int dmDelete(int dmNo);
 }

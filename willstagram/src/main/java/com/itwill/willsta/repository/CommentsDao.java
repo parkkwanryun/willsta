@@ -28,7 +28,7 @@ public interface CommentsDao {
 	int postCommentsCountBymId(int pNo, String mId) throws Exception;
 	
 	//한 맴버가 작성한 총 댓글 수
-	int totalCommentsCountBymId(String mid) throws Exception;
+	int totalCommentsCountBymId(String mId) throws Exception;
 	
 	//하나의 포스트에 달린 총 댓글 수
 	int postCommentsCount(int pNo) throws Exception;

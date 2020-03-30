@@ -28,7 +28,7 @@ public interface MemberDao {
 	Member findPw(String mId, String mName);
 	
 	/*임시비밀번호 발급*/
-	Member getTempPw(Member findMember);
+	Member getTempPw(String mPass, String mId);
 	
 	/*사용자 전체목록*/
 	List<Member> memberList();
