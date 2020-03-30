@@ -2438,7 +2438,6 @@
 				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
 			</div><!--overview-edit end-->
 		</div><!--overview-box end-->
-
 	</div><!--theme-layout end-->
 
 
