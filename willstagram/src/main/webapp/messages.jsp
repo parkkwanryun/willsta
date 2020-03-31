@@ -1,27 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>WorkWise Html Template</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
-	<link rel="stylesheet" type="text/css" href="css/animate.css">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/line-awesome.css">
-	<link rel="stylesheet" type="text/css" href="css/line-awesome-font-awesome.min.css">
-	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.min.css">
-	<link rel="stylesheet" type="text/css" href="lib/slick/slick.css">
-	<link rel="stylesheet" type="text/css" href="lib/slick/slick-theme.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/responsive.css">
-</head>
-
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
 <body>	
-
 	<div class="wrapper">		
 
 		<header>
@@ -431,14 +411,14 @@
 										</div><!--message-dt end-->
 										<div class="messg-usr-img">
 											<img src="images/resources/m-img1.png" alt="">
-										</div><!--messg-usr-img end-->
+										</div><!--messg-usr-img end--> 
 									</div><!--main-message-box end-->
 								</div><!--messages-line end-->
 								<div class="message-send-area">
 									<form>
 										<div class="mf-field">
-											<input type="text" name="message" placeholder="Type a message here">
-											<button type="submit">Send</button>
+											<input type="text" name="msg" placeholder="Type a message here">
+											<button type ="submit" id="btnSend" >전송</button>
 										</div>
 										<ul>
 											<li><a href="#" title=""><i class="fa fa-smile-o"></i></a></li>
@@ -455,7 +435,7 @@
 		</section><!--messages-page end-->
 
 
-
+	<!-- 
 		<footer>
 			<div class="footy-sec mn no-margin">
 				<div class="container">
@@ -475,11 +455,44 @@
 				</div>
 			</div>
 		</footer>
+	-->
+</div><!--theme-layout end-->
 
-	</div><!--theme-layout end-->
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#btnSend').on('click', function(event){
+		event.preventDefault();
+		if(socket.readyState != 1) return;
+		let msg = $('input#msg').val();
+		socket.send(msg);
+	});	
+});
+</script>
 
+<script type="text/javascript">
+var socket = null;
+function connect() {
+	var ws = new WebSocket("ws://localhost:8080/replyEcho");
+	socket = ws;
+	
+	ws.onopen = function () { // connection이 open 되었을때 실행
+		console.log('Info : connection opened.');
+		setTimeout( function(){connect(); }, 1000); // retry connection!!
+	};
+	
+	ws.onmessage = function (event) {	// connection이 open 되고 메시지를 보낼때 실행
+		console.log(event.data+ '\n');
+	};
+	ws.onclose = function(event) {	// connection 이 close 되었을때 실행
+		console.log('Info: connection closed.');
+		};
+	ws.onerror = function(event) {	// connection 이 error가 나왔을때
+		console.log('Info: connection closed.'); 
+		};
+}
 
-
+connect();
+</script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/popper.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -487,6 +500,5 @@
 <script type="text/javascript" src="lib/slick/slick.min.js"></script>
 <script type="text/javascript" src="js/scrollbar.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
-
 </body>
 </html>
