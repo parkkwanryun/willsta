@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.itwill.willsta.domain.Comments;
 import com.itwill.willsta.repository.CommentsDaoImpl;
+import com.itwill.willsta.service.CommentsServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -21,10 +22,12 @@ public class CommentsUnitTest {
 	@Autowired
 	private ApplicationContext applicationContext;
 	private CommentsDaoImpl commentsDao;
+	private CommentsServiceImpl commentsService;
 	
 	@Before
     public void setUp() {
-        commentsDao = this.applicationContext.getBean("commentsDao", CommentsDaoImpl.class);
+        //commentsDao = this.applicationContext.getBean("commentsDao", CommentsDaoImpl.class);
+		commentsService = this.applicationContext.getBean("commentsService", CommentsServiceImpl.class);
     }
     
 	@Test //댓글 전체 조회
@@ -37,7 +40,8 @@ public class CommentsUnitTest {
     @Test //댓글 하나 조회
     public void findCommentsTest() throws Exception {
     	Comments comments = new Comments();
-    	comments = commentsDao.findComments(3);
+    	//comments = commentsDao.findComments(3);
+    	comments = commentsService.findComments(10);
     	System.out.println("### findComments: "+comments);
     }
     
