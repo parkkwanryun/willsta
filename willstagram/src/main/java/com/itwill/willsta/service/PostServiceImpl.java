@@ -47,6 +47,11 @@ public class PostServiceImpl implements PostService {
 		return postDao.selectContents(pNo);
 	}
 
+	@Override
+	public String maxContentNo(Integer pNo) {
+		return postDao.maxContentNo(pNo);
+	}
+
 	
 
 }

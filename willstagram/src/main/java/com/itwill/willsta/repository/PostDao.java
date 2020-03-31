@@ -21,4 +21,7 @@ public interface PostDao {
 	public Post selectPost(Integer pNo);
 	
 	public List<PostImage> selectContents(Integer pNo);
+	
+	public String maxContentNo(Integer pNo);
+	
 }
