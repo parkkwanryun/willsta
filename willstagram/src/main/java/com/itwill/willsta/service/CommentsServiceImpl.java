@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.itwill.willsta.domain.Comments;
 import com.itwill.willsta.repository.CommentsDao;
 
-@Service
+@Service("commentsService")
 public class CommentsServiceImpl implements CommentsService {
 	@Autowired
 	private CommentsDao commentsDao;
