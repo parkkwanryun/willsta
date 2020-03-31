@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,7 +20,7 @@ public class PostController {
 	@Autowired
 	PostService postService;
 	
-	@RequestMapping(value="/index")
+	@RequestMapping(value="/post_main")
 	public ModelAndView selectMyList(@RequestParam(value="userId", required = false, defaultValue = "hjs") String userId) {
 		ModelAndView mv = new ModelAndView();
 		List<Post> postList = postService.selectMyList(userId);
@@ -27,7 +28,7 @@ public class PostController {
 			post.setTagArray(post.getHasTag().split(" "));
 		}
 		mv.addObject("postList", postList);
-		mv.setViewName("index");
+		mv.setViewName("post_main");
 		return mv;
 	}
 	
@@ -55,7 +56,7 @@ public class PostController {
 
 		return mv;
 	}
-	
+	@ResponseBody
 	@RequestMapping(value="/delete_post", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
 	public String delete(@RequestParam(value="pNo", required = true) int pNo) {
 		//1.데이터 저장처리
