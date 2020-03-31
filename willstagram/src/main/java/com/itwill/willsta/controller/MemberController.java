@@ -2,6 +2,8 @@ package com.itwill.willsta.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,13 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	
+	
+	public String logout_action(HttpSession session) {
+		session.invalidate();
+		return "";
+	}
+	
+	@MemberLoginCheck
 	@RequestMapping(value="/my-profile-feed")
 	public ModelAndView selectById(@Param("mId")String mId) {
 		ModelAndView mv = new ModelAndView();
@@ -26,6 +35,7 @@ public class MemberController {
 		return mv;
 	}
 	
+	@MemberLoginCheck
 	@RequestMapping(value = "/profiles")
 	public ModelAndView memberList() {
 		ModelAndView mv=new ModelAndView();

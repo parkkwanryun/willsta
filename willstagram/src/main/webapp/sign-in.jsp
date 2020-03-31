@@ -12,7 +12,7 @@
 							<div class="cmp-info">
 								<div class="cm-logo">
 									<img src="images/cm-logo.png" alt="">
-									<p>Workwise,  is a global freelancing platform and social networking where businesses and independent professionals connect and collaborate remotely</p>
+									<p>WillStaGram is a global freelancing platform and social networking where businesses and independent professionals connect and collaborate remotely</p>
 								</div><!--cm-logo end-->	
 								<img src="images/cm-main-img.png" alt="">			
 							</div><!--cmp-info end-->
