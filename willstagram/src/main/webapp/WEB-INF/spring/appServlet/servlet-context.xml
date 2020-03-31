@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans:beans
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
@@ -8,30 +9,35 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 	<!-- Controller Mapping -->
-	<context:component-scan base-package="com.itwill.willsta" />
+	<context:component-scan
+		base-package="com.itwill.willsta" />
 	<!-- RequestMappingHandlerMapping -->
-	<mvc:annotation-driven/>
-	<mvc:default-servlet-handler/>
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure 
-	<mvc:default-servlet-handler/>
-	<beans:bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
-	-->
-	
-	
-	<!--  
-	<mvc:resources mapping="/css/**" location="/css/" />
-    <mvc:resources mapping="/fonts/**" location="/fonts/" />
-    <mvc:resources mapping="/images/**" location="/images/" />
-    <mvc:resources mapping="/js/**" location="/js/" />
-    <mvc:resources mapping="/lib/**" location="/lib/" />
-    <mvc:resources mapping="/vendor/**" location="/vendor/" />
-    -->
-    <mvc:resources mapping="/**" location="/" />
-    
-    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>	
-	 
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure <mvc:default-servlet-handler/> <beans:bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" 
+		/> -->
+	<!-- <mvc:resources mapping="/css/**" location="/css/" /> <mvc:resources 
+		mapping="/fonts/**" location="/fonts/" /> <mvc:resources mapping="/images/**" 
+		location="/images/" /> <mvc:resources mapping="/js/**" location="/js/" /> 
+		<mvc:resources mapping="/lib/**" location="/lib/" /> <mvc:resources mapping="/vendor/**" 
+		location="/vendor/" /> -->
+	<mvc:resources mapping="/**" location="/" />
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.itwill.willsta.controller.MemberAuthLoginAnnotationInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>

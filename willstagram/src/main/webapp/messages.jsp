@@ -434,13 +434,9 @@
 			</div>
 		</section><!--messages-page end-->
 
-
-
 		 <jsp:include page="/WEB-INF/commons/include_footy_js.jsp"/>
 
 	</div><!--theme-layout end-->
-
-
 
  <jsp:include page="/WEB-INF/commons/include_footer_js.jsp"/>
 </body>

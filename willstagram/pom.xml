@@ -129,7 +129,18 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>4.1.4.RELEASE</version>
 		</dependency>
-	
+		<!-- #1.spring aop-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>5.2.1.RELEASE</version>
+		</dependency>
+		<!-- #2.aspectj rt -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.8.10</version>
+		</dependency>
 		<!-- #3.aspectj weaver -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
