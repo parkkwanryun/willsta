@@ -68,4 +68,10 @@ public class CommentsServiceImpl implements CommentsService {
 	public int postCommentsCount(int pNo) throws Exception {
 		return commentsDao.postCommentsCount(pNo);
 	}
+
+	//하나의 포스트에 달린 댓글 전체 조회
+	@Override
+	public List<Comments> postCommentsList(int pNo) throws Exception {
+		return commentsDao.postCommentsList(pNo);
+	}
 }

@@ -33,11 +33,13 @@ public class CommentsUnitTest {
 	@Test //댓글 전체 조회
 	@Ignore
     public void findCommentsListTest() throws Exception {
-    	List<Comments> commentsList = commentsDao.findCommentsList();
+    	//List<Comments> commentsList = commentsDao.findCommentsList();
+    	List<Comments> commentsList = commentsService.findCommentsList();
     	System.out.println("### findCommentsList: "+commentsList);
     }
 	
     @Test //댓글 하나 조회
+    @Ignore
     public void findCommentsTest() throws Exception {
     	Comments comments = new Comments();
     	//comments = commentsDao.findComments(3);
@@ -95,6 +97,12 @@ public class CommentsUnitTest {
     public void findCommentsListBymId() throws Exception {
     	List<Comments> commentsListBymId = commentsDao.findCommentsListBymId("hjs");
     	System.out.println("### findCommentsListBymId: "+commentsListBymId);
+    }
+    
+    @Test //하나의 포스트에 달린 댓글 전체 조회
+    public void postCommetsList() throws Exception {
+    	List<Comments> postCommentsList = commentsDao.postCommentsList(15);
+    	System.out.println("### postCommentsList: "+postCommentsList);
     }
 	
 }
