@@ -14,13 +14,14 @@ public class Post {
 	private Integer likeCount; //좋아요갯수
 	private String[] tagArray;
 	private String fileName;
+	private String aGo;
 	
 	public Post() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Post(Integer pNo, String mId, String mName, String pTitle, String pContents, String hasTag, Integer pViewCount,
-			String pDate, Integer likeCount, String fileName) {
+			String pDate, Integer likeCount, String fileName, String aGo) {
 		super();
 		this.pNo = pNo;
 		this.mId = mId;
@@ -32,6 +33,7 @@ public class Post {
 		this.pDate = pDate;
 		this.likeCount = likeCount;
 		this.fileName = fileName;
+		this.aGo = aGo;
 	}
 
 	public Integer getpNo() {
@@ -93,6 +95,14 @@ public class Post {
 	
 	
 	
+	public String getaGo() {
+		return aGo;
+	}
+
+	public void setaGo(String aGo) {
+		this.aGo = aGo;
+	}
+
 	public String getFileName() {
 		return fileName;
 	}

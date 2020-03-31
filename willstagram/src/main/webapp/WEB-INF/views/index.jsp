@@ -168,7 +168,7 @@
 													<img src="images/resources/us-pic.png" alt="">
 													<div class="usy-name">
 														<h3>${post.mName}</h3>
-														<span><img src="images/clock.png" alt="">3 min ago</span>
+														<span><img src="images/clock.png" alt="">${post.aGo}</span>
 													</div>
 												</div>
 												<div class="ed-opts">

@@ -15,7 +15,7 @@ import com.itwill.willsta.domain.Post;
 import com.itwill.willsta.domain.PostImage;
 import com.itwill.willsta.service.PostService;
 
-//@RestController
+@RestController
 public class PostController {
 	@Autowired
 	PostService postService;
