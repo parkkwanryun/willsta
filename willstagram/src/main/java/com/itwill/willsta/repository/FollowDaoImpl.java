@@ -27,15 +27,29 @@ public class FollowDaoImpl implements FollowDao{
 	}
 
 	@Override
-	public List<Follow> following(String mId) {
+	public List<Follow> following(String mIdYou) {
 		
-		return followMapper.following(mId);
+		return followMapper.following(mIdYou);
+	}
+
+	
+
+	@Override
+	public boolean unfollow(String mIdYou, String mId) {
+
+		return followMapper.unFollow(mIdYou, mId);
 	}
 
 	@Override
-	public boolean unfollow(String mId) {
+	public int followingCount(String mIdYou) {
 		
-		return followMapper.unFollow(mId);
+		return followMapper.followingCount(mIdYou);
+	}
+
+	@Override
+	public int followersCount(String mId) {
+		
+		return followMapper.followersCount(mId);
 	}
 
 

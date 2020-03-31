@@ -17,17 +17,27 @@ public interface FollowMapper {
 	@Insert("INSERT INTO FOLLOW VALUES(#{mId},#{mIdYou})")
 	public boolean follow(Follow follow);
 	
+	/*UnFollow 언팔하기*/
+	@Delete("delete from follow where mId = #{mId} and mIdYou = #{mIdYou}")
+	public boolean unFollow( String mId,String mIdYou);
+	
+	
 	/*Following List 내가 팔로우하고있는사람들 보기*/
-	@Select("SELECT f.mIdYou From follow f inner join member m on f.mId= m.mId where m.mid =#{mId}")
-	public List<Follow> following(String mId);
+	@Select(" select mId  from follow where mIdYou =#{mIdYou}")
+	public List<Follow> following(String mIdYou);
 	
 	
 	/*Follower List 나를 팔로하고있는 사람들 */
-	@Select("SELECT f.mIdYou From follow f inner join member m on f.mId= m.mId where m.mid =#{mId}")
+	@Select("select midYou from follow where mid =#{mId}")
 	public List<Follow> followers(String mId);
 	
-	/*UnFollow 언팔하기*/
-	@Delete("delete from follow where mId=#{mId}")
-	public boolean unFollow(String mId);
+	/*Followers count 나를 팔로하고있는 사람들 수   */
+	@Select("select count(*) as followersCount from follow where mid =#{mId}")
+	public int followersCount(String mId);
+	
+	
+	/*Following Count 내가 팔로하고있는 사람들 수  */
+	@Select("select count(*) as followingcount from follow  where mIdYou =#{mIdYou}")
+	public int followingCount(String mIdYou);
 	
 }

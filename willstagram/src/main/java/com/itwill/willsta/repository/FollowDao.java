@@ -9,17 +9,22 @@ public interface FollowDao {
 	/* Follow someone 누군가를 팔로우 하기*/
 	 boolean follow(Follow follow);
 
-	 /* Follower 내 팔로워들 보기 */
+	 /*Unfollow someone 누군가를 언팔하기*/
+	 boolean unfollow(String mIdYou, String mId);
+	
+	 /* Followers 내 팔로워들 보기 */
 	  List<Follow> followers(String mId);
 	 
 	 /* Following 내가 팔로하는사람들 보기  */
 
-	 List<Follow> following(String mId);
+	 List<Follow> following(String mIdYou);
 	 
-	 /*Unfollow someone 누군가를 언팔하기*/
-	 boolean unfollow(String mId);
+	 
+	 /*FollowingCount  */
+	 int followingCount(String mIdYou);
 
-
+	 /* FollowersCount */
+	 int followersCount(String mId);
 	 
 	 
 	 
