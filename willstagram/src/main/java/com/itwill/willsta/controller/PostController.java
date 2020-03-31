@@ -1,15 +1,11 @@
 package com.itwill.willsta.controller;
 
-
-import java.io.File;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -51,66 +47,15 @@ public class PostController {
 	@RequestMapping(value="/write_post", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
 	public ModelAndView write(Post post, MultipartFile[] uploadFile) {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(post);
-		System.out.println(uploadFile);
 		post.setmId("hjs");
-		String uploadFolder = "C:\\eclipse-workspace5\\willsta\\willstagram\\src\\main\\webapp\\contents\\post_contents";
-		//1.데이터 저장처리
-		try {
-			int rn = postService.createPost(post);
+		
+		Post postOne = postService.createPost(post, uploadFile);
+		mv.addObject("post", postOne);
+		mv.setViewName("post");
 
-			//2.파일처리(파일네임은DB에 저장 하고 파일은 image폴더에 저장)
-			String filename="";
-			String filterFileName="";
-			PostImage pi;
-			System.out.println("##########"+uploadFile.length);
-			for (MultipartFile multipartFile : uploadFile) {
-
-					filename = multipartFile.getOriginalFilename();
-					filename = filename.substring(filename.lastIndexOf("\\")+1);
-					String sepString = filename.substring(filename.lastIndexOf("."), filename.length());
-					String maxContentNo = postService.maxContentNo(post.getpNo());
-					if(filename.toUpperCase().endsWith(".MP4") || filename.endsWith(".AVI") || filename.endsWith(".MKV") || filename.endsWith(".MOV")) {
-						filterFileName =  "mov_";
-					}else if(filename.toUpperCase().endsWith(".JPG") || filename.endsWith(".PNG") || filename.endsWith(".JPEG") || filename.endsWith(".GIF")) {
-						filterFileName =  "img_";
-					} else {
-						filterFileName =  "etc_";
-					}
-					
-					filterFileName+=post.getpNo()+"_"+maxContentNo.trim()+sepString;	
-					
-						System.out.println("$$$$$$$$$$$$$$"+filterFileName);
-					if (!(filename == null || filename.equals(""))) {
-						pi = new PostImage(post.getpNo(), filterFileName);	
-						postService.insertImg(pi);
-						File saveFile = new File(uploadFolder, filterFileName);
-						try {
-							multipartFile.transferTo(saveFile);
-						} catch (Exception e) {
-							e.getMessage();
-						}
-					}
-			}
-			
-			
-			if(rn >0) {
-				//성공인 경우 해당 포스트를 전송해 줌 1개의 포스트를  jsp 로 구성해서 던져줌.
-				Post postOne = postService.selectPost(post.getpNo());
-				postOne.setTagArray(postOne.getHasTag().split(" "));
-				mv.addObject("post", postOne);
-				mv.setViewName("post");
-				
-				
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			mv.setViewName("error");
-		}
 		return mv;
 	}
 	
-	@ResponseBody
 	@RequestMapping(value="/delete_post", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
 	public String delete(@RequestParam(value="pNo", required = true) int pNo) {
 		//1.데이터 저장처리
