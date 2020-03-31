@@ -26,8 +26,8 @@ public class CommentsUnitTest {
 	
 	@Before
     public void setUp() {
-        //commentsDao = this.applicationContext.getBean("commentsDao", CommentsDaoImpl.class);
-		commentsService = this.applicationContext.getBean("commentsService", CommentsServiceImpl.class);
+        commentsDao = this.applicationContext.getBean("commentsDao", CommentsDaoImpl.class);
+		//commentsService = this.applicationContext.getBean("commentsService", CommentsServiceImpl.class);
     }
     
 	@Test //댓글 전체 조회
