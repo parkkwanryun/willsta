@@ -1,10 +1,11 @@
 package com.itwill.willsta.controller;
 
+
 import java.io.File;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,7 +54,7 @@ public class PostController {
 		System.out.println(post);
 		System.out.println(uploadFile);
 		post.setmId("hjs");
-		String uploadFolder = "C:\\eclipse-workspace5\\willsta\\willstagram\\src\\main\\webapp\\contents\\post_contents";
+		String uploadFolder = "C:\\tempimage";
 		//1.데이터 저장처리
 		try {
 			int rn = postService.createPost(post);
