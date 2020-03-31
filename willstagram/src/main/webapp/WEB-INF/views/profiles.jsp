@@ -222,11 +222,9 @@
 					<div class="row">
 					<!-- loop start -->
 					<c:forEach var="member" items="${memberList}" varStatus="status">
-						</div>
-						<!-- 
-						<c:if test="${status.index eq 0}">
+						<c:if test="${status.index!=0}">
+							</div>
 						</c:if>
-						 --> 
 						<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 							<div class="company_profile_info">
 								<div class="company-up-info">
@@ -287,11 +285,6 @@
 
 
 
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/popper.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/flatpickr.min.js"></script>
-<script type="text/javascript" src="lib/slick/slick.min.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
+ <jsp:include page="/WEB-INF/commons/include_footer_js.jsp"/>
 </body>
 </html>

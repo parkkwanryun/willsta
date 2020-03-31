@@ -219,7 +219,8 @@
 											</div>
 										</div><!--post-bar end-->
 								</c:forEach>	
-									
+											
+											<!-- comments section -->
 											<div class="comment-section">
 												<a href="#" class="plus-ic">
 													<i class="la la-plus"></i>
