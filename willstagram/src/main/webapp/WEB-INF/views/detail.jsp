@@ -2,6 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<!-- 합쳐지고 최소화된 최신 CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<!-- 부가적인 테마 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 <div class="modal-dialog">
    <div class="modal-content">
      <div class="modal-header">
@@ -9,23 +19,19 @@
        <h4 class="modal-title text-center" id="myModalLabel">${post.pTitle}</h4>
      </div>
      <div class="modal-body" id="myModalBody">
-        <div id="carousel-product" class="carousel slide center-block" data-ride="carousel" data-interval="5000">
+        <div id="carousel-product" class="carousel slide center-block" data-ride="carousel" data-interval="3000">
 		      <!-- Indicators -->
 		      <ol class="carousel-indicators">
-		        <li data-target="#carousel-product" data-slide-to="0" class="active"></li>
-		        <li data-target="#carousel-product" data-slide-to="1"></li>
-		        <li data-target="#carousel-product" data-slide-to="2"></li>
-		        <li data-target="#carousel-product" data-slide-to="3"></li>
+		      	<c:forEach var="pi" items="${postImages}" varStatus="vs">	
+			        <li data-target="#carousel-product" data-slide-to="${vs.index}" 
+			        	<c:if test="${vs.index==0}">class="active"</c:if>></li>
+			    </c:forEach>
 		      </ol>
 		
 		      <!-- Wrapper for slides -->
 		      <div class="carousel-inner" role="listbox">
 		      	<c:forEach var="pi" items="${postImages}" varStatus="vs">	
-		      		<div class="item 
-		      		<c:if test="${vs.index==0}">
-		      			active
-		      		</c:if>
-			        	">
+		      		<div class="item <c:if test="${vs.index==0}">active</c:if>">
 			          	<c:if test="${fn:startsWith(pi.fileName, 'img')}">
 							<img class="center-block" src="contents/post_contents/${pi.fileName}" alt="${pi.fileName}" >
 						</c:if>
