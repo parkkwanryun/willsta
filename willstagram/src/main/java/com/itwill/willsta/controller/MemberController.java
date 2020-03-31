@@ -49,7 +49,7 @@ public class MemberController {
 			Member signInMember = memberService.signIn(member.getmId(), member.getmPass());
 			session.setAttribute("mId", member.getmId());
 			session.setAttribute("sMemberId", signInMember);
-			return "redirect:index";
+			return "redirect:";
 		} catch (MemberNotFoundException e) {
 			model.addAttribute("fMember", member);
 			model.addAttribute("msg1", e.getMessage());
@@ -67,8 +67,6 @@ public class MemberController {
 		return forwardPath;
 	}
 	
-	
-
 	@MemberLoginCheck
 	@RequestMapping(value="/sign_out_action")
 	public String sign_out_action(HttpSession session) {
