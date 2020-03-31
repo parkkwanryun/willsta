@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.willsta.domain.Member;
+import com.itwill.willsta.exception.MemberNotFoundException;
+import com.itwill.willsta.exception.PasswordMismatchException;
 import com.itwill.willsta.service.MemberService;
 
 @Controller
@@ -21,43 +23,55 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	
-	@RequestMapping(value="/index")
+	@RequestMapping(value="/")
 	public String index() {
-		return "index";
+		return "";
 	}
 	
 	@RequestMapping(value="/sign_in")
 	public String sign_in() {
 		return "sign_in";
 	}
-	
+
 	@MemberLoginCheck
 	@RequestMapping(value="/sign_in_action", method = RequestMethod.GET)
-	public String sign_in_action_get(@ModelAttribute(name="fMember") Member member, HttpSession session) {
-		String forwardPath = "";
-		try {
-			Member signInMember = memberService.signIn(member.getmId(), member.getmPass());
-			session.setAttribute("mId", member.getmId());
-			session.setAttribute("sMemberId", signInMember);
-			return "redirect: index";
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
+	public String sign_in_action_get() {
 		return "sign_in";
 	}
 
 	@MemberLoginCheck
 	@RequestMapping(value="/sign_in_action", method = RequestMethod.POST)
-	public String sign_in_action_post(HttpSession session, Model model) {
-		return "sign_in";
+	public String sign_in_action_post(@ModelAttribute(name="fMember") Member member, HttpSession session, Model model) {
+		String forwardPath = "";
+		try {
+			Member signInMember = memberService.signIn(member.getmId(), member.getmPass());
+			session.setAttribute("mId", member.getmId());
+			session.setAttribute("sMemberId", signInMember);
+			return "redirect:index";
+		} catch (MemberNotFoundException e) {
+			model.addAttribute("fMember", member);
+			model.addAttribute("msg1", e.getMessage());
+			forwardPath = "sign_in";
+			e.printStackTrace();
+		} catch (PasswordMismatchException e) {
+			model.addAttribute("fMember", member);
+			model.addAttribute("msg2", e.getMessage());
+			forwardPath = "sign_in";
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+			forwardPath = "error";
+		}
+		return forwardPath;
 	}
+	
+	
 
 	@MemberLoginCheck
 	@RequestMapping(value="/sign_out_action")
-	public String logout_action(HttpSession session) {
-		String forwardPath ="redirect:index";
+	public String sign_out_action(HttpSession session) {
 		session.invalidate();
+		String forwardPath ="redirect:index";
 		return forwardPath;
 	}
 	
