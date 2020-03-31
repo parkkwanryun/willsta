@@ -54,19 +54,31 @@ public class PostController {
 		System.out.println(post);
 		System.out.println(uploadFile);
 		post.setmId("hjs");
-		String uploadFolder = "C:\\tempimage";
+		String uploadFolder = "C:\\eclipse-workspace5\\willsta\\willstagram\\src\\main\\webapp\\contents\\post_contents";
 		//1.데이터 저장처리
 		try {
 			int rn = postService.createPost(post);
 
 			//2.파일처리(파일네임은DB에 저장 하고 파일은 image폴더에 저장)
 			String filename="";
+			String filterFileName="";
 			PostImage pi;
 			System.out.println("##########"+uploadFile.length);
 			for (MultipartFile multipartFile : uploadFile) {
 
 					filename = multipartFile.getOriginalFilename();
 					filename = filename.substring(filename.lastIndexOf("\\")+1);
+					
+					if(filename.toUpperCase().endsWith(".MP4") || filename.endsWith(".AVI") || filename.endsWith(".MKV") || filename.endsWith(".MOV")) {
+						
+						filterFileName =  "mov_"+post.getpNo()+"";
+					}else if(filename.toUpperCase().endsWith(".JPG") || filename.endsWith(".PNG") || filename.endsWith(".JPEG") || filename.endsWith(".GIF")) {
+						
+					} else {
+						
+					}
+					
+						
 
 					if (!(filename == null || filename.equals(""))) {
 						pi = new PostImage(post.getpNo(), filename);	

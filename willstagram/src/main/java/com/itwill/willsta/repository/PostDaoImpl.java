@@ -50,6 +50,11 @@ public class PostDaoImpl implements PostDao {
 		return postMapper.selectContents(pNo);
 	}
 
+	@Override
+	public String maxContentNo(Integer pNo) {
+		return postMapper.maxContentNo(pNo);
+	}
+
 
 
 }

@@ -21,5 +21,7 @@ public interface PostService {
 	Post selectPost(Integer pNo);
  
 	List<PostImage> selectContents(Integer pNo);
+	
+	public String maxContentNo(Integer pNo);
 
 }
