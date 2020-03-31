@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!-- comments 쓰기-->
 <div class="comment-section">
 	<a href="#" class="plus-ic"> <i class="la la-plus"></i>
@@ -10,7 +12,7 @@
 						<img src="images/resources/bg-img1.png" alt="">
 					</div>
 					<div class="comment">
-						<h3>John Doe</h3>
+						<h3>${comments.mId} ......John Doe</h3>
 						<span><img src="images/clock.png" alt=""> 3 min ago</span>
 						<p>Lorem ipsum dolor sit amet,</p>
 						<a href="#" title="" class="active"><i class="fa fa-reply-all"></i>Reply</a>
@@ -56,6 +58,7 @@
 		<div class="comment_box">
 			<form>
 				<input type="text" placeholder="Post a comment">
+				<!-- 댓글 내용 쓰는 곳 -->
 				<button type="submit">Send</button>
 			</form>
 		</div>

@@ -61,4 +61,10 @@ public interface CommentsMapper {
 			"FROM comments " +
 			"WHERE pNo = #{pNo}")
 	public Integer postCommentsCount(@Param("pNo") int pNo);
+	
+	//하나의 포스트에 달린 댓글 전체 조회
+	@Select("SELECT cNo, pNo, mId, cContents, cTime " + 
+			"FROM comments " +
+			"WHERE pNo = #{pNo}")
+	public List<Comments> postCommentsList(@Param("pNo") int pNo);
 }

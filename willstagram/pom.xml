@@ -127,13 +127,13 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>4.1.4.RELEASE</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
 		<!-- #1.spring aop-->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
-			<version>5.2.1.RELEASE</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
 		<!-- #2.aspectj rt -->
 		<dependency>

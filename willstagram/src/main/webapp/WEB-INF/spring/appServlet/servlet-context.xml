@@ -3,18 +3,20 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:websocket="http://www.springframework.org/schema/websocket"
 	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.1.xsd
-		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<!-- Controller Mapping -->
 	<context:component-scan
-		base-package="com.itwill.willsta" />
+		base-package="com.itwill.willsta.controller" />
 	<!-- RequestMappingHandlerMapping -->
 	<mvc:annotation-driven />
-	<mvc:default-servlet-handler />
+
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure <mvc:default-servlet-handler/> <beans:bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" 
 		/> -->
@@ -24,7 +26,7 @@
 		<mvc:resources mapping="/lib/**" location="/lib/" /> <mvc:resources mapping="/vendor/**" 
 		location="/vendor/" /> -->
 	<mvc:resources mapping="/**" location="/" />
-	
+
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
@@ -32,9 +34,15 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
-
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
+		
+		<!--  -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<beans:bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<beans:property name="dataSource" ref="apacheDataSource" />
+	</beans:bean>
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
@@ -53,6 +61,5 @@
 			<beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" />
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
-	
 	
 </beans:beans>

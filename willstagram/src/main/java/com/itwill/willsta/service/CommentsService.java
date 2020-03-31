@@ -32,5 +32,8 @@ public interface CommentsService {
 
 	//하나의 포스트에 달린 총 댓글 수
 	int postCommentsCount(int pNo) throws Exception;
+	
+	//하나의 포스트에 달린 댓글 전체 조회
+	List<Comments> postCommentsList(int pNo) throws Exception;
 
 }
