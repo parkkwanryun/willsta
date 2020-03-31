@@ -1,8 +1,6 @@
-<%@page import="com.itwill.willsta.domain.Comments"%>
-<%@page import="com.itwill.willsta.service.CommentsServiceImpl"%>
-<%@page import="com.itwill.willsta.service.CommentsService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!-- comments-section들어 갈 곳 -->
 <div class="comment-section">
 	<a href="#" class="plus-ic"> <i class="la la-plus"></i>
 	</a>
@@ -10,17 +8,22 @@
 		<ul>
 			<li>
 				<div class="comment-list">
+					<div class="bg-img">
+						<img src="images/resources/bg-img1.png" alt="">
+					</div>
 					<div class="comment">
 						<h3>John Doe</h3>
 						<span><img src="images/clock.png" alt=""> 3 min ago</span>
 						<p>Lorem ipsum dolor sit amet,</p>
 						<a href="#" title="" class="active"><i class="fa fa-reply-all"></i>Reply</a>
 					</div>
-				</div>
-				<!--comment-list end-->
+				</div> <!--comment-list end-->
 				<ul>
 					<li>
 						<div class="comment-list">
+							<div class="bg-img">
+								<img src="images/resources/bg-img2.png" alt="">
+							</div>
 							<div class="comment">
 								<h3>John Doe</h3>
 								<span><img src="images/clock.png" alt=""> 3 min ago</span>
@@ -33,6 +36,9 @@
 			</li>
 			<li>
 				<div class="comment-list">
+					<div class="bg-img">
+						<img src="images/resources/bg-img3.png" alt="">
+					</div>
 					<div class="comment">
 						<h3>John Doe</h3>
 						<span><img src="images/clock.png" alt=""> 3 min ago</span>
