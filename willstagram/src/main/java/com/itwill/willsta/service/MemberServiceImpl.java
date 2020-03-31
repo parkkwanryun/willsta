@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwill.willsta.domain.Member;
+import com.itwill.willsta.exception.MemberNotFoundException;
+import com.itwill.willsta.exception.PasswordMismatchException;
 import com.itwill.willsta.repository.MemberDao;
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -60,6 +62,18 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public List<Member> findMemberList(String mId) {
 		return memberDao.findMemberList(mId);
+	}
+
+	@Override
+	public Member signIn(String mId, String mPass) throws Exception,PasswordMismatchException,MemberNotFoundException {
+		Member member = memberDao.selectById(mId);
+		if(member==null) {
+			throw new MemberNotFoundException(mId+" 는 없는 아이디 입니다.");
+		}
+		if(!member.isMatchPassword(mPass)) {
+			throw new PasswordMismatchException("패스워드가 일치하지 않습니다.");
+		}
+		return member;
 	}
 
 }

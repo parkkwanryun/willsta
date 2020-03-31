@@ -3,6 +3,7 @@ package com.itwill.willsta.service;
 import java.util.List;
 
 import com.itwill.willsta.domain.Member;
+import com.itwill.willsta.exception.MemberNotFoundException;
 
 public interface MemberService {
 		
@@ -21,6 +22,8 @@ public interface MemberService {
 	Member findPw(String mId, String mName);
 	
 	Member getTempPw(String mPass, String mId);
+	
+	Member signIn(String mId, String mPass) throws Exception;
 	
 	List<Member> memberList();
 	List<Member> findMemberList(String mId);
