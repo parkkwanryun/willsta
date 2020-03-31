@@ -3,34 +3,24 @@
 <%@page import="com.itwill.willsta.service.CommentsService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	CommentsService commentsService = new CommentsServiceImpl();
-	Comments comments = new Comments();
-	comments = commentsService.findComments(10);
-	
-%>
 <div class="comment-section">
+	<a href="#" class="plus-ic"> <i class="la la-plus"></i>
+	</a>
 	<div class="comment-sec">
 		<ul>
 			<li>
 				<div class="comment-list">
-					<div class="bg-img">
-						<img src="images/resources/bg-img1.png" alt="">
-					</div>
 					<div class="comment">
-						<h3><%comments.getmId(); %></h3>
+						<h3>John Doe</h3>
 						<span><img src="images/clock.png" alt=""> 3 min ago</span>
-						<p><%comments.getcContents(); %></p>
+						<p>Lorem ipsum dolor sit amet,</p>
 						<a href="#" title="" class="active"><i class="fa fa-reply-all"></i>Reply</a>
 					</div>
-				</div> <!--comment-list end-->
+				</div>
+				<!--comment-list end-->
 				<ul>
 					<li>
 						<div class="comment-list">
-							<div class="bg-img">
-								<img src="images/resources/bg-img2.png" alt="">
-							</div>
 							<div class="comment">
 								<h3>John Doe</h3>
 								<span><img src="images/clock.png" alt=""> 3 min ago</span>
@@ -43,9 +33,6 @@
 			</li>
 			<li>
 				<div class="comment-list">
-					<div class="bg-img">
-						<img src="images/resources/bg-img3.png" alt="">
-					</div>
 					<div class="comment">
 						<h3>John Doe</h3>
 						<span><img src="images/clock.png" alt=""> 3 min ago</span>
