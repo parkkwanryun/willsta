@@ -1,18 +1,24 @@
 package com.itwill.willsta.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.itwill.willsta.domain.Comments;
 import com.itwill.willsta.service.CommentsService;
 
-@RestController
+@Controller
 public class CommentsController {
 	@Autowired
 	private CommentsService commentsService;
 	
-	@RequestMapping(value = "comments_insert_form", produces = "text/plain;charset=UTF-8")
-	public String comments_insert_form() throws Exception {
+	@PostMapping(value = "/commentsInsertForm")
+	public String commentsInsert() throws Exception {
+		return "redirect:";
+	}
+	
+	@PostMapping(value = "/commentsInsertAction")
+	public String commentsInsertAction() throws Exception {
 		
 		return "";
 	}
