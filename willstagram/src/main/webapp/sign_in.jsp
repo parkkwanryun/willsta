@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
+
+<script type="text/javascript">
+
+
+
+</script>
+
+
 <body class="sign-in">
 	<div class="wrapper">		
-
 		<div class="sign-in-page">
 			<div class="signin-popup">
 				<div class="signin-pop">
@@ -12,7 +19,7 @@
 							<div class="cmp-info">
 								<div class="cm-logo">
 									<img src="images/cm-logo.png" alt="">
-									<p>WillStaGram is a global freelancing platform and social networking where businesses and independent professionals connect and collaborate remotely</p>
+									<p>WillStaGram is a domestic communicating platform made by itwill 5class team2 members</p>
 								</div><!--cm-logo end-->	
 								<img src="images/cm-main-img.png" alt="">			
 							</div><!--cmp-info end-->
@@ -24,6 +31,8 @@
 									<li data-tab="tab-2"><a href="#" title="">Sign up</a></li>				
 								</ul>			
 								<div class="sign_in_sec current" id="tab-1">
+									
+									
 									
 									<h3>Sign in</h3>
 									<form>
@@ -57,6 +66,10 @@
 											</div>
 										</div>
 									</form>
+									
+									
+									
+									
 									<div class="login-resources">
 										<h4>Login Via Social Account</h4>
 										<ul>
