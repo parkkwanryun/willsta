@@ -85,7 +85,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	@MemberLoginCheck
+	//@MemberLoginCheck
 	@RequestMapping(value = "/profiles")
 	public ModelAndView memberList() {
 		ModelAndView mv=new ModelAndView();
