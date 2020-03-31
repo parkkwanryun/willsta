@@ -38,7 +38,7 @@ public class MemberController {
 		try {
 			Member signInMember = memberService.signIn(member.getmId(), member.getmPass());
 			session.setAttribute("mId", member.getmId());
-			session.setAttribute("smId", signInMember);
+			session.setAttribute("sMemberId", signInMember);
 			return "redirect: index";
 		} catch (Exception e) {
 			
