@@ -131,9 +131,9 @@
 		</dependency>
 		<!-- #1.spring aop-->
 		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-aop</artifactId>
-		    <version>${spring.framework.version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>5.2.1.RELEASE</version>
 		</dependency>
 		<!-- #2.aspectj rt -->
 		<dependency>

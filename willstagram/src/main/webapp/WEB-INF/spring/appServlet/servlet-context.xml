@@ -27,8 +27,7 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
-			<bean
-				class="com.itwill.willsta.controller.MemberAuthLoginAnnotationInterceptor" />
+			<bean class="com.itwill.willsta.controller.MemberAuthLoginAnnotationInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 
