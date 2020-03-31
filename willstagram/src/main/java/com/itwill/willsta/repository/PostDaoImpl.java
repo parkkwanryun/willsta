@@ -21,9 +21,8 @@ public class PostDaoImpl implements PostDao {
 	}
 
 	@Override
-	public int insertImg(List<Map> listMaop) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insertImg(PostImage pi) {
+		return postMapper.insertImg(pi);
 	}
 
 	@Override
@@ -49,6 +48,11 @@ public class PostDaoImpl implements PostDao {
 	@Override
 	public List<PostImage> selectContents(Integer pNo) {
 		return postMapper.selectContents(pNo);
+	}
+
+	@Override
+	public String maxContentNo(Integer pNo) {
+		return postMapper.maxContentNo(pNo);
 	}
 
 

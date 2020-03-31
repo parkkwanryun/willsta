@@ -20,8 +20,8 @@ public interface PostMapper {
 	public int insert(Post post);
 
 	//컨텐트이름들은 리스트맵으로 컨트롤
-	@Insert("INSERT INTO POST_IMAGE VALUES(#{fileName}, #{pNo}")
-	public int insertImg(List<Map> listMap);
+	@Insert("INSERT INTO POST_IMAGE VALUES(#{pNo}, #{fileName})")
+	public int insertImg(PostImage pi);
 	
 	@Update({"<script> ", 
 			"	UPDATE POST ", 
@@ -57,12 +57,17 @@ public interface PostMapper {
 				+" WHERE pNo = #{pNo}")
 		public Post selectOne(Integer pNo);
 		
-//POST 한개의 전체 콘텐츠 불러들임
+		//POST 한개의 전체 콘텐츠 불러들임
 		@Select(" select pno, filename from post_image "
 				+" WHERE pNo = #{pNo}")
 		public List<PostImage> selectContents(Integer pNo);
 	
+		//POST 한개의 전체 콘텐츠 불러들임
+		@Select(" select max(substr(filename, instr(filename,'_', 5)+1, 2)) as contentNo from post_image "
+				+" WHERE pNo = #{pNo}")
+		public String maxContentNo(Integer pNo);
 	
-	
+		
+		
 	
 }

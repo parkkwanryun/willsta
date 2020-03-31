@@ -10,7 +10,7 @@ public interface PostDao {
 	
 	public int insert(Post post);
 	
-	public int insertImg(List<Map> listMap);
+	public int insertImg(PostImage pi);
 	
 	public int update(Post post);
 	
@@ -21,4 +21,7 @@ public interface PostDao {
 	public Post selectPost(Integer pNo);
 	
 	public List<PostImage> selectContents(Integer pNo);
+	
+	public String maxContentNo(Integer pNo);
+	
 }

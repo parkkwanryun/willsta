@@ -1,10 +1,8 @@
 package com.itwill.willsta.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import com.itwill.willsta.domain.Post;
 import com.itwill.willsta.domain.PostImage;
@@ -17,6 +15,11 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public int createPost(Post post) {
 		return postDao.insert(post);
+	}
+	
+	@Override
+	public int insertImg(PostImage pi) {
+		return postDao.insertImg(pi);
 	}
 
 	@Override
@@ -43,5 +46,12 @@ public class PostServiceImpl implements PostService {
 	public List<PostImage> selectContents(Integer pNo) {
 		return postDao.selectContents(pNo);
 	}
+
+	@Override
+	public String maxContentNo(Integer pNo) {
+		return postDao.maxContentNo(pNo);
+	}
+
+	
 
 }
