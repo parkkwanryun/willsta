@@ -37,6 +37,10 @@ public class Follow {
 	public String toString() {
 		return "follow [mId=" + mId + ", mIdYou=" + mIdYou + "]";
 	}
+
+
+
+	
 	
 	
 }

@@ -6,13 +6,15 @@ import com.itwill.willsta.domain.Follow;
 
 public interface FollowService {
 
-	
 	boolean follow(Follow follow);
-	
+
+	boolean unfollow(String mIdYou, String mId);
+
 	List<Follow> followers(String mId);
-	
+
 	List<Follow> following(String mId);
-	
-	boolean unfollow(String mId);
-	
+
+	int followingCount(String mIdYou);
+
+	int followersCount(String mId);
 }

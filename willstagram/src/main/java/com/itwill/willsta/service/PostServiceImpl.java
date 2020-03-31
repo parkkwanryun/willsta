@@ -16,7 +16,7 @@ public class PostServiceImpl implements PostService {
 	
 	@Override
 	public Post createPost(Post post, MultipartFile[] uploadFile) {
-		String uploadFolder = "/contents/post_contents";
+		String uploadFolder = "C:\\eclipse-workspace5\\willsta\\willstagram\\src\\main\\webapp\\contents\\post_contents";
 		Post postOne=null;
 		int rn = postDao.insert(post);
 		if(rn >0) {

@@ -29,12 +29,14 @@ public class FollowUnitTestMain {
 	}
 	
 	@Test
+	@Ignore
 	public void followers() throws Exception{
 		List<Follow> followers = followDao.followers("mId");
 		System.out.println("### followers: "+followers);
 	}
 	
 	@Test
+	@Ignore
 	public void following() throws Exception{
 		List<Follow> following = followDao.following("mId");
 		System.out.println("### following:"+following);
@@ -42,12 +44,13 @@ public class FollowUnitTestMain {
 	
 	@Test
 	public void unfollow() throws Exception{
-		boolean unfollow = followDao.unfollow("corona");
+		boolean unfollow = followDao.unfollow("e","똑순이");
 		System.out.println("## 당신 언팔." +unfollow);
 	
 	}
 	
 	@Test
+	@Ignore
 	public void follow() throws Exception{
 		boolean follow = followDao.follow(new Follow("sj","jun", null, null));
 		System.out.println("## 팔로"+follow);

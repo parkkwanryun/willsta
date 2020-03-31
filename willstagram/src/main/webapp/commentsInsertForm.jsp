@@ -1,16 +1,9 @@
-<%@page import="com.itwill.willsta.domain.Comments"%>
-<%@page import="com.itwill.willsta.service.CommentsServiceImpl"%>
-<%@page import="com.itwill.willsta.service.CommentsService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	CommentsService commentsService = new CommentsServiceImpl();
-	Comments comments = new Comments();
-	comments = commentsService.findComments(10);
-	
-%>
+    pageEncoding="UTF-8"%>
+<!-- comments 쓰기-->
 <div class="comment-section">
+	<a href="#" class="plus-ic"> <i class="la la-plus"></i>
+	</a>
 	<div class="comment-sec">
 		<ul>
 			<li>
@@ -19,9 +12,9 @@
 						<img src="images/resources/bg-img1.png" alt="">
 					</div>
 					<div class="comment">
-						<h3><%comments.getmId(); %></h3>
+						<h3>${comments.mId} ......John Doe</h3>
 						<span><img src="images/clock.png" alt=""> 3 min ago</span>
-						<p><%comments.getcContents(); %></p>
+						<p>Lorem ipsum dolor sit amet,</p>
 						<a href="#" title="" class="active"><i class="fa fa-reply-all"></i>Reply</a>
 					</div>
 				</div> <!--comment-list end-->
@@ -65,6 +58,7 @@
 		<div class="comment_box">
 			<form>
 				<input type="text" placeholder="Post a comment">
+				<!-- 댓글 내용 쓰는 곳 -->
 				<button type="submit">Send</button>
 			</form>
 		</div>
