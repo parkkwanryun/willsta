@@ -20,7 +20,7 @@ public class PostController {
 	@Autowired
 	PostService postService;
 	
-	@RequestMapping(value="/post_main")
+	@RequestMapping(value="/index")
 	public ModelAndView selectMyList(@RequestParam(value="userId", required = false, defaultValue = "hjs") String userId) {
 		ModelAndView mv = new ModelAndView();
 		List<Post> postList = postService.selectMyList(userId);
@@ -28,7 +28,7 @@ public class PostController {
 			post.setTagArray(post.getHasTag().split(" "));
 		}
 		mv.addObject("postList", postList);
-		mv.setViewName("post_main");
+		mv.setViewName("index");
 		return mv;
 	}
 	

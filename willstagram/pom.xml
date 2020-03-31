@@ -127,13 +127,13 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>4.1.4.RELEASE</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
 		<!-- #1.spring aop-->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
-			<version>5.2.1.RELEASE</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
 		<!-- #2.aspectj rt -->
 		<dependency>
@@ -193,6 +193,18 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.9.6</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<version>4.2.4.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.websocket</groupId>
+			<artifactId>javax.websocket-api</artifactId>
+			<version>1.1</version>
 		</dependency>
 	</dependencies>
 	<repositories>
