@@ -68,22 +68,23 @@ public class PostController {
 
 					filename = multipartFile.getOriginalFilename();
 					filename = filename.substring(filename.lastIndexOf("\\")+1);
-					
+					String sepString = filename.substring(filename.lastIndexOf("."), filename.length());
+					String maxContentNo = postService.maxContentNo(post.getpNo());
 					if(filename.toUpperCase().endsWith(".MP4") || filename.endsWith(".AVI") || filename.endsWith(".MKV") || filename.endsWith(".MOV")) {
-						
-						filterFileName =  "mov_"+post.getpNo()+"";
+						filterFileName =  "mov_";
 					}else if(filename.toUpperCase().endsWith(".JPG") || filename.endsWith(".PNG") || filename.endsWith(".JPEG") || filename.endsWith(".GIF")) {
-						
+						filterFileName =  "img_";
 					} else {
-						
+						filterFileName =  "etc_";
 					}
 					
-						
-
+					filterFileName+=post.getpNo()+"_"+maxContentNo.trim()+sepString;	
+					
+						System.out.println("$$$$$$$$$$$$$$"+filterFileName);
 					if (!(filename == null || filename.equals(""))) {
-						pi = new PostImage(post.getpNo(), filename);	
+						pi = new PostImage(post.getpNo(), filterFileName);	
 						postService.insertImg(pi);
-						File saveFile = new File(uploadFolder, filename);
+						File saveFile = new File(uploadFolder, filterFileName);
 						try {
 							multipartFile.transferTo(saveFile);
 						} catch (Exception e) {

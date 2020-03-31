@@ -63,7 +63,7 @@ public interface PostMapper {
 		public List<PostImage> selectContents(Integer pNo);
 	
 		//POST 한개의 전체 콘텐츠 불러들임
-		@Select(" select max(substr(filename, instr(filename,'_', 5)+1, 2)) as contentNo from post_image "
+		@Select(" select to_char(nvl(max(substr(filename, instr(filename,'_', 5)+1, 2)),0) + 1, '00') as contentNo from post_image "
 				+" WHERE pNo = #{pNo}")
 		public String maxContentNo(Integer pNo);
 	
