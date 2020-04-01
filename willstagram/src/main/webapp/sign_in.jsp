@@ -4,8 +4,6 @@
 
   <jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
 <body class="sign-in">
-	
-
 	<div class="wrapper">		
 
 		<div class="sign-in-page">
@@ -15,14 +13,14 @@
 						<div class="col-lg-6">
 							<div class="cmp-info">
 								<div class="cm-logo">
-									<img src="images/cm-logo.png" alt="">
-									<p>Workwise,  is a global freelancing platform and social networking where businesses and independent professionals connect and collaborate remotely</p>
+									<img src="images/helloMain.PNG" alt="">
+									<!--  <img src="images/cm-logo.png" alt=""> -->
+									<p>Workwise is a domestic social networking platform where businesses and independent professionals connect and collaborate remotely</p>
 								</div><!--cm-logo end-->	
-								<img src="images/cm-main-img.png" alt="">			
+								<img src="images/zzzz.jpg" alt="">			
 							</div><!--cmp-info end-->
 						</div>
-						
-						
+
 						<div class="col-lg-6">
 							<div class="login-sec">
 								<ul class="sign-control">
@@ -30,12 +28,10 @@
 									<li data-tab="tab-2"><a href="#" title="">Sign up</a></li>				
 								</ul>			
 								<div class="sign_in_sec current" id="tab-1">
-									
-									
-									
-									
-									<h3>Sign in</h3>
-									<form>
+									<h3>Sign in 이번주 안에 끝낸다</h3>
+
+
+									<form id="member_login_action" method="get" action="gogo">
 										<div class="row">
 											<div class="col-lg-12 no-pdd">
 												<div class="sn-field">
@@ -58,7 +54,7 @@
 														</label>
 														<small>Remember me</small>
 													</div><!--fgt-sec end-->
-													<a href="#" title="">Forgot Password?</a>
+													<a href="#" title="">forgot password</a>
 												</div>
 											</div>
 											<div class="col-lg-12 no-pdd">
@@ -66,11 +62,12 @@
 											</div>
 										</div>
 									</form>
+									
+									
 									<div class="login-resources">
-										<h4>Login Via Social Account</h4>
+										<h4>Login through Social Account</h4>
 										<ul>
-											<li><a href="#" title="" class="fb"><i class="fa fa-facebook"></i>Login Via Facebook</a></li>
-											<li><a href="#" title="" class="tw"><i class="fa fa-twitter"></i>Login Via Twitter</a></li>
+											<li><a href="#" title="" class="fb"><i class="fa fa-facebook"></i>Naver Login</a></li>
 										</ul>
 									</div><!--login-resources end-->
 								</div>
