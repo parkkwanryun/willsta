@@ -9,7 +9,7 @@ public interface MemberService {
 		
 	boolean insertMember(Member member);
 	
-	Member selectById(String mId);
+	List<Member> selectById(String mId);
 	
 	boolean updateMember(Member member);
 	
