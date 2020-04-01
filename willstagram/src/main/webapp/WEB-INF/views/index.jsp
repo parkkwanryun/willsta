@@ -247,9 +247,9 @@
 													<div class="comment_box">
 														<form id="comment-insert-form">
 															<!-- 댓글 내용 쓰는 곳 -->
-															<input type="text" placeholder="Post a comment"
-																id="comment-content">
-															<button type="button" id="comment-insert-button">Send</button>
+															<input type="text" placeholder="Post a comment" id="comment-content">
+															<input type="hidden" value="${post.pNo}">
+															<button type="submit" id="comment-insert-button">Send</button>
 														</form>
 													</div>
 												</div>

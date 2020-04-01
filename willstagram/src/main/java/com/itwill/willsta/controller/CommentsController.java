@@ -18,7 +18,7 @@ public class CommentsController {
 	@PostMapping(value = "/commentsInsertAction", produces = "text/plain;charset=UTF-8")
 	public String commentsInsertAction(@RequestParam(value = "pNo", defaultValue = "15") int pNo,
 									   @RequestParam(value = "mId", defaultValue = "hjs") String mId,
-									   @RequestParam String cContents,
+									   @RequestParam(value = "cContents", defaultValue = "contents") String cContents,
 									   HttpSession session) throws Exception {
 		String result = "";
 		Comments comments = new Comments();
@@ -38,7 +38,7 @@ public class CommentsController {
 	
 	//@RequestMapping(value = "/postCommentList")
 	//public List<Comments> commentsList(@RequestParam(value = "pNo", defaultValue = "15") int pNo) throws Exception {
-	//	
+		
 		
 	//}
 }

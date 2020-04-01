@@ -1,6 +1,6 @@
 //document ready
 $(function() {
-	// 댓글 쓰기폼 이벤트 처리
+	// 댓글 쓰기
 	$("#comment-insert-button").click(function(e) {
 		var paramStr = $("#comment-insert-form").serialize();
 		$.ajax({
@@ -17,10 +17,18 @@ $(function() {
 				}
 			}
 		});
+		e.preventDefault();
 	});
 	
+	
+	
 	//댓글 내역 보기
-	$("div.comment-section").on("click", ".com", function(e){
+	$("div.comment-section").on("click", "a.com", function(e){
+		var $comment = $(e.target).parents("div.comment-sec");
+		var params = "cNo="+$comment.attr()
+		
+		
+		
 		
 	});
 });
