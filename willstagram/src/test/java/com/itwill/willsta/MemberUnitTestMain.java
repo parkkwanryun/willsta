@@ -68,21 +68,21 @@ public class MemberUnitTestMain {
 	@Test //회원정보 수정
 	@Ignore
 	public void updateMember() {
-		boolean member = memberDao.updateMember(new Member("222","김소진","sj@naver.com","0100"," ","F","소진이고생하네"));
+		boolean member = memberDao.updateMember(new Member("ksj","12345","소진","sj@naver.com","0100","",""));
 		System.out.println("## 회원정보 수정 성공 여부:"+member);
 	}
 	
 	@Test //임시비밀번호 발급
 	@Ignore
 	public void getTempPw() {
-		Member memberTempPw= memberDao.getTempPw("123","소진이고생하네");
+		Member memberTempPw= memberDao.getTempPw("소진","ksj");
 		System.out.println("memberTempPw:"+memberTempPw);
 	}
 	
-	@Test //회원 1명 조회
+	@Test //회원 1명 조회 (test 필요)
 
 	public void selectById() {
-		Member member = memberDao.selectById("pkr");
+		Member member = memberDao.selectById("corona");
 		System.out.println("## 회원 1명 불러오기 :"+member);
 	}
 	
