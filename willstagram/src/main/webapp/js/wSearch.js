@@ -13,7 +13,7 @@ $(function(){
 			data:userKeyword,
 			dataType:'text',
 			success:function(resultText){
-				$('div.companies-list').html(resultText);
+				$('div.wrapper').html(resultText);
 			}
 		});
 		e.preventDefault();
