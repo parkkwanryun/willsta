@@ -240,10 +240,9 @@
 													</div>
 													<div class="comment_box">
 														<form id="comment-insert-form">
-															<input type="text" placeholder="Post a comment"
-																id="comment-content">
+															<input type="text" placeholder="Post a comment" id="comment-content">
 															<!-- 댓글 내용 쓰는 곳 -->
-															<button type="submit">Send</button>
+															<button type="button" id="comment-insert-button">Send</button>
 														</form>
 													</div>
 												</div>
@@ -692,7 +691,7 @@
 	<script type="text/javascript" src="lib/slick/slick.min.js"></script>
 	<script type="text/javascript" src="js/scrollbar.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
-	<script type="text/javascript" src="js/wComments.jsp"></script>
+	<script type="text/javascript" src="js/wComments.js"></script>
 
 	<script type="text/javascript">
 		//document ready

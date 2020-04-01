@@ -1,11 +1,8 @@
 package com.itwill.willsta.controller;
 
-import java.util.Date;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,19 +15,18 @@ public class CommentsController {
 	@Autowired
 	private CommentsService commentsService;
 	
-	@PostMapping(value = "/commentsInsertAction")
-	public String commentsInsertAction(@RequestParam int pNo,
-									   @RequestParam String mId,
-									   @RequestParam String cContents,
-									   @RequestParam Date cTime,
+	@PostMapping(value = "/commentsInsertAction", produces = "text/plain;charset=UTF-8")
+	public String commentsInsertAction(@RequestParam(value = "pNo", defaultValue = "15") int pNo,
+									   @RequestParam(value = "mId", defaultValue = "hjs") String mId,
+									   String cContents,
 									   HttpSession session) throws Exception {
 		String result = "";
 		Comments comments = new Comments();
-		String getmId = (String)session.getAttribute(mId);
+		//String getmId = (String)session.getAttribute(mId);
+		//comments.setmId(getmId);
 		comments.setpNo(pNo);
-		comments.setmId(getmId);
-		comments.setcContents(cContents);
-		comments.setcTime(cTime);
+		comments.setmId(mId);
+		comments.setcContents("test");
 		int insertSucess = commentsService.createComment(comments);
 		if(insertSucess == 1) {
 			result = "true";
@@ -40,4 +36,9 @@ public class CommentsController {
 		return result;
 	}
 	
+	//@RequestMapping(value = "/postCommentList")
+	//public List<Comments> commentsList(@RequestParam(value = "pNo", defaultValue = "15") int pNo) throws Exception {
+	//	
+		
+	//}
 }
