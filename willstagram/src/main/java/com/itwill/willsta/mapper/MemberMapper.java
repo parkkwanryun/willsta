@@ -19,15 +19,15 @@ public interface MemberMapper {
 	public boolean insertMember(Member member);
 	
 	/*회원정보 로딩*/
-	@Select("SELECT mId, mPass, mName, mEmail, mPhone, mImage FROM MEMBER WHERE mId=#{mId}")
+	@Select("SELECT m.mId, mPass, mName, mEmail, mPhone, mImage, followingCount, followerCount FROM MEMBER M INNER JOIN FOLLOW F ON f.mId=#{mId} WHERE #{mId}=f.mId")
 	public Member selectById(@Param("mId") String mId);
-	
+
 	/*회원정보 수정*/
 	@Update("UPDATE MEMBER SET mPass=#{mPass}, mName=#{mName}, mEmail=#{mEmail}, mPhone=#{mPhone}, mImage=#{mImage} WHERE mId=#{mId}")
 	public boolean updateMember(Member memeber);
 	
-	/*회원 탈퇴(test 완)*/
-	@Update("UPDATE MEMBER SET mRetire = 'T' WHERE mId = #{mId}")
+	/*회원 탈퇴*/
+	@Update("UPDATE MEMBER SET mRetire = 'T' followerCount=0 followingCount=0 WHERE mId = #{mId}")
 	public boolean deleteMember(@Param("mId") String mId);
 	
 	/*아이디 중복체크(완)*/

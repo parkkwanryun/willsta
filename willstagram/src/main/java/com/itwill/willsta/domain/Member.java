@@ -9,6 +9,9 @@ public class Member {
 	private String mImage;
 	private String mRetire;
 	
+	private Integer followerCount;
+	private Integer followingCount;
+	
 	public Member() {
 		// TODO Auto-generated constructor stub
 	}
@@ -23,6 +26,7 @@ public class Member {
 		this.mPhone = mPhone;
 		this.mImage = mImage;
 		this.mRetire = mRetire;
+		
 	}
 
 
@@ -95,6 +99,28 @@ public class Member {
 		this.mRetire = mRetire;
 	}
 
+	
+	
+
+	public Integer getFollowCount() {
+		return followerCount;
+	}
+
+
+	public void setFollowCount(Integer followCount) {
+		this.followerCount = followCount;
+	}
+
+
+	public Integer getFollowingCount() {
+		return followingCount;
+	}
+
+
+	public void setFollowingCount(Integer followingCount) {
+		this.followingCount = followingCount;
+	}
+
 
 	public boolean isMatchPassword(String mPass){
 		boolean isMatch=false;
@@ -108,9 +134,11 @@ public class Member {
 	@Override
 	public String toString() {
 		return "Member [mId=" + mId + ", mPass=" + mPass + ", mName=" + mName + ", mEmail=" + mEmail + ", mPhone="
-				+ mPhone + ", mImage=" + mImage + ", mRetire=" + mRetire + "]";
+				+ mPhone + ", mImage=" + mImage + ", mRetire=" + mRetire+"]";
 	}
 
+	
+	
 	
 	
 	

@@ -30,7 +30,6 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Override
 	public boolean deleteMember(String mId) {
-		
 		return memberMapper.deleteMember(mId);
 	}//
 	

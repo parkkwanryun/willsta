@@ -80,9 +80,9 @@ public class MemberUnitTestMain {
 	}
 	
 	@Test //회원 1명 조회
-	@Ignore
+
 	public void selectById() {
-		Member member = memberDao.selectById("r");
+		Member member = memberDao.selectById("pkr");
 		System.out.println("## 회원 1명 불러오기 :"+member);
 	}
 	
