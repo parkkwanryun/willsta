@@ -97,7 +97,7 @@ public class MemberController {
 	
 	//@MemberLoginCheck
 	@ResponseBody
-	@RequestMapping(value = "/search_member", method = RequestMethod.GET)
+	@RequestMapping(value = "/search_member", method = RequestMethod.POST)
 	public ModelAndView findMemberList(@RequestParam(value = "mId") String mId) {
 		ModelAndView mv=new ModelAndView();
 		List<Member> findMemberList=memberService.findMemberList(mId);

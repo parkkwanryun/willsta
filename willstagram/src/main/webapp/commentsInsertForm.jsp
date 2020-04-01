@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
 <!-- comments 쓰기-->
 <div class="comment-section">
-	<a href="#" class="plus-ic"> <i class="la la-plus"></i>
-	</a>
 	<div class="comment-sec">
 		<ul>
 			<li>
@@ -13,12 +11,13 @@
 					</div>
 					<div class="comment">
 						<h3>${comments.mId} ......John Doe</h3>
-						<span><img src="images/clock.png" alt=""> 3 min ago</span>
-						<p>Lorem ipsum dolor sit amet,</p>
+						<span><img src="images/clock.png" alt="">${commtents.cTime} 3 min ago</span>
+						<p>${comments.cContents}     contents</p>
 						<a href="#" title="" class="active"><i class="fa fa-reply-all"></i>Reply</a>
 					</div>
 				</div> <!--comment-list end-->
-				<ul>
+			</li>
+				<!-- <ul>
 					<li>
 						<div class="comment-list">
 							<div class="bg-img">
@@ -30,10 +29,10 @@
 								<p>Hi John</p>
 								<a href="#" title=""><i class="fa fa-reply-all"></i>Reply</a>
 							</div>
-						</div> <!--comment-list end-->
+						</div> 
 					</li>
 				</ul>
-			</li>
+				
 			<li>
 				<div class="comment-list">
 					<div class="bg-img">
@@ -46,8 +45,9 @@
 							Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at.</p>
 						<a href="#" title=""><i class="fa fa-reply-all"></i>Reply</a>
 					</div>
-				</div> <!--comment-list end-->
+				</div> 
 			</li>
+			
 		</ul>
 	</div>
 	<!--comment-sec end-->
@@ -56,7 +56,7 @@
 			<img src="images/resources/bg-img4.png" alt="">
 		</div>
 		<div class="comment_box">
-			<form>
+			<form id="comment-insert">
 				<input type="text" placeholder="Post a comment">
 				<!-- 댓글 내용 쓰는 곳 -->
 				<button type="submit">Send</button>
