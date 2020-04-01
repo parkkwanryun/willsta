@@ -21,6 +21,12 @@ public class FollowDaoImpl implements FollowDao{
 	}
 
 	@Override
+	public boolean unfollow(String mIdYou, String mId) {
+
+		return followMapper.unFollow(mIdYou, mId);
+	}
+	
+	@Override
 	public List<Follow> followers(String mId) {
 		
 		return followMapper.followers(mId);
@@ -32,13 +38,6 @@ public class FollowDaoImpl implements FollowDao{
 		return followMapper.following(mIdYou);
 	}
 
-	
-
-	@Override
-	public boolean unfollow(String mIdYou, String mId) {
-
-		return followMapper.unFollow(mIdYou, mId);
-	}
 
 	@Override
 	public int followingCount(String mIdYou) {

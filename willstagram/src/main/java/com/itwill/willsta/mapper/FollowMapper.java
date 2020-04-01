@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.itwill.willsta.domain.DM;
@@ -18,8 +19,8 @@ public interface FollowMapper {
 	public boolean follow(Follow follow);
 	
 	/*UnFollow 언팔하기*/
-	@Delete("delete from follow where mId = #{mId} and mIdYou = #{mIdYou}")
-	public boolean unFollow( String mId,String mIdYou);
+	@Delete("delete from follow where mIdYou =#{mIdYou} and mId =#{mId}")
+	public boolean unFollow(@Param("mIdYou") String mIdYou, @Param("mId") String mId);
 	
 	
 	/*Following List 내가 팔로우하고있는사람들 보기*/
