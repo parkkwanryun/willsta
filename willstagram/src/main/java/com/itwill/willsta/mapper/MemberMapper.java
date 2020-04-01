@@ -19,18 +19,18 @@ public interface MemberMapper {
 	public boolean insertMember(Member member);
 	
 	/*회원정보 로딩*/
-	@Select("SELECT m.mId, mPass, mName, mEmail, mPhone, mImage, followingCount, followerCount FROM MEMBER M INNER JOIN FOLLOW F ON f.mId=#{mId} WHERE #{mId}=f.mId")
+	@Select("SELECT m.mId, m.mPass, m.mName, m.mEmail, m.mPhone, m.mImage FROM MEMBER M INNER JOIN FOLLOW F ON f.mId=#{mId} WHERE #{mId}=f.mId")
 	public Member selectById(@Param("mId") String mId);
-
+	
 	/*회원정보 수정*/
-	@Update("UPDATE MEMBER SET mPass=#{mPass}, mName=#{mName}, mEmail=#{mEmail}, mPhone=#{mPhone}, mImage=#{mImage} WHERE mId=#{mId}")
+	@Update("UPDATE MEMBER SET mId=#{mId}, mPass=#{mPass}, mName=#{mName}, mEmail=#{mEmail}, mPhone=#{mPhone}, mImage=#{mImage} WHERE mId=#{mId}")
 	public boolean updateMember(Member memeber);
 	
 	/*회원 탈퇴*/
-	@Update("UPDATE MEMBER SET mRetire = 'T' followerCount=0 followingCount=0 WHERE mId = #{mId}")
+	@Update("UPDATE MEMBER SET mRetire = 'T' WHERE mId = #{mId}")
 	public boolean deleteMember(@Param("mId") String mId);
 	
-	/*아이디 중복체크(완)*/
+	/*아이디 중복체크*/
 	@Select("SELECT count(*) cnt FROM MEMBER WHERE mId=#{mId}")
 	public boolean existedMember(@Param("mId") String mId);
 	
@@ -44,7 +44,7 @@ public interface MemberMapper {
 	
 	/*임시비밀번호 발급*/
 	@Update("UPDATE MEMBER SET mPass=#{mPass} WHERE mId=#{mId}")
-	public Member getTempPw(@Param("mPass") String mPass, @Param("mId") String mId);
+	public Member getTempPw(@Param("mId") String mPass, @Param("mEmail") String mId);
 
 	
 	@Select("SELECT mid, mname, mimage FROM member")

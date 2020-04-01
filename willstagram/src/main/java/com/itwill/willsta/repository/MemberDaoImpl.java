@@ -49,8 +49,8 @@ public class MemberDaoImpl implements MemberDao{
 	}//
 
 	@Override
-	public Member getTempPw(String mPass, String mId) {
-		return memberMapper.getTempPw(mPass, mId);
+	public Member getTempPw(String mId, String mEmail) {
+		return memberMapper.getTempPw(mId, mEmail);
 	}//
 
 	@Override
