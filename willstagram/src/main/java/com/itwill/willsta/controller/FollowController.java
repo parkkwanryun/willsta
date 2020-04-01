@@ -35,7 +35,7 @@ public class FollowController {
 			post.setTagArray(post.getHasTag().split(" "));
 		}
 		mv.addObject("postList", postList);
-		mv.setViewName("mypage");
+		mv.setViewName("myPage");
 		return mv;
 	}
 	
@@ -54,7 +54,7 @@ public class FollowController {
 	
 	
 	
-	@RequestMapping(value="/followList")
+	@RequestMapping(value="/followList" , produces = "text/html;charset=utf-8")
 	public ModelAndView followers(@RequestParam(value="mId",required = false)String mId) {
 		ModelAndView mv = new ModelAndView();
 		List<Follow> followers = followService.followers(mId);
@@ -67,7 +67,7 @@ public class FollowController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/followingList")
+	@RequestMapping(value="/followingList" , produces = "text/html;charset=utf-8")
 	public ModelAndView following(@RequestParam(value="mId",required = false)String mId) {
 		ModelAndView mv = new ModelAndView();
 		List<Follow> following = followService.following(mId);
