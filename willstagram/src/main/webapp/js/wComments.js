@@ -17,6 +17,12 @@ $(function() {
 				}
 			}
 		});
-		e.preventDefault();
+	});
+	
+	//댓글 내역 보기
+	$("div.comment-section").on("click", ".com", function(e){
+		
 	});
 });
+
+

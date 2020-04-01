@@ -18,7 +18,7 @@ public class CommentsController {
 	@PostMapping(value = "/commentsInsertAction", produces = "text/plain;charset=UTF-8")
 	public String commentsInsertAction(@RequestParam(value = "pNo", defaultValue = "15") int pNo,
 									   @RequestParam(value = "mId", defaultValue = "hjs") String mId,
-									   String cContents,
+									   @RequestParam String cContents,
 									   HttpSession session) throws Exception {
 		String result = "";
 		Comments comments = new Comments();
@@ -26,7 +26,7 @@ public class CommentsController {
 		//comments.setmId(getmId);
 		comments.setpNo(pNo);
 		comments.setmId(mId);
-		comments.setcContents("test");
+		comments.setcContents(cContents);
 		int insertSucess = commentsService.createComment(comments);
 		if(insertSucess == 1) {
 			result = "true";
