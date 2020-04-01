@@ -62,6 +62,8 @@
 											</div>
 										</div>
 									</form>
+									
+									
 									<div class="login-resources">
 										<h4>Login through Social Account</h4>
 										<ul>
