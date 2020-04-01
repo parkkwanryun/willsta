@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import com.itwill.willsta.domain.DmContents;
 import com.itwill.willsta.repository.DmContentsDao;
 @Service
-public class DmContentsImpl implements DmContentsDao {
+public class DmContentsServiceImpl implements DmContentsDao {
 	private DmContentsDao dmContentsDao;
 	
 	@Override
