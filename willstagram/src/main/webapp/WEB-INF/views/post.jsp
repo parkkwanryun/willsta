@@ -57,19 +57,5 @@
 		</ul>
 		<a href="#"><i class="fas fa-eye"></i>Views ${post.pViewCount}</a>
 	</div>
-	<!-- post-comment -->
-	<div class="post-comment">
-		<div class="cm_img">
-			<img src="images/resources/bg-img4.png" alt="">
-		</div>
-		<div class="comment_box">
-			<form id="comment-insert-form">
-				<input type="text" placeholder="Post a comment" id="comment-content">
-				<!-- 댓글 내용 쓰는 곳 -->
-				<button type="submit">Send</button>
-			</form>
-		</div>
-	</div>
-	<!--post-comment end-->
 </div>
 <!--post-bar end-->
