@@ -53,7 +53,7 @@ public class MemberUnitTestMain {
 		System.out.println("## 아이디 중복 여부:"+member);
 	}
 	
-	@Test //아이디 찾기 
+	@Test //아이디 찾기
 	@Ignore
 	public void findId() {
 		Member member = memberDao.findId("mEmail","mName");
@@ -81,10 +81,10 @@ public class MemberUnitTestMain {
 		System.out.println("memberTempPw:"+memberTempPw);
 	}
 	
-	@Test //회원 1명 조회 (test 필요)
+	@Test //회원 1명 조회 (팔로워,팔로우 불러오기 포함) 
 
 	public void selectById() {
-		Member member = memberDao.selectById("김소진");
+		List<Member> member = memberDao.selectById("김소진");
 		System.out.println("## 회원 1명 불러오기 :"+member);
 	}
 	
