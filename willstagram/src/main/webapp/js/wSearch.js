@@ -14,7 +14,7 @@ $(function(){
 			dataType:'text',
 			success:function(resultText){
 				$('div.wrapper').html(resultText);
-				$('div.company-title').children().text("Search results");
+				$('div.company-title').children().text("Search Profile");
 			}
 		});
 		e.preventDefault();
