@@ -257,13 +257,6 @@
 											</div>
 											<!--post-bar end-->
 										</c:forEach>
-
-										<!-- comments section -->
-
-
-										<!--comment-section end-->
-
-
 									</div>
 									<!--posty end-->
 									<div class="process-comm">
