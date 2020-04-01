@@ -16,7 +16,7 @@
 		<section class="companies-info">
 			<div class="container">
 				<div class="company-title">
-					<h3>All Companies</h3>
+					<h3>All Profiles</h3>
 				</div><!--company-title end-->
 				<div class="companies-list">
 					<div class="row">
