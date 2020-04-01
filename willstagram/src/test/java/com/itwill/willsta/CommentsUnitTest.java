@@ -13,7 +13,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.itwill.willsta.domain.Comments;
+import com.itwill.willsta.repository.CommentsDao;
 import com.itwill.willsta.repository.CommentsDaoImpl;
+import com.itwill.willsta.service.CommentsService;
 import com.itwill.willsta.service.CommentsServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -21,13 +23,13 @@ import com.itwill.willsta.service.CommentsServiceImpl;
 public class CommentsUnitTest {
 	@Autowired
 	private ApplicationContext applicationContext;
-	private CommentsDaoImpl commentsDao;
-	private CommentsServiceImpl commentsService;
+	private CommentsDao commentsDao;
+	private CommentsService commentsService;
 	
 	@Before
     public void setUp() {
         commentsDao = this.applicationContext.getBean("commentsDao", CommentsDaoImpl.class);
-		//commentsService = this.applicationContext.getBean("commentsService", CommentsServiceImpl.class);
+		commentsService = this.applicationContext.getBean("commentsService", CommentsServiceImpl.class);
     }
     
 	@Test //댓글 전체 조회
@@ -39,7 +41,6 @@ public class CommentsUnitTest {
     }
 	
     @Test //댓글 하나 조회
-    @Ignore
     public void findCommentsTest() throws Exception {
     	Comments comments = new Comments();
     	//comments = commentsDao.findComments(3);
@@ -100,6 +101,7 @@ public class CommentsUnitTest {
     }
     
     @Test //하나의 포스트에 달린 댓글 전체 조회
+    @Ignore
     public void postCommetsList() throws Exception {
     	List<Comments> postCommentsList = commentsDao.postCommentsList(15);
     	System.out.println("### postCommentsList: "+postCommentsList);
