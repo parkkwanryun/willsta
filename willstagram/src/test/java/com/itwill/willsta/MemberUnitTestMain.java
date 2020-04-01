@@ -1,6 +1,8 @@
 package com.itwill.willsta;
 
 
+import static org.junit.Assert.assertNotNull;
+
 import java.util.List;
 
 import org.junit.Before;
@@ -82,8 +84,9 @@ public class MemberUnitTestMain {
 	@Test //회원 1명 조회 (test 필요)
 
 	public void selectById() {
-		Member member = memberDao.selectById("corona");
+		Member member = memberDao.selectById("김소진");
 		System.out.println("## 회원 1명 불러오기 :"+member);
+
 	}
 	
 	@Test //유저 목록
