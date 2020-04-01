@@ -240,8 +240,8 @@
 													</div>
 													<div class="comment_box">
 														<form id="comment-insert-form">
-															<input type="text" placeholder="Post a comment" id="comment-content">
 															<!-- 댓글 내용 쓰는 곳 -->
+															<input type="text" placeholder="Post a comment" id="comment-content" >
 															<button type="button" id="comment-insert-button">Send</button>
 														</form>
 													</div>
