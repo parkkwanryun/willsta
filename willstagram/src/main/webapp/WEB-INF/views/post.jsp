@@ -51,7 +51,7 @@
 				<img src="images/liked-img.png" alt="">
 				<span>${post.likeCount}</span>
 			</li> 
-			<li><a href="#" class="com"><i class="fas fa-comment-alt"></i> Comment 15</a></li>
+			<li id="comment-insert"><a href="#" class="com"><i class="fas fa-comment-alt"></i> Comment 15</a></li>
 		</ul>
 		<a href="#"><i class="fas fa-eye"></i>Views ${post.pViewCount}</a>
 	</div>
