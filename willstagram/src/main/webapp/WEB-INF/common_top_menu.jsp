@@ -7,7 +7,7 @@
 						<a href="index.html" title=""><img src="images/logo.png" alt=""></a>
 					</div><!--logo end-->
 					<div class="search-bar">
-						<form>
+						<form class="userSearch">
 							<input type="text" name="search" placeholder="Search...">
 							<button type="submit"><i class="la la-search"></i></button>
 						</form>
@@ -204,3 +204,4 @@
 					</div>
 				</div><!--header-data end-->
 			</div>
+			

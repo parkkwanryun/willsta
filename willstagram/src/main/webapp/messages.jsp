@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <body>	
 	<div class="wrapper">		
 
@@ -69,7 +70,7 @@
 									<div class="nott-list">
 										<div class="notfication-details">
 							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img1.png" alt="">
+							  					<img src="" alt="">
 							  				</div>
 							  				<div class="notification-info">
 							  					<h3><a href="messages.html" title="">Jassica William</a> </h3>
@@ -79,7 +80,7 @@
 						  				</div>
 						  				<div class="notfication-details">
 							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img2.png" alt="">
+							  					<img src="" alt="">
 							  				</div>
 							  				<div class="notification-info">
 							  					<h3><a href="messages.html" title="">Jassica William</a></h3>
@@ -89,7 +90,7 @@
 						  				</div>
 						  				<div class="notfication-details">
 							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img3.png" alt="">
+							  					<img src="" alt="">
 							  				</div>
 							  				<div class="notification-info">
 							  					<h3><a href="messages.html" title="">Jassica William</a></h3>
@@ -105,7 +106,7 @@
 							</li>
 							<li>
 								<a href="#" title="" class="not-box-open">
-									<span><img src="images/icon7.png" alt=""></span>
+									<span><img src="" alt=""></span>
 									Notification
 								</a>
 								<div class="notification-box noti" id="notification">
@@ -116,7 +117,7 @@
 									<div class="nott-list">
 										<div class="notfication-details">
 							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img1.png" alt="">
+							  					<img src="" alt="">
 							  				</div>
 							  				<div class="notification-info">
 							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
@@ -125,7 +126,7 @@
 						  				</div>
 						  				<div class="notfication-details">
 							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img2.png" alt="">
+							  					<img src="" alt="">
 							  				</div>
 							  				<div class="notification-info">
 							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
@@ -134,7 +135,7 @@
 						  				</div>
 						  				<div class="notfication-details">
 							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img3.png" alt="">
+							  					<img src="" alt="">
 							  				</div>
 							  				<div class="notification-info">
 							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
@@ -143,7 +144,7 @@
 						  				</div>
 						  				<div class="notfication-details">
 							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img2.png" alt="">
+							  					<img src="" alt="">
 							  				</div>
 							  				<div class="notification-info">
 							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
@@ -163,7 +164,7 @@
 					</div><!--menu-btn end-->
 					<div class="user-account">
 						<div class="user-info">
-							<img src="images/resources/user.png" alt="">
+							<img src="" alt="">
 							<a href="#" title="">John</a>
 							<i class="la la-sort-down"></i>
 						</div>
@@ -209,9 +210,6 @@
 				</div><!--header-data end-->
 			</div>
 		</header><!--header end-->	
-
-
-
 		<section class="messages-page">
 			<div class="container">
 				<div class="messages-sec">
@@ -227,197 +225,130 @@
 								</div><!--msg-title end-->
 								<div class="messages-list">
 									<ul>
+									<!-- 유저 리스트 li가 하나의 박스 -->
 										<li class="active">
 											<div class="usr-msg-details">
 												<div class="usr-ms-img">
-													<img src="images/resources/m-img1.png" alt="">
+													<img src="" alt="">
 													<span class="msg-status"></span>
 												</div>
 												<div class="usr-mg-info">
 													<h3>John Doe</h3>
-													<p>Lorem ipsum dolor <img src="images/smley.png" alt=""></p>
+													<p>Lorem ipsum dolor <img src="" alt=""></p>
 												</div><!--usr-mg-info end-->
 												<span class="posted_time">1:55 PM</span>
 												<span class="msg-notifc">1</span>
 											</div><!--usr-msg-details end-->
 										</li>
-										<li>
-											<div class="usr-msg-details">
-												<div class="usr-ms-img">
-													<img src="images/resources/m-img2.png" alt="">
-												</div>
-												<div class="usr-mg-info">
-													<h3>David Vane</h3>
-													<p>Vestibulum ac diam..</p>
-												</div><!--usr-mg-info end-->
-												<span class="posted_time">1:55 PM</span>
-											</div><!--usr-msg-details end-->
-										</li>
-										<li>
-											<div class="usr-msg-details">
-												<div class="usr-ms-img">
-													<img src="images/resources/m-img3.png" alt="">
-												</div>
-												<div class="usr-mg-info">
-													<h3>Nancy Dilan</h3>
-													<p>Quam vehicula.</p>
-												</div><!--usr-mg-info end-->
-												<span class="posted_time">1:55 PM</span>
-											</div><!--usr-msg-details end-->
-										</li>
-										<li>
-											<div class="usr-msg-details">
-												<div class="usr-ms-img">
-													<img src="images/resources/m-img4.png" alt="">
-													<span class="msg-status"></span>
-												</div>
-												<div class="usr-mg-info">
-													<h3>Norman Kenney</h3>
-													<p>Nulla quis lorem ut..</p>
-												</div><!--usr-mg-info end-->
-												<span class="posted_time">1:55 PM</span>
-											</div><!--usr-msg-details end-->
-										</li>
-										<li>
-											<div class="usr-msg-details">
-												<div class="usr-ms-img">
-													<img src="images/resources/m-img5.png" alt="">
-													<span class="msg-status"></span>
-												</div>
-												<div class="usr-mg-info">
-													<h3>James Dilan</h3>
-													<p>Vivamus magna just..</p>
-												</div><!--usr-mg-info end-->
-												<span class="posted_time">1:55 PM</span>
-											</div><!--usr-msg-details end-->
-										</li>
-										<li>
-											<div class="usr-msg-details">
-												<div class="usr-ms-img">
-													<img src="images/resources/m-img6.png" alt="">
-												</div>
-												<div class="usr-mg-info">
-													<h3>Mike Dorn</h3>
-													<p>Praesent sapien massa.</p>
-												</div><!--usr-mg-info end-->
-												<span class="posted_time">1:55 PM</span>
-											</div><!--usr-msg-details end-->
-										</li>
-										<li>
-											<div class="usr-msg-details">
-												<div class="usr-ms-img">
-													<img src="images/resources/m-img7.png" alt="">
-												</div>
-												<div class="usr-mg-info">
-													<h3>Patrick Morison</h3>
-													<p>Convallis a pellente...</p>
-												</div><!--usr-mg-info end-->
-												<span class="posted_time">1:55 PM</span>
-											</div><!--usr-msg-details end-->
-										</li>
+										
 									</ul>
 								</div><!--messages-list end-->
 							</div><!--msgs-list end-->
 						</div>
 						<div class="col-lg-8 col-md-12 pd-right-none pd-left-none">
 							<div class="main-conversation-box">
-								<div class="message-bar-head">
-									<div class="usr-msg-details">
-										<div class="usr-ms-img">
-											<img src="images/resources/m-img1.png" alt="">
-										</div>
-										<div class="usr-mg-info">
-											<h3>John Doe</h3>
-											<p>Online</p>
-										</div><!--usr-mg-info end-->
-									</div>
 									<a href="#" title=""><i class="fa fa-ellipsis-v"></i></a>
-								</div><!--message-bar-head end-->
 								<div class="messages-line">
 									<div class="main-message-box">
 										<div class="messg-usr-img">
-											<img src="images/resources/m-img1.png" alt="">
+											<img src="" alt="">
 										</div><!--messg-usr-img end-->
-										<div class="message-dt">
-											<div class="message-inner-dt img-bx">
-												<img src="images/resources/mt-img1.png" alt="">
-												<img src="images/resources/mt-img2.png" alt="">
-												<img src="images/resources/mt-img3.png" alt="">
-											</div><!--message-inner-dt end-->
-											<span>Sat, Aug 23, 1:08 PM</span>
-										</div><!--message-dt end-->
 									</div><!--main-message-box end-->
 									<div class="main-message-box ta-right">
 										<div class="message-dt">
 											<div class="message-inner-dt">
+											<!--  본문
 												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
+											-->
 											</div><!--message-inner-dt end-->
+											<!-- 
 											<span>Sat, Aug 23, 1:08 PM</span>
+											 -->
 										</div><!--message-dt end-->
 										<div class="messg-usr-img">
-											<img src="images/resources/m-img2.png" alt="">
+											<img src="" alt="">
 										</div><!--messg-usr-img end-->
 									</div><!--main-message-box end-->
 									<div class="main-message-box st3">
 										<div class="message-dt st3">
 											<div class="message-inner-dt">
-												<p>Cras ultricies ligula.<img src="images/smley.png" alt=""></p>
+											<!-- 
+												<p>Cras ultricies ligula.<img src="" alt=""></p>
+											-->
 											</div><!--message-inner-dt end-->
+											<!-- 
 											<span>5 minutes ago</span>
+											 -->
 										</div><!--message-dt end-->
 										<div class="messg-usr-img">
-											<img src="images/resources/m-img1.png" alt="">
+											<img src="" alt="">
 										</div><!--messg-usr-img end-->
 									</div><!--main-message-box end-->
 									<div class="main-message-box ta-right">
 										<div class="message-dt">
 											<div class="message-inner-dt">
+											<!-- 
 												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
+											-->
 											</div><!--message-inner-dt end-->
+											<!-- 
 											<span>Sat, Aug 23, 1:08 PM</span>
+											 -->
 										</div><!--message-dt end-->
 										<div class="messg-usr-img">
-											<img src="images/resources/m-img2.png" alt="">
+											<img src="" alt="">
 										</div><!--messg-usr-img end-->
 									</div><!--main-message-box end-->
 									<div class="main-message-box st3">
 										<div class="message-dt st3">
 											<div class="message-inner-dt">
+											<!-- 
 												<p>Lorem ipsum dolor sit amet</p>
+											-->
 											</div><!--message-inner-dt end-->
+											<!-- 
 											<span>2 minutes ago</span>
+											 -->
 										</div><!--message-dt end-->
 										<div class="messg-usr-img">
-											<img src="images/resources/m-img1.png" alt="">
+											<img src="" alt="">
 										</div><!--messg-usr-img end-->
 									</div><!--main-message-box end-->
 									<div class="main-message-box ta-right">
 										<div class="message-dt">
 											<div class="message-inner-dt">
+											<!-- 
 												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
+											 -->
 											</div><!--message-inner-dt end-->
+											<!-- 
 											<span>Sat, Aug 23, 1:08 PM</span>
+											 -->
 										</div><!--message-dt end-->
 										<div class="messg-usr-img">
-											<img src="images/resources/m-img2.png" alt="">
+											<img src="" alt="">
 										</div><!--messg-usr-img end-->
 									</div><!--main-message-box end-->
 									<div class="main-message-box st3">
 										<div class="message-dt st3">
 											<div class="message-inner-dt">
+											<!-- 
 												<p>....</p>
+											-->
 											</div><!--message-inner-dt end-->
+											<!-- 
 											<span>Typing...</span>
+											 -->
 										</div><!--message-dt end-->
 										<div class="messg-usr-img">
-											<img src="images/resources/m-img1.png" alt="">
+											<img src="" alt="">
 										</div><!--messg-usr-img end--> 
 									</div><!--main-message-box end-->
 								</div><!--messages-line end-->
 								<div class="message-send-area">
 									<form>
 										<div class="mf-field">
-											<input type="text" name="msg" placeholder="Type a message here">
+											<input type="text" id='msg' placeholder="Type a message here">
 											<button type ="submit" id="btnSend" >전송</button>
 										</div>
 										<ul>
@@ -433,66 +364,7 @@
 				</div><!--messages-sec end-->
 			</div>
 		</section><!--messages-page end-->
-
-
-	<!-- 
-		<footer>
-			<div class="footy-sec mn no-margin">
-				<div class="container">
-					<ul>
-						<li><a href="help-center.html" title="">Help Center</a></li>
-						<li><a href="about.html" title="">About</a></li>
-						<li><a href="#" title="">Privacy Policy</a></li>
-						<li><a href="#" title="">Community Guidelines</a></li>
-						<li><a href="#" title="">Cookies Policy</a></li>
-						<li><a href="#" title="">Career</a></li>
-						<li><a href="forum.html" title="">Forum</a></li>
-						<li><a href="#" title="">Language</a></li>
-						<li><a href="#" title="">Copyright Policy</a></li>
-					</ul>
-					<p><img src="images/copy-icon2.png" alt="">Copyright 2019</p>
-					<img class="fl-rgt" src="images/logo2.png" alt="">
-				</div>
-			</div>
-		</footer>
-	-->
 </div><!--theme-layout end-->
-
-<script type="text/javascript">
-$(document).ready(function(){
-	$('#btnSend').on('click', function(event){
-		event.preventDefault();
-		if(socket.readyState != 1) return;
-		let msg = $('input#msg').val();
-		socket.send(msg);
-	});	
-});
-</script>
-
-<script type="text/javascript">
-var socket = null;
-function connect() {
-	var ws = new WebSocket("ws://localhost:8080/replyEcho");
-	socket = ws;
-	
-	ws.onopen = function () { // connection이 open 되었을때 실행
-		console.log('Info : connection opened.');
-		setTimeout( function(){connect(); }, 1000); // retry connection!!
-	};
-	
-	ws.onmessage = function (event) {	// connection이 open 되고 메시지를 보낼때 실행
-		console.log(event.data+ '\n');
-	};
-	ws.onclose = function(event) {	// connection 이 close 되었을때 실행
-		console.log('Info: connection closed.');
-		};
-	ws.onerror = function(event) {	// connection 이 error가 나왔을때
-		console.log('Info: connection closed.'); 
-		};
-}
-
-connect();
-</script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/popper.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -500,5 +372,39 @@ connect();
 <script type="text/javascript" src="lib/slick/slick.min.js"></script>
 <script type="text/javascript" src="js/scrollbar.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#btnSend').on('click', function(event){
+		event.preventDefault();
+		let msg = $('#msg').val();
+		socket.send(msg);
+		$("#msg").val("");
+	});	
+});
+</script>
+<script type="text/javascript">
+var socket = null;
+function connect() {
+	var ws = new WebSocket("ws://localhost:8080/willstagram/replyEcho");
+	socket = ws;
+	ws.onopen = function () { // connection이 open 되었을때 실행
+		console.log('Info : connection opened.');
+	};
+	ws.onmessage = function (event) {	// connection이 open 되고 서버에게 메시지를 보낼때 실행
+		console.log(event.data+ '\n');
+		console.log("정상동작");
+	};
+	ws.onclose = function(event) {	// connection 이 close 되었을때 실행
+		console.log('Info: connection closed.');
+		setTimeout(function(){ connect(); }, 1000);
+		};
+	ws.onerror = function(event) {	// connection 이 error가 나왔을때
+		console.log('Info: connection closed.'); 
+		};
+}
+connect();
+</script>
+
 </body>
 </html>
