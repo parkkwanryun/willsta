@@ -101,7 +101,7 @@ public class MemberController {
 	public ModelAndView findMemberList(@RequestParam(value = "mId") String mId) {
 		ModelAndView mv=new ModelAndView();
 		List<Member> findMemberList=memberService.findMemberList(mId);
-		mv.addObject("findMemberList",findMemberList);
+		mv.addObject("memberList",findMemberList);
 		mv.setViewName("profiles");
 		return mv;
 	}
