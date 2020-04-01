@@ -86,7 +86,6 @@ public class MemberUnitTestMain {
 	public void selectById() {
 		Member member = memberDao.selectById("김소진");
 		System.out.println("## 회원 1명 불러오기 :"+member);
-
 	}
 	
 	@Test //유저 목록
