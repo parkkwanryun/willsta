@@ -1,5 +1,7 @@
 package com.itwill.willsta;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.util.List;
 
 import org.junit.Assert;
@@ -45,6 +47,7 @@ public class CommentsUnitTest {
     	Comments comments = new Comments();
     	//comments = commentsDao.findComments(3);
     	comments = commentsService.findComments(10);
+    	Assert.assertNotNull(comments);
     	System.out.println("### findComments: "+comments);
     }
     
@@ -74,35 +77,35 @@ public class CommentsUnitTest {
     
     @Test //하나의 포스트에 따른 한 맴버의 댓글 수
     @Ignore
-    public void postCommentsCountBymId() throws Exception {
+    public void postCommentsCountBymIdTest() throws Exception {
     	int postCommentsCount = commentsDao.postCommentsCountBymId(10, "KJS");
     	Assert.assertEquals(3, postCommentsCount);
     }
      
     @Test //한 맴버가 작성한 총 댓글 수
     @Ignore
-    public void totalCommentsCount() throws Exception {
+    public void totalCommentsCountTest() throws Exception {
     	int totalCommentsCount = commentsDao.totalCommentsCountBymId("KJS");
     	Assert.assertEquals(5, totalCommentsCount);
     }
     
     @Test //하나의 포스트에 달린 총 댓글 수
     @Ignore
-    public void postCommentsCount() throws Exception {
+    public void postCommentsCountTest() throws Exception {
     	int postCommentsCount = commentsDao.postCommentsCount(15);
     	Assert.assertEquals(10, postCommentsCount);
     }
     
     @Test //한 맴버의 댓글 전체 조회
     @Ignore
-    public void findCommentsListBymId() throws Exception {
+    public void findCommentsListBymIdTest() throws Exception {
     	List<Comments> commentsListBymId = commentsDao.findCommentsListBymId("hjs");
     	System.out.println("### findCommentsListBymId: "+commentsListBymId);
     }
     
     @Test //하나의 포스트에 달린 댓글 전체 조회
     @Ignore
-    public void postCommetsList() throws Exception {
+    public void postCommetsListTest() throws Exception {
     	List<Comments> postCommentsList = commentsDao.postCommentsList(15);
     	System.out.println("### postCommentsList: "+postCommentsList);
     }
