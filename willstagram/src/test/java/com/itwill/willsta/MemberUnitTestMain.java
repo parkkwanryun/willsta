@@ -35,7 +35,7 @@ public class MemberUnitTestMain {
 	@Test //회원가입
 	@Ignore
 	public void insertMember() {
-		boolean member = memberDao.insertMember(new Member("r", "12345", "윌스타그램", "bluepk2034@Naver.com","010755555", "","F"));
+		boolean member = memberDao.insertMember(new Member("ss501", "12345", "윌스타그램", "bluepk2034@Naver.com","010755555", "","F"));
 		System.out.println("## 회원가입(멤버 추가) :"+member);
 	}
 	
@@ -56,14 +56,14 @@ public class MemberUnitTestMain {
 	@Test //아이디 찾기
 	@Ignore
 	public void findId() {
-		Member member = memberDao.findId("mEmail","mName");
+		Member member = memberDao.findId("bluepk2034@naver.com","륜관팍");
 		System.out.println("##아이디 찾기:"+member);
 	}
 	
 	@Test //비밀번호 찾기
 	@Ignore
 	public void findPw() {
-		Member member = memberDao.findPw("소진이고생하네", "매퍼소진");
+		Member member = memberDao.findPw("pkr", "세미");
 		System.out.println("## 비밀번호 찾기:"+member);
 	}
 	
@@ -82,7 +82,7 @@ public class MemberUnitTestMain {
 	}
 	
 	@Test //회원 1명 조회 (팔로워,팔로우 불러오기 포함) 
-
+	@Ignore
 	public void selectById() {
 		List<Member> member = memberDao.selectById("김소진");
 		System.out.println("## 회원 1명 불러오기 :"+member);
@@ -91,7 +91,7 @@ public class MemberUnitTestMain {
 	@Test //유저 목록
 	@Ignore
 	public void memberList() {
-		List<Member>memberList=memberDao.memberList();
+		List<Member>memberList = memberDao.memberList();
 		//List<Member>memberList=memberService.memberList();
 		System.out.println("### memberList: "+memberList);
 	}

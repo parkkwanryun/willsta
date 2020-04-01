@@ -66,14 +66,14 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public Member signIn(String mId, String mPass) throws Exception,PasswordMismatchException,MemberNotFoundException {
-		Member member = memberDao.selectById(mId);
+		List<Member> member = memberDao.selectById(mId);
 		if(member==null) {
 			throw new MemberNotFoundException(mId+" 는 없는 아이디 입니다.");
 		}
-		if(!member.isMatchPassword(mPass)) {
+		if(!((Member) member).isMatchPassword(mPass)) {
 			throw new PasswordMismatchException("패스워드가 일치하지 않습니다.");
 		}
-		return member;
+		return (Member) member;
 	}
 
 }
