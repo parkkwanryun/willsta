@@ -1,7 +1,5 @@
 package com.itwill.willsta;
 
-import static org.junit.Assert.assertNotNull;
-
 import java.util.List;
 
 import org.junit.Assert;
