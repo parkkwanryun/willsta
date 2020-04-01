@@ -8,12 +8,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.itwill.willsta.domain.Follow;
-import com.itwill.willsta.repository.DmDaoImpl;
 import com.itwill.willsta.repository.FollowDaoImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -30,6 +28,21 @@ public class FollowUnitTestMain {
 	
 	@Test
 	@Ignore
+	public void follow() throws Exception{
+		boolean follow = followDao.follow(new Follow("준수","예준"));
+		System.out.println("## 팔로"+follow);
+		
+	}
+
+	@Test
+	public void unfollow() throws Exception{
+		boolean unfollow = followDao.unfollow("똑순이", "e");
+		System.out.println("## 당신 언팔." +unfollow);
+		
+	}
+	
+	@Test
+	@Ignore
 	public void followers() throws Exception{
 		List<Follow> followers = followDao.followers("mId");
 		System.out.println("### followers: "+followers);
@@ -42,20 +55,6 @@ public class FollowUnitTestMain {
 		System.out.println("### following:"+following);
 	}
 	
-	@Test
-	public void unfollow() throws Exception{
-		boolean unfollow = followDao.unfollow("e","똑순이");
-		System.out.println("## 당신 언팔." +unfollow);
-	
-	}
-	
-	@Test
-	@Ignore
-	public void follow() throws Exception{
-		boolean follow = followDao.follow(new Follow("sj","jun", null, null));
-		System.out.println("## 팔로"+follow);
-		
-	}
 		
 	
 	

@@ -19,12 +19,19 @@ public class FollowServiceImpl implements FollowService {
 		
 		return followDao.follow(follow);
 	}
+	
+	@Override
+	public boolean unfollow(String mIdYou, String mId) {
+		
+		return followDao.unfollow(mIdYou,mId);
+	}
 
 	@Override
 	public List<Follow> followers(String mId) {
 		
 		return followDao.followers(mId);
 	}
+	
 
 	@Override
 	public List<Follow> following(String mIdYou) {
@@ -32,11 +39,6 @@ public class FollowServiceImpl implements FollowService {
 		return followDao.following(mIdYou);
 	}
 
-	@Override
-	public boolean unfollow(String mIdYou, String mId) {
-		
-		return followDao.unfollow(mIdYou,mId);
-	}
 
 	@Override
 	public int followingCount(String mIdYou) {
@@ -46,7 +48,7 @@ public class FollowServiceImpl implements FollowService {
 
 	@Override
 	public int followersCount(String mId) {
-		// TODO Auto-generated method stub
+		
 		return followDao.followersCount(mId);
 	}
 
