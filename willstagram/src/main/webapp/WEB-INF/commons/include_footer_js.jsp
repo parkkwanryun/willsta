@@ -4,5 +4,6 @@
 <script type="text/javascript" src="js/jquery.range-min.js"></script>
 <script type="text/javascript" src="lib/slick/slick.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
-<script type="text/javascript" src="js/wMember.js"></script>
+  <script type="text/javascript" src="js/wMember.js"></script>
+
 
