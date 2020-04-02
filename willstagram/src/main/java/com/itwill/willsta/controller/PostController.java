@@ -2,6 +2,8 @@ package com.itwill.willsta.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itwill.willsta.domain.Likes;
 import com.itwill.willsta.domain.Post;
 import com.itwill.willsta.domain.PostImage;
 import com.itwill.willsta.service.PostService;
@@ -21,9 +24,10 @@ public class PostController {
 	PostService postService;
 	
 	@RequestMapping(value="/index")
-	public ModelAndView selectMyList(@RequestParam(value="userId", required = false, defaultValue = "hjs") String userId) {
+	public ModelAndView selectMyList(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		List<Post> postList = postService.selectMyList(userId);
+		String mId = (String)request.getSession().getAttribute("mId");
+		List<Post> postList = postService.selectMyList(mId);
 		for (Post post : postList) {
 			post.setTagArray(post.getHasTag().split(" "));
 		}
@@ -33,9 +37,10 @@ public class PostController {
 	}
 	
 	@RequestMapping(value="/get_post" , produces = "text/html;charset=utf-8")
-	public ModelAndView selectPost(@RequestParam(value="pNo", required = true) Integer pNo) {
+	public ModelAndView selectPost(@RequestParam(value="pNo", required = true) Integer pNo, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		Post post = postService.selectPost(pNo);
+		String mId = (String)request.getSession().getAttribute("mId");
+		Post post = postService.selectPost(pNo, mId);
 		post.setTagArray(post.getHasTag().split(" "));
 		List<PostImage> postImages = postService.selectContents(pNo);
 		
@@ -59,7 +64,8 @@ public class PostController {
 	@ResponseBody
 	@RequestMapping(value="/delete_post", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
 	public String delete(@RequestParam(value="pNo", required = true) int pNo) {
-		//1.데이터 저장처리
+		
+		
 		try {
 			int rn = postService.removePost(pNo);
 			if(rn >0) {
@@ -74,57 +80,31 @@ public class PostController {
 		
 	}
 	
-	
-	/*
-	@RequestMapping(value="/write_post", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
-	public ModelAndView write(Post post, MultipartFile[] uploadFile) {
-		ModelAndView mv = new ModelAndView();
-		System.out.println(post);
-		System.out.println(uploadFile);
-		post.setmId("hjs");
-		String uploadFolder = "C:\\eclipse-workspace5\\willsta\\willstagram\\src\\main\\webapp\\contents\\post_contents";
-		//1.데이터 저장처리
-		try {
-			int rn = postService.createPost(post);
-
-			//2.파일처리(파일네임은DB에 저장 하고 파일은 image폴더에 저장)
-			String filename="";
-			PostImage pi;
-			System.out.println("##########"+uploadFile.length);
-			for (MultipartFile multipartFile : uploadFile) {
-
-					filename = multipartFile.getOriginalFilename();
-					filename = filename.substring(filename.lastIndexOf("\\")+1);
-
-					if (!(filename == null || filename.equals(""))) {
-						pi = new PostImage(post.getpNo(), filename);	
-						postService.insertImg(pi);
-						File saveFile = new File(uploadFolder, filename);
-						try {
-							multipartFile.transferTo(saveFile);
-						} catch (Exception e) {
-							e.getMessage();
-						}
-					}
-			}
-			
-			
-			if(rn >0) {
-				//성공인 경우 해당 포스트를 전송해 줌 1개의 포스트를  jsp 로 구성해서 던져줌.
-				Post postOne = postService.selectPost(post.getpNo());
-				postOne.setTagArray(postOne.getHasTag().split(" "));
-				mv.addObject("post", postOne);
-				mv.setViewName("post");
-				
-				
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			mv.setViewName("error");
-		}
-		return mv;
+	@RequestMapping(value="/insert_like", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
+	public String insert_like(@RequestParam(value="pNo", required = true) int pNo) {
+		String mId = "hjs";
+		Likes lk = new Likes(pNo, mId);
+		return postService.insert_like(lk);
+		
 	}
-	 */
+	
+	
+	@RequestMapping(value="/status_change", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
+	public String status_change(@RequestParam(value="pNo", required = true) int pNo,
+								@RequestParam(value="status", required = true) String status) {
+		if(status.equals("Hide")) {
+			status = "H";
+		} else {
+			status = "A";
+		}
+		int rn = postService.status_change(pNo, status);
+		if(rn >0) {
+			return "success";
+		}
+		return "fail";
+	}
+	
+	
 	
 	
 }

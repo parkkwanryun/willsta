@@ -1,5 +1,6 @@
 package com.itwill.willsta.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -41,22 +42,25 @@ public class MemberController {
 		return "sign_in";
 	}
 
-	@MemberLoginCheck
 	@RequestMapping(value="/sign_in_action", method = RequestMethod.POST)
-	public String sign_in_action_post(@ModelAttribute(name="fMember") Member member, HttpSession session, Model model) {
+	public String sign_in_action_post(@RequestParam("mId")String mId, @RequestParam("mPass")String mPass, 
+										HttpSession session, Model model) {
+		System.out.println("mId는: "+mId+"  mPass는: "+mPass);
 		String forwardPath = "";
 		try {
-			Member signInMember = memberService.signIn(member.getmId(), member.getmPass());
-			session.setAttribute("mId", member.getmId());
+			Member signInMember = memberService.signIn(mId, mPass);
+			session.setAttribute("mId", mId);
 			session.setAttribute("sMemberId", signInMember);
-			return "redirect:";
+			forwardPath="index";
+			return forwardPath;
+			
 		} catch (MemberNotFoundException e) {
-			model.addAttribute("fMember", member);
+			model.addAttribute("fmId", mId);
 			model.addAttribute("msg1", e.getMessage());
 			forwardPath = "sign_in";
 			e.printStackTrace();
 		} catch (PasswordMismatchException e) {
-			model.addAttribute("fMember", member);
+			model.addAttribute("fmId", mId);
 			model.addAttribute("msg2", e.getMessage());
 			forwardPath = "sign_in";
 			e.printStackTrace();

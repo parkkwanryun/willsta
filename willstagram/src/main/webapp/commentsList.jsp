@@ -29,10 +29,7 @@
 		<form id="comment-insert-form">
 			<!-- 댓글 내용 쓰는 곳 -->
 			<input type="text" placeholder="Post a comment" id="comment-contents" name="comment-cContent">
-			<input type="hidden" id="comment-mId" value="comment-mId">
-			<input type="hidden" id="comment-pNo" value="comment-pNo">
-			<input type="hidden" id="comment-time" value="comment-cTime">
-			<button type="submit" id="comment-insert-button" value="comments">Send</button>
+			<button type="submit" id="comment-insert-button">Send</button>
 		</form>
 	</div>
 </div>

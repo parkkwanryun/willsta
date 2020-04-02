@@ -40,7 +40,8 @@
 									<h4>${member.mName}</h4>
 									<ul>
 										<li><a href="#" title="" class="follow">Follow</a></li>
-										<li><a href="#" title="" class="unfollow">UnFollow</a></li>
+										
+										<li><a href="#" title="" class="unfollow">UnFollow</a></li><!-- follow중인 상태 -->
 										<li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
 									</ul>
 				 					
