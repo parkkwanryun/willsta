@@ -2,13 +2,13 @@ package com.itwill.willsta.domain;
 
 public class Likes {
 	private Integer pNo;
-	private Integer mIdYou;
+	private String mIdYou;
 	
 	public Likes() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Likes(Integer pNo, Integer mIdYou) {
+	public Likes(Integer pNo, String mIdYou) {
 		super();
 		this.pNo = pNo;
 		this.mIdYou = mIdYou;
@@ -22,11 +22,11 @@ public class Likes {
 		this.pNo = pNo;
 	}
 
-	public Integer getmIdYou() {
+	public String getmIdYou() {
 		return mIdYou;
 	}
 
-	public void setmIdYou(Integer mIdYou) {
+	public void setmIdYou(String mIdYou) {
 		this.mIdYou = mIdYou;
 	}
 
