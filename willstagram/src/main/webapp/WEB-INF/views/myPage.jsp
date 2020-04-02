@@ -327,7 +327,7 @@
 							<div class="col-lg-6">
 								<div class="main-ws-sec">
 									<div class="user-tab-sec rewivew">
-										<h3>John Doe</h3>
+										<h3>찐빵맨</h3>
 										<div class="star-descp">
 											<span>Graphic Designer at Self Employed</span>
 											<ul>

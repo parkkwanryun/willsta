@@ -3,6 +3,8 @@ package com.itwill.willsta.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,14 +42,15 @@ public class FollowController {
 	}
 	
 	@RequestMapping(value="/click_post" , produces = "text/html;charset=utf-8")
-	public ModelAndView myPost(@RequestParam(value="pNo", required = true) Integer pNo) {
+	public ModelAndView selectPost(@RequestParam(value="pNo", required = true) Integer pNo, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		Post post = postService.selectPost(pNo);
-		post.setTagArray(post.getHasTag().split(" "));
-		List<PostImage> postImages = postService.selectContents(pNo);
+		String mId = (String)request.getSession().getAttribute("mId");
+		Post posts = postService.selectPost(pNo, mId);
+		posts.setTagArray(posts.getHasTag().split(" "));
+		List<PostImage> postImage = postService.selectContents(pNo);
 		
-		mv.addObject("post", post);
-		mv.addObject("postImages", postImages);
+		mv.addObject("posts", posts);
+		mv.addObject("postImage", postImage);
 		mv.setViewName("clickPost");
 		return mv;
 	}
