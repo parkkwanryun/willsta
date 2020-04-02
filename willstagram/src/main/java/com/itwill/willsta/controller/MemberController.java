@@ -46,18 +46,20 @@ public class MemberController {
 	@RequestMapping(value="/sign_in_action", method = RequestMethod.POST)
 	public String sign_in_action(@RequestParam("mId")String mId, @RequestParam("mPass")String mPass, 
 										HttpSession session, Model model) {
-		System.out.println("mId는: "+mId+"  mPass는: "+mPass);
+		System.out.println("1. mId는: "+mId+"  mPass는: "+mPass);
 		String forwardPath = "";
 		try {
-
 			Member signInMember = memberService.signIn(mId, mPass);
+			System.out.println("서비스 객체"+signInMember+"mId는: "+mId+"  mPass는: "+mPass);
 			session.setAttribute("mId", mId);
 			session.setAttribute("sMemberId", signInMember);
+			System.out.println("요기 담에 포워딩."+"mId는: "+mId+"  mPass는: "+mPass);
 			return "index";
 			
 		} catch (MemberNotFoundException e) {
 			model.addAttribute("fmId", mId);
 			model.addAttribute("msg1", e.getMessage());
+			System.out.println("2. mId는: "+mId+"  mPass는: "+mPass);
 			forwardPath = "sign_in";
 			e.printStackTrace();
 		} catch (PasswordMismatchException e) {

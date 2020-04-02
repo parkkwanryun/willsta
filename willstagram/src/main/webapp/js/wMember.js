@@ -5,7 +5,7 @@
 	 */ 
 
 $(function(){
-	$(document).on('click','#member_login_action',function(e){
+	$(document).on('submit','#member_login_action',function(e){
 		/*
 		var parameter = $(this).serialize();
 		 */
@@ -16,12 +16,12 @@ $(function(){
 			data:parameter,
 			method:"POST",
 			dataType:"text",
-			async:true,
+			async:false,
 			success :function(textData){
 				if(textData.trim()=="true"){
-					alert('성공');
+
 				}else if(textData.trim()=="false"){
-					alert('실패');
+
 				}
 			}
 		})
