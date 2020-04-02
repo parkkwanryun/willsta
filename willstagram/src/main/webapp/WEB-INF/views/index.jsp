@@ -241,7 +241,7 @@
 													</ul>
 													<a href="#"><i class="fas fa-eye"></i>Views
 														${post.pViewCount}</a>
-													<!-- comments-section -->
+													<!-- comment-section -->
 													<div class="comment-section"></div>
 													<!--comment-section end-->
 
@@ -255,6 +255,7 @@
 																<!-- 댓글 내용 쓰는 곳 -->
 																<input type="text" placeholder="Post a comment"
 																	id="cContents" name="cContents">
+																<input type="hidden" name="pNo" value="${post.pNo}">
 																<button type="button" id="comment-insert-button">Send</button>
 															</form>
 														</div>

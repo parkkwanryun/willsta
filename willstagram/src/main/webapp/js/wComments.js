@@ -8,12 +8,13 @@ $(function() {
 			data : paramStr,
 			method : "POST",
 			dataType : "html",
-			success : function(html) {
+			success : function(resultText) {
+				$("div.comment-section").append(resultText);
 			}
 		});
+		e.preventDefault();
 	});
 	
-	
-	
+	//포스
 	
 });
