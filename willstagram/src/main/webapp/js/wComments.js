@@ -1,6 +1,6 @@
 //document ready
 $(function() {
-	// 댓글 쓰기폼 이벤트 처리
+	// 댓글 쓰기
 	$("#comment-insert-button").click(function(e) {
 		var paramStr = $("#comment-insert-form").serialize();
 		$.ajax({

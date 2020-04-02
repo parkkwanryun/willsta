@@ -213,16 +213,36 @@
 												</ul>
 											</div>
 											<div class="job-status-bar">
-												<ul class="like-com">
-													<li>
-														<a class="like <c:if test='${post.myLike > 0}'> active </c:if>" href="#"><i class="fas fa-heart"></i> Like</a>
-														<img src="images/liked-img.png" alt="">
-														<span class="likeCount">${post.likeCount}</span>
-													</li> 
-													<li><a href="#" class="com"><i class="fas fa-comment-alt"></i> Comment 15</a></li>
-												</ul>
-												<a href="#"><i class="fas fa-eye"></i>Views ${post.pViewCount}</a>
-											</div>
+													<ul class="like-com">
+														<li><a href="#"><i class="fas fa-heart"></i> Like</a>
+															<img src="images/liked-img.png" alt=""> <span>${post.likeCount}</span>
+														</li>
+														<!-- a: 누를 시 comment-section toggle-->
+														<li><a href="#" class="com"> <i
+																class="fas fa-comment-alt"></i> Comment 15
+														</a></li>
+													</ul>
+													<a href="#"><i class="fas fa-eye"></i>Views
+														${post.pViewCount}</a>
+													<!-- comment-section-->
+													<div class="comment-section"></div>
+													<!--comment-section end-->
+												</div>
+												<!-- post-comment -->
+												<div class="post-comment">
+													<div class="cm_img">
+														<img src="images/resources/bg-img4.png" alt="">
+													</div>
+													<div class="comment_box">
+														<form id="comment-insert-form">
+															<!-- 댓글 내용 쓰는 곳 -->
+															<input type="text" placeholder="Post a comment"
+																id="comment-cContent" name="comment-cContent">
+															<button type="submit" id="comment-insert-button">Send</button>
+														</form>
+													</div>
+												</div>
+												<!--post-comment end-->
 										</div><!--post-bar end-->
 								</c:forEach>	
 											
