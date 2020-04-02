@@ -29,7 +29,7 @@
 									<li data-tab="tab-2"><a href="#" title="">Sign up</a></li>				
 								</ul>			
 								<div class="sign_in_sec current" id="tab-1">
-									<h3>Sign in 이번주 안에 끝낸다</h3>
+									<h3>Sign in-> index로 포워딩</h3>
 
 									<form id="member_login_action">
 										<div class="row">
@@ -67,7 +67,7 @@
 									
 									
 									<div class="login-resources">
-										<h4>Login through Social Account</h4>
+										<h4>Login via Social Account</h4>
 										<ul>
 											<li><a href="#" title="" class="fb"><i class="fa fa-facebook"></i>Naver Login</a></li>
 										</ul>
