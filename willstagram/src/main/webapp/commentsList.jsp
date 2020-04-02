@@ -5,9 +5,6 @@
 	<ul>
 		<li>
 			<div class="comment-list">
-				<div class="bg-img">
-					<img src="images/resources/bg-img1.png" alt="">
-				</div>
 				<div class="comment">
 					<h3>${comments.mId}......JohnDoe</h3>
 					<span><img src="images/clock.png" alt="">${commtents.cTime}
@@ -20,18 +17,3 @@
 	</ul>
 </div>
 <!--comment-sec end-->
-<!-- post-comment -->
-<div class="post-comment">
-	<div class="cm_img">
-		<img src="images/resources/bg-img4.png" alt="">
-	</div>
-	<div class="comment_box">
-		<form id="comment-insert-form">
-			<!-- 댓글 내용 쓰는 곳 -->
-			<input type="text" placeholder="Post a comment" id="cContents" name="cContents">
-			<input type="hidden" name="pNo" value="${post.pNo}">
-			<button type="submit" id="comment-insert-button">Send</button>
-		</form>
-	</div>
-</div>
-<!--post-comment end-->

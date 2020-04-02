@@ -59,7 +59,7 @@ public class FollowController {
 	
 	
 	@RequestMapping(value="/followList" , produces = "text/html;charset=utf-8")
-	public ModelAndView followers(@RequestParam(value="mId",required = false)String mId) {
+	public ModelAndView followers(@RequestParam(value="mId",required = true )String mId) {
 		ModelAndView mv = new ModelAndView();
 		List<Follow> followers = followService.followers(mId);
 		for(Follow follow : followers) {
@@ -72,7 +72,7 @@ public class FollowController {
 	}
 	
 	@RequestMapping(value="/followingList" , produces = "text/html;charset=utf-8")
-	public ModelAndView following(@RequestParam(value="mId",required = false)String mId) {
+	public ModelAndView following(@RequestParam(value="mId",required = true)String mId) {
 		ModelAndView mv = new ModelAndView();
 		List<Follow> following = followService.following(mId);
 		for(Follow follow : following) {
@@ -84,10 +84,26 @@ public class FollowController {
 		return mv;
 				
 	}
-	
-	
-	
-	
+	@RequestMapping(value="/followingCount" , produces = "text/html;charset=utf-8")
+	public ModelAndView followingCount(@RequestParam(value="mIdYou",required = true )String mIdYou) {
+		ModelAndView mv = new ModelAndView();
+		int followingCount = followService.followingCount(mIdYou);
+		
+		mv.addObject("followingCount", followingCount);
+		mv.setViewName("followingCount");
+		
+		return mv;
+	}
+	@RequestMapping(value="/followersCount" , produces = "text/html;charset=utf-8")
+	public ModelAndView followerCount(@RequestParam(value="mId",required = true )String mId) {
+		ModelAndView mv = new ModelAndView();
+		int followersCount = followService.followersCount(mId);
+		
+		mv.addObject("followerCount", followersCount);
+		mv.setViewName("followersCount");
+		
+		return mv;
+	}
 	
 	
 	

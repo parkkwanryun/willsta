@@ -233,7 +233,7 @@
 
 
 		<section class="cover-sec">
-			<img src="images/resources/cover-img.jpg" alt="">
+			<img src="images/resources/gangsa.jpg" alt="" style ="width:200px;height:auto;">
 			<div class="add-pic-box">
 				<div class="container">
 					<div class="row no-gutters">
@@ -256,7 +256,7 @@
 								<div class="main-left-sidebar">
 									<div class="user_profile">
 										<div class="user-pro-img">
-											<img src="images/resources/user-pro-img.png" alt="">
+											<img src="images/resources/ginbeenmin.jpg" alt="">
 											<div class="add-dp" id="OpenImgUpload">
 												<input type="file" id="file">
 												<label for="file"><i class="fas fa-camera"></i></label>												

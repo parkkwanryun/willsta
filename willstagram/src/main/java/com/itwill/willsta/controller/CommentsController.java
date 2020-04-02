@@ -1,9 +1,12 @@
 package com.itwill.willsta.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,9 +40,9 @@ public class CommentsController {
 		return mv;
 	}
 	
-	//@RequestMapping(value = "/postCommentList")
-	//public List<Comments> commentsList(@RequestParam(value = "pNo", defaultValue = "15") int pNo) throws Exception {
-		
-		
-	//}
+	@RequestMapping(value = "/postCommentsList", produces = "application/json;charset=UTF-8")
+	public List<Comments> postCommentsList(@RequestParam(value = "pNo", defaultValue = "15") int pNo) throws Exception {
+		List<Comments> postCommentsList = commentsService.postCommentsList(pNo);
+		return postCommentsList;
+	}
 }
