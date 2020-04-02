@@ -10,6 +10,9 @@ public interface MemberDao {
 	boolean insertMember(Member member);
 	
 	/*Read One(회원정보로딩)*/
+	Member selectByIdContainFollowInfo(String mId);
+	
+	/*Read One(회원정보로딩)*/
 	Member selectById(String mId);
 	
 	/*Update One(회원정보 수정)*/

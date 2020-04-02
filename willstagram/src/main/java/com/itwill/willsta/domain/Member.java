@@ -16,8 +16,8 @@ public class Member {
 		// TODO Auto-generated constructor stub
 	}
 
-
-	public Member(String mId, String mPass, String mName, String mEmail, String mPhone, String mImage, String mRetire) {
+	public Member(String mId, String mPass, String mName, String mEmail, String mPhone, String mImage, String mRetire,
+			Integer followerCount, Integer followingCount) {
 		super();
 		this.mId = mId;
 		this.mPass = mPass;
@@ -26,8 +26,12 @@ public class Member {
 		this.mPhone = mPhone;
 		this.mImage = mImage;
 		this.mRetire = mRetire;
-		
+		this.followerCount = followerCount;
+		this.followingCount = followingCount;
 	}
+
+
+
 
 
 	public String getmId() {
