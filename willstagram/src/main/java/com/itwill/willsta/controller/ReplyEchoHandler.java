@@ -35,11 +35,10 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		System.out.println(message.getPayload());
 		String senderId = getId(session);
-//		for (WebSocketSession sess : sessions) {
-//			sess.sendMessage(new TextMessage(senderId + ":" + message.getPayload()));
-//		}
-		// protocol: 내용, 메세지 샌더, 메세지 리시버, (reply, user1, user2)
+		System.out.println(senderId);
+		// protocol: 내용, 메세지 샌더, 메세지 리시버, (reply, sender, receiver)
 		String msg = message.getPayload();
+		
 		if(!StringUtils.isEmpty(msg)) {
 			String[] strs = msg.split(","); 
 			if(strs != null && strs.length == 3) {
@@ -66,10 +65,10 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
 
 	private String getId(WebSocketSession session) {
 		Map<String, Object> httpSession = session.getAttributes();
-		Member loginMember = (Member) httpSession.get("member");
-		if (loginMember == null) 
+		String loginId = (String) httpSession.get("mId");
+		if (loginId == null) 
 			return session.getId();
 		 else 
-			return loginMember.getmId();
+			return loginId;
 	}
 }

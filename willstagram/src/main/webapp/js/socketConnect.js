@@ -13,7 +13,6 @@ $(document).ready(function(){
 		};
 		ws.onmessage = function(event) { // socket.send() 후 ReplyEchoHandler가 handleTextMessage메소드로부터 메시지를 받아옴											// 실행
 			console.log(event.data + '\n');
-			$('#')
 		};
 		ws.onclose = function(event) { // connection 이 close 되었을때 실행
 			console.log('Info: connection closed.');

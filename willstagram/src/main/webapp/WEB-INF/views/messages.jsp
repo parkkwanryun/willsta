@@ -363,6 +363,7 @@
 		</section><!--messages-page end-->
 </div><!--theme-layout end-->
 <jsp:include page="/WEB-INF/commons/include_footer_js.jsp"/>
+<script type="text/javascript" src = "js/socketConnect.js"></script>
 <script type="text/javascript">
 $(function(){
 	$('#btnSend').on('click', function(event) {
