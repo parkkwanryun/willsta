@@ -236,7 +236,7 @@
 															<!-- 댓글 내용 쓰는 곳 -->
 															<input type="text" placeholder="Post a comment"
 																id="comment-cContent" name="comment-cContent">
-															<button type="submit" id="comment-insert-button">Send</button>
+															<button type="button" id="comment-insert-button">Send</button>
 														</form>
 													</div>
 												</div>
@@ -615,6 +615,7 @@
 <script type="text/javascript" src="js/scrollbar.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript" src="js/wPost.js"></script>
+<script type="text/javascript" src="js/wComments.js"></script>
 </head>
 </body>
 </html>
