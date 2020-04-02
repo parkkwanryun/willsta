@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.willsta.domain.Comments;
 import com.itwill.willsta.service.CommentsService;
@@ -27,8 +28,8 @@ public class CommentsController {
 		comments.setpNo(pNo);
 		comments.setmId(mId);
 		comments.setcContents(cContents);
-		int insertSucess = commentsService.createComment(comments);
-		if(insertSucess == 1) {
+		int createResult = commentsService.createComment(comments);
+		if(createResult == 1) {
 			result = "true";
 		}else {
 			result = "false";
@@ -38,7 +39,7 @@ public class CommentsController {
 	
 	//@RequestMapping(value = "/postCommentList")
 	//public List<Comments> commentsList(@RequestParam(value = "pNo", defaultValue = "15") int pNo) throws Exception {
-	//	
+		
 		
 	//}
 }
