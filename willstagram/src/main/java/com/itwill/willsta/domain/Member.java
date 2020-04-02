@@ -106,6 +106,14 @@ public class Member {
 	
 	
 
+	public Integer getFollowerCount() {
+		return followerCount;
+	}
+
+	public void setFollowerCount(Integer followerCount) {
+		this.followerCount = followerCount;
+	}
+
 	public Integer getFollowCount() {
 		return followerCount;
 	}

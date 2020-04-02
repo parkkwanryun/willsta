@@ -49,18 +49,18 @@
 												</div>
 											</div><!--username-dt end-->
 											<div class="user-specs">
-												<h3>예준수</h3>
-												<span>Graphic Designer at Self Employed</span>
+												<h3>${member.mName}</h3>
+												<span>${member.mEmail}</span>
 											</div>
 										</div><!--user-profile end-->
 										<ul class="user-fw-status">
 											<li>
 												<h4>Following</h4>
-												<span>34</span>
+												<span>${member.followingCount}</span>
 											</li>
 											<li>
 												<h4>Followers</h4>
-												<span>155</span>
+												<span>${member.followerCount}</span>
 											</li>
 											<li>
 												<a href="my-profile.html" title="">View Profile</a>
