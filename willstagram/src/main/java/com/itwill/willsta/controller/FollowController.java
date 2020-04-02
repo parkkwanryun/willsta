@@ -3,6 +3,8 @@ package com.itwill.willsta.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,21 +30,23 @@ public class FollowController {
 
 	
 	@RequestMapping(value="/my_page")
-	public ModelAndView myPage(@RequestParam(value="userId", required = false, defaultValue = " ") String userId) {
+	public ModelAndView myPage(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		List<Post> postList = postService.selectMyList(userId);
+		String mId = (String)request.getSession().getAttribute("mId");
+		List<Post> postList = postService.selectMyList(mId);
 		for (Post post : postList) {
 			post.setTagArray(post.getHasTag().split(" "));
 		}
 		mv.addObject("postList", postList);
-		mv.setViewName("mypage");
+		mv.setViewName("myPage");
 		return mv;
 	}
 	
 	@RequestMapping(value="/click_post" , produces = "text/html;charset=utf-8")
-	public ModelAndView myPost(@RequestParam(value="pNo", required = true) Integer pNo) {
+	public ModelAndView selectPost(@RequestParam(value="pNo", required = true) Integer pNo, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		Post post = postService.selectPost(pNo);
+		String mId = (String)request.getSession().getAttribute("mId");
+		Post post = postService.selectPost(pNo, mId);
 		post.setTagArray(post.getHasTag().split(" "));
 		List<PostImage> postImages = postService.selectContents(pNo);
 		
@@ -54,7 +58,7 @@ public class FollowController {
 	
 	
 	
-	@RequestMapping(value="/followList")
+	@RequestMapping(value="/followList" , produces = "text/html;charset=utf-8")
 	public ModelAndView followers(@RequestParam(value="mId",required = false)String mId) {
 		ModelAndView mv = new ModelAndView();
 		List<Follow> followers = followService.followers(mId);
@@ -67,7 +71,7 @@ public class FollowController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/followingList")
+	@RequestMapping(value="/followingList" , produces = "text/html;charset=utf-8")
 	public ModelAndView following(@RequestParam(value="mId",required = false)String mId) {
 		ModelAndView mv = new ModelAndView();
 		List<Follow> following = followService.following(mId);

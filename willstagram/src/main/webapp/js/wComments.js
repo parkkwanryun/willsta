@@ -1,8 +1,7 @@
 //document ready
 $(function() {
-	// 댓글 쓰기
+	// 댓글 쓰기폼 이벤트 처리
 	$("#comment-insert-button").click(function(e) {
-		var contentValue = $("#comment-cContent").val();
 		var paramStr = $("#comment-insert-form").serialize();
 		$.ajax({
 			url : "commentsInsertAction",
@@ -11,10 +10,10 @@ $(function() {
 			dataType : "text",
 			success : function(textData) {
 				if (textData.trim() == "true") {
-					alert("contentValue: "+contentValue);
+					alert("쓰기 성공");
 				} else if (textData.trim() == "false") {
 					alert("쓰기 실패");
-					$("#comment-insert-form #comment-cContent").select();
+					$("#comment-insert-form #comment-content").select();
 				}
 			}
 		});

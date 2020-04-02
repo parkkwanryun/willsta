@@ -55,12 +55,6 @@ public class FollowUnitTestMain {
 		System.out.println("### following:"+following);
 	}
 	
-	@Test
-	@Ignore
-	public void followCheck() {
-		int followCheck=followDao.followCheck("hjs", "ss501");
-		System.out.println("### followCheck :"+followCheck);
-	}
 		
 	
 	

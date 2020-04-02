@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-import com.itwill.willsta.domain.DM;
 import com.itwill.willsta.domain.Follow;
 
 @Mapper
