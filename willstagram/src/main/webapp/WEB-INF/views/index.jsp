@@ -236,34 +236,34 @@
 															src="images/liked-img.png" alt=""> <span
 															class="likeCount">${post.likeCount}</span></li>
 														<!-- a 클릭시 comment-section toggle -->
-														<li><a href="#" class="com"><i class="fas fa-comment-alt"></i> Comment 15</a></li>
+														<li><a href="#" class="com"><i
+																class="fas fa-comment-alt"></i> Comment 15</a></li>
 													</ul>
 													<a href="#"><i class="fas fa-eye"></i>Views
 														${post.pViewCount}</a>
+													<!-- comments-section -->
+													<div class="comment-section"></div>
+													<!--comment-section end-->
+
+													<!-- post-comment -->
+													<div class="post-comment">
+														<div class="cm_img">
+															<img src="images/resources/bg-img4.png" alt="">
+														</div>
+														<div class="comment_box">
+															<form id="comment-insert-form">
+																<!-- 댓글 내용 쓰는 곳 -->
+																<input type="text" placeholder="Post a comment"
+																	id="cContents" name="cContents">
+																<button type="button" id="comment-insert-button">Send</button>
+															</form>
+														</div>
+													</div>
+													<!--post-comment end-->
 												</div>
 											</div>
 											<!--post-bar end-->
 										</c:forEach>
-
-										<!-- comments-section -->
-										<div class="comment-section"></div>
-										<!--comment-section end-->
-										
-										<!-- post-comment -->
-										<div class="post-comment">
-											<div class="cm_img">
-												<img src="images/resources/bg-img4.png" alt="">
-											</div>
-											<div class="comment_box">
-												<form id="comment-insert-form">
-													<!-- 댓글 내용 쓰는 곳 -->
-													<input type="text" placeholder="Post a comment"
-														id="cContents" name="cContents">
-													<button type="button" id="comment-insert-button">Send</button>
-												</form>
-											</div>
-										</div>
-										<!--post-comment end-->
 
 									</div>
 									<!--posty end-->
