@@ -35,6 +35,7 @@ public class FollowUnitTestMain {
 	}
 
 	@Test
+	@Ignore
 	public void unfollow() throws Exception{
 		boolean unfollow = followDao.unfollow("똑순이", "e");
 		System.out.println("## 당신 언팔." +unfollow);
@@ -54,9 +55,19 @@ public class FollowUnitTestMain {
 		List<Follow> following = followDao.following("mId");
 		System.out.println("### following:"+following);
 	}
+	@Test
+	@Ignore
+	public void followingCount() throws Exception{
+		int followingCount = followDao.followingCount("소진");
+		System.out.println("### followingCount:"+followingCount);
+	}
 	
-		
-	
+	@Test
+	@Ignore
+	public void followersCount() throws Exception{
+		int followersCount = followDao.followersCount("소진");
+		System.out.println("### followersCount:"+followersCount);
+	}
 	
 }
 
