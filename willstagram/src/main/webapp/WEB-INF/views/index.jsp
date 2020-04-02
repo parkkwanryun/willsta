@@ -252,7 +252,7 @@
 											<form id="comment-insert-form">
 												<!-- 댓글 내용 쓰는 곳 -->
 												<input type="text" placeholder="Post a comment"
-													id="comment-content">
+													id="comment-cContent">
 												<button type="submit" id="comment-insert-button">Send</button>
 											</form>
 										</div>
