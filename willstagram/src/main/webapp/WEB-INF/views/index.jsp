@@ -237,27 +237,28 @@
 													<div class="comment-section"></div>
 													<!--comment-section end-->
 												</div>
-
+												<!-- post-comment -->
+												<div class="post-comment">
+													<div class="cm_img">
+														<img src="images/resources/bg-img4.png" alt="">
+													</div>
+													<div class="comment_box">
+														<form id="comment-insert-form">
+															<!-- 댓글 내용 쓰는 곳 -->
+															<input type="text" placeholder="Post a comment"
+																id="comment-cContent">
+															<button type="submit" id="comment-insert-button">Send</button>
+														</form>
+													</div>
+												</div>
+												<!--post-comment end-->
 											</div>
 											<!--post-bar end-->
+
 										</c:forEach>
 									</div>
 									<!--posty end-->
-									<!-- post-comment -->
-									<div class="post-comment">
-										<div class="cm_img">
-											<img src="images/resources/bg-img4.png" alt="">
-										</div>
-										<div class="comment_box">
-											<form id="comment-insert-form">
-												<!-- 댓글 내용 쓰는 곳 -->
-												<input type="text" placeholder="Post a comment"
-													id="comment-cContent">
-												<button type="submit" id="comment-insert-button">Send</button>
-											</form>
-										</div>
-									</div>
-									<!--post-comment end-->
+
 									<div class="process-comm">
 										<div class="spinner">
 											<div class="bounce1"></div>
