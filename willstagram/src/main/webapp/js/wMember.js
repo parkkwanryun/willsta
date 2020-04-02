@@ -16,7 +16,7 @@ $(function(){
 			data:parameter,
 			method:"POST",
 			dataType:"text",
-			async:false,
+			async:true,
 			success :function(textData){
 				if(textData.trim()=="true"){
 					alert('성공');

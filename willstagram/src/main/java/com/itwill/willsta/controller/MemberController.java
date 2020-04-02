@@ -35,15 +35,16 @@ public class MemberController {
 	public String sign_in() {
 		return "sign_in";
 	}
-
+	/*
 	@MemberLoginCheck
 	@RequestMapping(value="/sign_in_action", method = RequestMethod.GET)
 	public String sign_in_action_get() {
 		return "sign_in";
 	}
+	*/
 
 	@RequestMapping(value="/sign_in_action", method = RequestMethod.POST)
-	public String sign_in_action_post(@RequestParam("mId")String mId, @RequestParam("mPass")String mPass, 
+	public String sign_in_action(@RequestParam("mId")String mId, @RequestParam("mPass")String mPass, 
 										HttpSession session, Model model) {
 		System.out.println("mId는: "+mId+"  mPass는: "+mPass);
 		String forwardPath = "";
@@ -51,8 +52,7 @@ public class MemberController {
 			Member signInMember = memberService.signIn(mId, mPass);
 			session.setAttribute("mId", mId);
 			session.setAttribute("sMemberId", signInMember);
-			forwardPath="index";
-			return forwardPath;
+			return "index";
 			
 		} catch (MemberNotFoundException e) {
 			model.addAttribute("fmId", mId);
