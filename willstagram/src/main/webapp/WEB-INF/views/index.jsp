@@ -700,6 +700,7 @@
 	<script type="text/javascript" src="js/scrollbar.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript" src="js/wPost.js"></script>
+	<script type="text/javascript" src="js/wComments.js"></script>
 </head>
 </body>
 </html>
