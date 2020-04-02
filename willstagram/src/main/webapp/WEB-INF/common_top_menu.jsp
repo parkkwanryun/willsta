@@ -43,11 +43,10 @@
 								</a>
 								<ul>
 								<!-- 	<li><a href="user-profile.html" title="">User Profile</a></li> -->
-<<<<<<< HEAD
-									<li><a href="my_page.html" title="">my page</a></li>
-=======
-									<li><a href="my_page" title="">My Page</a></li>
->>>>>>> branch 'master' of https://github.com/parkkwanryun/willsta.git
+
+									<li><a href="my_page.html" title="">My page</a></li>
+
+
 								</ul>
 							</li>
 							<li>
