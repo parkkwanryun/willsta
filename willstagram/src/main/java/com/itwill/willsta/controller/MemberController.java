@@ -52,7 +52,8 @@ public class MemberController {
 			Member signInMember = memberService.signIn(mId, mPass);
 			session.setAttribute("mId", mId);
 			session.setAttribute("sMemberId", signInMember);
-			return "index";
+			forwardPath="index";
+			return forwardPath;
 			
 		} catch (MemberNotFoundException e) {
 			model.addAttribute("fmId", mId);
