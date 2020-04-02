@@ -49,6 +49,7 @@ public class MemberController {
 		System.out.println("mId는: "+mId+"  mPass는: "+mPass);
 		String forwardPath = "";
 		try {
+
 			Member signInMember = memberService.signIn(mId, mPass);
 			session.setAttribute("mId", mId);
 			session.setAttribute("sMemberId", signInMember);
