@@ -51,6 +51,11 @@ public class FollowDaoImpl implements FollowDao{
 		return followMapper.followersCount(mId);
 	}
 
+	@Override
+	public int followCheck(String mId, String mIdYou) {
+		return followMapper.followCheck(mId, mIdYou);
+	}
+
 
 
 	
