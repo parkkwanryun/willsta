@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.willsta.domain.Likes;
 import com.itwill.willsta.domain.Post;
@@ -30,6 +31,8 @@ public interface PostService {
 	String insert_like(Likes lk);
 
 	int status_change(Integer pNo, String status);
+
+	ModelAndView main_page(String mId);
 
 	
 }

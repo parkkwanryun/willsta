@@ -62,5 +62,10 @@ public class MemberDaoImpl implements MemberDao{
 	public List<Member> findMemberList(String mId) {
 		return memberMapper.findMemberList(mId);
 	}
+
+	@Override
+	public Member selectByIdContainFollowInfo(String mId) {
+		return memberMapper.selectByIdContainFollowInfo(mId);
+	}
 	
 }

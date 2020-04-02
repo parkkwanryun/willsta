@@ -39,13 +39,11 @@ public class PostController {
 	
 	@RequestMapping(value="/main_post")
 	public ModelAndView selectMainList(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView();
+		
 		String mId = (String)request.getSession().getAttribute("mId");
-		List<Post> postList = postService.selectMyList(mId);
-		for (Post post : postList) {
-			post.setTagArray(post.getHasTag().split(" "));
-		}
-		mv.addObject("postList", postList);
+		mId = "hjs";
+		ModelAndView mv = postService.main_page(mId);
+		
 		mv.setViewName("main_post");
 		return mv;
 	}
