@@ -251,8 +251,8 @@
 														<form id="comment-insert-form">
 															<!-- 댓글 내용 쓰는 곳 -->
 															<input type="text" placeholder="Post a comment"
-																id="cContents" name="cContents"> <input
-																type="hidden" name="pNo" value="${post.pNo}">
+																id="cContents" name="cContents"> 
+															<input type="hidden" name="pNo" value="${post.pNo}">
 															<button type="button" id="comment-insert-button">Send</button>
 														</form>
 													</div>

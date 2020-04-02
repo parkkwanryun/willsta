@@ -24,18 +24,24 @@ $(function() {
 			dataType : "json",
 			success : function(jsonArray) {
 				console.log(jsonArray);
-				/*
 				var html = "";
 				$.each(jsonArray, function(i, jsonObject){
 					jsonObject = jsonArray[i];
-					var guest_no = jsonObject.guest_no;
-					var guest_title = jsonObject.guest_title;
-					html += "<div class='guest_item'>"+
-							"	<h3 class='guest_title'  guest_no='"+guest_no+"'><a href=''>"+guest_title+"[JSON]</a></h3>"+
+					var cNo = jsonObject.cNo;
+					var pNo = jsonObject.pNo;
+					var mId = jsonObject.mId;
+					var cContents = jsonObject.cContents;
+					var cTime = jsonObject.cTime;
+					html += "<div class='comment-sec'>"+
+							"	<ul>" +
+							"		<li>" +
+							"			<div class='comment-list'>" +
+							"				<div class='comment'>" +
+							"					<h3>"+mId+"</h3>" +
+							"					<span><img src='images/clock.png' alt=''>"+cTime+"</span>"
 							"</div>";
 				}); 
-				$("#guest_list").html(html);
-					*/
+				
 			}
 		})
 	
