@@ -42,34 +42,30 @@ public class MemberController {
 		return "sign_in";
 	}
 	*/
-
-	@RequestMapping(value="/sign_in_action", method = RequestMethod.POST)
+	@ResponseBody
+	@RequestMapping(value="/sign_in_action", method = RequestMethod.POST, produces="text/plain; charset=UTF-8")
 	public String sign_in_action(@RequestParam("mId")String mId, @RequestParam("mPass")String mPass, 
 										HttpSession session, Model model) {
-		System.out.println("1. mId는: "+mId+"  mPass는: "+mPass);
+		System.out.println("mId는: "+mId+"  mPass는: "+mPass);
 		String forwardPath = "";
 		try {
 			Member signInMember = memberService.signIn(mId, mPass);
-			System.out.println("서비스 객체"+signInMember+"mId는: "+mId+"  mPass는: "+mPass);
 			session.setAttribute("mId", mId);
 			session.setAttribute("sMemberId", signInMember);
-			System.out.println("요기 담에 포워딩."+"mId는: "+mId+"  mPass는: "+mPass);
-			return "index";
-			
+			forwardPath="true";
 		} catch (MemberNotFoundException e) {
 			model.addAttribute("fmId", mId);
 			model.addAttribute("msg1", e.getMessage());
-			System.out.println("2. mId는: "+mId+"  mPass는: "+mPass);
-			forwardPath = "sign_in";
+			forwardPath = "false";
 			e.printStackTrace();
 		} catch (PasswordMismatchException e) {
 			model.addAttribute("fmId", mId);
 			model.addAttribute("msg2", e.getMessage());
-			forwardPath = "sign_in";
+			forwardPath = "false";
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
-			forwardPath = "error";
+			forwardPath = "false";
 		}
 		return forwardPath;
 	}

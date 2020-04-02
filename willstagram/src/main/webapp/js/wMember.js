@@ -16,12 +16,11 @@ $(function(){
 			data:parameter,
 			method:"POST",
 			dataType:"text",
-			async:false,
 			success :function(textData){
 				if(textData.trim()=="true"){
-
+					location.href = '/willstagram/index';
 				}else if(textData.trim()=="false"){
-
+					location.href = 'index';
 				}
 			}
 		})
