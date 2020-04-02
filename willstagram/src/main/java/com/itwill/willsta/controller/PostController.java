@@ -27,7 +27,6 @@ public class PostController {
 	public ModelAndView selectMyList(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		String mId = (String)request.getSession().getAttribute("mId");
-		mId="hjs";
 		List<Post> postList = postService.selectMyList(mId);
 		for (Post post : postList) {
 			post.setTagArray(post.getHasTag().split(" "));
