@@ -18,13 +18,14 @@ public class CommentsController {
 	
 	@PostMapping(value = "/commentsInsertAction", produces = "text/plain;charset=UTF-8")
 	public ModelAndView commentsInsertAction(@RequestParam(value = "pNo", defaultValue = "15") int pNo,
-									   @RequestParam(value = "mId", defaultValue = "hjs") String mId,
+									   @RequestParam(value = "mId") String mId,
 									   @RequestParam String cContents,
 									   HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		Comments comments = new Comments();
-		//String getmId = (String)session.getAttribute(mId);
-		//comments.setmId(getmId);
+		String getmId = (String)session.getAttribute(mId);
+		System.out.println(getmId);
+		comments.setmId(getmId);
 		comments.setpNo(pNo);
 		comments.setmId(mId);
 		comments.setcContents(cContents);

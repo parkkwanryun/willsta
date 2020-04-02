@@ -15,6 +15,7 @@ $(function() {
 		e.preventDefault();
 	});
 	
-	//포스
+	//포스트-댓글 전체 보이기
+	$(document).on("click", "")
 	
 });
