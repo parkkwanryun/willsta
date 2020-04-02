@@ -41,4 +41,8 @@ public interface FollowMapper {
 	@Select("select count(*) as followingcount from follow  where mIdYou =#{mIdYou}")
 	public int followingCount(String mIdYou);
 	
+	//Follow Check
+	@Select("select count(*) as followCheck from follow where mId=#{mId} and mIdyou=#{mIdYou}")
+	public int followCheck(@Param("mId") String mId,@Param("mIdYou") String mIdYou);
+	
 }

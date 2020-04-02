@@ -17,4 +17,6 @@ public interface FollowService {
 	int followingCount(String mIdYou);
 
 	int followersCount(String mId);
+	
+	int followCheck(String mId,String mIdYou);
 }

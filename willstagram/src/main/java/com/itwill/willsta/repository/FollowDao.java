@@ -26,6 +26,8 @@ public interface FollowDao {
 	 /* FollowersCount */
 	 int followersCount(String mId);
 	 
+	 int followCheck(String mId, String mIdYou);
+	 
 	 
 	 
 	 
