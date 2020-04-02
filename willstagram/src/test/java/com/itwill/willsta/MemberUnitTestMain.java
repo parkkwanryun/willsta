@@ -82,7 +82,7 @@ public class MemberUnitTestMain {
 	}
 	
 	@Test //회원 1명 조회 (팔로워,팔로우 불러오기 포함) 
-
+	@Ignore
 	public void selectById() {
 		Member member = memberDao.selectById("hjs");
 		System.out.println("## 회원 1명 불러오기 :"+member);
