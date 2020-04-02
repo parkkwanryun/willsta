@@ -52,6 +52,11 @@ public class FollowServiceImpl implements FollowService {
 		return followDao.followersCount(mId);
 	}
 
+	@Override
+	public int followCheck(String mId, String mIdYou) {
+		return followDao.followCheck(mId, mIdYou);
+	}
+
 	
 
 }
