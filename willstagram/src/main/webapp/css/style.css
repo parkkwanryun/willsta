@@ -3690,6 +3690,9 @@ a:hover {
 .follow {
 	background-color: #53d690;
 }
+.unfollow {
+	background-color: #212529;
+}
 .message-us {
 	background-color: #e44d3a;
 }
