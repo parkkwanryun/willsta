@@ -18,7 +18,6 @@ $(function(){
 		var parameter = $(this).serialize();
 		 */
 		var parameter = "mId="+member_login_action.mId.value+"&mPass="+member_login_action.mPass.value;
-		
 		$.ajax({
 			url: "sign_in_action",
 			data: parameter,
@@ -32,8 +31,16 @@ $(function(){
 				}
 			}
 		})
-			
 	});
+	
+	function inner_sign_in(){
+		$('#inner_sign_in').on('click',function(e){
+			session.invalidate();
+			location.href="willstagram/sign_in";
+		})
+		
+	}
+	
 });
 
 

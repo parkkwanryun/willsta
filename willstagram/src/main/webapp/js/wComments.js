@@ -1,25 +1,21 @@
 //document ready
 $(function() {
-	// 댓글 쓰기폼 이벤트 처리
-	$("#comment-insert-button").click(function(e) {
+	// 댓글 쓰기
+	$(document).on("click", "#comment-insert-button", function(e) {
 		var paramStr = $("#comment-insert-form").serialize();
 		$.ajax({
 			url : "commentsInsertAction",
 			data : paramStr,
 			method : "POST",
-			dataType : "text",
-			success : function(textData) {
-				if (textData.trim() == "true") {
-					alert("쓰기 성공");
-				} else if (textData.trim() == "false") {
-					alert("쓰기 실패");
-					$("#comment-insert-form #comment-content").select();
-				}
+			dataType : "html",
+			success : function(resultText) {
+				$("div.comment-section").append(resultText);
 			}
 		});
+		e.preventDefault();
 	});
 	
-	
-	
+	//포스트-댓글 전체 보이기
+	$(document).on("click", "")
 	
 });

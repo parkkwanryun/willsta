@@ -35,13 +35,6 @@ public class MemberController {
 	public String sign_in() {
 		return "sign_in";
 	}
-	/*
-	@MemberLoginCheck
-	@RequestMapping(value="/sign_in_action", method = RequestMethod.GET)
-	public String sign_in_action_get() {
-		return "sign_in";
-	}
-	*/
 
 	@ResponseBody
 	@RequestMapping(value="/sign_in_action", method = RequestMethod.POST, produces="text/plain; charset=UTF-8")
