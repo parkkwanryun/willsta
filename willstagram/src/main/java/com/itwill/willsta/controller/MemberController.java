@@ -42,11 +42,10 @@ public class MemberController {
 		return "sign_in";
 	}
 
-
 	@RequestMapping(value="/sign_in_action", method = RequestMethod.POST)
 	public String sign_in_action_post(@RequestParam("mId")String mId, @RequestParam("mPass")String mPass, 
 										HttpSession session, Model model) {
-		System.out.println("mId / mPass"+mId+mPass);
+		System.out.println("mId는: "+mId+"  mPass는: "+mPass);
 		String forwardPath = "";
 		try {
 			Member signInMember = memberService.signIn(mId, mPass);
