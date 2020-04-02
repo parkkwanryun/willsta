@@ -42,7 +42,7 @@
 									Profiles
 								</a>
 								<ul>
-									<li><a href="user-profile.html" title="">User Profile</a></li>
+								<!-- 	<li><a href="user-profile.html" title="">User Profile</a></li> -->
 									<li><a href="my-profile-feed.html" title="">my-profile-feed</a></li>
 								</ul>
 							</li>

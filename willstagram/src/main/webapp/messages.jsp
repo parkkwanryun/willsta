@@ -393,7 +393,6 @@ function connect() {
 	};
 	ws.onmessage = function (event) {	// connection이 open 되고 서버에게 메시지를 보낼때 실행
 		console.log(event.data+ '\n');
-		console.log("정상동작");
 	};
 	ws.onclose = function(event) {	// connection 이 close 되었을때 실행
 		console.log('Info: connection closed.');

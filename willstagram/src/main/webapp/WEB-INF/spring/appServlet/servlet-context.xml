@@ -52,9 +52,10 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<beans:bean id="replyEchoHandler" class="com.itwill.willsta.controller.ReplyEchoHandler" />
 	
 	<!-- websocket handler -->
+	<beans:bean id="replyEchoHandler" class="com.itwill.willsta.controller.ReplyEchoHandler"/>
+	
 	<websocket:handlers>
 		<websocket:mapping handler="replyEchoHandler" path="/replyEcho"/>
 		<websocket:handshake-interceptors>

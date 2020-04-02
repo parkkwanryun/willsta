@@ -3,11 +3,15 @@ package com.itwill.willsta.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.annotations.ConstructorArgs;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
-import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+import com.itwill.willsta.repository.DmContentsDao;
+import com.itwill.willsta.service.DmService;
+
 public class ReplyEchoHandler extends TextWebSocketHandler{
 	List<WebSocketSession> sessions = new ArrayList<>();
 	
@@ -27,9 +31,10 @@ public class ReplyEchoHandler extends TextWebSocketHandler{
 		}
 	}
 	
-	//세션 커넥션 종료시
+	//세션 커넥션 종료시 데이터 
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		System.out.println("afterConnectionClosed :"+session+"by~");
+		
 	}
 }
