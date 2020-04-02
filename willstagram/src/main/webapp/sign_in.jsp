@@ -31,23 +31,22 @@
 								<div class="sign_in_sec current" id="tab-1">
 									<h3>Sign in 이번주 안에 끝낸다</h3>
 
-
-									<form id="member_login_action" method="POST" action="gogo">
+									<form id="member_login_action">
 										<div class="row">
 											<div class="col-lg-12 no-pdd">
 												<div class="sn-field">
-													<input type="text" name="username" placeholder="Username">
+													<input type="text" name="mId" placeholder="ID">
 													<span id="msg"></span>
 													<i class="la la-user"></i>
 												</div><!--sn-field end-->
 											</div>
 											<div class="col-lg-12 no-pdd">
 												<div class="sn-field">
-													<input type="password" name="password" placeholder="Password">
+													<input type="password" name="mPass" placeholder="Password">
 													<span id="msg"></span>
 													<i class="la la-lock"></i>
 												</div>
-											</div>
+											</div>					
 											<div class="col-lg-12 no-pdd">
 												<div class="checky-sec">
 													<div class="fgt-sec">

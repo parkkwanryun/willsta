@@ -1,5 +1,6 @@
 package com.itwill.willsta.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.itwill.willsta.domain.Member;
@@ -9,7 +10,7 @@ public interface MemberService {
 		
 	boolean insertMember(Member member);
 	
-	List<Member> selectById(String mId);
+	Member selectById(String mId);
 	
 	boolean updateMember(Member member);
 	

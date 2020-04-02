@@ -1,5 +1,6 @@
 package com.itwill.willsta.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public List<Member> selectById(String mId) {
+	public Member selectById(String mId) {
 		return memberDao.selectById(mId);
 	}
 
@@ -66,14 +67,13 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public Member signIn(String mId, String mPass) throws Exception,PasswordMismatchException,MemberNotFoundException {
-		List<Member> member = memberDao.selectById(mId);
+		Member member = memberDao.selectById(mId);
 		if(member==null) {
 			throw new MemberNotFoundException(mId+" 는 없는 아이디 입니다.");
 		}
-		if(!((Member) member).isMatchPassword(mPass)) {
+		if(!member.isMatchPassword(mPass)) {
 			throw new PasswordMismatchException("패스워드가 일치하지 않습니다.");
 		}
-		return (Member) member;
+		return member;
 	}
-
 }
