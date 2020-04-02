@@ -16,6 +16,8 @@ $(function() {
 	});
 	
 	//포스트-댓글 전체 보이기
-	$(document).on("click", "")
+	$(document).on("click", ".like-com li a.com", function(e){
+		
+	})
 	
 });
