@@ -19,13 +19,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itwill.willsta.domain.Member;
 import com.itwill.willsta.exception.MemberNotFoundException;
 import com.itwill.willsta.exception.PasswordMismatchException;
+import com.itwill.willsta.service.FollowService;
 import com.itwill.willsta.service.MemberService;
 
 @Controller
 public class MemberController {
 	@Autowired
 	MemberService memberService;
-	
+	@Autowired
+	FollowService followService;
 	@RequestMapping(value="/")
 	public String index() {
 		return "";
@@ -84,10 +86,14 @@ public class MemberController {
 	
 	//@MemberLoginCheck
 	@RequestMapping(value = "/profiles")
-	public ModelAndView memberList() {
+	public ModelAndView memberList(HttpSession session, String mId,String mIdYou) {
 		ModelAndView mv=new ModelAndView();
 		List<Member> memberList=memberService.memberList();
+		mId=(String) session.getAttribute("mId");
+		mIdYou="ss501";
+		int followCheck=followService.followCheck(mId, mIdYou);
 		mv.addObject("memberList",memberList);
+		mv.addObject("followCheck",followCheck);
 		mv.setViewName("profiles");
 		return mv;
 	}
