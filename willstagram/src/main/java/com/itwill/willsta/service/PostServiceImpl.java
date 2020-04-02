@@ -15,6 +15,7 @@ public class PostServiceImpl implements PostService {
 	@Autowired
 	PostDao postDao;
 	
+	String uploadFolder = "C:\\eclipse-workspace5\\willsta\\willsta\\willstagram\\src\\main\\webapp\\contents\\post_contents";
 	@Override
 	public Post createPost(Post post, MultipartFile[] uploadFile) {
 		/*
@@ -23,8 +24,6 @@ public class PostServiceImpl implements PostService {
 		 * 3. 컨텐츠정보생성
 		 * 4. 파일저장
 		 */
-		//String uploadFolder = "C:\\eclipse-workspace5\\willsta\\willstagram\\src\\main\\webapp\\contents\\post_contents";
-		String uploadFolder = "D:\\itwill20200228\\eclipse-workspace5\\willsta\\willstagram\\src\\main\\webapp\\contents\\post_contents";
 		
 		Post postOne=null;
 		int rn = postDao.insert(post);
@@ -84,7 +83,6 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public int removePost(Integer pNo) {
-		String uploadFolder = "C:\\eclipse-workspace5\\willsta\\willstagram\\src\\main\\webapp\\contents\\post_contents";
 		/*
 		 * 1. 컨텐츠 리스트 조회
 		 * 2. 파일삭제

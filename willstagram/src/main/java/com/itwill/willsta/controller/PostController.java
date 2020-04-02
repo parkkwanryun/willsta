@@ -25,7 +25,6 @@ public class PostController {
 	
 	@RequestMapping(value="/index")
 	public ModelAndView selectMyList(HttpServletRequest request) {
-		request.getSession().setAttribute("mId", "hjs");
 		ModelAndView mv = new ModelAndView();
 		String mId = (String)request.getSession().getAttribute("mId");
 		List<Post> postList = postService.selectMyList(mId);
