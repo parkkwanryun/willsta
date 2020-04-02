@@ -30,9 +30,10 @@ public class FollowController {
 
 	
 	@RequestMapping(value="/my_page")
-	public ModelAndView myPage(@RequestParam(value="userId", required = false, defaultValue = " ") String userId) {
+	public ModelAndView myPage(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		List<Post> postList = postService.selectMyList(userId);
+		String mId = (String)request.getSession().getAttribute("mId");
+		List<Post> postList = postService.selectMyList(mId);
 		for (Post post : postList) {
 			post.setTagArray(post.getHasTag().split(" "));
 		}
@@ -45,12 +46,12 @@ public class FollowController {
 	public ModelAndView selectPost(@RequestParam(value="pNo", required = true) Integer pNo, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		String mId = (String)request.getSession().getAttribute("mId");
-		Post posts = postService.selectPost(pNo, mId);
-		posts.setTagArray(posts.getHasTag().split(" "));
-		List<PostImage> postImage = postService.selectContents(pNo);
+		Post post = postService.selectPost(pNo, mId);
+		post.setTagArray(post.getHasTag().split(" "));
+		List<PostImage> postImages = postService.selectContents(pNo);
 		
-		mv.addObject("posts", posts);
-		mv.addObject("postImage", postImage);
+		mv.addObject("post", post);
+		mv.addObject("postImages", postImages);
 		mv.setViewName("clickPost");
 		return mv;
 	}
