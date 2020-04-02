@@ -1,10 +1,11 @@
 /**
  * 
  */
-var socket = null;
+
 $(document).ready(function(){
 	connectWS();
 });
+var socket = null;
 	function connectWS() {
 		var ws = new WebSocket("ws://localhost:8080/willstagram/replyEcho");
 		socket = ws;

@@ -2,7 +2,14 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<body>	
+<body>
+<style>
+	div.messages-list >  ul > li:hover {
+	background-color: mistyrose;
+	}
+</style>
+
+	
 	<div class="wrapper">		
 
 		<header>
@@ -224,25 +231,29 @@
 										<li><a href="#" title=""><i class="fa fa-ellipsis-v"></i></a></li>
 									</ul>
 								</div><!--msg-title end-->
+								
 								<div class="messages-list">
+								<c:forEach var="dm" items="${dmList}">
 									<ul>
 									<!-- 유저 리스트 li가 하나의 박스 -->
-										<li class="active">
+										<li>
 											<div class="usr-msg-details">
 												<div class="usr-ms-img">
-													<img src="" alt="">
+													<img src="contents/member_image/${dm.mImage}" alt="">
 													<span class="msg-status"></span>
 												</div>
 												<div class="usr-mg-info">
-													<h3>John Doe</h3>
-													<p>Lorem ipsum dolor <img src="" alt=""></p>
+													<h3>${dm.mId}</h3>
+													<p> <img src=></p>
 												</div><!--usr-mg-info end-->
-												<span class="posted_time">1:55 PM</span>
+												<span class="posted_time">${dm.dmDate}</span>
 												<span class="msg-notifc">1</span>
 											</div><!--usr-msg-details end-->
 										</li>
-										
 									</ul>
+								</c:forEach>
+	
+									
 								</div><!--messages-list end-->
 							</div><!--msgs-list end-->
 						</div>

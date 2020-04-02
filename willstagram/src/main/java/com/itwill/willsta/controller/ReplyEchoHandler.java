@@ -52,9 +52,7 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
 					msgReceiverSession.sendMessage(tmpMsg);
 				}
 			}
-			
 		}
-		
 	}
 
 	// 세션 커넥션 종료시 데이터
