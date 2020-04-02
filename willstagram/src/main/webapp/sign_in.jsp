@@ -9,7 +9,7 @@
 
 		<div class="sign-in-page">
 			<div class="signin-popup">
-				<div class="signin-pop">
+				<div class="signin-pop"> 
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="cmp-info">
@@ -32,17 +32,19 @@
 									<h3>Sign in 이번주 안에 끝낸다</h3>
 
 
-									<form id="member_login_action" method="get" action="gogo">
+									<form id="member_login_action" method="POST" action="gogo">
 										<div class="row">
 											<div class="col-lg-12 no-pdd">
 												<div class="sn-field">
 													<input type="text" name="username" placeholder="Username">
+													<span id="msg"></span>
 													<i class="la la-user"></i>
 												</div><!--sn-field end-->
 											</div>
 											<div class="col-lg-12 no-pdd">
 												<div class="sn-field">
 													<input type="password" name="password" placeholder="Password">
+													<span id="msg"></span>
 													<i class="la la-lock"></i>
 												</div>
 											</div>
