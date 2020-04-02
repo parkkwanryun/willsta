@@ -23,16 +23,17 @@ public class PostController {
 	@Autowired
 	PostService postService;
 	
-	@RequestMapping(value="/index")
+	@RequestMapping(value="/main_post")
 	public ModelAndView selectMyList(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		String mId = (String)request.getSession().getAttribute("mId");
+		mId="hjs";
 		List<Post> postList = postService.selectMyList(mId);
 		for (Post post : postList) {
 			post.setTagArray(post.getHasTag().split(" "));
 		}
 		mv.addObject("postList", postList);
-		mv.setViewName("index");
+		mv.setViewName("main_post");
 		return mv;
 	}
 	
