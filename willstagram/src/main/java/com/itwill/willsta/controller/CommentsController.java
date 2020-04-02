@@ -17,11 +17,11 @@ public class CommentsController {
 	private CommentsService commentsService;
 	
 	@PostMapping(value = "/commentsInsertAction", produces = "text/plain;charset=UTF-8")
-	public ModelAndView commentsInsertAction(@RequestParam(value = "pNo", defaultValue = "15") int pNo,
+	public String commentsInsertAction(@RequestParam(value = "pNo", defaultValue = "15") int pNo,
 									   @RequestParam(value = "mId", defaultValue = "hjs") String mId,
 									   @RequestParam(value = "cContents", defaultValue = "contents") String cContents,
 									   HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView();
+		String result = "";
 		Comments comments = new Comments();
 		//String getmId = (String)session.getAttribute(mId);
 		//comments.setmId(getmId);
@@ -30,10 +30,11 @@ public class CommentsController {
 		comments.setcContents(cContents);
 		int createResult = commentsService.createComment(comments);
 		if(createResult == 1) {
-			mv.addObject("comments", comments);
-			mv.setViewName("comments");
+			result = "true";
+		}else {
+			result = "false";
 		}
-		return mv;
+		return result;
 	}
 	
 	//@RequestMapping(value = "/postCommentList")
