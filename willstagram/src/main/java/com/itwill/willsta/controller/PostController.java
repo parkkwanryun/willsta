@@ -24,7 +24,7 @@ public class PostController {
 	PostService postService;
 	
 	@RequestMapping(value="/index")
-	public ModelAndView selectMyList(HttpServletRequest request) {
+	public ModelAndView selectMy(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		String mId = (String)request.getSession().getAttribute("mId");
 		List<Post> postList = postService.selectMyList(mId);
@@ -33,6 +33,19 @@ public class PostController {
 		}
 		mv.addObject("postList", postList);
 		mv.setViewName("index");
+		return mv;
+	}
+	
+	@RequestMapping(value="/main_post")
+	public ModelAndView selectMyList(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		String mId = (String)request.getSession().getAttribute("mId");
+		List<Post> postList = postService.selectMyList(mId);
+		for (Post post : postList) {
+			post.setTagArray(post.getHasTag().split(" "));
+		}
+		mv.addObject("postList", postList);
+		mv.setViewName("main_post");
 		return mv;
 	}
 	

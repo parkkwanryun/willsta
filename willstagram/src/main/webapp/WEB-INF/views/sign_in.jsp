@@ -31,7 +31,7 @@
 								<div class="sign_in_sec current" id="tab-1">
 									<h3>Sign in-> index로 포워딩</h3>
 
-									<form id="member_login_action">
+									<form id="member_login_action" method="POST">
 										<div class="row">
 											<div class="col-lg-12 no-pdd">
 												<div class="sn-field">
