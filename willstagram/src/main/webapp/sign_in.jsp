@@ -196,5 +196,6 @@
 	</div><!--theme-layout end-->
 
  <jsp:include page="/WEB-INF/commons/include_footer_js.jsp"/>
+ <script type="text/javascript" src="js/wMember.js"></script>
 </body>
 </html>

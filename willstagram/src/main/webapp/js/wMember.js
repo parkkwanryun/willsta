@@ -2,18 +2,40 @@
 
 	/*
 	 1. 로그인 정보를 컨트롤러로 Json 형태로 전송? 
-	 아니면 넣어준 id 와 password value 값만 ? 
+	   OR  넣어준 id 와 password value 값만 전송? 
 	 컨트롤러로 요청
 	 2. id, password 유효성체크
+	 3. 자바 단에서 요청받은 컨트롤러에서의 세션 유무 체크 
 	 */ 
 
-$(function(){
-	$('#member_login_action').click(function(e){
-		alert("회원가입");
-	});
+
+
+
 	
-		var parameterArray = $('#member_login_action').serializeArray;
-		var parameterArraytoString = $.param(parameterArray);
+$(function(){
+	$(document).on('click','#member_login_action',function(e){
+		var parameter = $('#member_login_action').serialize;
+		alert(parameter);
+		alert(e.target);
+
+		$.ajax({
+			url: "sign_in_action",
+			data: parameter,
+			method="POST",
+			dataType:"text",
+			success :function(textData){
+				if(textData.trim()=="true"){
+					
+				}else if(textData.trim()=="false"){
+					
+					$("")
+				}
+			}
+		})
+			
+	});
+
+		
 
 });
 
