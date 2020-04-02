@@ -36,17 +36,19 @@
 											<img src="contents/member_image/${member.mImage}" alt="">
 										</c:otherwise>
 									</c:choose>
-									<h3>${member.mId},${followCheck}</h3>
+									<h3>${member.mId}</h3>
 									<h4>${member.mName}</h4>
 									<ul>
+									<c:forEach var="check" items="${followCheck}">
 										<c:choose>
-											<c:when test="${followCheck==0}">
-												<li><a href="#" title="" class="follow">Follow</a></li>
+											<c:when test="${check.mIdYou==member.mId}">
+												<li><a href="#" title="" class="unfollow">UnFollow</a></li><!-- follow중인 상태 -->
 											</c:when>
 											<c:otherwise>
-												<li><a href="#" title="" class="unfollow">UnFollow</a></li><!-- follow중인 상태 -->
+												<li><a href="#" title="" class="follow">Follow</a></li>
 											</c:otherwise>
 										</c:choose>
+									</c:forEach>
 										<li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
 									</ul>
 				 					

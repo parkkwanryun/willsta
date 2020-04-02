@@ -4,7 +4,7 @@ $(function(){
 	$('.userSearch').submit(function(e) {
 		
 		//키워드 값 변수에 저장
-		userKeyword="mId="+$('input[name=search]').val();
+		userKeyword="find="+$('input[name=search]').val();
 		console.log(userKeyword);
 		
 		$.ajax({

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itwill.willsta.domain.Follow;
 import com.itwill.willsta.domain.Member;
 import com.itwill.willsta.exception.MemberNotFoundException;
 import com.itwill.willsta.exception.PasswordMismatchException;
@@ -86,12 +87,11 @@ public class MemberController {
 	
 	//@MemberLoginCheck
 	@RequestMapping(value = "/profiles")
-	public ModelAndView memberList(HttpSession session, String mId,String mIdYou) {
+	public ModelAndView memberList(String mId,String mIdYou, HttpSession session) {
 		ModelAndView mv=new ModelAndView();
 		List<Member> memberList=memberService.memberList();
 		mId=(String) session.getAttribute("mId");
-		mIdYou="ss501";
-		int followCheck=followService.followCheck(mId, mIdYou);
+		List<Follow> followCheck=followService.following(mId);
 		mv.addObject("memberList",memberList);
 		mv.addObject("followCheck",followCheck);
 		mv.setViewName("profiles");
@@ -101,10 +101,13 @@ public class MemberController {
 	//@MemberLoginCheck
 	@ResponseBody
 	@RequestMapping(value = "/search_member", method = RequestMethod.POST)
-	public ModelAndView findMemberList(@RequestParam(value = "mId") String mId) {
+	public ModelAndView findMemberList(@RequestParam(value = "find") String find, String mId, HttpSession session) {
 		ModelAndView mv=new ModelAndView();
-		List<Member> findMemberList=memberService.findMemberList(mId);
+		List<Member> findMemberList=memberService.findMemberList(find);
+		mId=(String) session.getAttribute("mId");
+		List<Follow> followCheck=followService.following(mId);
 		mv.addObject("memberList",findMemberList);
+		mv.addObject("followCheck",followCheck);
 		mv.setViewName("profiles");
 		return mv;
 	}
