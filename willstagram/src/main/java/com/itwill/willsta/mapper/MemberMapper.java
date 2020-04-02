@@ -20,7 +20,11 @@ public interface MemberMapper {
 	
 	/*회원정보 로딩*/
 	@Select("SELECT m.mId, m.mPass, m.mName, m.mEmail, m.mPhone, m.mImage FROM MEMBER M INNER JOIN FOLLOW F ON f.mId=#{mId} WHERE #{mId}=f.mId")
-	public List<Member> selectById(@Param("mId") String mId);
+	public Member selectByIdContainFollowInfo(@Param("mId") String mId);
+	
+	/*팔로우 정보 없는 회원정보 로딩*/
+	@Select("SELECT mId, mPass, mName, mEmail, mPhone, mImage FROM MEMBER WHERE mId=#{mId} ")
+	public Member selectById(@Param("mId") String mId);
 	
 	/*회원정보 수정*/
 	@Update("UPDATE MEMBER SET mId=#{mId}, mPass=#{mPass}, mName=#{mName}, mEmail=#{mEmail}, mPhone=#{mPhone}, mImage=#{mImage} WHERE mId=#{mId}")

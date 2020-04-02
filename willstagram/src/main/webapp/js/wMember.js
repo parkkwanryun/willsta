@@ -14,29 +14,26 @@
 	
 $(function(){
 	$(document).on('click','#member_login_action',function(e){
-		var parameter = $('#member_login_action').serialize;
-		alert(parameter);
-		alert(e.target);
-
+		/*
+		var parameter = $(this).serialize();
+		 */
+		var parameter = "mId="+member_login_action.mId.value+"&mPass="+member_login_action.mPass.value;
+		
 		$.ajax({
 			url: "sign_in_action",
 			data: parameter,
-			method="POST",
+			method: "POST",
 			dataType:"text",
 			success :function(textData){
 				if(textData.trim()=="true"){
 					
 				}else if(textData.trim()=="false"){
 					
-					$("")
 				}
 			}
 		})
 			
 	});
-
-		
-
 });
 
 

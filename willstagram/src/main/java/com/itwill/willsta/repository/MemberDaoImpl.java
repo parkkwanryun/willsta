@@ -19,7 +19,7 @@ public class MemberDaoImpl implements MemberDao{
 	}//
 	
 	@Override
-	public List<Member> selectById(String mId) {
+	public Member selectById(String mId) {
 		return memberMapper.selectById(mId);
 	}//
 
