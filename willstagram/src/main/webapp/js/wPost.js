@@ -1,38 +1,63 @@
-	//document ready
+	
+function post_write(){
+	
+	var formData = new FormData();
+	
+	var paramArray = $('#postWrite').serializeArray();
+	for (var i = 0; i < paramArray.length; i++) {
+		formData.append(paramArray[i].name, paramArray[i].value);
+	}  
+	
+	var inputFile = $("input[name='file1']");
+	var files = inputFile[0].files;
+	for (var i = 0; i < files.length; i++) {
+		formData.append("uploadFile", files[i]);
+	}
+	
+	
+	$.ajax({
+		url:'write_post',
+		processData:false, //k:v 방식으로 전달
+		contentType: false, //file전송을 위해서는 false로 줘야 한다.
+		data:formData,
+		type: "POST",
+		dataType:'html',
+		success: function(resultText){
+				$('div.posts-section').prepend(resultText);
+		}
+		
+	});
+	
+	 $(".post-popup.job_post").removeClass("active");
+     $(".wrapper").removeClass("overlay");
+	
+};
+
+
+//document ready
 		$(function(){
 			//post쓰기
-			$(document).on('submit','#postWrite',function(e){
-				var formData = new FormData();
-				
-				var paramArray = $(this).serializeArray();
-				for (var i = 0; i < paramArray.length; i++) {
-					formData.append(paramArray[i].name, paramArray[i].value);
-				}  
-				
-				var inputFile = $("input[name='file1']");
-				var files = inputFile[0].files;
-				for (var i = 0; i < files.length; i++) {
-					formData.append("uploadFile", files[i]);
-				}
-				
-				
-				$.ajax({
-					url:'write_post',
-					processData:false, //k:v 방식으로 전달
-					contentType: false, //file전송을 위해서는 false로 줘야 한다.
-					data:formData,
-					type: "POST",
-					dataType:'html',
-					success: function(resultText){
-							$('div.posts-section').prepend(resultText);
+			$('#postWrite').validate({
+				rules:{
+					pTitle:{
+						required: true,
+						maxlength: 80
+					},
+					hasTag:{
+						required: true,
+						maxlength: 80
+					},
+					pContents:{
+						required: true,
+						maxlength: 2000
 					}
-					
-				});
-				
-				 $(".post-popup.job_post").removeClass("active");
-			     $(".wrapper").removeClass("overlay");
-				
-				e.preventDefault();
+				},
+				submitHandler:function(){
+					//유효성을 통과하면 호출
+					post_write();
+				},
+				errorClass: "error",
+				validClass:"valid"
 			});
 			
 			//post삭제
