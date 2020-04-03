@@ -31,7 +31,8 @@ $(function(){
 					
 				}
 			}
-		})
+		});
+		e.preventDefault();
 	});
 	
 	function inner_sign_in(){
