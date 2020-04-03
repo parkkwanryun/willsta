@@ -243,7 +243,7 @@
 												<!-- comment-section -->
 												<div class="comment-section" post_no="${post.pNo}">
 													<ul>
-														<li><a href="#" class="com" id="comment_list_click">
+														<li><a href="#" class="com">
 																<i class="fas fa-comment-alt"></i> Comments </a>
 														</li>
 													</ul>
@@ -262,12 +262,12 @@
 														<img src="images/resources/bg-img4.png" alt="">
 													</div>
 													<div class="comment_box">
-														<form id="comment-insert-form">
+														<form>
 															<!-- 댓글 내용 쓰는 곳 -->
 															<input type="text" placeholder="Post a comment"
-																id="cContents" name="cContents"> <input
+																name="cContents"> <input
 																type="hidden" name="pNo" value="${post.pNo}">
-															<button type="button" id="comment-insert-button">Send</button>
+															<button type="button">Send</button>
 														</form>
 													</div>
 												</div>
