@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,7 +39,7 @@ public class CommentsController {
 	}
 	
 	@RequestMapping(value = "/postCommentsList", produces = "application/json;charset=UTF-8")
-	public List<Comments> postCommentsList(@RequestParam(value = "pNo", defaultValue = "15") int pNo) throws Exception {
+	public List<Comments> postCommentsList(@RequestParam(value = "pNo") int pNo) throws Exception {
 		List<Comments> postCommentsList = commentsService.postCommentsList(pNo);
 		return postCommentsList;
 	}
