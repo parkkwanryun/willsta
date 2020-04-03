@@ -90,9 +90,12 @@ function post_write(){
 					url:'get_post_data',
 					method:'POST',
 					data:params,
-					dataType:'text',
-					success: function(resultText){
-						alert(resultText);
+					dataType:'json',
+					success: function(jsonObject){
+		
+						postWrite.pTitle.value = jsonObject.pTitle;
+						postWrite.hasTag.value = jsonObject.hasTag;
+						postWrite.pContents.value = jsonObject.pContents;
 					}
 				});
 		        
