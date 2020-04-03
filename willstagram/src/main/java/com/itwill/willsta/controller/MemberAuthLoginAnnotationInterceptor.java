@@ -3,10 +3,12 @@ package com.itwill.willsta.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.springframework.stereotype.Controller;
+
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import com.itwill.willsta.domain.Member;
 
 /*
 ①HandlerInterceptor 인터페이스
@@ -50,11 +52,11 @@ public class MemberAuthLoginAnnotationInterceptor extends HandlerInterceptorAdap
 		// session 객체를 가져옴
 		HttpSession session = request.getSession();
 		// login처리를 담당하는 사용자 정보를 담고 있는 객체를 가져옴
-		String sUserId = (String) session.getAttribute("sMemberId");
+		Member sUserId = (Member) session.getAttribute("sMemberId");
 
 		if (sUserId == null) {
 			// 로그인이 안되어 있는 상태임으로 로그인 폼으로 다시 돌려보냄(redirect)
-			response.sendRedirect("index");
+			response.sendRedirect("sign_in");
 			return false; // 더이상 컨트롤러 요청으로 가지 않도록 false로 반환함
 		}
 

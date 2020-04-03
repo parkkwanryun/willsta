@@ -191,20 +191,20 @@
 												<c:if test="${fn:startsWith(post.fileName, 'img')}">
 													<div class="image">
 														<img class="center-block" style="margin:10px 0px;"
-															src="contents/post_contents/${post.fileName}" alt="여기에이미지들어옴"
+															src="contents/post_image/${post.fileName}" alt="여기에이미지들어옴"
 															width="500" height="300" >
 													</div>
 												</c:if>
 												<c:if test="${fn:startsWith(post.fileName, 'mov')}">
 													<div class="embed-responsive embed-responsive-4by3" style="margin-bottom:10px;" >
 													  		<iframe class="embed-responsive-item" style="padding-top:10px;"
-													  			src="contents/post_contents/${post.fileName}"></iframe>
+													  			src="contents/post_image/${post.fileName}"></iframe>
 													</div>
 												</c:if>
 											</div>
 											<div class="job_descp">
 												<h3>${post.pTitle}</h3>
-												<p>${post.pContents}<a href="#" title="">view more</a></p>
+												<p>${post.pContents}<br><a href="#" title="">view more</a></p>
 												<ul class="skill-tags">
 													<c:forEach var='tag' items="${post.tagArray}">
 														<li><a href="#" title="">${tag}</a></li>
@@ -426,6 +426,7 @@
 					<form id="postWrite"  method="get">
 						<div class="row">
 							<div class="col-lg-12">
+								<input type="hidden" id="pNo" name="pNo" >
 								<input type="text" id="pTitle" name="pTitle" placeholder="Title">
 							</div>
 							<div class="col-lg-12">
@@ -434,6 +435,9 @@
 							<div class="col-lg-12">
 								<textarea id="pContents" name="pContents" placeholder="Description"></textarea>
 							</div>
+							<div class="col-lg-12 img-list" style="margin-bottom:10px;">
+								<!-- 여기 이미지 들어옴 -->
+						    </div>
 							<div class="col-lg-12">
 								<input type=file name=file1 size=400 class="TXTFLD" multiple>
 						    </div>

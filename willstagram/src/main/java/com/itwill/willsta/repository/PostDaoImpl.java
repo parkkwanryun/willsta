@@ -40,6 +40,11 @@ public class PostDaoImpl implements PostDao {
 	public int delete(Integer pNo) {
 		return postMapper.delete(pNo);
 	}
+	
+	@Override
+	public int delete_img(Integer pNo) {
+		return postMapper.delete_img(pNo);
+	}
 
 	@Override
 	public List<Post> selectMyList(String userId) {
@@ -80,6 +85,8 @@ public class PostDaoImpl implements PostDao {
 	public int up_viewcount(Integer pNo) {
 		return postMapper.up_viewcount(pNo);
 	}
+
+	
 
 	
 

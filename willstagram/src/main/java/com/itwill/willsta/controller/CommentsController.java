@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,7 @@ public class CommentsController {
 	@Autowired
 	private CommentsService commentsService;
 	
+	@MemberLoginCheck
 	@PostMapping(value = "/commentsInsertAction", produces = "text/plain;charset=UTF-8")
 	public ModelAndView commentsInsertAction(@RequestParam(value = "pNo", defaultValue = "15") int pNo,
 									   @RequestParam(value = "mId", defaultValue = "KJS") String mId,
@@ -26,8 +28,8 @@ public class CommentsController {
 									   HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		Comments comments = new Comments();
-		//String getmId = (String)session.getAttribute(mId);
-		//System.out.println(getmId);
+		String getmId = (String)session.getAttribute(mId);
+		System.out.println(getmId);
 		comments.setmId(mId);
 		comments.setpNo(pNo);
 		comments.setmId(mId);
