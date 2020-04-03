@@ -426,6 +426,7 @@
 					<form id="postWrite"  method="get">
 						<div class="row">
 							<div class="col-lg-12">
+								<input type="hidden" id="pNo" name="pNo" >
 								<input type="text" id="pTitle" name="pTitle" placeholder="Title">
 							</div>
 							<div class="col-lg-12">

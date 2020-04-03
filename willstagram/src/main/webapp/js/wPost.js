@@ -92,7 +92,7 @@ function post_write(){
 					data:params,
 					dataType:'json',
 					success: function(jsonObject){
-		
+						postWrite.pNo.value = jsonObject.pNo;
 						postWrite.pTitle.value = jsonObject.pTitle;
 						postWrite.hasTag.value = jsonObject.hasTag;
 						postWrite.pContents.value = jsonObject.pContents;

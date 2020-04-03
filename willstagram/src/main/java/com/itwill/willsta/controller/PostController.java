@@ -71,11 +71,18 @@ public class PostController {
 	}
 	@MemberLoginCheck
 	@RequestMapping(value="/write_post", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
-	public ModelAndView write(Post post, MultipartFile[] uploadFile) {
+	public ModelAndView write(Post post, MultipartFile[] uploadFile, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		post.setmId("hjs");
+		post.setmId((String)request.getSession().getAttribute("mId"));
 		
 		Post postOne = postService.createPost(post, uploadFile);
+		//post번호가 있으면 update, 없으면 insert
+		/*if(post.getpNo()!=null && post.getpNo() > 0) {
+			Post postOne = postService.modifyPost(post);
+		} else {
+			Post postOne = postService.createPost(post, uploadFile);
+		}
+		*/
 		mv.addObject("post", postOne);
 		mv.setViewName("post");
 
