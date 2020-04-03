@@ -2,11 +2,14 @@ package com.itwill.willsta.service;
 
 import java.io.File;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.willsta.domain.Likes;
+import com.itwill.willsta.domain.Member;
 import com.itwill.willsta.domain.Post;
 import com.itwill.willsta.domain.PostImage;
 import com.itwill.willsta.repository.PostDao;
@@ -14,6 +17,9 @@ import com.itwill.willsta.repository.PostDao;
 public class PostServiceImpl implements PostService {
 	@Autowired
 	PostDao postDao;
+	
+	@Autowired
+	MemberService memberService;
 	
 	String uploadFolder = "C:\\eclipse-workspace5\\willsta\\willsta\\willstagram\\src\\main\\webapp\\contents\\post_contents";
 	@Override
@@ -133,7 +139,21 @@ public class PostServiceImpl implements PostService {
 
 		return postDao.status_update(pNo, status);
 	}
-
+	
+	@Override
+	public ModelAndView main_page(String mId) {
+		ModelAndView mv = new ModelAndView();
+		
+		Member member = memberService.selectByIdContainFollowInfo(mId);
+		System.out.println(member);
+		mv.addObject("member", member);
+		List<Post> postList = selectMyList(mId);
+		for (Post post : postList) {
+			post.setTagArray(post.getHasTag().split(" "));
+		}
+		mv.addObject("postList", postList);
+		return mv;
+	}
 	
 
 }

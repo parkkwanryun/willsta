@@ -35,8 +35,8 @@ public class MemberUnitTestMain {
 	@Test //회원가입
 	@Ignore
 	public void insertMember() {
-		boolean member = memberDao.insertMember(new Member("ss501", "12345", "윌스타그램", "bluepk2034@Naver.com","010755555", "","F"));
-		System.out.println("## 회원가입(멤버 추가) :"+member);
+		//boolean member = memberDao.insertMember(new Member("ss501", "12345", "윌스타그램", "bluepk2034@Naver.com","010755555", "","F"));
+		//System.out.println("## 회원가입(멤버 추가) :"+member);
 	}
 	
 	@Test //회원탈퇴
@@ -70,8 +70,8 @@ public class MemberUnitTestMain {
 	@Test //회원정보 수정
 	@Ignore
 	public void updateMember() {
-		boolean member = memberDao.updateMember(new Member("ksj","12345","소진","sj@naver.com","0100","",""));
-		System.out.println("## 회원정보 수정 성공 여부:"+member);
+		//boolean member = memberDao.updateMember(new Member("ksj","12345","소진","sj@naver.com","0100","",""));
+		//System.out.println("## 회원정보 수정 성공 여부:"+member);
 	}
 	
 	@Test //임시비밀번호 발급

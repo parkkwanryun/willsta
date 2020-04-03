@@ -4,6 +4,9 @@ public class Follow {
 	private String mId; 
 	private String mIdYou;
 	
+	public Follow() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public Follow(String mId, String mIdYou) {
 		super();

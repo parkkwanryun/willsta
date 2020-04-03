@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itwill.willsta.domain.Likes;
 import com.itwill.willsta.domain.Post;
 import com.itwill.willsta.domain.PostImage;
+import com.itwill.willsta.service.MemberService;
 import com.itwill.willsta.service.PostService;
 
 @RestController
@@ -24,7 +25,7 @@ public class PostController {
 	PostService postService;
 	
 	@RequestMapping(value="/index")
-	public ModelAndView selectMy(HttpServletRequest request) {
+	public ModelAndView selectMyList(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		String mId = (String)request.getSession().getAttribute("mId");
 		List<Post> postList = postService.selectMyList(mId);
@@ -37,14 +38,12 @@ public class PostController {
 	}
 	
 	@RequestMapping(value="/main_post")
-	public ModelAndView selectMyList(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView();
+	public ModelAndView selectMainList(HttpServletRequest request) {
+		
 		String mId = (String)request.getSession().getAttribute("mId");
-		List<Post> postList = postService.selectMyList(mId);
-		for (Post post : postList) {
-			post.setTagArray(post.getHasTag().split(" "));
-		}
-		mv.addObject("postList", postList);
+		mId = "hjs";
+		ModelAndView mv = postService.main_page(mId);
+		
 		mv.setViewName("main_post");
 		return mv;
 	}

@@ -19,7 +19,11 @@ public interface MemberMapper {
 	public boolean insertMember(Member member);
 	
 	/*회원정보 로딩*/
-	@Select("SELECT m.mId, m.mPass, m.mName, m.mEmail, m.mPhone, m.mImage FROM MEMBER M INNER JOIN FOLLOW F ON f.mId=#{mId} WHERE #{mId}=f.mId")
+	@Select("SELECT m.mId, m.mPass, m.mName, m.mEmail, m.mPhone, m.mImage, "
+			+ " (select count(*) from follow x where x.mid = m.mId) as followerCount,"
+			+ " (select count(*) from follow x where x.midyou = m.mId) as followingCount "
+			+ " FROM MEMBER M "
+			+ " WHERE m.mId=#{mId}")
 	public Member selectByIdContainFollowInfo(@Param("mId") String mId);
 	
 	/*팔로우 정보 없는 회원정보 로딩*/

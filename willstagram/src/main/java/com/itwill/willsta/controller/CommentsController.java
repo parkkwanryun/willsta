@@ -1,9 +1,12 @@
 package com.itwill.willsta.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,29 +20,29 @@ public class CommentsController {
 	private CommentsService commentsService;
 	
 	@PostMapping(value = "/commentsInsertAction", produces = "text/plain;charset=UTF-8")
-	public String commentsInsertAction(@RequestParam(value = "pNo", defaultValue = "15") int pNo,
-									   @RequestParam(value = "mId", defaultValue = "hjs") String mId,
+	public ModelAndView commentsInsertAction(@RequestParam(value = "pNo", defaultValue = "15") int pNo,
+									   @RequestParam(value = "mId") String mId,
 									   @RequestParam String cContents,
 									   HttpSession session) throws Exception {
-		String result = "";
+		ModelAndView mv = new ModelAndView();
 		Comments comments = new Comments();
-		//String getmId = (String)session.getAttribute(mId);
-		//comments.setmId(getmId);
+		String getmId = (String)session.getAttribute(mId);
+		System.out.println(getmId);
+		comments.setmId(getmId);
 		comments.setpNo(pNo);
 		comments.setmId(mId);
 		comments.setcContents(cContents);
 		int createResult = commentsService.createComment(comments);
 		if(createResult == 1) {
-			result = "true";
-		}else {
-			result = "false";
+			mv.addObject("comments", comments);
+			mv.setViewName("comments");
 		}
-		return result;
+		return mv;
 	}
 	
-	//@RequestMapping(value = "/postCommentList")
-	//public List<Comments> commentsList(@RequestParam(value = "pNo", defaultValue = "15") int pNo) throws Exception {
-		
-		
-	//}
+	@RequestMapping(value = "/postCommentsList", produces = "application/json;charset=UTF-8")
+	public List<Comments> postCommentsList(@RequestParam(value = "pNo", defaultValue = "15") int pNo) throws Exception {
+		List<Comments> postCommentsList = commentsService.postCommentsList(pNo);
+		return postCommentsList;
+	}
 }

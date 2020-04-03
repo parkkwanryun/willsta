@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-import com.itwill.willsta.domain.DM;
 import com.itwill.willsta.domain.Follow;
 
 @Mapper
@@ -24,13 +23,13 @@ public interface FollowMapper {
 	
 	
 	/*Following List 내가 팔로우하고있는사람들 보기*/
-	@Select(" select mId  from follow where mIdYou =#{mIdYou}")
-	public List<Follow> following(String mIdYou);
+	@Select(" select mIdYou  from follow where mId =#{mId}")
+	public List<Follow> following(String mId);
 	
 	
 	/*Follower List 나를 팔로하고있는 사람들 */
-	@Select("select midYou from follow where mid =#{mId}")
-	public List<Follow> followers(String mId);
+	@Select("select mId from follow where mIdYou =#{mIdYou}")
+	public List<Follow> followers(String mIdYou);
 	
 	/*Followers count 나를 팔로하고있는 사람들 수   */
 	@Select("select count(*) as followersCount from follow where mid =#{mId}")

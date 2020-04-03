@@ -76,4 +76,10 @@ public class MemberServiceImpl implements MemberService{
 		}
 		return member;
 	}
+
+	@Override
+	public Member selectByIdContainFollowInfo(String mId) {
+		return memberDao.selectByIdContainFollowInfo(mId);
+		
+	}
 }

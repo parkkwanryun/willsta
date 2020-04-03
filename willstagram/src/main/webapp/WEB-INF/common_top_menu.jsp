@@ -45,7 +45,10 @@
 								</a>
 								<ul>
 								<!-- 	<li><a href="user-profile.html" title="">User Profile</a></li> -->
-									<li><a href="my_page" title="">my-profile-feed</a></li>
+
+									<li><a href="my_page.html" title="">My page</a></li>
+
+
 								</ul>
 							</li>
 							<li>
@@ -201,7 +204,7 @@
 								<li><a href="#" title="">Faqs</a></li>
 								<li><a href="#" title="">Terms & Conditions</a></li>
 							</ul>
-							<h3 class="tc"><a href="sign-in.html" title="">Logout</a></h3>
+							<h3 class="tc" id="inner_sign_in"><a href="sign_in" title="">Logout</a></h3>
 						</div><!--user-account-settingss end-->
 					</div>
 				</div><!--header-data end-->
