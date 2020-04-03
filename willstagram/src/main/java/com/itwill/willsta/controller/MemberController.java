@@ -43,7 +43,7 @@ public class MemberController {
 	@RequestMapping(value="/sign_in_action", method = RequestMethod.POST, produces="text/plain; charset=UTF-8")
 	public String sign_in_action_post(@RequestParam("mId")String mId, @RequestParam("mPass")String mPass, 
 										HttpSession session, Model model) {
-		System.out.println("mId / mPass"+mId+mPass);
+		System.out.println("mId:"+mId+" mPass:"+mPass);
 		String forwardPath = "";
 		try {
 			Member signInMember = memberService.signIn(mId, mPass);
@@ -71,7 +71,7 @@ public class MemberController {
 	@RequestMapping(value="/sign_out_action")
 	public String sign_out_action(HttpSession session) {
 		session.invalidate();
-		String forwardPath ="redirect:index";
+		String forwardPath ="sign_in";
 		return forwardPath;
 	}
 	
