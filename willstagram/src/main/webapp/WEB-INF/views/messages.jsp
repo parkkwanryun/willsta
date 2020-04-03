@@ -2,7 +2,14 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<body>	
+<body>
+<style>
+	div.messages-list >  ul > li:hover {
+	background-color: mistyrose;
+	}
+</style>
+
+	
 	<div class="wrapper">		
 
 		<header>
@@ -210,6 +217,7 @@
 				</div><!--header-data end-->
 			</div>
 		</header><!--header end-->	
+		
 		<section class="messages-page">
 			<div class="container">
 				<div class="messages-sec">
@@ -223,25 +231,29 @@
 										<li><a href="#" title=""><i class="fa fa-ellipsis-v"></i></a></li>
 									</ul>
 								</div><!--msg-title end-->
+								
 								<div class="messages-list">
+								<c:forEach var="dm" items="${dmList}">
 									<ul>
 									<!-- 유저 리스트 li가 하나의 박스 -->
-										<li class="active">
+										<li>
 											<div class="usr-msg-details">
 												<div class="usr-ms-img">
-													<img src="" alt="">
+													<img src="contents/member_image/${dm.mImage}" alt="">
 													<span class="msg-status"></span>
 												</div>
 												<div class="usr-mg-info">
-													<h3>John Doe</h3>
-													<p>Lorem ipsum dolor <img src="" alt=""></p>
+													<h3>${dm.mId}</h3>
+													<p> <img src=></p>
 												</div><!--usr-mg-info end-->
-												<span class="posted_time">1:55 PM</span>
+												<span class="posted_time">${dm.dmDate}</span>
 												<span class="msg-notifc">1</span>
 											</div><!--usr-msg-details end-->
 										</li>
-										
 									</ul>
+								</c:forEach>
+	
+									
 								</div><!--messages-list end-->
 							</div><!--msgs-list end-->
 						</div>
@@ -254,36 +266,32 @@
 											<img src="" alt="">
 										</div><!--messg-usr-img end-->
 									</div><!--main-message-box end-->
+									
+									<!-- 왼쪽 말풍선 -->
 									<div class="main-message-box ta-right">
 										<div class="message-dt">
 											<div class="message-inner-dt">
-											<!--  본문
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
-											-->
+												<p>hello why~...</p>
 											</div><!--message-inner-dt end-->
 											<!-- 
 											<span>Sat, Aug 23, 1:08 PM</span>
 											 -->
 										</div><!--message-dt end-->
-										<div class="messg-usr-img">
-											<img src="" alt="">
-										</div><!--messg-usr-img end-->
 									</div><!--main-message-box end-->
+									<!-- 왼쪽 말풍선 -->
+									
+									
+									<!-- 오른쪽 말풍선 -->
 									<div class="main-message-box st3">
 										<div class="message-dt st3">
 											<div class="message-inner-dt">
-											<!-- 
-												<p>Cras ultricies ligula.<img src="" alt=""></p>
-											-->
+												<p>what the fuck</p>
 											</div><!--message-inner-dt end-->
-											<!-- 
-											<span>5 minutes ago</span>
-											 -->
 										</div><!--message-dt end-->
-										<div class="messg-usr-img">
-											<img src="" alt="">
-										</div><!--messg-usr-img end-->
 									</div><!--main-message-box end-->
+									<!-- 오른쪽 말풍선 -->
+									
+									
 									<div class="main-message-box ta-right">
 										<div class="message-dt">
 											<div class="message-inner-dt">
@@ -365,45 +373,17 @@
 			</div>
 		</section><!--messages-page end-->
 </div><!--theme-layout end-->
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/popper.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/jquery.mCustomScrollbar.js"></script>
-<script type="text/javascript" src="lib/slick/slick.min.js"></script>
-<script type="text/javascript" src="js/scrollbar.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
-
+<jsp:include page="/WEB-INF/commons/include_footer_js.jsp"/>
+<script type="text/javascript" src = "js/socketConnect.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	$('#btnSend').on('click', function(event){
+$(function(){
+	$('#btnSend').on('click', function(event) {
 		event.preventDefault();
 		let msg = $('#msg').val();
 		socket.send(msg);
-		$("#msg").val("");
-	});	
+		$("#msg").val("");	
+	});
 });
 </script>
-<script type="text/javascript">
-var socket = null;
-function connect() {
-	var ws = new WebSocket("ws://localhost:8080/willstagram/replyEcho");
-	socket = ws;
-	ws.onopen = function () { // connection이 open 되었을때 실행
-		console.log('Info : connection opened.');
-	};
-	ws.onmessage = function (event) {	// connection이 open 되고 서버에게 메시지를 보낼때 실행
-		console.log(event.data+ '\n');
-	};
-	ws.onclose = function(event) {	// connection 이 close 되었을때 실행
-		console.log('Info: connection closed.');
-		setTimeout(function(){ connect(); }, 1000);
-		};
-	ws.onerror = function(event) {	// connection 이 error가 나왔을때
-		console.log('Info: connection closed.'); 
-		};
-}
-connect();
-</script>
-
 </body>
 </html>

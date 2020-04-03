@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!DOCTYPE html>
-<html>
+<%@ taglib prefix="fmt2" uri="http://java.sun.com/jstl/fmt_rt"%>
 <head>
 <meta charset="UTF-8">
 <title>즐거움의 시작 윌스타그램</title>
@@ -236,36 +235,24 @@
 															src="images/liked-img.png" alt=""> <span
 															class="likeCount">${post.likeCount}</span></li>
 														<!-- a 클릭시 comment-section toggle -->
-														<li><a href="#" class="com" id="comment_list_click">
-																<i class="fas fa-comment-alt"></i> Comment 15
-														</a></li>
+														
 													</ul>
 													<a href="#"><i class="fas fa-eye"></i>Views
 														${post.pViewCount}</a>
 												</div>
 												<!-- comment-section -->
-												<div class="comment-section">
-												
-													<c:forEach var="comments" items="${postCommentsList}">
+												<div class="comment-section" post_no="${post.pNo}">
+													<ul>
+														<li><a href="#" class="com">
+																<i class="fas fa-comment-alt"></i> Comments </a>
+														</li>
+													</ul>
+													
 													<!-- comment-sec -->
 													<div class="comment-sec" >
-														<ul>
-															<li>
-																<div class="comment-list">
-																	<div class="comment" comments_no="${comments.cNo}">
-																		<h3>${comments.mId}</h3>
-																		<span><img src="images/clock.png" alt="">
-																			${comments.cTime}</span>
-																		<p>${comments.cContents}</p>
-																		<a href="#" title="" class="active"><i
-																			class="fa fa-reply-all"></i>Reply</a>
-																	</div>
-																</div>
-															</li>
-														</ul>
+														
 													</div>
 													<!--comment-sec end-->
-													</c:forEach>
 													
 												</div>
 												<!--comment-section end-->
@@ -275,12 +262,12 @@
 														<img src="images/resources/bg-img4.png" alt="">
 													</div>
 													<div class="comment_box">
-														<form id="comment-insert-form">
+														<form>
 															<!-- 댓글 내용 쓰는 곳 -->
 															<input type="text" placeholder="Post a comment"
-																id="cContents" name="cContents"> <input
+																name="cContents"> <input
 																type="hidden" name="pNo" value="${post.pNo}">
-															<button type="button" id="comment-insert-button">Send</button>
+															<button type="button">Send</button>
 														</form>
 													</div>
 												</div>
