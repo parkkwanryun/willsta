@@ -74,8 +74,6 @@
 									</div><!--login-resources end-->
 								</div>
 								
-								
-								
 								<!--sign_in_sec end-->
 								<div class="sign_in_sec" id="tab-2">
 									<div class="signup-tab">

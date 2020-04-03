@@ -67,9 +67,11 @@ public class MemberController {
 		return forwardPath;
 	}
 	
-	@MemberLoginCheck
+	
+	@ResponseBody
 	@RequestMapping(value="/sign_out_action")
 	public String sign_out_action(HttpSession session) {
+		System.out.println("sign_out_action 컨트롤러 테스트");
 		session.invalidate();
 		String forwardPath ="sign_in";
 		return forwardPath;
