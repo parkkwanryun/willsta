@@ -26,9 +26,8 @@ $(function(){
 			success :function(textData){
 				if(textData.trim()=="true"){
 					location.href = '/willstagram/index';
-					console.log(textData);
 				}else if(textData.trim()=="false"){
-					
+
 				}
 			}
 		});
