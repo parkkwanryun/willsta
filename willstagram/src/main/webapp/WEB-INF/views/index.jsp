@@ -234,8 +234,6 @@
 															href="#"><i class="fas fa-heart"></i> Like</a> <img
 															src="images/liked-img.png" alt=""> <span
 															class="likeCount">${post.likeCount}</span></li>
-														<!-- a 클릭시 comment-section toggle -->
-														
 													</ul>
 													<a href="#"><i class="fas fa-eye"></i>Views
 														${post.pViewCount}</a>
