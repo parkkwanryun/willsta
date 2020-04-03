@@ -163,7 +163,7 @@
 					<div class="user-account">
 						<div class="user-info">
 							<img src="images/resources/user.png" alt="">
-							<a href="#" title="">John</a>
+							<a href="#" title="">${member.mName}</a>
 							<i class="la la-sort-down"></i>
 						</div>
 						<div class="user-account-settingss">
@@ -243,11 +243,13 @@
 										<div class="user_pro_status">
 											<ul class="flw-status">
 												<li>
-													<span>Following</span>
+													<h4>Following</h4>
+													<span>${member.followingCount}</span>
 													<b>34</b>
 												</li>
 												<li>
-													<span>Followers</span>
+													<h4>Followers</h4>
+													<span>${member.followerCount}</span>
 													<b>155</b>
 												</li>
 											</ul>
@@ -280,7 +282,7 @@
 											<div class="suggestion-usd">
 												<img src="images/resources/s2.png" alt="">
 												<div class="sgt-text">
-													<h4>John Doe</h4>
+													<h4>${member.mName}</h4>
 													<span>PHP Developer</span>
 												</div>
 												<span><i class="la la-plus"></i></span>
@@ -312,7 +314,7 @@
 											<div class="suggestion-usd">
 												<img src="images/resources/s6.png" alt="">
 												<div class="sgt-text">
-													<h4>John Doe</h4>
+													<h4>${member.mName}</h4>
 													<span>PHP Developer</span>
 												</div>
 												<span><i class="la la-plus"></i></span>
@@ -779,7 +781,7 @@
                                                         <div class="usy-dt">
                                                             <img src="images/resources/us-pic.png" alt="">
                                                             <div class="usy-name">
-                                                                <h3>John Doe</h3>
+                                                                <h3>${member.mName}</h3>
                                                                 <div class="epi-sec epi2">
                                                                     <ul class="descp descptab bklink">
                                                                         <li><img src="images/icon8.png" alt=""><span>Epic Coder</span></li>
@@ -825,7 +827,7 @@
                                                         <div class="usy-dt">
                                                             <img src="images/resources/us-pic.png" alt="">
                                                             <div class="usy-name">
-                                                                <h3>John Doe</h3>
+                                                                <h3>${member.mName}</h3>
                                                                 <div class="epi-sec epi2">
                                                                     <ul class="descp descptab bklink">
                                                                         <li><img src="images/icon8.png" alt=""><span>Epic Coder</span></li>
@@ -871,7 +873,7 @@
                                                         <div class="usy-dt">
                                                             <img src="images/resources/us-pic.png" alt="">
                                                             <div class="usy-name">
-                                                                <h3>John Doe</h3>
+                                                                <h3>${member.mName}</h3>
                                                                 <div class="epi-sec epi2">
                                                                     <ul class="descp descptab bklink">
                                                                         <li><img src="images/icon8.png" alt=""><span>Epic Coder</span></li>
@@ -922,7 +924,7 @@
 													<div class="usy-dt">
 														<img src="images/resources/us-pic.png" alt="">
 														<div class="usy-name">
-															<h3>John Doe</h3>
+															<h3>${member.mName}</h3>
 															<span><img src="images/clock.png" alt="">3 min ago</span>
 														</div>
 													</div>
@@ -979,7 +981,7 @@
 													<div class="usy-dt">
 														<img src="images/resources/us-pic.png" alt="">
 														<div class="usy-name">
-															<h3>John Doe</h3>
+															<h3>${member.mName}</h3>
 															<span><img src="images/clock.png" alt="">3 min ago</span>
 														</div>
 													</div>
@@ -1036,7 +1038,7 @@
 													<div class="usy-dt">
 														<img src="images/resources/us-pc2.png" alt="">
 														<div class="usy-name">
-															<h3>John Doe</h3>
+															<h3>${member.mName}</h3>
 															<span><img src="images/clock.png" alt="">3 min ago</span>
 														</div>
 													</div>
@@ -1093,7 +1095,7 @@
 													<div class="usy-dt">
 														<img src="images/resources/us-pic.png" alt="">
 														<div class="usy-name">
-															<h3>John Doe</h3>
+															<h3>${member.mName}</h3>
 															<span><img src="images/clock.png" alt="">3 min ago</span>
 														</div>
 													</div>
@@ -1516,7 +1518,7 @@
 													<div class="usy-dt">
 														<img src="images/resources/us-pic.png" alt="">
 														<div class="usy-name">
-														<h3>John Doe</h3>
+														<h3>${member.mName}</h3>
 														<div class="epi-sec epi2">
 													     <ul class="descp descptab bklink">
 														<li><img src="images/icon8.png" alt=""><span>Epic Coder</span></li>
@@ -1572,7 +1574,7 @@
 													<div class="usy-dt">
 														<img src="images/resources/Jassica.jpg" alt="">
 														<div class="usy-name">
-														<h3>John Doe</h3>
+														<h3>${member.mName}</h3>
 														<div class="epi-sec epi2">
 													     <ul class="descp descptab bklink">
 														<li><img src="images/icon8.png" alt=""><span>Epic Coder</span></li>
@@ -1628,7 +1630,7 @@
 													<div class="usy-dt">
 														<img src="images/resources/rock.jpg" alt="">
 														<div class="usy-name">
-														<h3>John Doe</h3>
+														<h3>${member.mName}</h3>
 														<div class="epi-sec epi2">
 													     <ul class="descp descptab bklink">
 														<li><img src="images/icon8.png" alt=""><span>Epic Coder</span></li>
@@ -1767,7 +1769,7 @@
 													<div class="usy-dt">
 														<img src="images/resources/bg-img4.png" alt="">
 														<div class="usy-name">
-															<h3>John Doe</h3>
+															<h3>${member.mName}</h3>
 															<div class="epi-sec epi2">
 													   <p><i class="la la-clock-o"></i>3 min ago</p>													   
 													   <p class="tahnks">Thanks :)</p>
@@ -1823,7 +1825,7 @@
 												<li><i class="fa fa-star-half-o"></i></li>
 											</ul>
 											<a href="#" title="">5.0 of 5 Reviews</a><br><br>
-											<p>Awesome Work, Thanks John!</p>
+											<p>Awesome Work, Thanks ${member.mName}!</p>
 											<hr>
 										</div>
 										<div class="post_topbar rep-post">
@@ -1846,7 +1848,7 @@
 													<div class="usy-dt">
 														<img src="images/resources/us-pic.png" alt="">
 														<div class="usy-name">
-															<h3>John Doe</h3>
+															<h3>${member.mName}</h3>
 															<span><img src="images/clock.png" alt="">3 min ago</span>
 														</div>
 													</div>
@@ -1906,7 +1908,7 @@
 													<div class="usy-dt">
 														<img src="images/resources/us-pic.png" alt="">
 														<div class="usy-name">
-															<h3>John Doe</h3>
+															<h3>${member.mName}</h3>
 															<span><img src="images/clock.png" alt="">3 min ago</span>
 														</div>
 													</div>
@@ -1966,7 +1968,7 @@
 													<div class="usy-dt">
 														<img src="images/resources/us-pic.png" alt="">
 														<div class="usy-name">
-															<h3>John Doe</h3>
+															<h3>${member.mName}</h3>
 															<span><img src="images/clock.png" alt="">3 min ago</span>
 														</div>
 													</div>
@@ -2026,7 +2028,7 @@
 													<div class="usy-dt">
 														<img src="images/resources/us-pic.png" alt="">
 														<div class="usy-name">
-															<h3>John Doe</h3>
+															<h3>${member.mName}</h3>
 															<span><img src="images/clock.png" alt="">3 min ago</span>
 														</div>
 													</div>
@@ -2423,7 +2425,17 @@
 	</div><!--theme-layout end-->
 
 
-
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/popper.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.mCustomScrollbar.js"></script>
+<script type="text/javascript" src="lib/slick/slick.min.js"></script>
+<script type="text/javascript" src="js/scrollbar.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="js/messages_ko.js"></script>
+<script type="text/javascript" src="js/wPost.js"></script>
+<script type="text/javascript" src="js/wComments.js"></script>
  <jsp:include page="/WEB-INF/commons/include_footer_js.jsp"/>
 </body>
 </html>
