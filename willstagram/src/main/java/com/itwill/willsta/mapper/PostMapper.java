@@ -29,8 +29,8 @@ public interface PostMapper {
 			"	<set> ", 
 			"    	<if test='pTitle != null'>pTitle = #{pTitle}, </if>", 
 			"    	<if test='pContents != null'>pContents = #{pContents},</if> ", 
-			"    	<if test='hasTag != null'>hasTag = #{hasTag} </if>", 
-			"    	<if test='status != null'>status = #{status} </if>", 
+			"    	<if test='hasTag != null'>hasTag = #{hasTag}, </if>", 
+			"    	pdate = sysdate", 
 			"	</set> ",  
 			"	WHERE pNo = #{pNo} ",
 			"</script>"})
@@ -48,9 +48,9 @@ public interface PostMapper {
 	@Delete("DELETE FROM POST WHERE pNo = #{pNo}")
 	public int delete(Integer pNo);
 	
-	
-	
-	
+	@Delete("DELETE FROM POST_IMAGE WHERE pNo = #{pNo}")
+	public int delete_img(Integer pNo);
+
 	//로그인 후 리스트 자신과 자신의 팔로잉 멤버의 글을 리스트를 작성일이 최신인 것 순으로 정렬
 	@Select(" SELECT P.PNO, P.PTITLE, P.PCONTENTS, P.HASTAG, P.PDATE, P.MID, M.MNAME, M.MIMAGE, PVIEWCOUNT,"
 			+"         (SELECT COUNT(*) FROM LIKES X WHERE X.PNO = P.PNO) AS likeCount, "
