@@ -9,10 +9,9 @@ $(function() {
 			method : "POST",
 			dataType : "html",
 			success : function(resultText) {
-				$("div.comment-sec").prepend(resultText);
+				alert($("div.comment-section"));
 			}
 		});
-		e.preventDefault();
 	});
 	
 	//포스트-댓글 전체 보이기
