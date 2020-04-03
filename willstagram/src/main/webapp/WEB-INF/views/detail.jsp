@@ -29,11 +29,11 @@
 		      	<c:forEach var="pi" items="${postImages}" varStatus="vs">	
 		      		<div class="item <c:if test="${vs.index==0}">active</c:if>">
 			          	<c:if test="${fn:startsWith(pi.fileName, 'img')}">
-							<img style="width:100%; height: 550px;" class="center-block" src="contents/post_contents/${pi.fileName}" alt="${pi.fileName}" >
+							<img style="width:100%; height: 550px;" class="center-block" src="contents/post_image/${pi.fileName}" alt="${pi.fileName}" >
 						</c:if>
 						<c:if test="${fn:startsWith(pi.fileName, 'mov')}">
 							<div class="embed-responsive embed-responsive-4by3">
-							  	<iframe class="embed-responsive-item" src="contents/post_contents/${pi.fileName}"></iframe>
+							  	<iframe class="embed-responsive-item" src="contents/post_image/${pi.fileName}"></iframe>
 							</div>
 						</c:if>
 			        </div>

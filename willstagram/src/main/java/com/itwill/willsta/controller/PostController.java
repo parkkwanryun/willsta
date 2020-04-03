@@ -23,7 +23,7 @@ import com.itwill.willsta.service.PostService;
 public class PostController {
 	@Autowired
 	PostService postService;
-	
+	@MemberLoginCheck
 	@RequestMapping(value="/index")
 	public ModelAndView selectMyList(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
@@ -36,18 +36,18 @@ public class PostController {
 		mv.setViewName("index");
 		return mv;
 	}
-	
+	@MemberLoginCheck
 	@RequestMapping(value="/main_post")
 	public ModelAndView selectMainList(HttpServletRequest request) {
 		
 		String mId = (String)request.getSession().getAttribute("mId");
-		mId = "hjs";
 		ModelAndView mv = postService.main_page(mId);
 		
 		mv.setViewName("main_post");
 		return mv;
 	}
 	
+	@MemberLoginCheck
 	@RequestMapping(value="/get_post" , produces = "text/html;charset=utf-8")
 	public ModelAndView selectPost(@RequestParam(value="pNo", required = true) Integer pNo, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
@@ -61,19 +61,35 @@ public class PostController {
 		mv.setViewName("detail");
 		return mv;
 	}
-	
+	@MemberLoginCheck
+	@RequestMapping(value="/get_post_data" , produces = "application/json;charset=utf-8")
+	public Post selectPostData(@RequestParam(value="pNo", required = true) Integer pNo, HttpServletRequest request) {
+		String mId = (String)request.getSession().getAttribute("mId");
+		Post post = postService.selectPost(pNo, mId);
+		post.setTagArray(post.getHasTag().split(" "));
+		//List<PostImage> postImages = postService.selectContents(pNo);
+		return post;
+	}
+	@MemberLoginCheck
 	@RequestMapping(value="/write_post", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
-	public ModelAndView write(Post post, MultipartFile[] uploadFile) {
+	public ModelAndView write(Post post, MultipartFile[] uploadFile, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		post.setmId("hjs");
+		post.setmId((String)request.getSession().getAttribute("mId"));
+		Post postOne =null;
+		//post번호가 있으면 update, 없으면 insert
+		if(post.getpNo()!=null && post.getpNo() > 0) {
+			postOne = postService.modifyPost(post, uploadFile);
+		} else {
+			postOne = postService.createPost(post, uploadFile);
+		}
 		
-		Post postOne = postService.createPost(post, uploadFile);
 		mv.addObject("post", postOne);
 		mv.setViewName("post");
 
 		return mv;
 	}
 	@ResponseBody
+	@MemberLoginCheck
 	@RequestMapping(value="/delete_post", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
 	public String delete(@RequestParam(value="pNo", required = true) int pNo) {
 		
@@ -91,7 +107,7 @@ public class PostController {
 		return "fail";
 		
 	}
-	
+	@MemberLoginCheck
 	@RequestMapping(value="/insert_like", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
 	public String insert_like(@RequestParam(value="pNo", required = true) int pNo) {
 		String mId = "hjs";
@@ -100,7 +116,7 @@ public class PostController {
 		
 	}
 	
-	
+	@MemberLoginCheck
 	@RequestMapping(value="/status_change", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
 	public String status_change(@RequestParam(value="pNo", required = true) int pNo,
 								@RequestParam(value="status", required = true) String status) {
