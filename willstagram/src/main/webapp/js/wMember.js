@@ -5,46 +5,65 @@
 	   OR  넣어준 id 와 password value 값만 전송? 
 	 컨트롤러로 요청
 	 2. id, password 유효성체크
-	 3. 자바 단에서 요청받은 컨트롤러에서의 세션 유무 체크 
+	  자바 단에서 요청받은 컨트롤러에서의 세션 유무 체크(Interceptor) 
+	 3. logout 시, login으로 버튼 바꿔주는 이벤트처리(show, hide)
+	 4. session 유지 시간 세팅 
 	 */ 
 
-
-
-
-	
-$(function(){
-	$(document).on('submit','#member_login_action',function(e){
-		/*
-		var parameter = $(this).serialize();s asdasd asdsad
-		 */
-		var parameter = "mId="+member_login_action.mId.value+"&mPass="+member_login_action.mPass.value;
+	/*
+	  회원가입 
+	*/
+function member_register_action(e){
+	alert(target);
+		var parameter = $(e.target).serialize();
 		$.ajax({
-			url: "sign_in_action",
-			data: parameter,
-			method: "POST",
-			dataType:"text",
-			success :function(textData){
+			url:'sign_up_action',
+			data:parameter,
+			method:'POST',
+			dataType:'text',
+			success: function(textData){
 				if(textData.trim()=="true"){
-					location.href = '/willstagram/index';
+					location.href ='willstagram/index';
 				}else if(textData.trim()=="false"){
-
+					
 				}
 			}
 		});
 		e.preventDefault();
-	});
+	};
+
+$(function() {
+	$(document).on(
+			'submit',
+			'#member_login_action',
+			function(e) {
+				/*
+				 * var parameter = $(this).serialize();
+				 */
+				var parameter = "mId=" + member_login_action.mId.value	
+						+ "&mPass=" + member_login_action.mPass.value;
+				$.ajax({
+					url : "sign_in_action",
+					data : parameter,
+					method : "POST",
+					dataType : "text",
+					success : function(textData) {
+						if (textData.trim() == "true") {
+							location.href = '/willstagram/index';
+						} else if (textData.trim() == "false") {
+
+						}
+					}
+				})
+				e.preventDefault();
+			}
+			
+	);
 	
-	function inner_sign_in(){
-		$('#inner_sign_in').on('click',function(e){
-			session.invalidate();
-			location.href="willstagram/sign_in";
-		})
-		
-	}
-	
+	$('#member_register_action').click(function(e){
+		member_register_action();
+		e.preventDefault();
+	});	
 });
 
-
-/*
-  3. 회원가입 
-*/
+		
