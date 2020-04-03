@@ -7,22 +7,30 @@
 	 2. id, password 유효성체크
 	  자바 단에서 요청받은 컨트롤러에서의 세션 유무 체크(Interceptor) 
 	 3. logout 시, login으로 버튼 바꿔주는 이벤트처리(show, hide)
+	 4. session 유지 시간 세팅 
 	 */ 
 
-
-function main_sign_out_function(){
+	/*
+	  회원가입 
+	*/
+function member_register_action(e){
+	alert(target);
+		var parameter = $(e.target).serialize();
 		$.ajax({
-			url:'sign_out_action',
+			url:'sign_up_action',
+			data:parameter,
 			method:'POST',
-			data: null,
-			success: function(){
-					$('#inner_sign_out').show();
-					$('#inner_sign_in').hide();
+			dataType:'text',
+			success: function(textData){
+				if(textData.trim()=="true"){
+					location.href ='willstagram/index';
+				}else if(textData.trim()=="false"){
+					
+				}
 			}
 		});
 		e.preventDefault();
-}
-
+	};
 
 $(function() {
 	$(document).on(
@@ -48,9 +56,14 @@ $(function() {
 					}
 				})
 				e.preventDefault();
-			});
+			}
+			
+	);
+	
+	$('#member_register_action').click(function(e){
+		member_register_action();
+		e.preventDefault();
+	});	
 });
+
 		
-/*
-  3. 회원가입 
-*/

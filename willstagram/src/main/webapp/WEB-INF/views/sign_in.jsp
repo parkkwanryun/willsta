@@ -74,41 +74,51 @@
 									</div><!--login-resources end-->
 								</div>
 								
+								
+								
+							
 								<!--sign_in_sec end-->
 								<div class="sign_in_sec" id="tab-2">
 									<div class="signup-tab">
 									</div><!--signup-tab end-->	
 
 									<div class="dff-tab current" id="tab-3">
-										<form>
+										<form id="member_register_action" method="POST">
+										
 											<div class="row">
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="text" name="id" placeholder="id">
+														<input type="text" name="mId" placeholder="id">
 														<i class="la la-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="password" name="password" placeholder="Password">
+														<input type="password" name="mPass" placeholder="Password">
 														<i class="la la-lock"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="text" name="email" placeholder="bluepk2034@naver.com">
+														<input type="password" name="mName" placeholder="Name">
+														<i class="la la-lock"></i>
+													</div>
+												</div>
+												<div class="col-lg-12 no-pdd">
+													<div class="sn-field">
+														<input type="text" name="mEmail" placeholder="bluepk2034@naver.com">
 														<i class="la la-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="text" name="Phone" placeholder="Phone Number">
+														<input type="text" name="mPhone" placeholder="Phone Number">
 														<i class="la la-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="text" name="pImage" placeholder="profile_image_upload">
+														<input type="text" name="mImage" placeholder="profile_image_upload">
 														<i class="la la-user"></i>
 													</div>
 												</div>
@@ -128,6 +138,8 @@
 												</div>
 											</div>
 										</form>
+										
+										
 									</div><!--dff-tab end-->
 									<div class="dff-tab" id="tab-4">
 										<form>

@@ -66,8 +66,7 @@ public class MemberController {
 		}
 		return forwardPath;
 	}
-	
-	
+
 	@ResponseBody
 	@RequestMapping(value="/sign_out_action")
 	public String sign_out_action(HttpSession session) {
@@ -76,6 +75,20 @@ public class MemberController {
 		String forwardPath ="sign_in";
 		return forwardPath;
 	}
+	@RequestMapping(value="/sign_up_action",method = RequestMethod.POST, produces="text/plain; charset=UTF-8")
+	public String sign_up_action(@ModelAttribute Member member, HttpSession session) {
+		System.out.println("sign_up_action 컨트롤러 테스트");
+		String forwardPath ="true";
+		boolean signUpMember = memberService.updateMember(member);
+		if(signUpMember) {
+			forwardPath="true";
+		}else {
+			forwardPath="false";
+		}
+		return forwardPath;
+	}
+	
+	
 	
 	@MemberLoginCheck
 	@RequestMapping(value="/my-profile-feed")
