@@ -247,6 +247,9 @@
 												</div>
 												<!-- post-comment -->
 												<div class="post-comment">
+													<div class="cm_img">
+														<img src="images/resources/bg-img4.png" alt="">
+													</div>
 													<div class="comment_box">
 														<form id="comment-insert-form">
 															<!-- 댓글 내용 쓰는 곳 -->
