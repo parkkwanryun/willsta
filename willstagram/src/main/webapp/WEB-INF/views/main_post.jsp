@@ -214,7 +214,7 @@
 											</div>
 											<div class="job-status-bar">
 													<ul class="like-com">
-														<li><a href="#"><i class="fas fa-heart"></i> Like</a>
+														<li><a href="#" class="like"><i class="fas fa-heart"></i> Like</a>
 															<img src="images/liked-img.png" alt=""> <span>${post.likeCount}</span>
 														</li>
 														<!-- a: 누를 시 comment-section toggle-->
@@ -435,6 +435,9 @@
 							<div class="col-lg-12">
 								<textarea id="pContents" name="pContents" placeholder="Description"></textarea>
 							</div>
+							<div class="col-lg-12 img-list" style="margin-bottom:10px;">
+								<!-- 여기 이미지 들어옴 -->
+						    </div>
 							<div class="col-lg-12">
 								<input type=file name=file1 size=400 class="TXTFLD" multiple>
 						    </div>

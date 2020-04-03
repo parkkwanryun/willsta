@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/socketConnect.js"></script>
 			<div class="container">
 				<div class="header-data">
 					<div class="logo">
@@ -202,9 +204,19 @@
 								<li><a href="#" title="">Faqs</a></li>
 								<li><a href="#" title="">Terms & Conditions</a></li>
 							</ul>
-							<h3 class="tc" id="inner_sign_in"><a href="sign_in" title="">Logout</a></h3>
+							<c:if test="${!empty(sMemberId)}">
+							<h3 class="tc" id="inner_sign_out">
+							<a href="sign_in" title="">Logout</a></h3>
+							</c:if>
+							<c:if test="${empty(sMemberId)}">
+							<h3 class="tc" id="inner_sign_in" >
+							<a href="sign_in" title="">Login</a></h3>
+							</c:if>
 						</div><!--user-account-settingss end-->
 					</div>
 				</div><!--header-data end-->
+
+			</div>			
+
 			</div>
-			
+

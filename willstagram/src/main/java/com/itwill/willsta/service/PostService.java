@@ -16,9 +16,9 @@ import com.itwill.willsta.domain.PostImage;
 				isolation=Isolation.READ_COMMITTED)
 public interface PostService {
 	
-	Post createPost(Post post,  MultipartFile[] uploadFile);
+	Post createPost(Post post, MultipartFile[] uploadFile);
 
-	int modifyPost(Post post);
+	Post modifyPost(Post post, MultipartFile[] uploadFile);
 
 	int removePost(Integer pNo);
 	

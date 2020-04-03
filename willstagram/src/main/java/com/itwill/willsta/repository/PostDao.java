@@ -38,4 +38,6 @@ public interface PostDao {
 	
 	public int up_viewcount(Integer pNo);
 	
+	public int delete_img(Integer pNo);
+	
 }

@@ -1,10 +1,13 @@
 	
 function post_write(){
-	
+	var postno = 0;
 	var formData = new FormData();
 	
 	var paramArray = $('#postWrite').serializeArray();
 	for (var i = 0; i < paramArray.length; i++) {
+		if(paramArray[i].name=='pNo' && paramArray[i].value>0){
+			postno=paramArray[i].value;
+		}
 		formData.append(paramArray[i].name, paramArray[i].value);
 	}  
 	
@@ -23,6 +26,9 @@ function post_write(){
 		type: "POST",
 		dataType:'html',
 		success: function(resultText){
+				if(postno>0){
+					$('div.post-bar[post_no="'+postno+'"]').remove();
+				}
 				$('div.posts-section').prepend(resultText);
 		}
 		
@@ -32,7 +38,6 @@ function post_write(){
      $(".wrapper").removeClass("overlay");
 	
 };
-
 
 //document ready
 		$(function(){
@@ -174,6 +179,27 @@ function post_write(){
 					
 				});
 				e.preventDefault();
+			});
+			var sel_files=[];
+			$(document).on('change', 'input.TXTFLD', function(e){
+				var files = e.target.files;
+				var filesArr = Array.prototype.slice.call(files);
+				$(".img-list").html("");
+				filesArr.forEach(function(f){
+					if(!f.type.match("image.*")) { 
+						return;
+					}
+					
+					sel_files.push(f);
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						var img_html = "<img src='"+ e.target.result +"' width='80px' style='margin-right:5px'/>";
+						$(".img-list").append(img_html);
+					}
+					
+					reader.readAsDataURL(f);
+					
+				});
 			});
 			
 			

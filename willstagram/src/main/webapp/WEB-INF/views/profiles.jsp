@@ -39,19 +39,10 @@
 									<h3 class="member-id">${member.mId}</h3>
 									<h4>${member.mName}</h4>
 									<ul>
-									<c:forEach var="check" items="${followCheck}">
-										<c:choose>
-											<c:when test="${check.mIdYou==member.mId}">
-												<li><a href="#" title="" class="unfollow">UnFollow</a></li><!-- follow중인 상태 -->
-											</c:when>
-											<c:otherwise>
-												<li><a href="#" title="" class="follow">Follow</a></li>
-											</c:otherwise>
-										</c:choose>
-									</c:forEach>
+										<li><a href="#" title="" class="unfollow">UnFollow</a></li><!-- follow중인 상태 -->
+										<li><a href="#" title="" class="follow">Follow</a></li>
 										<li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
 									</ul>
-				 					
 								</div>
 								<a href="user-profile.html" title="" class="view-more-pro">View Profile</a>
 							</div><!--company_profile_info end-->

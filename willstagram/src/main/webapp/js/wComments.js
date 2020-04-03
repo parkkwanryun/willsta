@@ -1,7 +1,9 @@
 //document ready
 $(function() {
 	// 댓글 쓰기
-	$(document).on("click", "#comment-insert-button", function(e) {
+	$(document).on("click", "form > button", function(e) {
+		
+		/*
 		var paramStr = $("#comment-insert-form").serialize();
 		$.ajax({
 			url : "commentsInsertAction",
@@ -12,6 +14,7 @@ $(function() {
 				$("div.comment-section").append(resultText);
 			}
 		});
+		 */
 	});
 	
 	// 포스트-댓글 전체 보이기

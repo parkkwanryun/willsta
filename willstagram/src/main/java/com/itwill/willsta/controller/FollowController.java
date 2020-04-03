@@ -4,6 +4,7 @@ package com.itwill.willsta.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -133,6 +134,7 @@ public class FollowController {
 		
 	}
 	
+
 	
 	@MemberLoginCheck
 	@RequestMapping(value="/my_page_post")
@@ -144,8 +146,19 @@ public class FollowController {
 		mv.setViewName("myPage");
 		return mv;
 	}
+
+	@RequestMapping(value = "/follow_Check")
+	   public ModelAndView followCheck(String mId, @RequestParam(value = "mIdYou") String mIdYou,HttpSession session) {
+	      ModelAndView mv=new ModelAndView();
+	      mId=(String) session.getAttribute("mId");
+	      int followCheck=followService.followCheck(mId, mIdYou);
+	      mv.addObject("followCheck",followCheck);
+	      mv.setViewName("profiles");
+	      return mv;
+	   }
 	
 	
+
 }
 
 
