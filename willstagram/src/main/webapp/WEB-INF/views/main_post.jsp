@@ -191,20 +191,20 @@
 												<c:if test="${fn:startsWith(post.fileName, 'img')}">
 													<div class="image">
 														<img class="center-block" style="margin:10px 0px;"
-															src="contents/post_contents/${post.fileName}" alt="여기에이미지들어옴"
+															src="contents/post_image/${post.fileName}" alt="여기에이미지들어옴"
 															width="500" height="300" >
 													</div>
 												</c:if>
 												<c:if test="${fn:startsWith(post.fileName, 'mov')}">
 													<div class="embed-responsive embed-responsive-4by3" style="margin-bottom:10px;" >
 													  		<iframe class="embed-responsive-item" style="padding-top:10px;"
-													  			src="contents/post_contents/${post.fileName}"></iframe>
+													  			src="contents/post_image/${post.fileName}"></iframe>
 													</div>
 												</c:if>
 											</div>
 											<div class="job_descp">
 												<h3>${post.pTitle}</h3>
-												<p>${post.pContents}<a href="#" title="">view more</a></p>
+												<p>${post.pContents}<br><a href="#" title="">view more</a></p>
 												<ul class="skill-tags">
 													<c:forEach var='tag' items="${post.tagArray}">
 														<li><a href="#" title="">${tag}</a></li>
