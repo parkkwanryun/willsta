@@ -1,26 +1,25 @@
 //document ready
 $(function() {
 	// 댓글 쓰기
-	$(document).on("click", "form > button", function(e) {
-		alert("!!");
-		/*
-		var paramStr = $("#comment-insert-form").serialize();
+	$(document).on("click", ".comments_insert_button", function(e) {
+		var $comments = $(e.target).parents("div.post-comment");
+		var params = "pNo="+$comments.attr("post_no");
 		$.ajax({
 			url : "commentsInsertAction",
-			data : paramStr,
+			data : params,
 			method : "POST",
 			dataType : "html",
 			success : function(resultText) {
 				$("div.comment-section").append(resultText);
 			}
 		});
-		 */
 	});
 	
 	// 포스트-댓글 전체 보이기
-	$(document).on("click", "#comment_list_click", function(e){
-		var $post = $(e.target).parents("div.comment-section");
-		var params = "pNo="+$post.attr("post_no");
+	$(document).on("click", ".comment_list_click", function(e){
+		var $comments = $(e.target).parents("div.comment-section");
+		var params = "pNo="+$comments.attr("post_no");
+		/*
 		$.ajax({
 			url : "postCommentsList",
 			method : "POST",
@@ -49,6 +48,7 @@ $(function() {
 				 $("div.comment-sec").html(html).slideToggle(500);										
 			}
 		});
+		*/
 	});
 	
 });
