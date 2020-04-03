@@ -1,32 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- comment-section -->
-<div class="comment-section">
+<!-- comment-sec -->
+<div class="comment-sec" post_no="${post.pNo}">
 	<ul>
-		<li><a href="#" class="com" id="comment_list_click"> <i
-				class="fas fa-comment-alt"></i> Comment 15
-		</a></li>
-	</ul>
-	<!-- comment-sec -->
-	<div class="comment-sec">
-		<ul>
-			<li>
-				<div class="comment-list">
-					<div class="comment" comments_no="${comments.cNo}">
-						<h3>${comments.mId}</h3>
-						<span><img src="images/clock.png" alt="">
-							${comments.cTime}</span>
-						<p>${comments.cContents}</p>
-						<a href="#" title="" class="active"><i class="fa fa-reply-all"></i>Reply</a>
-					</div>
+		<li>
+			<div class="comment-list">
+				<div class="comment" comments_no="${comments.cNo}">
+					<h3>${comments.mId}</h3>
+					<span><img src="images/clock.png" alt="">
+						${comments.cTime}</span>
+					<p>${comments.cContents}</p>
+					<a href="#" title="" class="active"><i class="fa fa-reply-all"></i>Reply</a>
 				</div>
-			</li>
-		</ul>
-	</div>
-	<!--comment-sec end-->
-
+			</div>
+		</li>
+	</ul>
 </div>
-<!--comment-section end-->
+<!--comment-sec end-->
+
 <!-- post-comment -->
 <div class="post-comment">
 	<div class="cm_img">

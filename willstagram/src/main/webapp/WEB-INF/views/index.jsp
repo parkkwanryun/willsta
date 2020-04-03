@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!DOCTYPE html>
-<html>
+<%@ taglib prefix="fmt2" uri="http://java.sun.com/jstl/fmt_rt"%>
 <head>
 <meta charset="UTF-8">
 <title>즐거움의 시작 윌스타그램</title>
@@ -242,25 +241,16 @@
 														${post.pViewCount}</a>
 												</div>
 												<!-- comment-section -->
-												<div class="comment-section">
-													<ul><li><a href="#" class="com" id="comment_list_click">
-																<i class="fas fa-comment-alt"></i> Comment 15</a></li></ul>
+												<div class="comment-section" post_no="${post.pNo}">
+													<ul>
+														<li><a href="#" class="com" id="comment_list_click">
+																<i class="fas fa-comment-alt"></i> Comments </a>
+														</li>
+													</ul>
+													
 													<!-- comment-sec -->
 													<div class="comment-sec" >
-														<ul>
-															<li>
-																<div class="comment-list">
-																	<div class="comment" comments_no="${comments.cNo}">
-																		<h3>${comments.mId}</h3>
-																		<span><img src="images/clock.png" alt="">
-																			${comments.cTime}</span>
-																		<p>${comments.cContents}</p>
-																		<a href="#" title="" class="active"><i
-																			class="fa fa-reply-all"></i>Reply</a>
-																	</div>
-																</div>
-															</li>
-														</ul>
+														
 													</div>
 													<!--comment-sec end-->
 													
