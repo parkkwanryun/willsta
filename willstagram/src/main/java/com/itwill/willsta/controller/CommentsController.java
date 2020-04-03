@@ -20,6 +20,7 @@ public class CommentsController {
 	@Autowired
 	private CommentsService commentsService;
 	
+	@MemberLoginCheck
 	@PostMapping(value = "/commentsInsertAction", produces = "text/plain;charset=UTF-8")
 	public ModelAndView commentsInsertAction(@RequestParam(value = "pNo", defaultValue = "15") int pNo,
 									   @RequestParam(value = "mId", defaultValue = "KJS") String mId,

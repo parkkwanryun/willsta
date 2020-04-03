@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- comments -->
+<!-- comment-sec -->
 <div class="comment-sec">
 	<ul>
 		<li>

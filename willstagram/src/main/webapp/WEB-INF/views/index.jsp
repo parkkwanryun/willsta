@@ -236,14 +236,38 @@
 															src="images/liked-img.png" alt=""> <span
 															class="likeCount">${post.likeCount}</span></li>
 														<!-- a 클릭시 comment-section toggle -->
-														<li><a href="#" class="com" id="comment_list_click" >
-														<i class="fas fa-comment-alt"></i> Comment 15</a></li>
+														<li><a href="#" class="com" id="comment_list_click">
+																<i class="fas fa-comment-alt"></i> Comment 15
+														</a></li>
 													</ul>
 													<a href="#"><i class="fas fa-eye"></i>Views
 														${post.pViewCount}</a>
 												</div>
 												<!-- comment-section -->
-												<div class="comment-section" ><div class="comment-sec"></div></div>
+												<div class="comment-section">
+												
+													<c:forEach var="comments" items="${postCommentsList}">
+													<!-- comment-sec -->
+													<div class="comment-sec" >
+														<ul>
+															<li>
+																<div class="comment-list">
+																	<div class="comment" comments_no="${comments.cNo}">
+																		<h3>${comments.mId}</h3>
+																		<span><img src="images/clock.png" alt="">
+																			${comments.cTime}</span>
+																		<p>${comments.cContents}</p>
+																		<a href="#" title="" class="active"><i
+																			class="fa fa-reply-all"></i>Reply</a>
+																	</div>
+																</div>
+															</li>
+														</ul>
+													</div>
+													<!--comment-sec end-->
+													</c:forEach>
+													
+												</div>
 												<!--comment-section end-->
 												<!-- post-comment -->
 												<div class="post-comment">
@@ -254,8 +278,8 @@
 														<form id="comment-insert-form">
 															<!-- 댓글 내용 쓰는 곳 -->
 															<input type="text" placeholder="Post a comment"
-																id="cContents" name="cContents"> 
-															<input type="hidden" name="pNo" value="${post.pNo}">
+																id="cContents" name="cContents"> <input
+																type="hidden" name="pNo" value="${post.pNo}">
 															<button type="button" id="comment-insert-button">Send</button>
 														</form>
 													</div>
