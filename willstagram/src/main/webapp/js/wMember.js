@@ -12,14 +12,17 @@
 
 function main_sign_out_function(){
 		$.ajax({
-			url:"sign_out_action",
+			url:'sign_out_action',
 			method:'POST',
+			data: null,
 			success: function(){
-					$('#inner_sign_out a').show();
-					$('#inner_sign_in a').hide();
+					$('#inner_sign_out').show();
+					$('#inner_sign_in').hide();
 			}
 		});
+		e.preventDefault();
 }
+
 
 $(function() {
 	$(document).on(
@@ -40,21 +43,12 @@ $(function() {
 						if (textData.trim() == "true") {
 							location.href = '/willstagram/index';
 						} else if (textData.trim() == "false") {
-							
+
 						}
 					}
 				})
 				e.preventDefault();
 			});
-	
-	
-	$('#inner_sign_out').on('click',function(e){ 
-		main_sign_out_function();
-		e.preventDefault();
-	});
-	
-	
-	
 });
 		
 /*
