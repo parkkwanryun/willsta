@@ -2,7 +2,7 @@
 $(function() {
 	// 댓글 쓰기
 	$(document).on("click", "form > button", function(e) {
-		
+		alert("!!");
 		/*
 		var paramStr = $("#comment-insert-form").serialize();
 		$.ajax({
