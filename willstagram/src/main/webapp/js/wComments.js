@@ -32,14 +32,18 @@ $(function() {
 					var mId = jsonObject.mId;
 					var cContents = jsonObject.cContents;
 					var cTime = jsonObject.cTime;
-					html += "<div class='comment-sec'>"+
-							"	<ul>" +
-							"		<li>" +
-							"			<div class='comment-list'>" +
-							"				<div class='comment'>" +
-							"					<h3>"+mId+"</h3>" +
-							"					<span><img src='images/clock.png' alt=''>"+cTime+"</span>"
-							"</div>";
+					html += "<ul>" +
+							"	<li>" +
+							"		<div class='comment-list'>" +
+							"			<div class='comment'>" +
+							"				<h3>"+mId+"</h3>" +
+							"				<span><img src='images/clock.png' alt=''>"+cTime+"</span>" +
+							"				<p>"+cContents+"</p>" +
+							"				<a href='#' title='' class='active'><i class='fa fa-reply-all'></i>Reply</a>" +
+							"			</div>" +
+							"		</div>]" +
+							"	</li>" +
+							"</ul>";
 				}); 
 				
 			}

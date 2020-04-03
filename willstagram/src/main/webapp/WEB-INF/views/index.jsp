@@ -243,7 +243,7 @@
 														${post.pViewCount}</a>
 												</div>
 												<!-- comment-section -->
-												<div class="comment-section"></div>
+												<div class="comment-section" post_no="${post.pNo}"><div class="comment-sec"></div></div>
 												<!--comment-section end-->
 												<!-- post-comment -->
 												<div class="post-comment">

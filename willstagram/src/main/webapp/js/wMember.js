@@ -15,7 +15,7 @@
 $(function(){
 	$(document).on('submit','#member_login_action',function(e){
 		/*
-		var parameter = $(this).serialize();
+		var parameter = $(this).serialize();s asdasd asdsad
 		 */
 		var parameter = "mId="+member_login_action.mId.value+"&mPass="+member_login_action.mPass.value;
 		$.ajax({
@@ -27,6 +27,7 @@ $(function(){
 				if(textData.trim()=="true"){
 					location.href = '/willstagram/index';
 				}else if(textData.trim()=="false"){
+
 				}
 			}
 		});
