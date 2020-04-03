@@ -236,17 +236,15 @@
 															src="images/liked-img.png" alt=""> <span
 															class="likeCount">${post.likeCount}</span></li>
 														<!-- a 클릭시 comment-section toggle -->
-														<li><a href="#" class="com" id="comment_list_click">
-																<i class="fas fa-comment-alt"></i> Comment 15
-														</a></li>
+														
 													</ul>
 													<a href="#"><i class="fas fa-eye"></i>Views
 														${post.pViewCount}</a>
 												</div>
 												<!-- comment-section -->
 												<div class="comment-section">
-												
-													<c:forEach var="comments" items="${postCommentsList}">
+													<ul><li><a href="#" class="com" id="comment_list_click">
+																<i class="fas fa-comment-alt"></i> Comment 15</a></li></ul>
 													<!-- comment-sec -->
 													<div class="comment-sec" >
 														<ul>
@@ -265,7 +263,6 @@
 														</ul>
 													</div>
 													<!--comment-sec end-->
-													</c:forEach>
 													
 												</div>
 												<!--comment-section end-->
