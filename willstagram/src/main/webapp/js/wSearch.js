@@ -1,6 +1,15 @@
 $(function(){
-	//alert("sd");
-	
+	var mId="mIdYou="+$('.member-id').html();
+	console.log(mId);
+	$.ajax({
+		url:'follow_Check',
+		method:'POST',
+		data:mId,
+		dataType:'text',
+		success:function(){
+			
+		}
+	});
 	
 	
 	//사용자 검색

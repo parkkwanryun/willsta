@@ -88,13 +88,10 @@ public class MemberController {
 	
 	//@MemberLoginCheck
 	@RequestMapping(value = "/profiles")
-	public ModelAndView memberList(String mId,String mIdYou, HttpSession session) {
+	public ModelAndView memberList(String mId,String mIdYou) {
 		ModelAndView mv=new ModelAndView();
 		List<Member> memberList=memberService.memberList();
-		mId=(String) session.getAttribute("mId");
-		List<Follow> followCheck=followService.following(mId);
 		mv.addObject("memberList",memberList);
-		mv.addObject("followCheck",followCheck);
 		mv.setViewName("profiles");
 		return mv;
 	}
@@ -102,13 +99,10 @@ public class MemberController {
 	//@MemberLoginCheck
 	@ResponseBody
 	@RequestMapping(value = "/search_member", method = RequestMethod.POST)
-	public ModelAndView findMemberList(@RequestParam(value = "find") String find, String mId, HttpSession session) {
+	public ModelAndView findMemberList(@RequestParam(value = "find") String find, String mId) {
 		ModelAndView mv=new ModelAndView();
 		List<Member> findMemberList=memberService.findMemberList(find);
-		mId=(String) session.getAttribute("mId");
-		List<Follow> followCheck=followService.following(mId);
 		mv.addObject("memberList",findMemberList);
-		mv.addObject("followCheck",followCheck);
 		mv.setViewName("profiles");
 		return mv;
 	}
