@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,14 +22,11 @@ public class CommentsController {
 	@MemberLoginCheck
 	@PostMapping(value = "/commentsInsertAction", produces = "text/plain;charset=UTF-8")
 	public ModelAndView commentsInsertAction(@RequestParam(value = "pNo", defaultValue = "15") int pNo,
-									   @RequestParam(value = "mId", defaultValue = "KJS") String mId,
-									   @RequestParam String cContents,
-									   HttpSession session) throws Exception {
+									   		 @RequestParam String cContents,
+									   		 HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		Comments comments = new Comments();
-		String getmId = (String)session.getAttribute(mId);
-		System.out.println(getmId);
-		comments.setmId(mId);
+		String mId = (String)session.getAttribute("mId");
 		comments.setpNo(pNo);
 		comments.setmId(mId);
 		comments.setcContents(cContents);
@@ -43,7 +39,7 @@ public class CommentsController {
 	}
 	
 	@RequestMapping(value = "/postCommentsList", produces = "application/json;charset=UTF-8")
-	public List<Comments> postCommentsList(@RequestParam(value = "pNo", defaultValue = "15") int pNo) throws Exception {
+	public List<Comments> postCommentsList(@RequestParam(value = "pNo") int pNo) throws Exception {
 		List<Comments> postCommentsList = commentsService.postCommentsList(pNo);
 		return postCommentsList;
 	}

@@ -36,7 +36,7 @@
 											<img src="contents/member_image/${member.mImage}" alt="">
 										</c:otherwise>
 									</c:choose>
-									<h3>${member.mId}</h3>
+									<h3 class="member-id">${member.mId}</h3>
 									<h4>${member.mName}</h4>
 									<ul>
 									<c:forEach var="check" items="${followCheck}">

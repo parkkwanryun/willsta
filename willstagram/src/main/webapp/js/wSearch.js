@@ -1,4 +1,7 @@
 $(function(){
+	//alert("sd");
+	
+	
 	
 	//사용자 검색
 	$('.userSearch').submit(function(e) {
