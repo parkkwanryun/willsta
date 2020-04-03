@@ -26,12 +26,12 @@ $(function(){
 			success :function(textData){
 				if(textData.trim()=="true"){
 					location.href = '/willstagram/index';
-					console.log(textData);
 				}else if(textData.trim()=="false"){
-					
+
 				}
 			}
-		})
+		});
+		e.preventDefault();
 	});
 	
 	function inner_sign_in(){

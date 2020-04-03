@@ -3,7 +3,7 @@ $(window).on("load", function() {
 
     //  ============= POST JOB POPUP FUNCTION =========
 
-    $(".post-jb").on("click", function(){
+    $(".post-jb, .updatePost").on("click", function(){
         $(".post-popup.job_post").addClass("active");
         $(".wrapper").addClass("overlay");
         return false;
@@ -13,7 +13,7 @@ $(window).on("load", function() {
         $(".wrapper").removeClass("overlay");
         return false;
     });
-
+    
     //  ============= SIGNIN CONTROL FUNCTION =========
 
     $('.sign-control li').on("click", function(){
