@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%><!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
+
 <body>
 	<div class="wrapper">
 		<header>
@@ -46,7 +48,7 @@
 								</a>
 								<ul>
 								<!-- 	<li><a href="user-profile.html" title="">User Profile</a></li> -->
-									<li><a href="my-profile-feed.html" title="">my-profile-feed</a></li>
+									<li><a href="myPage" title="">my page</a></li>
 								</ul>
 							</li>
 							<li>
