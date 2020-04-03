@@ -23,8 +23,8 @@ public class CommentsController {
 	@MemberLoginCheck
 	@PostMapping(value = "/commentsInsertAction", produces = "text/plain;charset=UTF-8")
 	public ModelAndView commentsInsertAction(@RequestParam(value = "pNo", defaultValue = "15") int pNo,
-									   @RequestParam String cContents,
-									   HttpSession session) throws Exception {
+									   		 @RequestParam String cContents,
+									   		 HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		Comments comments = new Comments();
 		String mId = (String)session.getAttribute("mId");
