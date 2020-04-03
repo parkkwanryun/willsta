@@ -9,7 +9,7 @@ $(function() {
 			method : "POST",
 			dataType : "html",
 			success : function(resultText) {
-				$("div.comment-section").append(resultText);
+				$("div.comment-sec").append(resultText);
 			}
 		});
 		e.preventDefault();
