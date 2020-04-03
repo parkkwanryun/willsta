@@ -241,7 +241,7 @@
 												<!-- comment-section -->
 												<div class="comment-section" post_no="${post.pNo}">
 													<ul>
-														<li><a href="#" class="com">
+														<li><a href="#" class="com comment_list_click">
 																<i class="fas fa-comment-alt"></i> Comments </a>
 														</li>
 													</ul>
@@ -255,7 +255,7 @@
 												</div>
 												<!--comment-section end-->
 												<!-- post-comment -->
-												<div class="post-comment">
+												<div class="post-comment" post_no="${post.pNo}">
 													<div class="cm_img">
 														<img src="images/resources/bg-img4.png" alt="">
 													</div>
@@ -263,9 +263,9 @@
 														<form>
 															<!-- 댓글 내용 쓰는 곳 -->
 															<input type="text" placeholder="Post a comment"
-																name="cContents"> <input
-																type="hidden" name="pNo" value="${post.pNo}">
-															<button type="button">Send</button>
+																name="cContents"> 
+															<input type="hidden" name="pNo" value="${post.pNo}">
+															<button type="button" class="comments_insert_button">Send</button>
 														</form>
 													</div>
 												</div>

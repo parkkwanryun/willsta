@@ -14,8 +14,7 @@ public interface MemberService {
 	
 	Member selectByIdContainFollowInfo(String mId);
 	
-	
-	
+
 	boolean updateMember(Member member);
 	
 	boolean deleteMember(String mId);
