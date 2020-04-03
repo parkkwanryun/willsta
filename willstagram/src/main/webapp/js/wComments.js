@@ -26,6 +26,7 @@ $(function() {
 				console.log(jsonArray);
 			}
 		})
+		e.preventDefault();
 	})
 	
 });
