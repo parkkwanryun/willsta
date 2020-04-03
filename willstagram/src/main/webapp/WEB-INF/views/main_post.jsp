@@ -215,7 +215,7 @@
 											<div class="job-status-bar">
 													<ul class="like-com">
 														<li><a href="#" class="like"><i class="fas fa-heart"></i> Like</a>
-															<img src="images/liked-img.png" alt=""> <span>${post.likeCount}</span>
+															<img src="images/liked-img.png" alt=""> <span class='likeCount'>${post.likeCount}</span>
 														</li>
 														<!-- a: 누를 시 comment-section toggle-->
 														<li><a href="#" class="com"> <i class="fas fa-comment-alt"></i> Comment 15</a></li>

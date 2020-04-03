@@ -165,7 +165,7 @@ function post_write(){
 					url:'insert_like',
 					data:params,
 					type: "POST",
-					dataType:'html',
+					dataType:'text',
 					success: function(resultText){
 						var likeCount = $(e.target).siblings('span.likeCount').text();
 						if(resultText.trim()=='insert'){
