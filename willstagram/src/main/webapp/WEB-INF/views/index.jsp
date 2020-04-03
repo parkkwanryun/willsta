@@ -245,8 +245,9 @@
 												<div class="comment-section">
 													<ul><li><a href="#" class="com" id="comment_list_click">
 																<i class="fas fa-comment-alt"></i> Comment 15</a></li></ul>
+													<c:forEach var="comments" items="${postCommentsList}">
 													<!-- comment-sec -->
-													<div class="comment-sec" >
+													<div class="comment-sec" post_no="${post.pNo}">
 														<ul>
 															<li>
 																<div class="comment-list">
@@ -263,7 +264,7 @@
 														</ul>
 													</div>
 													<!--comment-sec end-->
-													
+													</c:forEach>
 												</div>
 												<!--comment-section end-->
 												<!-- post-comment -->
