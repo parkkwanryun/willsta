@@ -21,7 +21,7 @@ public class PostServiceImpl implements PostService {
 	@Autowired
 	MemberService memberService;
 	
-	String uploadFolder = "C:\\eclipse-workspace5\\willsta\\willsta\\willstagram\\src\\main\\webapp\\contents\\post_contents";
+	String uploadFolder = "\\\\192.168.15.22\\contents\\post_image";
 	@Override
 	public Post createPost(Post post, MultipartFile[] uploadFile) {
 		/*

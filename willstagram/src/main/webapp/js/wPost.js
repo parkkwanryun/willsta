@@ -80,6 +80,26 @@ function post_write(){
 				e.preventDefault();
 			});
 			
+			//수정 폼 호출:쓰기폼을 보여주고 데이터를 뿌려준다
+			$(document).on("click", ".updatePost", function(e){
+		          
+		        var $post = $(e.target).parents('div.post-bar');
+				var params = "pNo="+ $post.attr('post_no');
+		        
+		        $.ajax({
+					url:'get_post_data',
+					method:'POST',
+					data:params,
+					dataType:'text',
+					success: function(resultText){
+						alert(resultText);
+					}
+				});
+		        
+		        $(".post-popup.job_post").addClass("active");
+		        $(".wrapper").addClass("overlay");
+		    });
+			
 			//post숨기거나 보이기
 			$(document).on('click','ul.ed-options a.hiddenPost',function(e){
 				var $post = $(e.target).parents('div.post-bar');
