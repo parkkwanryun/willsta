@@ -46,6 +46,7 @@ public class PostController {
 		mv.setViewName("main_post");
 		return mv;
 	}
+	
 	@MemberLoginCheck
 	@RequestMapping(value="/get_post" , produces = "text/html;charset=utf-8")
 	public ModelAndView selectPost(@RequestParam(value="pNo", required = true) Integer pNo, HttpServletRequest request) {
@@ -74,15 +75,14 @@ public class PostController {
 	public ModelAndView write(Post post, MultipartFile[] uploadFile, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		post.setmId((String)request.getSession().getAttribute("mId"));
-		
-		Post postOne = postService.createPost(post, uploadFile);
+		Post postOne =null;
 		//post번호가 있으면 update, 없으면 insert
-		/*if(post.getpNo()!=null && post.getpNo() > 0) {
-			Post postOne = postService.modifyPost(post);
+		if(post.getpNo()!=null && post.getpNo() > 0) {
+			postOne = postService.modifyPost(post, uploadFile);
 		} else {
-			Post postOne = postService.createPost(post, uploadFile);
+			postOne = postService.createPost(post, uploadFile);
 		}
-		*/
+		
 		mv.addObject("post", postOne);
 		mv.setViewName("post");
 
