@@ -5,13 +5,24 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.springframework.web.servlet.ModelAndView;
+
 import com.itwill.willsta.domain.Follow;
+import com.itwill.willsta.domain.Member;
+import com.itwill.willsta.domain.Post;
 import com.itwill.willsta.repository.FollowDao;
+import com.itwill.willsta.repository.PostDao;
+
 
 @Service(value = "followService")
 public class FollowServiceImpl implements FollowService {
 	@Autowired
 	FollowDao followDao;
+	@Autowired
+	PostDao postDao;
+	
+	@Autowired
+	MemberService memberService;
 	
 	
 	@Override
@@ -58,5 +69,24 @@ public class FollowServiceImpl implements FollowService {
 	}
 
 	
+	@Override
+	public ModelAndView main_page(String mId) {
+		ModelAndView mv = new ModelAndView();
+		
+		Member member = memberService.selectByIdContainFollowInfo(mId);
+		System.out.println(member);
+		mv.addObject("member", member);
+		List<Post> postList = selectMyList(mId);
+		for (Post post : postList) {
+			post.setTagArray(post.getHasTag().split(" "));
+		}
+		mv.addObject("postList", postList);
+		return mv;
+	}
+
+	private List<Post> selectMyList(String userId) {
+		
+		return postDao.selectMyList(userId);
+	}
 
 }

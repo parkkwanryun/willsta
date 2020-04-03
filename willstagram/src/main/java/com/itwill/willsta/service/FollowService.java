@@ -2,6 +2,8 @@ package com.itwill.willsta.service;
 
 import java.util.List;
 
+import org.springframework.web.servlet.ModelAndView;
+
 import com.itwill.willsta.domain.Follow;
 
 public interface FollowService {
@@ -19,4 +21,6 @@ public interface FollowService {
 	int followersCount(String mId);
 	
 	int followCheck(String mId,String mIdYou);
+
+	ModelAndView main_page(String mId);
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.willsta.domain.Follow;
+import com.itwill.willsta.domain.Likes;
 import com.itwill.willsta.domain.Post;
 import com.itwill.willsta.domain.PostImage;
 import com.itwill.willsta.service.FollowService;
@@ -29,7 +30,7 @@ public class FollowController {
 	@Autowired
 	PostService postService;
 
-	
+	@MemberLoginCheck
 	@RequestMapping(value="/my_page")
 	public ModelAndView myPage(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
@@ -60,7 +61,7 @@ public class FollowController {
 	
 	
 	@RequestMapping(value="/followList" , produces = "text/html;charset=utf-8")
-	public ModelAndView followers(@RequestParam(value="mId",required = true )String mId) {
+	public ModelAndView followers(@RequestParam(value="mId",required = true )String mId) { 
 		ModelAndView mv = new ModelAndView();
 		List<Follow> followers = followService.followers(mId);
 		for(Follow follow : followers) {
@@ -125,7 +126,27 @@ public class FollowController {
 		
 	}
 	
+	@RequestMapping(value="/click_like", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
+	public String click_like(@RequestParam(value="pNo", required = true) int pNo) {
+		String mId = "김소진";
+		Likes lk = new Likes(pNo, mId);
+		return postService.insert_like(lk);
+		
+	}
 	
+
+	
+	@MemberLoginCheck
+	@RequestMapping(value="/my_page_post")
+	public ModelAndView selectMainList(HttpServletRequest request) {
+		
+		String mId = (String)request.getSession().getAttribute("mId");
+		ModelAndView mv = postService.main_page(mId);
+		
+		mv.setViewName("myPage");
+		return mv;
+	}
+
 	@RequestMapping(value = "/follow_Check")
 	   public ModelAndView followCheck(String mId, @RequestParam(value = "mIdYou") String mIdYou,HttpSession session) {
 	      ModelAndView mv=new ModelAndView();
@@ -137,8 +158,7 @@ public class FollowController {
 	   }
 	
 	
-	
-	
+
 }
 
 
