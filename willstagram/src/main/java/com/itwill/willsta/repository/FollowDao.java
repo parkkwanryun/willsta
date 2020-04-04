@@ -7,10 +7,10 @@ import com.itwill.willsta.domain.Follow;
 public interface FollowDao {
 
 	/* Follow someone 누군가를 팔로우 하기*/
-	 boolean follow(Follow follow);
+	 int follow(Follow follow);
 
 	 /*Unfollow someone 누군가를 언팔하기*/
-	 boolean unfollow(String mIdYou, String mId);
+	 int unfollow(String mIdYou, String mId);
 	
 	 /* Followers 내 팔로워들 보기 */
 	  List<Follow> followers(String mId);

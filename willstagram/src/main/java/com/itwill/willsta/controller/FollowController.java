@@ -149,15 +149,41 @@ public class FollowController {
 	}
 
 	@RequestMapping(value = "/follow_Check")
-	   public ModelAndView followCheck(String mId, @RequestParam(value = "mIdYou") String mIdYou,HttpSession session) {
+	   public ModelAndView followCheck(@RequestParam(value = "mIdYou") String mIdYou,HttpSession session) {
 	      ModelAndView mv=new ModelAndView();
-	      mId=(String) session.getAttribute("mId");
+	      String mId=(String) session.getAttribute("mId");
+	      System.out.println(mIdYou);
+	      //mIdYou="ss501";
 	      int followCheck=followService.followCheck(mId, mIdYou);
+	      if (followCheck == 1 ) {
+			System.out.println("### follow상태");
+	      }else {
+			System.out.println("### follow 아닌 상태");
+	      }
 	      mv.addObject("followCheck",followCheck);
 	      mv.setViewName("profiles");
 	      return mv;
 	   }
 	
+	@RequestMapping(value = "/follow")
+		public ModelAndView follow(@RequestParam(value = "mIdYou") String mIdYou,HttpSession session) {
+		ModelAndView mv=new ModelAndView();
+		String mId=(String)session.getAttribute("mId");
+		int follow=followService.follow(new Follow(mId, mIdYou));
+		mv.addObject("follow", follow);
+		mv.setViewName("profiles");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/unFollow")
+		public ModelAndView unFollow(@RequestParam(value = "mIdYou") String mIdYou,HttpSession session) {
+		ModelAndView mv=new ModelAndView();
+		String mId=(String)session.getAttribute("mId");
+		int unFollow=followService.unfollow(mIdYou, mId);
+		mv.addObject("unFollow", unFollow);
+		mv.setViewName("profiles");
+		return mv;
+	}
 	
 
 }

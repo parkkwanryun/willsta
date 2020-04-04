@@ -27,7 +27,7 @@
 						</c:if>
 						<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 							<div class="company_profile_info">
-								<div class="company-up-info">
+								<div class="company-up-info"  mIdYou="${member.mId}">
 									<c:choose>
 										<c:when test="${member.mImage==null}">
 											<img src="contents/member_image/default.png" alt="">
@@ -39,7 +39,7 @@
 									<h3 class="member-id">${member.mId}</h3>
 									<h4>${member.mName}</h4>
 									<ul>
-										<li><a href="#" title="" class="unfollow">UnFollow</a></li><!-- follow중인 상태 -->
+										<li><a href="#" title="" class="unFollow">UnFollow</a></li><!-- follow중인 상태 -->
 										<li><a href="#" title="" class="follow">Follow</a></li>
 										<li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
 									</ul>

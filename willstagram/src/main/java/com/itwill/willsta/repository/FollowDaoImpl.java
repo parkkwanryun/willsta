@@ -16,12 +16,12 @@ public class FollowDaoImpl implements FollowDao{
 	FollowMapper followMapper;
 
 	@Override
-	public boolean follow(Follow follow) {
+	public int follow(Follow follow) {
 		return followMapper.follow(follow);
 	}
 
 	@Override
-	public boolean unfollow(String mIdYou, String mId) {
+	public int unfollow(String mIdYou, String mId) {
 
 		return followMapper.unFollow(mIdYou, mId);
 	}

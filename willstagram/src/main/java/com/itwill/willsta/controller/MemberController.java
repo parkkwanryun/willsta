@@ -15,19 +15,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.itwill.willsta.domain.Follow;
 import com.itwill.willsta.domain.Member;
 import com.itwill.willsta.exception.MemberNotFoundException;
 import com.itwill.willsta.exception.PasswordMismatchException;
-import com.itwill.willsta.service.FollowService;
 import com.itwill.willsta.service.MemberService;
 
 @Controller
 public class MemberController {
 	@Autowired
 	MemberService memberService;
-	@Autowired
-	FollowService followService;
 	@RequestMapping(value="/")
 	public String index() {
 		return "";
@@ -99,7 +95,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	//@MemberLoginCheck
+	@MemberLoginCheck
 	@RequestMapping(value = "/profiles")
 	public ModelAndView memberList(String mId,String mIdYou) {
 		ModelAndView mv=new ModelAndView();
@@ -109,7 +105,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	//@MemberLoginCheck
+	@MemberLoginCheck
 	@ResponseBody
 	@RequestMapping(value = "/search_member", method = RequestMethod.POST)
 	public ModelAndView findMemberList(@RequestParam(value = "find") String find, String mId) {
