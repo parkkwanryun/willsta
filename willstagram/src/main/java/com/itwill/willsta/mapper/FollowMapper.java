@@ -15,11 +15,11 @@ public interface FollowMapper {
 
 	/* Follow Someone  팔로우하기*/
 	@Insert("INSERT INTO FOLLOW VALUES(#{mId},#{mIdYou})")
-	public boolean follow(Follow follow);
+	public int follow(Follow follow);
 	
 	/*UnFollow 언팔하기*/
 	@Delete("delete from follow where mIdYou =#{mIdYou} and mId =#{mId}")
-	public boolean unFollow(@Param("mIdYou") String mIdYou, @Param("mId") String mId);
+	public int unFollow(@Param("mIdYou") String mIdYou, @Param("mId") String mId);
 	
 	
 	/*Following List 내가 팔로우하고있는사람들 보기*/

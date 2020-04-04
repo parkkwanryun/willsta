@@ -1481,6 +1481,9 @@ main {
 .followw {
 	background-color: #53d690;
 }
+.unFollow {
+	background-color: #212529;
+}
 .envlp {
 	background-color: #408080;
 }

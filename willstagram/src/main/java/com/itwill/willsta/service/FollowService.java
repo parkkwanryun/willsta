@@ -8,9 +8,9 @@ import com.itwill.willsta.domain.Follow;
 
 public interface FollowService {
 
-	boolean follow(Follow follow);
+	int follow(Follow follow);
 
-	boolean unfollow(String mIdYou, String mId);
+	int unfollow(String mIdYou, String mId);
 
 	List<Follow> followers(String mId);
 

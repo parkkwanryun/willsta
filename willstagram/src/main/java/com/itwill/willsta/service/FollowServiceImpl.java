@@ -26,13 +26,13 @@ public class FollowServiceImpl implements FollowService {
 	
 	
 	@Override
-	public boolean follow(Follow follow) {
+	public int follow(Follow follow) {
 		
 		return followDao.follow(follow);
 	}
 	
 	@Override
-	public boolean unfollow(String mIdYou, String mId) {
+	public int unfollow(String mIdYou, String mId) {
 		
 		return followDao.unfollow(mIdYou,mId);
 	}
