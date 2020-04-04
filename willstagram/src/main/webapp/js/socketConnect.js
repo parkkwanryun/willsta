@@ -5,9 +5,10 @@
 $(document).ready(function(){
 	connectWS();
 });
+
 var socket = null;
 	function connectWS() {
-		var ws = new WebSocket("ws://localhost:8080/willstagram/replyEcho");
+		var ws = new WebSocket("ws://localhost/willstagram/replyEcho");
 		socket = ws;
 		ws.onopen = function() { // connection이 open 되었을때 실행
 			console.log('Info : connection opened.');

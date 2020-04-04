@@ -36,22 +36,34 @@ public class DmController {
 		return loginId;
 	}
 	
-	
+	@ResponseBody
 	@RequestMapping(value = "/messages_room_create")
 	public String messageRoomInsert(HttpSession httpSession,
 									@RequestParam("mId") String mId,
 									@RequestParam("mIdYou") String mIdYou) {
-		return mId+mIdYou;
+		String isSuccess = "success";
+		List<DM> dmList = dmService.dmSelectAll(mId);
+		for (DM dm : dmList) {
+			if(dm.getmIdYou().equalsIgnoreCase(mIdYou)) {
+				isSuccess = "faild";
+				break;
+			}
+		}
+		if(isSuccess == "success") {
+			dmService.dmInsert(new DM(-999, mId, mIdYou, "sysdate"));
+		} 
+		return isSuccess;
 	}
 	
 	
 	@RequestMapping(value = "/messages")
 	public String messageForm(HttpServletRequest httpServletRequest) {
-		List<DM> dmList = dmService.dmSelectAll(); 
+		String mId = (String)httpServletRequest.getSession().getAttribute("mId");
+		List<DM> dmList = dmService.dmSelectAll(mId); 
 		httpServletRequest.getSession().setAttribute("dmList", dmList);
 		
 		System.out.println("컨트롤러 호출 성공");
-		String mId = (String)httpServletRequest.getSession().getAttribute("mId");
+		
 		httpServletRequest.getSession().setAttribute("mId", mId);
 		
 		return "messages";
