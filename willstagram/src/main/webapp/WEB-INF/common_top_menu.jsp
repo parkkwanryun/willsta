@@ -6,7 +6,7 @@
 			<div class="container">
 				<div class="header-data">
 					<div class="logo">
-						<a href="index.html" title=""><img src="images/logo.png" alt=""></a>
+						<a href="main_post" title=""><img src="images/logo.png" alt=""></a>
 					</div><!--logo end-->
 					<div class="search-bar">
 						<form class="userSearch">
@@ -17,7 +17,7 @@
 					<nav>
 						<ul>
 							<li>
-								<a href="index.html" title="">
+								<a href="main_post" title="">
 									<span><img src="images/icon1.png" alt=""></span>
 									Home
 								</a>
@@ -164,8 +164,8 @@
 					</div><!--menu-btn end-->
 					<div class="user-account">
 						<div class="user-info">
-							<img src="images/resources/user.png" alt="">
-							<a href="#" title="">John</a>
+							<img src="contents/member_image/${member.mImage}" width="35px" height="35px">
+							<a href="#" title="">${member.mName}</a>
 							<i class="la la-sort-down"></i>
 						</div>
 						<div class="user-account-settingss" id="users">

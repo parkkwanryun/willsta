@@ -39,7 +39,7 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 		<multipart-config>
-			<location>\\192.168.15.22\contents</location>
+			<location>C:\tempimage</location>
 			<max-file-size>-1</max-file-size>
 			<max-request-size>-1</max-request-size>
 			<file-size-threshold>1024</file-size-threshold>

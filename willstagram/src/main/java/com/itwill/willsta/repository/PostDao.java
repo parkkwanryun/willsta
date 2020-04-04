@@ -40,4 +40,6 @@ public interface PostDao {
 	
 	public int delete_img(Integer pNo);
 	
+	public List<Map> selectPostRanking();
+	
 }

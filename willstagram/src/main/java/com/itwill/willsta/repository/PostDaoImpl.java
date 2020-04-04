@@ -86,6 +86,11 @@ public class PostDaoImpl implements PostDao {
 		return postMapper.up_viewcount(pNo);
 	}
 
+	@Override
+	public List<Map> selectPostRanking() {
+		return postMapper.selectPostRanking();
+	}
+
 	
 
 	
