@@ -1,5 +1,6 @@
 package com.itwill.willsta.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,19 +17,19 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itwill.willsta.domain.Likes;
 import com.itwill.willsta.domain.Post;
 import com.itwill.willsta.domain.PostImage;
-import com.itwill.willsta.service.MemberService;
 import com.itwill.willsta.service.PostService;
 
 @RestController
 public class PostController {
 	@Autowired
 	PostService postService;
+	//예준이꺼 댓글기능 main_post.jsp로 합치면서 삭제
 	@MemberLoginCheck
 	@RequestMapping(value="/index")
 	public ModelAndView selectMyList(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		String mId = (String)request.getSession().getAttribute("mId");
-		List<Post> postList = postService.selectMyList(mId);
+		List<Post> postList = postService.selectMyList(0,mId);
 		for (Post post : postList) {
 			post.setTagArray(post.getHasTag().split(" "));
 		}
@@ -46,6 +47,21 @@ public class PostController {
 		mv.setViewName("main_post");
 		return mv;
 	}
+	
+	@MemberLoginCheck
+	@RequestMapping(value="/add_post" , produces = "text/html;charset=utf-8")
+	public ModelAndView selectAddPost(@RequestParam(value="lastpNo", required = true) Integer lastpNo, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		String mId = (String)request.getSession().getAttribute("mId");
+		List<Post> postList = postService.selectMyList(lastpNo, mId);
+		for (Post post : postList) {
+			post.setTagArray(post.getHasTag().split(" "));
+		}
+		mv.addObject("postList", postList);
+		mv.setViewName("post");
+		return mv;
+	}
+	
 	
 	@MemberLoginCheck
 	@RequestMapping(value="/get_post" , produces = "text/html;charset=utf-8")
@@ -82,8 +98,9 @@ public class PostController {
 		} else {
 			postOne = postService.createPost(post, uploadFile);
 		}
-		
-		mv.addObject("post", postOne);
+		List<Post> postList = new ArrayList<Post>();
+		postList.add(postOne);
+		mv.addObject("postList", postList);
 		mv.setViewName("post");
 
 		return mv;

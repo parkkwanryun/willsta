@@ -36,7 +36,7 @@ public class FollowController {
 	public ModelAndView myPage(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		String mId = (String)request.getSession().getAttribute("mId");
-		List<Post> postList = postService.selectMyList(mId);
+		List<Post> postList = postService.selectMyList(0,mId);
 		for (Post post : postList) {
 			post.setTagArray(post.getHasTag().split(" "));
 		}

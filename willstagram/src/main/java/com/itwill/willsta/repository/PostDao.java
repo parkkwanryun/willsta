@@ -22,7 +22,7 @@ public interface PostDao {
 	
 	public int delete(Integer pNo);
 	
-	public List<Post> selectMyList(String userId);
+	public List<Post> selectMyList(Integer lastpNo, String userId);
 	
 	public Post selectPost(Integer pNo, String mId);
 	

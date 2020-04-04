@@ -68,25 +68,6 @@ public class FollowServiceImpl implements FollowService {
 		return followDao.followCheck(mId, mIdYou);
 	}
 
-	
-	@Override
-	public ModelAndView main_page(String mId) {
-		ModelAndView mv = new ModelAndView();
-		
-		Member member = memberService.selectByIdContainFollowInfo(mId);
-		System.out.println(member);
-		mv.addObject("member", member);
-		List<Post> postList = selectMyList(mId);
-		for (Post post : postList) {
-			post.setTagArray(post.getHasTag().split(" "));
-		}
-		mv.addObject("postList", postList);
-		return mv;
-	}
 
-	private List<Post> selectMyList(String userId) {
-		
-		return postDao.selectMyList(userId);
-	}
 
 }

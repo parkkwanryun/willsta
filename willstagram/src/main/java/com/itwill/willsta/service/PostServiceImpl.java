@@ -162,8 +162,8 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<Post> selectMyList(String userId) {
-		return postDao.selectMyList(userId);
+	public List<Post> selectMyList(Integer lastpNo, String userId) {
+		return postDao.selectMyList(lastpNo, userId);
 	}
 
 	@Override
@@ -207,7 +207,7 @@ public class PostServiceImpl implements PostService {
 		mv.addObject("member", member);
 		mv.addObject("memberList", memberList);
 		mv.addObject("postRankList", postRankList);
-		List<Post> postList = selectMyList(mId);
+		List<Post> postList = selectMyList(0, mId);
 		for (Post post : postList) {
 			post.setTagArray(post.getHasTag().split(" "));
 		}
