@@ -22,5 +22,4 @@ public interface FollowService {
 	
 	int followCheck(String mId,String mIdYou);
 
-	ModelAndView main_page(String mId);
 }

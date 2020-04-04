@@ -139,7 +139,7 @@
 													<c:if test="${post.mId!=sessionScope.loginId}">
 														<ul class="ed-options">
 															<li><a class="updatePost" href="#" title="">Edit Post</a></li>
-															<li><a class="deletePost" href="#" title="">Unsaved</a></li>
+															<li><a class="deletePost" href="#" title="">Delete Post</a></li>
 															<li><a class="hiddenPost" href="#" title="">
 															<c:if test="${post.status=='A'}">Hide</c:if>
 															<c:if test="${post.status=='H'}">Show</c:if>
@@ -205,9 +205,9 @@
 												<!--post-comment end-->
 										</div><!--post-bar end-->
 								</c:forEach>	
-										</div><!--posty end-->
+								    </div><!--posty end-->
 										<div class="process-comm">
-											<div class="spinner">
+											<div class="spinner"">
 												<div class="bounce1"></div>
 												<div class="bounce2"></div>
 												<div class="bounce3"></div>
@@ -245,8 +245,14 @@
 											</c:forEach>
 										</div><!--jobs-list end-->
 									</div><!--widget-jobs end-->
-									
-					
+									<div class="widget widget-ad">
+										<div class="sign_link" style="padding:10px">
+											<h3><a href="http://ec2-54-180-83-67.ap-northeast-2.compute.amazonaws.com:8080/myshop/product/list" title="">
+												<img src="images/dapara.png" alt="">
+												</a>
+											</h3>
+										</div>
+									</div>
 								</div><!--right-sidebar end-->
 							</div>
 						</div>
