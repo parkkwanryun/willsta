@@ -92,5 +92,32 @@
 <script type="text/javascript" src="lib/slick/slick.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript" src="js/wSearch.js"></script>
+<script type="text/javascript">
+<script type="text/javascript">
+ var mIdYou = $(e.target.parentNode.parentNode.parentNode.parentNode).find('h3').text();
+	$(document).on('click',function(e){
+		$.ajax({
+			url:'sessionCheck',
+			method:'GET',
+			dataType: 'text',
+			success:function(loginId){
+					if(loginId.trim() == null){
+					} else {
+						console.log("loginId>>>"+loginId);
+						var params = "mId="+loginId+"?"+"mIdYou="+mIdYou;
+						$.ajax({
+							url:'messages_room_create',
+							method:'GET',
+							data : params,
+							dataType:'text',
+							success:function(isSuccess){
+								console.log(isSuccess);
+							}
+						});
+					}
+			}
+		});
+	});
+</script>
 </body>
 </html>
