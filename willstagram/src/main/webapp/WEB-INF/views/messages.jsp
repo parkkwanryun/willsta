@@ -243,17 +243,15 @@
 													<span class="msg-status"></span>
 												</div>
 												<div class="usr-mg-info">
-													<h3>${dm.mId}</h3>
+													<h3>${dm.mIdYou}</h3>
 													<p> <img src=></p>
 												</div><!--usr-mg-info end-->
 												<span class="posted_time">${dm.dmDate}</span>
-												<span class="msg-notifc">1</span>
+												<!--  <span class="msg-notifc">1</span> -->
 											</div><!--usr-msg-details end-->
 										</li>
 									</ul>
 								</c:forEach>
-	
-									
 								</div><!--messages-list end-->
 							</div><!--msgs-list end-->
 						</div>
@@ -261,12 +259,6 @@
 							<div class="main-conversation-box">
 									<a href="#" title=""><i class="fa fa-ellipsis-v"></i></a>
 								<div class="messages-line">
-									<div class="main-message-box">
-										<div class="messg-usr-img">
-											<img src="" alt="">
-										</div><!--messg-usr-img end-->
-									</div><!--main-message-box end-->
-									
 									<!-- 왼쪽 말풍선 -->
 									<div class="main-message-box ta-right">
 										<div class="message-dt">
@@ -279,8 +271,6 @@
 										</div><!--message-dt end-->
 									</div><!--main-message-box end-->
 									<!-- 왼쪽 말풍선 -->
-									
-									
 									<!-- 오른쪽 말풍선 -->
 									<div class="main-message-box st3">
 										<div class="message-dt st3">
@@ -290,68 +280,6 @@
 										</div><!--message-dt end-->
 									</div><!--main-message-box end-->
 									<!-- 오른쪽 말풍선 -->
-									
-									
-									<div class="main-message-box ta-right">
-										<div class="message-dt">
-											<div class="message-inner-dt">
-											<!-- 
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
-											-->
-											</div><!--message-inner-dt end-->
-											<!-- 
-											<span>Sat, Aug 23, 1:08 PM</span>
-											 -->
-										</div><!--message-dt end-->
-										<div class="messg-usr-img">
-											<img src="" alt="">
-										</div><!--messg-usr-img end-->
-									</div><!--main-message-box end-->
-									<div class="main-message-box st3">
-										<div class="message-dt st3">
-											<div class="message-inner-dt">
-											<!-- 
-												<p>Lorem ipsum dolor sit amet</p>
-											-->
-											</div><!--message-inner-dt end-->
-											<!-- 
-											<span>2 minutes ago</span>
-											 -->
-										</div><!--message-dt end-->
-										<div class="messg-usr-img">
-											<img src="" alt="">
-										</div><!--messg-usr-img end-->
-									</div><!--main-message-box end-->
-									<div class="main-message-box ta-right">
-										<div class="message-dt">
-											<div class="message-inner-dt">
-											<!-- 
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
-											 -->
-											</div><!--message-inner-dt end-->
-											<!-- 
-											<span>Sat, Aug 23, 1:08 PM</span>
-											 -->
-										</div><!--message-dt end-->
-										<div class="messg-usr-img">
-											<img src="" alt="">
-										</div><!--messg-usr-img end-->
-									</div><!--main-message-box end-->
-									<div class="main-message-box st3">
-										<div class="message-dt st3">
-											<div class="message-inner-dt">
-											<!-- 
-												<p>....</p>
-											-->
-											</div><!--message-inner-dt end-->
-											<!-- 
-											<span>Typing...</span>
-											 -->
-										</div><!--message-dt end-->
-										<div class="messg-usr-img">
-											<img src="" alt="">
-										</div><!--messg-usr-img end--> 
-									</div><!--main-message-box end-->
 								</div><!--messages-line end-->
 								<div class="message-send-area">
 									<form>

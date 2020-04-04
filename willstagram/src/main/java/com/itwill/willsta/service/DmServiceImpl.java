@@ -17,11 +17,11 @@ public class DmServiceImpl implements DmService {
 	
 	@Override
 	public int dmInsert(DM dm) {
-		return dmDao.dmInsert(dm);
+		 return dmDao.dmInsert(dm);
 	}
 	@Override
-	public List<DM> dmSelectAll() {
-		return dmDao.dmSelectAll();
+	public List<DM> dmSelectAll(String mId) {
+		return dmDao.dmSelectAll(mId);
 	}
 	@Override
 	public DM dmSelectOne(int dmNo) {
