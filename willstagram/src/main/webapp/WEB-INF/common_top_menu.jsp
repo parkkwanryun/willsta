@@ -23,38 +23,21 @@
 								</a>
 							</li>
 							<li>
-								<a href="companies.html" title="">
+								<a href="https://www.itwill.co.kr" title="">
 									<span><img src="images/icon2.png" alt=""></span>
 									Companies
-								</a>
-								<ul>
-									<li><a href="companies.html" title="">Companies</a></li>
-									<li><a href="company-profile.html" title="">Company Profile</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="projects.html" title="">
-									<span><img src="images/icon3.png" alt=""></span>
-									Projects
 								</a>
 							</li>
 							<li>
 								<a href="profiles.html" title="">
-									<span><img src="images/icon4.png" alt=""></span>
+									<span><img src="images/icon3.png" alt=""></span>
 									Profiles
 								</a>
-								<ul>
-								<!-- 	<li><a href="user-profile.html" title="">User Profile</a></li> -->
-
-									<li><a href="my_page.html" title="">My page</a></li>
-
-
-								</ul>
 							</li>
 							<li>
-								<a href="jobs.html" title="">
-									<span><img src="images/icon5.png" alt=""></span>
-									Jobs
+								<a href="my_page.html" title="">
+									<span><img src="images/icon4.png" alt=""></span>
+									My page
 								</a>
 							</li>
 							<li>
@@ -166,7 +149,6 @@
 						<div class="user-info">
 							<img src="contents/member_image/${member.mImage}" width="35px" height="35px">
 							<a href="#" title="">${member.mName}</a>
-							<i class="la la-sort-down"></i>
 						</div>
 						<div class="user-account-settingss" id="users">
 							<h3>Online Status</h3>
