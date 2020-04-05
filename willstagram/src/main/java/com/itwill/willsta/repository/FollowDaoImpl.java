@@ -2,38 +2,69 @@ package com.itwill.willsta.repository;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.itwill.willsta.domain.Follow;
 import com.itwill.willsta.mapper.FollowMapper;
 
-
+@Repository("followDao")
 public class FollowDaoImpl implements FollowDao{
 	@Autowired
 	FollowMapper followMapper;
-	
-	
+
 	@Override
-	public boolean follow(Follow follow) {
+	public int follow(Follow follow) {
 		return followMapper.follow(follow);
 	}
 
 	@Override
-	public Follow follower(String mId) {
+	public int unfollow(String mIdYou, String mId) {
+
+		return followMapper.unFollow(mIdYou, mId);
+	}
+	
+	@Override
+	public List<Follow> followers(String mId) {
 		
-		return followMapper.follower(mId);
+		return followMapper.followers(mId);
 	}
 
 	@Override
-	public Follow following(String mId) {
+	public List<Follow> following(String mIdYou) {
 		
-		return followMapper.following(mId);
+		return followMapper.following(mIdYou);
+	}
+
+
+	@Override
+	public int followingCount(String mIdYou) {
+		
+		return followMapper.followingCount(mIdYou);
 	}
 
 	@Override
-	public boolean unfollow(String mId) {
+	public int followersCount(String mId) {
 		
-		return false;
+		return followMapper.followersCount(mId);
 	}
+
+	@Override
+	public int followCheck(String mId, String mIdYou) {
+		return followMapper.followCheck(mId, mIdYou);
+	}
+
+
+
+	
+
+	
+
+	
+
+
+
 
 }

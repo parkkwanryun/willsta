@@ -19,38 +19,62 @@ public interface MemberMapper {
 	public boolean insertMember(@Param("member") Member member);
 	
 	/*회원정보 로딩*/
-	@Select("SELECT mId, mPass, mName, mEmail, mPhone, mImage FROM MEMBER")
-	public Member selectById(String mId, String mPhone);
+	@Select("SELECT m.mId, m.mPass, m.mName, m.mEmail, m.mPhone, m.mImage, "
+			+ " (select count(*) from follow x where x.mid = m.mId) as followerCount,"
+			+ " (select count(*) from follow x where x.midyou = m.mId) as followingCount "
+			+ " FROM MEMBER M "
+			+ " WHERE m.mId=#{mId}")
+	public Member selectByIdContainFollowInfo(@Param("mId") String mId);
+	
+	/*친구추천 - 랜덤로딩 5건*/
+	@Select("SELECT * FROM ("
+			+ " SELECT m.mId, m.mPass, m.mName, m.mEmail, m.mPhone, m.mImage, "
+			+ " (select count(*) from follow x where x.mid = m.mId) as followerCount,"
+			+ " (select count(*) from follow x where x.midyou = m.mId) as followingCount "
+			+ " FROM MEMBER M "
+			+ " WHERE MID NOT IN (SELECT MIDYOU FROM FOLLOW WHERE MID = #{mId}) "
+			+ " ORDER BY DBMS_RANDOM.RANDOM)"
+			+ " WHERE ROWNUM < 6")
+	public List<Member> selectByRandom(@Param("mId") String mId);
+	
+	
+	/*팔로우 정보 없는 회원정보 로딩*/
+	@Select("SELECT mId, mPass, mName, mEmail, mPhone, mImage FROM MEMBER WHERE mId=#{mId} ")
+	public Member selectById(@Param("mId") String mId);
 	
 	/*회원정보 수정*/
-	@Update("UPDATE MEMBER SET mPass=#{mPass}, mName=#{mName}, mPhone=#{mPhone} WHERE mId=#{mId}")
+	@Update("UPDATE MEMBER SET mId=#{mId}, mPass=#{mPass}, mName=#{mName}, mEmail=#{mEmail}, mPhone=#{mPhone}, mImage=#{mImage} WHERE mId=#{mId}")
 	public boolean updateMember(Member memeber);
 	
-	/*회원 탈퇴(test 완)*/
+	/*회원 탈퇴*/
 	@Update("UPDATE MEMBER SET mRetire = 'T' WHERE mId = #{mId}")
-	public boolean deleteMember(String mId);
+	public boolean deleteMember(@Param("mId") String mId);
 	
-	/*아이디 중복체크(완)*/
+	/*아이디 중복체크*/
 	@Select("SELECT count(*) cnt FROM MEMBER WHERE mId=#{mId}")
-	public boolean existedMember(String mId);
+	public boolean existedMember(@Param("mId") String mId);
 	
 	/*아이디 찾기*/
-	@Select("SELECT #{mId}, #{mName}, #{mPhone}, #{mEmail}, #{mPass}, #{mImage} FROM MEMBER WHERE mId=#{mId}")
-	public Member findId(String mEmail, String mName);
+	@Select("SELECT mId FROM MEMBER WHERE mEmail=#{mEmail} and mName=#{mName}")
+	public Member findId(@Param("mEmail") String mEmail, @Param("mName") String mName);
 	
 	/*비밀번호 찾기*/
 	@Select("SELECT mPass FROM MEMBER WHERE mId=#{mId} and mName=#{mName}")
+<<<<<<< HEAD
 	//SELECT mPass FROM MEMBER WHERE mId = 'pkr' AND mName = '세미'
 	public Member findPw(@Param("mId") String mId, @Param("mName")String mName);
+=======
+	public Member findPw(@Param("mId") String mId, @Param("mName") String mName);
+>>>>>>> branch 'master' of https://github.com/parkkwanryun/willsta.git
 	
 	/*임시비밀번호 발급*/
 	@Update("UPDATE MEMBER SET mPass=#{mPass} WHERE mId=#{mId}")
-	public Member getTempPw(Member findMember);
-	
+	public Member getTempPw(@Param("mId") String mPass, @Param("mEmail") String mId);
+
 	
 	@Select("SELECT mid, mname, mimage FROM member")
 	public List<Member> memberList();
 	
-	@Select("SELECT mid, mname, mimage FROM member where mid like ‘%'||#{mid}||'%’ ")
-	public List<Member> findMemberList(String mid);
+	@Select("SELECT mid, mname, mimage FROM member where mid like '%${mId}%' ")
+	public List<Member> findMemberList(@Param("mId") String mId);
 }

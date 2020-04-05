@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%><!DOCTYPE html>
-<jsp:include page="include_header_css.jsp"/>
+<jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
 <body>
 	<div class="wrapper">
 		<header>
@@ -45,7 +45,7 @@
 									Profiles
 								</a>
 								<ul>
-									<li><a href="user-profile.html" title="">User Profile</a></li>
+								<!-- 	<li><a href="user-profile.html" title="">User Profile</a></li> -->
 									<li><a href="my-profile-feed.html" title="">my-profile-feed</a></li>
 								</ul>
 							</li>
@@ -252,7 +252,7 @@
 												</li>
 											</ul>
 										</div><!--user_pro_status end-->
-										<ul class="social_links">
+										<!-- <ul class="social_links">
 											<li><a href="#" title=""><i class="la la-globe"></i> www.example.com</a></li>
 											<li><a href="#" title=""><i class="fa fa-facebook-square"></i> Http://www.facebook.com/john...</a></li>
 											<li><a href="#" title=""><i class="fa fa-twitter"></i> Http://www.Twitter.com/john...</a></li>
@@ -261,7 +261,7 @@
 											<li><a href="#" title=""><i class="fa fa-pinterest"></i> Http://www.pinterest.com/john...</a></li>
 											<li><a href="#" title=""><i class="fa fa-instagram"></i> Http://www.instagram.com/john...</a></li>
 											<li><a href="#" title=""><i class="fa fa-youtube"></i> Http://www.youtube.com/john...</a></li>
-										</ul>
+										</ul> -->
 									</div><!--user_profile end-->
 									<div class="suggestions full-width">
 										<div class="sd-title">
@@ -352,7 +352,7 @@
 														<img src="images/ic2.png" alt="">
 														<span>Info</span>
 													</a>
-												</li>
+								<!-- 				</li>
 												<li data-tab="saved-jobs">
 													<a href="#" title="">
 														<img src="images/ic4.png" alt="">
@@ -382,7 +382,7 @@
 														<img src="images/ic6.png" alt="">
 														<span>Payment</span>
 													</a>
-												</li>
+												</li> -->
 												
 											</ul>
 										</div><!-- tab-feed end-->
@@ -2261,8 +2261,8 @@
 									<div class="message-btn">
 										<a href="profile-account-setting.html" title=""><i class="fas fa-cog"></i> Setting</a>
 									</div>
-									<div class="widget widget-portfolio">
-										<div class="wd-heady">
+									<!--<div class="widget widget-portfolio">
+										 <div class="wd-heady">
 											<h3>Portfolio</h3>
 											<img src="images/photo-icon.png" alt="">
 										</div>
@@ -2281,8 +2281,8 @@
 												<li><a href="#" title=""><img src="images/resources/pf-gallery11.png" alt=""></a></li>
 												<li><a href="#" title=""><img src="images/resources/pf-gallery12.png" alt=""></a></li>
 											</ul>
-										</div><!--pf-gallery end-->
-									</div><!--widget-portfolio end-->
+										</div>pf-gallery end
+									</div> --><!--widget-portfolio end-->
 								</div><!--right-sidebar end-->
 							</div>
 						</div>
@@ -2291,26 +2291,8 @@
 			</div>
 		</main>
 
-		<footer>
-			<div class="footy-sec mn no-margin">
-				<div class="container">
-					<ul>
-						<li><a href="help-center.html" title="">Help Center</a></li>
-						<li><a href="about.html" title="">About</a></li>
-						<li><a href="#" title="">Privacy Policy</a></li>
-						<li><a href="#" title="">Community Guidelines</a></li>
-						<li><a href="#" title="">Cookies Policy</a></li>
-						<li><a href="#" title="">Career</a></li>
-						<li><a href="forum.html" title="">Forum</a></li>
-						<li><a href="#" title="">Language</a></li>
-						<li><a href="#" title="">Copyright Policy</a></li>
-					</ul>
-					<p><img src="images/copy-icon2.png" alt="">Copyright 2019</p>
-					<img class="fl-rgt" src="images/logo2.png" alt="">
-				</div>
-			</div>
-		</footer><!--footer end-->
-
+		 <jsp:include page="/WEB-INF/commons/include_footy_js.jsp"/>
+			<!--footer end-->
 		<div class="overview-box" id="overview-box">
 			<div class="overview-edit">
 				<h3>Overview</h3>
@@ -2438,16 +2420,10 @@
 				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
 			</div><!--overview-edit end-->
 		</div><!--overview-box end-->
-
 	</div><!--theme-layout end-->
 
 
 
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/popper.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/flatpickr.min.js"></script>
-<script type="text/javascript" src="lib/slick/slick.min.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
+ <jsp:include page="/WEB-INF/commons/include_footer_js.jsp"/>
 </body>
 </html>

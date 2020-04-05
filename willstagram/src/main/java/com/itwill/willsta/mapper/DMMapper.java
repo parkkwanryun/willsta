@@ -13,10 +13,14 @@ import com.itwill.willsta.domain.DM;
 @Mapper
 public interface DMMapper {
 	//채팅방 목록 전체 출력
-	@Select("SELECT dmNo, mId, mIdYou, to_char(dmDate,'MM/DD') as dmDate FROM dm")
-	public List<DM> dmSelectAll();	
+	@Select("SELECT d.dmNo, d.mId, d.mIdYou, to_char(dmDate,'MM/DD') as dmDate, " + 
+			"        (SELECT m.mImage FROM member m WHERE m.mId IN( " + 
+			"            (SELECT d.mIdYou FROM DM WHERE m.mId = d.mIdYou))) as mImage " + 
+			"FROM dm d " + 
+			"WHERE d.mId = #{mId}")
+	public List<DM> dmSelectAll(String mId);	
 	
-	//특정 채팅방 번호만 출력
+	//로그인한 사람의 채팅방만 출력
 	@Select("SELECT dmNo, mId, mIdYou, to_char(dmDate,'MM/DD') as dmDate"
 			+ " FROM dm "
 			+ "WHERE dmNo = #{dmNo}")
