@@ -21,6 +21,22 @@ import com.itwill.willsta.repository.MemberDaoImpl;
 @ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/spring/root-context.xml")
 public class MemberUnitTestMain {
 	
+<<<<<<< HEAD
+	public static void main(String[] args) {
+
+		ApplicationContext applicationContext = 
+				new FileSystemXmlApplicationContext("/src/main/webapp/WEB-INF/spring/root-context.xml");
+		MemberDao memberDao = applicationContext.getBean(MemberDaoImpl.class);
+		//System.out.println("회원 탈퇴 "+memberDao.delelteMember("kpr"));
+		//System.out.println("회원 찾기"+memberDao.existedMember("pkr"));
+		//System.out.println("비밀번호 찾기"+memberDao.findPw("pkr", "세미"));
+		//System.out.println(""+memberDao.findMemberList("pkr"));
+		
+		
+		
+		System.out.println(memberDao.insertMember(new Member("소진이고생하네","111","매퍼소진","sj@naver.com","010"," ","T")));
+		 
+=======
 	@Autowired
 	private ApplicationContext applicationContext;
 	private MemberDaoImpl memberDao;
@@ -30,6 +46,7 @@ public class MemberUnitTestMain {
 	public void setUp() {
 		memberDao=this.applicationContext.getBean(MemberDaoImpl.class);
 		//memberService=this.applicationContext.getBean(MemberServiceImpl.class); 
+>>>>>>> branch 'master' of https://github.com/parkkwanryun/willsta.git
 	}
 		
 	@Test //회원가입
