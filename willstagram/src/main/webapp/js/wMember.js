@@ -50,15 +50,16 @@ $(function() {
 			'submit',
 			'#member_register_action',
 			function(e) {
-				var parameter = "mId=" + member_register_action.mId.value
+				var params = "mId=" + member_register_action.mId.value
 						+ "&mPass=" + member_register_action.mPass.value
 						+ "&mName=" + member_register_action.mName.value
 						+ "&mEmail=" + member_register_action.mEmail.value
 						+ "&mPhone=" + member_register_action.mPhone.value
-						+ "&mImage=" + member_register_action.mImage.value;
+						+ "&mImage=" + member_register_action.mImage.value
+						+ "&mRetire="+ member_register_action.mRetire.value;
 				$.ajax({
 					url : 'sign_up_action',
-					data : parameter,
+					data : params,
 					method : 'POST',
 					dataType : 'text',
 					success : function(textData) {
