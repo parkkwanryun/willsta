@@ -43,8 +43,8 @@ $(function(){
 			data: param,
 			dataType: "text",
 			success:function(){
+				$(e.target.parentNode).prev().children().show();
 				$(e.target).hide();
-				$(".unFollow").show();
 			}
 		});
 		e.preventDefault();
@@ -61,8 +61,8 @@ $(function(){
 			data: param,
 			dataType: "text",
 			success:function(){
-				$(e.target).hide();
-				$(".follow").show();
+				$(e.target.parentNode).next().children().show();
+				$(e.target).hide(); 
 			}
 		});
 		e.preventDefault();
