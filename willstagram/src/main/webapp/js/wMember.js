@@ -6,17 +6,22 @@
 	 2. id, password 유효성 체크
 	  자바 단에서 요청받은 컨트롤러에서의 세션 유무 체크(Interceptor)  => id/ password 틀릴 시 안내문구 띄워주기(jsp)
 	  
-	 3. session 유지 시간 세팅 
+	 3. session 유지 시간 세팅 (web.xml --> session 유효시간 = 1day ms) (완료)
 	 
 	 4. 회원가입
+	 
+	 5. 회원탈퇴( mRetire -> T )
+	 
+	 6. 회원정보 수정 (Account Setting)
 	 */ 
 
-	/*
-	  회원가입 
-	*/
+
 
 	
 $(function() {
+	/*
+	 로그인
+	*/
 	$(document).on(
 			'submit',
 			'#member_login_action',
@@ -44,7 +49,9 @@ $(function() {
 			}
 			
 	)
-
+	/*
+	  회원가입 
+	*/
 		
 	$(document).on(
 			'submit',

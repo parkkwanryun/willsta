@@ -49,6 +49,7 @@ public class MemberController {
 			Member signInMember = memberService.signIn(mId, mPass);
 			session.setAttribute("mId", mId);
 			session.setAttribute("sMemberId", signInMember);
+			session.setMaxInactiveInterval(00);
 			forwardPath="true";
 		} catch (MemberNotFoundException e) {
 			model.addAttribute("fmId", mId);
@@ -73,8 +74,7 @@ public class MemberController {
 	public String sign_out_action(HttpSession session) {
 		System.out.println("sign_out_action 컨트롤러 테스트");
 		session.invalidate();
-		String forwardPath ="sign_in";
-		return forwardPath;
+		return "sign_in";
 	}
 	
 	/*회원가입*/
@@ -86,13 +86,19 @@ public class MemberController {
 									@RequestParam("mPhone")String mPhone,
 									@RequestParam("mImage")String mImage,
 									@RequestParam("mRetire")String mRetire,	HttpSession session, Model model) {
-		System.out.println("sign_up_action 컨트롤러 테스트1");
+		System.out.println("sign_up_action 회원가입 컨트롤러 테스트1");
 		String forwardPath ="";
 			boolean signUpMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire,0,0));
 			if(signUpMember) {
 				System.out.println("sign_up_action 컨트롤러 테스트2");
 				session.setAttribute("mId",mId);
 				session.setAttribute("sMemberId", signUpMember);
+				model.addAttribute("mId",mId);
+				model.addAttribute("mName",mName);
+				model.addAttribute("mEmail",mEmail);
+				model.addAttribute("mPhone",mPhone);
+				model.addAttribute("mImage",mImage);
+				model.addAttribute("mRetire",mRetire);
 				forwardPath="true";
 			}else {
 				forwardPath="false";
