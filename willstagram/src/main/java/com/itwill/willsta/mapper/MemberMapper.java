@@ -60,12 +60,10 @@ public interface MemberMapper {
 	
 	/*비밀번호 찾기*/
 	@Select("SELECT mPass FROM MEMBER WHERE mId=#{mId} and mName=#{mName}")
-<<<<<<< HEAD
+
 	//SELECT mPass FROM MEMBER WHERE mId = 'pkr' AND mName = '세미'
 	public Member findPw(@Param("mId") String mId, @Param("mName")String mName);
-=======
-	public Member findPw(@Param("mId") String mId, @Param("mName") String mName);
->>>>>>> branch 'master' of https://github.com/parkkwanryun/willsta.git
+
 	
 	/*임시비밀번호 발급*/
 	@Update("UPDATE MEMBER SET mPass=#{mPass} WHERE mId=#{mId}")
