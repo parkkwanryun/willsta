@@ -47,6 +47,6 @@
      </div>
      
      <div class="pull-right">
-       <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color: #408080; color: white;">Close</button>
+       <button type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
      </div>
  </div>
