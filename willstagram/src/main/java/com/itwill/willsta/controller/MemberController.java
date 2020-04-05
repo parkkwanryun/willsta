@@ -24,6 +24,8 @@ import com.itwill.willsta.service.MemberService;
 public class MemberController {
 	@Autowired
 	MemberService memberService;
+	
+	
 	@RequestMapping(value="/")
 	public String index() {
 		return "";
@@ -38,7 +40,7 @@ public class MemberController {
 	@RequestMapping(value="/sign_in_action", method = RequestMethod.POST, produces="text/plain; charset=UTF-8")
 	public String sign_in_action_post(@RequestParam("mId")String mId, @RequestParam("mPass")String mPass, 
 										HttpSession session, Model model) {
-		System.out.println("mId:"+mId+" mPass:"+mPass);
+		System.out.println("로그인 컨트롤러 테스트"+"mId:"+mId+" mPass:"+mPass);
 		String forwardPath = "";
 		try {
 			Member signInMember = memberService.signIn(mId, mPass);
@@ -70,11 +72,14 @@ public class MemberController {
 		String forwardPath ="sign_in";
 		return forwardPath;
 	}
+	
 	@RequestMapping(value="/sign_up_action",method = RequestMethod.POST, produces="text/plain; charset=UTF-8")
-	public String sign_up_action(@ModelAttribute Member member, HttpSession session) {
+	public String sign_up_action(@ModelAttribute Member member, HttpSession session, @RequestParam("mId")String mId) {
 		System.out.println("sign_up_action 컨트롤러 테스트");
 		String forwardPath ="true";
 		boolean signUpMember = memberService.updateMember(member);
+		session.setAttribute("mId",mId);
+		session.setAttribute("sMemberId", signUpMember);
 		if(signUpMember) {
 			forwardPath="true";
 		}else {

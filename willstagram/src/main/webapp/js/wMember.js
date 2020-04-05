@@ -1,21 +1,23 @@
 // 로그인 form 처리 
 
 	/*
-	 1. 로그인 정보를 컨트롤러로 Json 형태로 전송? 
-	   OR  넣어준 id 와 password value 값만 전송? 
-	 컨트롤러로 요청
-	 2. id, password 유효성체크
-	  자바 단에서 요청받은 컨트롤러에서의 세션 유무 체크(Interceptor) 
-	 3. logout 시, login으로 버튼 바꿔주는 이벤트처리(show, hide)
-	 4. session 유지 시간 세팅 
+	 1. id 와 password value 값 => 로그인 정보를 컨트롤러로 html 형태로 전송 (완료)
+	 
+	 2. id, password 유효성 체크
+	  자바 단에서 요청받은 컨트롤러에서의 세션 유무 체크(Interceptor)  => id/ password 틀릴 시 안내문구 띄워주기(jsp)
+	  
+	 3. session 유지 시간 세팅 
+	 
+	 4. 회원가입
 	 */ 
 
 	/*
 	  회원가입 
 	*/
 function member_register_action(e){
-	alert(target);
-		var parameter = $(e.target).serialize();
+		var parameter = "mId="+ member_register_action.mId.value+"&mPass="+member_register_action.mPass.value+
+		"&mName="+member_register_action.mName.value+"&mEmail="+member_register_action.mEmail.value+"&mPhone="+member_register_action.mPhone.value+
+		"&mImage="+member_register_action.mImage.value;
 		$.ajax({
 			url:'sign_up_action',
 			data:parameter,
@@ -23,15 +25,18 @@ function member_register_action(e){
 			dataType:'text',
 			success: function(textData){
 				if(textData.trim()=="true"){
+					alert(member_register_action.mId.value+'님 회원가입을 축하드립니다.');
 					location.href ='willstagram/index';
 				}else if(textData.trim()=="false"){
-					
+					location.href ='willstagram/sign_in';
 				}
 			}
 		});
 		e.preventDefault();
 	};
 
+	
+	
 $(function() {
 	$(document).on(
 			'submit',
@@ -49,6 +54,7 @@ $(function() {
 					dataType : "text",
 					success : function(textData) {
 						if (textData.trim() == "true") {
+							alert(member_login_action.mId.value+'님 환영합니다.');
 							location.href = '/willstagram/index';
 						} else if (textData.trim() == "false") {
 
@@ -58,7 +64,7 @@ $(function() {
 				e.preventDefault();
 			}
 			
-	);
+	)
 	
 	$('#member_register_action').click(function(e){
 		member_register_action();
