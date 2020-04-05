@@ -8,9 +8,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -147,22 +149,21 @@ public class FollowController {
 		mv.setViewName("myPage");
 		return mv;
 	}
-
 	@RequestMapping(value = "/follow_Check")
-	   public ModelAndView followCheck(@RequestParam(value = "mIdYou") String mIdYou,HttpSession session) {
-	      ModelAndView mv=new ModelAndView();
+	   public String followCheck(@RequestParam(value = "mIdYou") String mIdYou,HttpSession session, Model model) {
 	      String mId=(String) session.getAttribute("mId");
 	      System.out.println(mIdYou);
 	      //mIdYou="ss501";
+	      String check="";
 	      int followCheck=followService.followCheck(mId, mIdYou);
-	      if (followCheck == 1 ) {
+	      if (followCheck > 0 ) {
 			System.out.println("### follow상태");
+			check="true";
 	      }else {
 			System.out.println("### follow 아닌 상태");
+			check="false";
 	      }
-	      mv.addObject("followCheck",followCheck);
-	      mv.setViewName("profiles");
-	      return mv;
+	      return check;
 	   }
 	
 	@RequestMapping(value = "/follow")

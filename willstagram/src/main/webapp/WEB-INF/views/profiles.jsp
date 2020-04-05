@@ -19,37 +19,40 @@
 					<h3>All Profiles</h3>
 				</div><!--company-title end-->
 				<div class="companies-list">
-					<div class="row">
-					<!-- loop start -->
-					<c:forEach var="member" items="${memberList}" varStatus="status">
-						<c:if test="${status.index!=0}">
-							</div>
-						</c:if>
-						<div class="col-lg-3 col-md-4 col-sm-6 col-12">
-							<div class="company_profile_info">
-								<div class="company-up-info"  mIdYou="${member.mId}">
-									<c:choose>
-										<c:when test="${member.mImage==null}">
-											<img src="contents/member_image/default.png" alt="">
-										</c:when>	
-										<c:otherwise >
-											<img src="contents/member_image/${member.mImage}" alt="">
-										</c:otherwise>
-									</c:choose>
-									<h3 class="member-id">${member.mId}</h3>
-									<h4>${member.mName}</h4>
-									<ul>
-										<li><a href="#" title="" class="unFollow">UnFollow</a></li><!-- follow중인 상태 -->
-										<li><a href="#" title="" class="follow">Follow</a></li>
-										<li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
-									</ul>
+					<form id ="mId-List">
+						<div class="row">
+						<!-- loop start -->
+						<c:forEach var="member" items="${memberList}" varStatus="status">
+							<c:if test="${status.index!=0}">
 								</div>
-								<a href="user-profile.html" title="" class="view-more-pro">View Profile</a>
-							</div><!--company_profile_info end-->
-							</c:forEach>
-							<!-- loop end -->
+							</c:if>
+							<div class="col-lg-3 col-md-4 col-sm-6 col-12">
+								<div class="company_profile_info">
+									<div class="company-up-info"  mIdYou="${member.mId}">
+									<input type="hidden" name="mId" value="${member.mId}" placeholder="Id">
+										<c:choose>
+											<c:when test="${member.mImage==null}">
+												<img src="contents/member_image/default.png" alt="">
+											</c:when>	
+											<c:otherwise >
+												<img src="contents/member_image/${member.mImage}" alt="">
+											</c:otherwise>
+										</c:choose>
+										<h3 class="member-id">${member.mId}</h3>
+										<h4>${member.mName}</h4>
+										<ul>
+											<li><a href="#" title="" class="unFollow">UnFollow</a></li><!-- follow중인 상태 -->
+											<li><a href="#" title="" class="follow">Follow</a></li>
+											<li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
+										</ul>
+									</div>
+									<a href="user-profile.html" title="" class="view-more-pro">View Profile</a>
+								</div><!--company_profile_info end-->
+								</c:forEach>
+								<!-- loop end -->
+							</div>
 						</div>
-					</div>
+					</form>
 				</div><!--companies-list end-->
 				
 				<div class="process-comm">
