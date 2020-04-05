@@ -73,10 +73,11 @@ public class MemberController {
 		return forwardPath;
 	}
 	
+	
 	@RequestMapping(value="/sign_up_action",method = RequestMethod.POST, produces="text/plain; charset=UTF-8")
-	public String sign_up_action(@ModelAttribute Member member, HttpSession session, @RequestParam("mId")String mId) {
+	public String sign_up_action(Member member, HttpSession session, @RequestParam("mId")String mId) {
 		System.out.println("sign_up_action 컨트롤러 테스트");
-		String forwardPath ="true";
+		String forwardPath ="";
 		boolean signUpMember = memberService.updateMember(member);
 		session.setAttribute("mId",mId);
 		session.setAttribute("sMemberId", signUpMember);
@@ -87,7 +88,6 @@ public class MemberController {
 		}
 		return forwardPath;
 	}
-	
 	
 	
 	@MemberLoginCheck

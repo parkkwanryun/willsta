@@ -14,28 +14,7 @@
 	/*
 	  회원가입 
 	*/
-function member_register_action(e){
-		var parameter = "mId="+ member_register_action.mId.value+"&mPass="+member_register_action.mPass.value+
-		"&mName="+member_register_action.mName.value+"&mEmail="+member_register_action.mEmail.value+"&mPhone="+member_register_action.mPhone.value+
-		"&mImage="+member_register_action.mImage.value;
-		$.ajax({
-			url:'sign_up_action',
-			data:parameter,
-			method:'POST',
-			dataType:'text',
-			success: function(textData){
-				if(textData.trim()=="true"){
-					alert(member_register_action.mId.value+'님 회원가입을 축하드립니다.');
-					location.href ='willstagram/index';
-				}else if(textData.trim()=="false"){
-					location.href ='willstagram/sign_in';
-				}
-			}
-		});
-		e.preventDefault();
-	};
 
-	
 	
 $(function() {
 	$(document).on(
@@ -65,11 +44,35 @@ $(function() {
 			}
 			
 	)
-	
-	$('#member_register_action').click(function(e){
-		member_register_action();
-		e.preventDefault();
-	});	
+
+		
+	$(document).on(
+			'submit',
+			'#member_register_action',
+			function(e) {
+				var parameter = "mId=" + member_register_action.mId.value
+						+ "&mPass=" + member_register_action.mPass.value
+						+ "&mName=" + member_register_action.mName.value
+						+ "&mEmail=" + member_register_action.mEmail.value
+						+ "&mPhone=" + member_register_action.mPhone.value
+						+ "&mImage=" + member_register_action.mImage.value;
+				$.ajax({
+					url : 'sign_up_action',
+					data : parameter,
+					method : 'POST',
+					dataType : 'text',
+					success : function(textData) {
+						if (textData.trim() == "true") {
+							alert(member_register_action.mId.value
+									+ '님 회원가입을 축하드립니다.');
+							location.href = 'willstagram/index';
+						} else if (textData.trim() == "false") {
+							location.href = 'willstagram/sign_in';
+						}
+					}
+				});
+				e.preventDefault();
+			})
 });
 
 		
