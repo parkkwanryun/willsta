@@ -2,6 +2,7 @@ package com.itwill.willsta.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -35,7 +36,9 @@ public class MemberController {
 	public String sign_in() {
 		return "sign_in";
 	}
-
+	
+	
+	/*로그인*/
 	@ResponseBody
 	@RequestMapping(value="/sign_in_action", method = RequestMethod.POST, produces="text/plain; charset=UTF-8")
 	public String sign_in_action_post(@RequestParam("mId")String mId, @RequestParam("mPass")String mPass, 
@@ -63,7 +66,8 @@ public class MemberController {
 		}
 		return forwardPath;
 	}
-
+	
+	/*로그아웃*/
 	@ResponseBody
 	@RequestMapping(value="/sign_out_action")
 	public String sign_out_action(HttpSession session) {
@@ -73,22 +77,28 @@ public class MemberController {
 		return forwardPath;
 	}
 	
-	
+	/*회원가입*/
 	@RequestMapping(value="/sign_up_action",method = RequestMethod.POST, produces="text/plain; charset=UTF-8")
-	public String sign_up_action(Member member, HttpSession session, @RequestParam("mId")String mId) {
-		System.out.println("sign_up_action 컨트롤러 테스트");
+	public String sign_up_action(@RequestParam("mId")String mId,
+									@RequestParam("mPass")String mPass,
+									@RequestParam("mName")String mName,
+									@RequestParam("mEmail")String mEmail,
+									@RequestParam("mPhone")String mPhone,
+									@RequestParam("mImage")String mImage,
+									@RequestParam("mRetire")String mRetire,	HttpSession session, Model model) {
+		System.out.println("sign_up_action 컨트롤러 테스트1");
 		String forwardPath ="";
-		boolean signUpMember = memberService.updateMember(member);
-		session.setAttribute("mId",mId);
-		session.setAttribute("sMemberId", signUpMember);
-		if(signUpMember) {
-			forwardPath="true";
-		}else {
-			forwardPath="false";
-		}
+			boolean signUpMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire,0,0));
+			if(signUpMember) {
+				System.out.println("sign_up_action 컨트롤러 테스트2");
+				session.setAttribute("mId",mId);
+				session.setAttribute("sMemberId", signUpMember);
+				forwardPath="true";
+			}else {
+				forwardPath="false";
+			}
 		return forwardPath;
-	}
-	
+}
 	
 	@MemberLoginCheck
 	@RequestMapping(value="/my-profile-feed")

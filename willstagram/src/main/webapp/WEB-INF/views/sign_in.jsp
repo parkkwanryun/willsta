@@ -127,7 +127,7 @@
 												<div class="col-lg-12 no-pdd">
 													<div class="checky-sec st2">
 														<div class="fgt-sec">
-															<input type="checkbox" name="cc" id="c2">
+															<input type="checkbox" name="mRetire" id="c2">
 															<label for="c2">
 																<span></span>
 															</label>
