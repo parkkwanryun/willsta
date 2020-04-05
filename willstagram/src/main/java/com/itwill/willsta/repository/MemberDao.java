@@ -2,6 +2,8 @@ package com.itwill.willsta.repository;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itwill.willsta.domain.Member;
 
 public interface MemberDao {
@@ -10,13 +12,19 @@ public interface MemberDao {
 	boolean insertMember(Member member);
 	
 	/*Read One(회원정보로딩)*/
-	Member selectById(String mId, String mPhone);
+	Member selectByIdContainFollowInfo(String mId);
+	
+	/*친구추천 - 랜덤로딩 5건*/
+	public List<Member> selectByRandom(@Param("mId") String mId);
+	
+	/*Read One(회원정보로딩)*/
+	Member selectById(String mId);
 	
 	/*Update One(회원정보 수정)*/
 	boolean updateMember(Member memeber);
 	
-	/*Delete One(회원탈퇴)(mRetire F --> T)*/
-	boolean delelteMember(String mId);
+	/*Delete One(회원탈퇴)(mRetire F --> T)(followerCount, followingCount --> 0)*/
+	boolean deleteMember(String mId);
 	
 	/*아이디 중복체크*/
 	boolean existedMember(String mId);
@@ -28,11 +36,11 @@ public interface MemberDao {
 	Member findPw(String mId, String mName);
 	
 	/*임시비밀번호 발급*/
-	Member getTempPw(Member findMember);
+	Member getTempPw(String mPass, String mId);
 	
 	/*사용자 전체목록*/
 	List<Member> memberList();
 	
 	/*사용자 검색*/
-	List<Member> findMemberList(String mid);
+	List<Member> findMemberList(String mId);
 }

@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/socketConnect.js"></script>
 			<div class="container">
 				<div class="header-data">
 					<div class="logo">
-						<a href="index.html" title=""><img src="images/logo.png" alt=""></a>
+						<a href="main_post" title=""><img src="images/logo.png" alt=""></a>
 					</div><!--logo end-->
 					<div class="search-bar">
-						<form>
+						<form class="userSearch">
 							<input type="text" name="search" placeholder="Search...">
 							<button type="submit"><i class="la la-search"></i></button>
 						</form>
@@ -15,7 +17,7 @@
 					<nav>
 						<ul>
 							<li>
-								<a href="index.html" title="">
+								<a href="main_post" title="">
 									<span><img src="images/icon1.png" alt=""></span>
 									Home
 								</a>
@@ -42,8 +44,11 @@
 									Profiles
 								</a>
 								<ul>
-									<li><a href="user-profile.html" title="">User Profile</a></li>
-									<li><a href="my-profile-feed.html" title="">my-profile-feed</a></li>
+								<!-- 	<li><a href="user-profile.html" title="">User Profile</a></li> -->
+
+									<li><a href="my_page.html" title="">My page</a></li>
+
+
 								</ul>
 							</li>
 							<li>
@@ -68,7 +73,7 @@
 							  					<img src="images/resources/ny-img1.png" alt="">
 							  				</div>
 							  				<div class="notification-info">
-							  					<h3><a href="messages.html" title="">Jassica William</a> </h3>
+							  					<h3><a href="messages" title="">Jassica William</a> </h3>
 							  					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.</p>
 							  					<span>2 min ago</span>
 							  				</div><!--notification-info -->
@@ -78,7 +83,7 @@
 							  					<img src="images/resources/ny-img2.png" alt="">
 							  				</div>
 							  				<div class="notification-info">
-							  					<h3><a href="messages.html" title="">Jassica William</a></h3>
+							  					<h3><a href="messages" title="">Jassica William</a></h3>
 							  					<p>Lorem ipsum dolor sit amet.</p>
 							  					<span>2 min ago</span>
 							  				</div><!--notification-info -->
@@ -88,13 +93,13 @@
 							  					<img src="images/resources/ny-img3.png" alt="">
 							  				</div>
 							  				<div class="notification-info">
-							  					<h3><a href="messages.html" title="">Jassica William</a></h3>
+							  					<h3><a href="messages" title="">Jassica William</a></h3>
 							  					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut labore et dolore magna aliqua.</p>
 							  					<span>2 min ago</span>
 							  				</div><!--notification-info -->
 						  				</div>
 						  				<div class="view-all-nots">
-						  					<a href="messages.html" title="">View All Messsages</a>
+						  					<a href="messages" title="">View All Messsages</a>
 						  				</div>
 									</div><!--nott-list end-->
 								</div><!--notification-box end-->
@@ -115,7 +120,7 @@
 							  					<img src="images/resources/ny-img1.png" alt="">
 							  				</div>
 							  				<div class="notification-info">
-							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+							  					<h3><a href="#" title="">Jassica Park</a> Comment on your project.</h3>
 							  					<span>2 min ago</span>
 							  				</div><!--notification-info -->
 						  				</div>
@@ -124,7 +129,7 @@
 							  					<img src="images/resources/ny-img2.png" alt="">
 							  				</div>
 							  				<div class="notification-info">
-							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+							  					<h3><a href="#" title="">Jurassic Park</a> Comment on your project.</h3>
 							  					<span>2 min ago</span>
 							  				</div><!--notification-info -->
 						  				</div>
@@ -133,7 +138,7 @@
 							  					<img src="images/resources/ny-img3.png" alt="">
 							  				</div>
 							  				<div class="notification-info">
-							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+							  					<h3><a href="#" title="">Jake Park</a> Comment on your project.</h3>
 							  					<span>2 min ago</span>
 							  				</div><!--notification-info -->
 						  				</div>
@@ -142,7 +147,7 @@
 							  					<img src="images/resources/ny-img2.png" alt="">
 							  				</div>
 							  				<div class="notification-info">
-							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+							  					<h3><a href="#" title="">Jason xmlian</a> Comment on your project.</h3>
 							  					<span>2 min ago</span>
 							  				</div><!--notification-info -->
 						  				</div>
@@ -159,8 +164,8 @@
 					</div><!--menu-btn end-->
 					<div class="user-account">
 						<div class="user-info">
-							<img src="images/resources/user.png" alt="">
-							<a href="#" title="">John</a>
+							<img src="contents/member_image/${member.mImage}" width="35px" height="35px">
+							<a href="#" title="">${member.mName}</a>
 							<i class="la la-sort-down"></i>
 						</div>
 						<div class="user-account-settingss" id="users">
@@ -199,8 +204,19 @@
 								<li><a href="#" title="">Faqs</a></li>
 								<li><a href="#" title="">Terms & Conditions</a></li>
 							</ul>
-							<h3 class="tc"><a href="sign-in.html" title="">Logout</a></h3>
+							<c:if test="${!empty(sMemberId)}">
+							<h3 class="tc" id="inner_sign_out">
+							<a href="sign_in" title="">Logout</a></h3>
+							</c:if>
+							<c:if test="${empty(sMemberId)}">
+							<h3 class="tc" id="inner_sign_in" >
+							<a href="sign_in" title="">Login</a></h3>
+							</c:if>
 						</div><!--user-account-settingss end-->
 					</div>
 				</div><!--header-data end-->
+
+			</div>			
+
 			</div>
+

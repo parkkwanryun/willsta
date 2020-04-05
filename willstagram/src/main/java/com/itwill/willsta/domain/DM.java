@@ -8,18 +8,27 @@ public class DM {
 	private String mId;
 	private String mIdYou;
 	private String dmDate;
+	private String mImage;
 	
+
 	public DM() {
 		// TODO Auto-generated constructor stub
 	}
-
+	public DM(Integer dmNo, String mId, String mIdYou, String dmDate, String mImage) {
+		super();
+		this.dmNo = dmNo;
+		this.mId = mId;
+		this.mIdYou = mIdYou;
+		this.dmDate = dmDate;
+		this.mImage = mImage;
+	}
 	public DM(Integer dmNo, String mId, String mIdYou, String dmDate) {
+		super();
 		this.dmNo = dmNo;
 		this.mId = mId;
 		this.mIdYou = mIdYou;
 		this.dmDate = dmDate;
 	}
-
 	public Integer getDmNo() {
 		return dmNo;
 	}
@@ -51,11 +60,20 @@ public class DM {
 	public void setDmDate(String dmDate) {
 		this.dmDate = dmDate;
 	}
+	public String getmImage() {
+		return mImage;
+	}
+
+	public void setmImage(String mImage) {
+		this.mImage = mImage;
+	}
 
 	@Override
 	public String toString() {
-		return "DM [dmNo=" + dmNo + ", mId=" + mId + ", mIdYou=" + mIdYou + ", dmDate=" + dmDate + "]\n";
+		return "DM [dmNo=" + dmNo + ", mId=" + mId + ", mIdYou=" + mIdYou + ", dmDate=" + dmDate + ", mImage=" + mImage
+				+ "]\n";
 	}
+
 	
 }
 	

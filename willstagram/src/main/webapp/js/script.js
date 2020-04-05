@@ -1,34 +1,23 @@
 $(window).on("load", function() {
     "use strict";
 
-    
-
-    //  ============= POST PROJECT POPUP FUNCTION =========
-
-    $(".post_project").on("click", function(){
-        $(".post-popup.pst-pj").addClass("active");
-        $(".wrapper").addClass("overlay");
-        return false;
-    });
-    $(".post-project > a").on("click", function(){
-        $(".post-popup.pst-pj").removeClass("active");
-        $(".wrapper").removeClass("overlay");
-        return false;
-    });
-
     //  ============= POST JOB POPUP FUNCTION =========
 
     $(".post-jb").on("click", function(){
+    	postWrite.pNo.value = "";
+		postWrite.pTitle.value = "";
+		postWrite.hasTag.value = "";
+		postWrite.pContents.value = "";
         $(".post-popup.job_post").addClass("active");
         $(".wrapper").addClass("overlay");
         return false;
     });
-    $(".post-project > a").on("click", function(){
+    $(".post-project a").on("click", function(){
         $(".post-popup.job_post").removeClass("active");
         $(".wrapper").removeClass("overlay");
         return false;
     });
-
+    
     //  ============= SIGNIN CONTROL FUNCTION =========
 
     $('.sign-control li').on("click", function(){
@@ -202,7 +191,7 @@ $(window).on("load", function() {
     //  ================== Edit Options Function =================
 
 
-    $(".ed-opts-open").on("click", function(){
+    $(document).on("click", ".ed-opts-open", function(){
         $(this).next(".ed-options").toggleClass("active");
         return false;
     });
