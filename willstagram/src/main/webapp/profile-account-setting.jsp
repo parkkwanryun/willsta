@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
 
 <body>
@@ -339,31 +340,51 @@
 							  			</div><!--pro-work-status end-->
 							  		</div><!--acc-setting end-->
 							  	</div>
+							  	
+							  	
+							  	<!--  회원정보 변경 (mPass, mName, mEmail, mPhone, mImage 등 -->
 							  	<div class="tab-pane fade" id="nav-password" role="tabpanel" aria-labelledby="nav-password-tab">
 							  		<div class="acc-setting">
 										<h3>Account Setting</h3>
 										<form>
-											<div class="cp-field">
-												<h5>Old Password</h5>
-												<div class="cpp-fiel">
-													<input type="text" name="old-password" placeholder="Old Password">
-													<i class="fa fa-lock"></i>
-												</div>
-											</div>
+										<!-- 비밀번호 변경 -->
 											<div class="cp-field">
 												<h5>New Password</h5>
 												<div class="cpp-fiel">
-													<input type="text" name="new-password" placeholder="New Password">
+													<input type="text" name="new-password" placeholder="Old Password">
 													<i class="fa fa-lock"></i>
 												</div>
 											</div>
+											
+												<!-- 이메일 변경 -->
 											<div class="cp-field">
-												<h5>Repeat Password</h5>
+												<h5>New Email</h5>
 												<div class="cpp-fiel">
-													<input type="text" name="repeat-password" placeholder="Repeat Password">
+													<input type="text" name="new-email" placeholder="New Password">
 													<i class="fa fa-lock"></i>
 												</div>
 											</div>
+											
+											
+												<!-- 전화번호 변경 -->
+											<div class="cp-field">
+												<h5>New Phone</h5>
+												<div class="cpp-fiel">
+													<input type="text" name="new-phone-number" placeholder="Repeat Password">
+													<i class="fa fa-lock"></i>
+												</div>
+											</div>
+
+												<!-- 프로필 이미지 변경 -->
+											<div class="cp-field">
+												<h5>New Phone</h5>
+												<div class="cpp-fiel">
+													<input type="text" name="new-profile-image" placeholder="Repeat Password">
+													<i class="fa fa-lock"></i>
+												</div>
+											</div>
+											
+											
 											<div class="cp-field">
 												<h5><a href="#" title="">Forgot Password?</a></h5>
 											</div>

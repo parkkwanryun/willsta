@@ -78,30 +78,25 @@ public class MemberController {
 	}
 	
 	/*회원가입*/
-	@RequestMapping(value="/sign_up_action",method = RequestMethod.POST, produces="text/plain; charset=UTF-8")
-	public String sign_up_action(@RequestParam("mId")String mId,
-									@RequestParam("mPass")String mPass,
-									@RequestParam("mName")String mName,
-									@RequestParam("mEmail")String mEmail,
-									@RequestParam("mPhone")String mPhone,
-									@RequestParam("mImage")String mImage,
-									@RequestParam("mRetire")String mRetire,	HttpSession session, Model model) {
+	@ResponseBody
+	@RequestMapping(value="/sign_up_action",method = RequestMethod.POST, produces="application/json; charset=UTF-8")
+	public String sign_up_action(Member member, HttpServletRequest request, HttpSession session, Model model) {
 		System.out.println("sign_up_action 회원가입 컨트롤러 테스트1");
-		String forwardPath ="";
-			boolean signUpMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire,0,0));
-			if(signUpMember) {
+		String forwardPath = "";
+		String mId = (String) request.getSession().getAttribute("mId");
+		String mPass = (String) request.getSession().getAttribute("mPass");
+		String mName = (String) request.getSession().getAttribute("mName");
+		String mEmail = (String) request.getSession().getAttribute("mEmail");
+		String mPhone = (String) request.getSession().getAttribute("mPhone");
+		String mImage = (String) request.getSession().getAttribute("mImage");
+		String mRetire = (String) request.getSession().getAttribute("mRetire");
+
+		boolean newMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire,0,0));
+			if(newMember) {
 				System.out.println("sign_up_action 컨트롤러 테스트2");
-				session.setAttribute("mId",mId);
-				session.setAttribute("sMemberId", signUpMember);
-				model.addAttribute("mId",mId);
-				model.addAttribute("mName",mName);
-				model.addAttribute("mEmail",mEmail);
-				model.addAttribute("mPhone",mPhone);
-				model.addAttribute("mImage",mImage);
-				model.addAttribute("mRetire",mRetire);
-				forwardPath="true";
+				forwardPath= "true";
 			}else {
-				forwardPath="false";
+				forwardPath= "false";
 			}
 		return forwardPath;
 }
