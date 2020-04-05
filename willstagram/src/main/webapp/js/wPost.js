@@ -188,6 +188,24 @@ function post_write(){
 				e.preventDefault();
 			});
 			
+			//Top Views를 통해 컨텐츠 보기 detail
+			$(document).on('click','.job-info a',function(e){
+				var $post = $(e.target).parents('.job-info');
+				var params = "pNo="+ $post.attr('post_no');
+				$.ajax({
+					url:'get_post',
+					method:'POST',
+					data:params,
+					dataType:'text',
+					success: function(resultText){
+						$('div.post_deatil').html(resultText);
+						$('div.post_deatil').addClass("active");
+						$(".wrapper").addClass("overlay");
+					}
+				});
+				e.preventDefault();
+			});
+			
 			$(document).on('click','button.btn-default',function(e){
 				$('div.post_deatil').removeClass("active");
 				$(".wrapper").removeClass("overlay");

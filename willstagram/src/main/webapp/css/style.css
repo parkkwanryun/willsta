@@ -910,6 +910,21 @@ main {
 }
 
 
+.view-more {
+	float: left;
+	width: 100%;
+	text-align: center;
+	padding-top: 10px;
+}
+a.top-views {
+	color: #686868;
+	font-size: 14px;
+	font-weight: 700;
+}
+a.top-views:hover {
+	color: #408080
+}
+
 
 /* ============== tags-sec ============= */
 

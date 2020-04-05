@@ -233,10 +233,10 @@
 										</div>
 										<div class="jobs-list">
 											<c:forEach var="postRank" items="${postRankList}">
-												<div class="job-info">
+												<div class="job-info" post_no="${postRank.PNO}">
 													<div class="job-details">
 														<h3>${postRank.MNAME}</h3>
-														<p>${postRank.PTITLE}</p>
+														<p><a href="#" title="" class="top-views">${postRank.PTITLE}</a></p>
 													</div>
 													<div class="hr-rate">
 														<span>${postRank.PVIEWCOUNT}</span>
