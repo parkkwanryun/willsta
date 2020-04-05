@@ -62,7 +62,7 @@ $(function(){
 			dataType: "text",
 			success:function(){
 				$(e.target.parentNode).next().children().show();
-				$(e.target).hide();
+				$(e.target).hide(); 
 			}
 		});
 		e.preventDefault();
