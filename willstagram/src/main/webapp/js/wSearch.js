@@ -1,6 +1,5 @@
 $(function(){
 	
-	
 	//팔로우 여부 체크
 	var mIdArray=$('#mId-List').serializeArray();
 	console.log(mIdArray);
@@ -17,7 +16,7 @@ $(function(){
 				if (resultText.trim()=='true') {
 					console.log(mId);
 					console.log(resultText.trim())
-					$("h3:contains("+mId+")").next().next().children().eq(1).hide();
+					$("h3:contains("+mId+")").next().next().children().eq(1).children().hide();
 				}else if (resultText.trim()=='false') {
 					console.log(mId);
 					console.log(resultText.trim())
@@ -43,6 +42,7 @@ $(function(){
 			success:function(resultText){
 				$('div.wrapper').html(resultText);
 				$('div.company-title').children().text("Search Profile");
+				console.log(resultText);
 			}
 		});
 		e.preventDefault();
@@ -64,7 +64,6 @@ $(function(){
 		});
 		e.preventDefault();
 	});
-	
 	
 	//언팔로우
 	$(document).on('click','.unFollow',function(e){
