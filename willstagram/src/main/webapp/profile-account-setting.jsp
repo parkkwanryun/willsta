@@ -346,12 +346,12 @@
 							  	<div class="tab-pane fade" id="nav-password" role="tabpanel" aria-labelledby="nav-password-tab">
 							  		<div class="acc-setting">
 										<h3>Account Setting</h3>
-										<form>
+										<form id = "member_Modify">
 										<!-- 비밀번호 변경 -->
 											<div class="cp-field">
 												<h5>New Password</h5>
 												<div class="cpp-fiel">
-													<input type="text" name="new-password" placeholder="Old Password">
+													<input type="text" name="mPass" placeholder="Old Password">
 													<i class="fa fa-lock"></i>
 												</div>
 											</div>
@@ -360,7 +360,7 @@
 											<div class="cp-field">
 												<h5>New Email</h5>
 												<div class="cpp-fiel">
-													<input type="text" name="new-email" placeholder="New Password">
+													<input type="text" name="mEmail" placeholder="New Password">
 													<i class="fa fa-lock"></i>
 												</div>
 											</div>
@@ -370,7 +370,7 @@
 											<div class="cp-field">
 												<h5>New Phone</h5>
 												<div class="cpp-fiel">
-													<input type="text" name="new-phone-number" placeholder="Repeat Password">
+													<input type="text" name="mPhone" placeholder="Repeat Password">
 													<i class="fa fa-lock"></i>
 												</div>
 											</div>
@@ -379,7 +379,7 @@
 											<div class="cp-field">
 												<h5>New Phone</h5>
 												<div class="cpp-fiel">
-													<input type="text" name="new-profile-image" placeholder="Repeat Password">
+													<input type="text" name="mImage" placeholder="Repeat Password">
 													<i class="fa fa-lock"></i>
 												</div>
 											</div>
@@ -971,5 +971,6 @@
 
 
  <jsp:include page="/WEB-INF/commons/include_footer_js.jsp"/>
+ <script type="text/javascript" src="js/wMember.js"></script>
 </body>
 </html>

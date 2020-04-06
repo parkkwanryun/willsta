@@ -29,13 +29,7 @@ public class MemberUnitTestMain {
 		ApplicationContext applicationContext = 
 				new FileSystemXmlApplicationContext("/src/main/webapp/WEB-INF/spring/root-context.xml");
 		MemberDao memberDao = applicationContext.getBean(MemberDaoImpl.class);
-		//System.out.println("회원 탈퇴 "+memberDao.delelteMember("kpr"));
-		//System.out.println("회원 찾기"+memberDao.existedMember("pkr"));
-		//System.out.println("비밀번호 찾기"+memberDao.findPw("pkr", "세미"));
-		//System.out.println(""+memberDao.findMemberList("pkr"));
-
-		//System.out.println(memberDao.insertMember(new Member("소진이고생하네","111","매퍼소진","sj@naver.com","010"," ","T")));
-	}
+}
 
 	@Autowired
 	private ApplicationContext applicationContext;
@@ -52,8 +46,9 @@ public class MemberUnitTestMain {
 	@Test //회원가입
 	@Ignore
 	public void insertMember() {
-		//boolean member = memberDao.insertMember(new Member("ss501", "12345", "윌스타그램", "bluepk2034@Naver.com","010755555", "","F"));
-		//System.out.println("## 회원가입(멤버 추가) :"+member);
+		Member newMember = new Member("das", "12345", "윌스타그램", "bluepk2034@naver.com","0133755555", "","F");
+		boolean member = memberDao.insertMember(newMember);
+		System.out.println("## 회원가입(멤버 추가) :"+member);
 	}
 	
 	@Test //회원탈퇴

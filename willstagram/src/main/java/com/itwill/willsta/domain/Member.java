@@ -31,8 +31,16 @@ public class Member {
 	}
 
 
-
-
+	public Member(String mId, String mPass, String mName, String mEmail, String mPhone, String mImage, String mRetire) {
+		super();
+		this.mId = mId;
+		this.mPass = mPass;
+		this.mName = mName;
+		this.mEmail = mEmail;
+		this.mPhone = mPhone;
+		this.mImage = mImage;
+		this.mRetire = mRetire;
+	}
 
 	public String getmId() {
 		return mId;

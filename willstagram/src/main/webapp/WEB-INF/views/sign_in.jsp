@@ -79,12 +79,10 @@
 							
 								<!--sign_in_sec end-->
 								<div class="sign_in_sec" id="tab-2">
-									<div class="signup-tab">
-									</div><!--signup-tab end (회원가입 탭)-->	
+									<!--signup-tab end (회원가입 탭)-->	
 
 									<div class="dff-tab current" id="tab-3">
-									
-									
+
 										<form id="member_register_action" method="POST">
 										
 											<div class="row">
@@ -208,5 +206,6 @@
 
  <jsp:include page="/WEB-INF/commons/include_footer_js.jsp"/>
  <script type="text/javascript" src="js/wMember.js"></script>
+ <script src="js/jquery.validate.min.js"></script>
 </body>
 </html>
