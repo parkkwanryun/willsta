@@ -66,7 +66,7 @@ public class FollowController {
 		ModelAndView mv = new ModelAndView();
 		List<Follow> followers = followService.followers(mId);
 		for(Follow follow : followers) {
-			follow.setmIdYou(mId);
+			follow.setmId(mId);
 		}
 		mv.addObject("followers",followers);
 		mv.setViewName("followList");
@@ -75,11 +75,11 @@ public class FollowController {
 	}
 	
 	@RequestMapping(value="/followingList" , produces = "text/html;charset=utf-8")
-	public ModelAndView following(@RequestParam(value="mId",required = true)String mId) {
+	public ModelAndView following(@RequestParam(value="mIdYou",required = true)String mIdYou) {
 		ModelAndView mv = new ModelAndView();
-		List<Follow> following = followService.following(mId);
+		List<Follow> following = followService.following(mIdYou);
 		for(Follow follow : following) {
-			follow.setmIdYou(mId);
+			follow.setmIdYou(mIdYou);
 		}
 		mv.addObject("following",following);
 		mv.setViewName("followingList");
