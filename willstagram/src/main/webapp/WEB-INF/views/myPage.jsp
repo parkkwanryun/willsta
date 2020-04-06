@@ -236,7 +236,7 @@
 								<div class="main-left-sidebar">
 									<div class="user_profile">
 										<div class="user-pro-img">
-											<img src="images/resources/user-pro-img.png" alt="">
+											<img src="contents/member_image/${member.mImage}" alt="">
 											<div class="add-dp" id="OpenImgUpload">
 												<input type="file" id="file">
 												<label for="file"><i class="fas fa-camera"></i></label>												
@@ -247,7 +247,7 @@
 												<li>
 													<h4>Following</h4>
 													<span>${member.followingCount}</span>
-													<b>34</b>
+													<b>${member.followingList}</b>
 												</li>
 												<li>
 													<h4>Followers</h4>

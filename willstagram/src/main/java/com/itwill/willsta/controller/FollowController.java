@@ -16,9 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.willsta.domain.Follow;
 import com.itwill.willsta.domain.Likes;
+import com.itwill.willsta.domain.Member;
 import com.itwill.willsta.domain.Post;
 import com.itwill.willsta.domain.PostImage;
 import com.itwill.willsta.service.FollowService;
+import com.itwill.willsta.service.MemberService;
 import com.itwill.willsta.service.PostService;
 
 
@@ -30,16 +32,21 @@ public class FollowController {
 	FollowService followService;
 	@Autowired
 	PostService postService; 
+	@Autowired
+	MemberService memberService;
 
 	@MemberLoginCheck
 	@RequestMapping(value="/my_page")
 	public ModelAndView myPage(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		String mId = (String)request.getSession().getAttribute("mId");
+		Member member = memberService.selectByIdContainFollowInfo(mId);
 		List<Post> postList = postService.selectMyList(0,mId);
 		for (Post post : postList) {
 			post.setTagArray(post.getHasTag().split(" "));
 		}
+		
+		mv.addObject("member", member);
 		mv.addObject("postList", postList);
 		mv.setViewName("myPage");
 		return mv;
