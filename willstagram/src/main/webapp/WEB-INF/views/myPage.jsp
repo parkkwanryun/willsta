@@ -1791,7 +1791,7 @@
 												
 										</div>
 											</div><!--post-bar end-->
-											<div class="post-bar post-thanks">
+											<div class="post-bar" post_no="${post.pNo}">
 												<div class="post_topbar">
 													<div class="usy-dt">
 														<img src="images/resources/bg-img1.png" alt="">
