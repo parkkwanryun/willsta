@@ -20,11 +20,11 @@ public class CommentsController {
 	private CommentsService commentsService;
 	
 	@MemberLoginCheck
-	@PostMapping(value = "/commentsInsertAction", produces = "text/plain;charset=UTF-8")
-	public ModelAndView commentsInsertAction(@RequestParam(value = "pNo", defaultValue = "15") int pNo,
+	@PostMapping(value = "/commentsInsert", produces = "text/plain;charset=UTF-8")
+	public String commentsInsert(@RequestParam(value = "pNo", defaultValue = "15") int pNo,
 									   		 @RequestParam String cContents,
 									   		 HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView();
+		String result = "";
 		Comments comments = new Comments();
 		String mId = (String)session.getAttribute("mId");
 		comments.setpNo(pNo);
@@ -32,15 +32,32 @@ public class CommentsController {
 		comments.setcContents(cContents);
 		int createResult = commentsService.createComment(comments);
 		if(createResult == 1) {
-			mv.addObject("comments", comments);
-			mv.setViewName("comments");
+			result = "true";
+		} else {
+			result = "false";
 		}
-		return mv;
+		return result;
 	}
 	
 	@RequestMapping(value = "/postCommentsList", produces = "application/json;charset=UTF-8")
 	public List<Comments> postCommentsList(@RequestParam(value = "pNo") int pNo) throws Exception {
 		List<Comments> postCommentsList = commentsService.postCommentsList(pNo);
 		return postCommentsList;
+	}
+	
+	
+	public String reCommentsInsert() throws Exception {
+		
+		return "";
+	}
+	
+	public String commentsUpdate() throws Exception {
+		
+		return "";
+	}
+	
+	public String commentsDelete() throws Exception {
+		
+		return "";
 	}
 }

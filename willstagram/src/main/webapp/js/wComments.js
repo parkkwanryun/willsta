@@ -1,49 +1,14 @@
-//document ready
-$(function() {
-	// 댓글 쓰기
-	/*
-	$(document).on("click", ".comments_insert_button", function(e) {
-		var $comments = $(e.target).parents("div.post-comment");
-		var paramPNo = "pNo="+$comments.attr("post_no");
-		
-		var params = $(".comments_insert_form").serialize();
-		$.ajax({
-			url : "commentsInsertAction",
-			data : params,
-			method : "POST",
-			dataType : "html",
-			success : function(resultText) {
-				$("div.comment-sec").append(resultText);
-				$("[input='text']").attr("value");
-			}
-		});
-		e.preventDefault();
-	});
-	*/
-	
-	// 포스트-댓글 전체 보이기
-	$(document).on("click", "a.comment_list_click", function(e){
-		console.log(e.target);
-		var $comments = $('.post-bar-'+$(e.target).attr('post_no')).find('.comment-section');
-		console.log($comments);
-		postCommentsListFunction($comments);
-		e.preventDefault();
-	});
-});
-
-
 // 포스트-댓글 전체 보이기 ajax요청
-function postCommentsListFunction($comments){
-	var params = "pNo="+$comments.attr("post_no");
+function postCommentsListFunction($postComments){
+	var params = "pNo="+$postComments.attr("post_no");
 	console.log(params);
-	console.log($comments.children().is(":visible"));
-	if($comments.children().length > 1){
-		$comments.children().fadeToggle(300);
+	if($postComments.children().length > 1){
+		$postComments.children().fadeToggle(300);
 	}else {
 		$.ajax({
 			url : "postCommentsList",
 			data : params,
-			method : "GET",
+			method : "POST",
 			dataType : "json",
 			success : function(jsonArray){
 				console.log(jsonArray);
@@ -51,7 +16,6 @@ function postCommentsListFunction($comments){
 				$.each(jsonArray, function(i, jsonObject){
 					jsonObject = jsonArray[i];
 					var cNo = jsonObject.cNo;
-					var pNo = jsonObject.pNo;
 					var mId = jsonObject.mId;
 					var cTime = jsonObject.cTime;
 					var cContents = jsonObject.cContents;
@@ -70,9 +34,51 @@ function postCommentsListFunction($comments){
 							"</ul>" +
 							"</div>";
 				});
-				$comments.append(html);
-				$comments.children().fadeToggle(300);
+				$postComments.append(html);
+				$postComments.children().fadeToggle(300);
 			}
 		});
 	}
 };
+
+
+//댓글 작성 ajax 요청
+function commentsInsertActionFunction($comments){
+	var params = "pNo="+$comments.attr("post_no");
+	
+	$.ajax({
+		url : "commentsInsert",
+		data : params,
+		method : "POST",
+		dataType : "text",
+		success : function(result) {
+			if(result.trim() == "true"){
+				
+			}else if(result.trim() == "false"){
+				
+			}
+		}
+	});
+}
+
+//document ready
+$(function() {
+	// 포스트-댓글 전체 보이기
+	$(document).on("click", "a.comment_list_click", function(e){
+		console.log(e.target);
+		var $postComments = $(".post-bar-"+$(e.target).attr("post_no")).find(".comment-section");
+		console.log($postComments);
+		postCommentsListFunction($postComments);
+		e.preventDefault();
+	});
+	
+	// 댓글 쓰기
+	$(document).on("click", ".comments_insert_button", function(e) {
+		console.log(e.target);
+		console.log($(e.target).parent(".comments_insert_form").attr("post_no"));
+		var $comments = $(e.target).parent(".comments_insert_form").attr("post_no");
+		
+		commentsInsertActionFunction($comments);
+		e.preventDefault();
+	});
+});

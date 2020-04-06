@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt2" uri="http://java.sun.com/jstl/fmt_rt"%>
+
 <head>
 <meta charset="UTF-8">
 <title>즐거움의 시작 윌스타그램</title>
@@ -257,10 +258,11 @@
 														<img src="images/resources/bg-img4.png" alt="">
 													</div>
 													<div class="comment_box">
-														<form class="comments_insert_form">
+														<form class="comments_insert_form" post_no="${post.pNo}">
 															<!-- 댓글 내용 쓰는 곳 -->
 															<input type="text" placeholder="Post a comment"
 																name="cContents" class="cContents">
+															<input type="hidden" name="pNo" value="${post.pNo}" >
 															<button type="button" class="comments_insert_button">Send</button>
 														</form>
 													</div>
