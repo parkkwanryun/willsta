@@ -22,7 +22,7 @@ public interface PostDao {
 	
 	public int delete(Integer pNo);
 	
-	public List<Post> selectMyList(String userId);
+	public List<Post> selectMyList(Integer lastpNo, String userId);
 	
 	public Post selectPost(Integer pNo, String mId);
 	
@@ -39,5 +39,7 @@ public interface PostDao {
 	public int up_viewcount(Integer pNo);
 	
 	public int delete_img(Integer pNo);
+	
+	public List<Map> selectPostRanking();
 	
 }

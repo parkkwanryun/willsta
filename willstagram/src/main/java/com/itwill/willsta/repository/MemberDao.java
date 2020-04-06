@@ -2,6 +2,8 @@ package com.itwill.willsta.repository;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itwill.willsta.domain.Member;
 
 public interface MemberDao {
@@ -11,6 +13,9 @@ public interface MemberDao {
 	
 	/*Read One(회원정보로딩)*/
 	Member selectByIdContainFollowInfo(String mId);
+	
+	/*친구추천 - 랜덤로딩 5건*/
+	public List<Member> selectByRandom(@Param("mId") String mId);
 	
 	/*Read One(회원정보로딩)*/
 	Member selectById(String mId);

@@ -18,8 +18,8 @@ public class DmDaoImpl implements DmDao {
 	}
 	//채팅방 전체 조회
 	@Override
-	public List<DM> dmSelectAll() {
-		return dmMapper.dmSelectAll();
+	public List<DM> dmSelectAll(String mId) {
+		return dmMapper.dmSelectAll(mId);
 	}
 	
 	//채팅방 생성

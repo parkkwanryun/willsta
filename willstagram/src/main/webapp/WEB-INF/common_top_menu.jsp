@@ -6,7 +6,7 @@
 			<div class="container">
 				<div class="header-data">
 					<div class="logo">
-						<a href="index.html" title=""><img src="images/logo.png" alt=""></a>
+						<a href="main_post" title=""><img src="images/logo.png" alt=""></a>
 					</div><!--logo end-->
 					<div class="search-bar">
 						<form class="userSearch">
@@ -17,44 +17,27 @@
 					<nav>
 						<ul>
 							<li>
-								<a href="index.html" title="">
+								<a href="main_post" title="">
 									<span><img src="images/icon1.png" alt=""></span>
 									Home
 								</a>
 							</li>
 							<li>
-								<a href="companies.html" title="">
+								<a href="https://www.itwill.co.kr" title="">
 									<span><img src="images/icon2.png" alt=""></span>
 									Companies
-								</a>
-								<ul>
-									<li><a href="companies.html" title="">Companies</a></li>
-									<li><a href="company-profile.html" title="">Company Profile</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="projects.html" title="">
-									<span><img src="images/icon3.png" alt=""></span>
-									Projects
 								</a>
 							</li>
 							<li>
 								<a href="profiles.html" title="">
-									<span><img src="images/icon4.png" alt=""></span>
+									<span><img src="images/icon3.png" alt=""></span>
 									Profiles
 								</a>
-								<ul>
-								<!-- 	<li><a href="user-profile.html" title="">User Profile</a></li> -->
-
-									<li><a href="my_page.html" title="">My page</a></li>
-
-
-								</ul>
 							</li>
 							<li>
-								<a href="jobs.html" title="">
-									<span><img src="images/icon5.png" alt=""></span>
-									Jobs
+								<a href="my_page.html" title="">
+									<span><img src="images/icon4.png" alt=""></span>
+									My page
 								</a>
 							</li>
 							<li>
@@ -73,7 +56,7 @@
 							  					<img src="images/resources/ny-img1.png" alt="">
 							  				</div>
 							  				<div class="notification-info">
-							  					<h3><a href="messages.html" title="">Jassica William</a> </h3>
+							  					<h3><a href="messages" title="">Jassica William</a> </h3>
 							  					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.</p>
 							  					<span>2 min ago</span>
 							  				</div><!--notification-info -->
@@ -83,7 +66,7 @@
 							  					<img src="images/resources/ny-img2.png" alt="">
 							  				</div>
 							  				<div class="notification-info">
-							  					<h3><a href="messages.html" title="">Jassica William</a></h3>
+							  					<h3><a href="messages" title="">Jassica William</a></h3>
 							  					<p>Lorem ipsum dolor sit amet.</p>
 							  					<span>2 min ago</span>
 							  				</div><!--notification-info -->
@@ -93,13 +76,13 @@
 							  					<img src="images/resources/ny-img3.png" alt="">
 							  				</div>
 							  				<div class="notification-info">
-							  					<h3><a href="messages.html" title="">Jassica William</a></h3>
+							  					<h3><a href="messages" title="">Jassica William</a></h3>
 							  					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut labore et dolore magna aliqua.</p>
 							  					<span>2 min ago</span>
 							  				</div><!--notification-info -->
 						  				</div>
 						  				<div class="view-all-nots">
-						  					<a href="messages.html" title="">View All Messsages</a>
+						  					<a href="messages" title="">View All Messsages</a>
 						  				</div>
 									</div><!--nott-list end-->
 								</div><!--notification-box end-->
@@ -164,9 +147,8 @@
 					</div><!--menu-btn end-->
 					<div class="user-account">
 						<div class="user-info">
-							<img src="images/resources/user.png" alt="">
-							<a href="#" title="">John</a>
-							<i class="la la-sort-down"></i>
+							<img src="contents/member_image/${member.mImage}" width="35px" height="35px">
+							<a href="#" title="">${member.mName}</a>
 						</div>
 						<div class="user-account-settingss" id="users">
 							<h3>Online Status</h3>
@@ -218,5 +200,4 @@
 
 			</div>			
 
-			</div>
 

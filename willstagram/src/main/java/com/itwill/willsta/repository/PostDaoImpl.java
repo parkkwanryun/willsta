@@ -47,8 +47,8 @@ public class PostDaoImpl implements PostDao {
 	}
 
 	@Override
-	public List<Post> selectMyList(String userId) {
-		 return postMapper.selectMyList(userId);
+	public List<Post> selectMyList(Integer lastpNo, String userId) {
+		 return postMapper.selectMyList(lastpNo, userId);
 	}
 
 	@Override
@@ -84,6 +84,11 @@ public class PostDaoImpl implements PostDao {
 	@Override
 	public int up_viewcount(Integer pNo) {
 		return postMapper.up_viewcount(pNo);
+	}
+
+	@Override
+	public List<Map> selectPostRanking() {
+		return postMapper.selectPostRanking();
 	}
 
 	

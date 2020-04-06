@@ -1,6 +1,7 @@
 package com.itwill.willsta.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -52,40 +53,54 @@ public interface PostMapper {
 	public int delete_img(Integer pNo);
 
 	//로그인 후 리스트 자신과 자신의 팔로잉 멤버의 글을 리스트를 작성일이 최신인 것 순으로 정렬
-	@Select(" SELECT P.PNO, P.PTITLE, P.PCONTENTS, P.HASTAG, P.PDATE, P.MID, M.MNAME, M.MIMAGE, PVIEWCOUNT,"
-			+"         (SELECT COUNT(*) FROM LIKES X WHERE X.PNO = P.PNO) AS likeCount, "
-			+"         (SELECT COUNT(*) FROM LIKES X WHERE X.PNO = P.PNO AND MIDYOU = #{mId}) AS myLike, "
-			+"         (SELECT MIN(X.FILENAME) AS FILENAME FROM POST_IMAGE X WHERE X.PNO = P.PNO) AS FILENAME, "
-			+"   CASE WHEN ROUND((SYSDATE - P.PDATE)) > 0 "
-			+"        THEN ROUND((SYSDATE - P.PDATE)) || '일 전' "
-		    +"        ELSE CASE WHEN ROUND((SYSDATE - P.PDATE)*24)>0  "
-		    +"                  THEN ROUND((SYSDATE - P.PDATE)*24) || '시간 전' "
-		    +"                  ELSE ROUND((SYSDATE - P.PDATE)*24*60) || '분 전' "
-		    +"             END "
-		    +"   END AS AGO, P.STATUS "
-			+" FROM POST P INNER JOIN MEMBER M ON P.MID = M.MID "
-			+" WHERE (P.MID = #{mId} "
-			+"       OR P.MID IN (SELECT mIdYou FROM FOLLOW WHERE MID = #{mId})) "
-			+" ORDER BY P.PNO DESC")
-	public List<Post> selectMyList(String mId);
-	
-	
+	//tag사이에는 lt를 쓸 수 있는데 그외 sql에서는 <![CDATA[  ]]>사이에 sql을 넣어야 한다.
+	@Select({"<script>",
+		" SELECT A.* ",
+		" FROM (SELECT P.PNO, P.PTITLE, P.PCONTENTS, P.HASTAG, P.PDATE, P.MID, M.MNAME, M.MIMAGE, PVIEWCOUNT, ",
+		"         (SELECT COUNT(*) FROM LIKES X WHERE X.PNO = P.PNO) AS likeCount, ",
+		"         (SELECT COUNT(*) FROM LIKES X WHERE X.PNO = P.PNO AND MIDYOU = #{mId}) AS myLike, ",
+		"         (SELECT MIN(X.FILENAME) AS FILENAME FROM POST_IMAGE X WHERE X.PNO = P.PNO) AS FILENAME, ",
+		"   CASE WHEN ROUND((SYSDATE - P.PDATE)) > 0 ",
+		"        THEN ROUND((SYSDATE - P.PDATE)) || '일 전' ",
+	    "        ELSE CASE WHEN ROUND((SYSDATE - P.PDATE)*24) > 0  ",
+	    "                  THEN ROUND((SYSDATE - P.PDATE)*24) || '시간 전' ",
+	    "                  ELSE ROUND((SYSDATE - P.PDATE)*24*60) || '분 전' ",
+	    "             END ",
+	    "   END AS AGO, P.STATUS ",
+		" FROM POST P INNER JOIN MEMBER M ON P.MID = M.MID ",
+		" WHERE (P.MID = #{mId} ",
+		"       OR P.MID IN (SELECT mIdYou FROM FOLLOW WHERE MID = #{mId})) ",
+		"  <if test='lastpNo gt 0'><![CDATA[AND P.PNO < #{lastpNo} ]]></if>",
+		" ORDER BY P.PNO DESC) A ",
+		"  <![CDATA[WHERE ROWNUM < 6]]>",
+			"</script>"})
+	public List<Post> selectMyList(@Param("lastpNo")Integer lastpNo, @Param("mId")String mId);
+	  
 	//POST 한개 가져오기
-	@Select(" SELECT P.PNO, P.PTITLE, P.PCONTENTS, P.HASTAG, P.PDATE, P.MID, M.MNAME, M.MIMAGE, PVIEWCOUNT,"
-			+"         (SELECT COUNT(*) FROM LIKES X WHERE X.PNO = P.PNO) AS likeCount, "
-			+"         (SELECT COUNT(*) FROM LIKES X WHERE X.PNO = P.PNO AND MIDYOU = #{mId}) AS myLike, "
-			+"         (SELECT MIN(X.FILENAME) AS FILENAME FROM POST_IMAGE X WHERE X.PNO = P.PNO) AS FILENAME, "
-			+"   CASE WHEN ROUND((SYSDATE - P.PDATE)) > 0 "
-			+"        THEN ROUND((SYSDATE - P.PDATE)) || '일 전' "
-		    +"        ELSE CASE WHEN ROUND((SYSDATE - P.PDATE)*24)>0  "
-		    +"                  THEN ROUND((SYSDATE - P.PDATE)*24) || '시간 전' "
-		    +"                  ELSE ROUND((SYSDATE - P.PDATE)*24*60) || '분 전' "
-		    +"             END "
-		    +"   END AS AGO , P.STATUS"
-			+" FROM POST P INNER JOIN MEMBER M ON P.MID = M.MID "
-			+" WHERE pNo = #{pNo}")
+		@Select(" SELECT P.PNO, P.PTITLE, P.PCONTENTS, P.HASTAG, P.PDATE, P.MID, M.MNAME, M.MIMAGE, PVIEWCOUNT,"
+				+"         (SELECT COUNT(*) FROM LIKES X WHERE X.PNO = P.PNO) AS likeCount, "
+				+"         (SELECT COUNT(*) FROM LIKES X WHERE X.PNO = P.PNO AND MIDYOU = #{mId}) AS myLike, "
+				+"         (SELECT MIN(X.FILENAME) AS FILENAME FROM POST_IMAGE X WHERE X.PNO = P.PNO) AS FILENAME, "
+				+"   CASE WHEN ROUND((SYSDATE - P.PDATE)) > 0 "
+				+"        THEN ROUND((SYSDATE - P.PDATE)) || '일 전' "
+			    +"        ELSE CASE WHEN ROUND((SYSDATE - P.PDATE)*24)>0  "
+			    +"                  THEN ROUND((SYSDATE - P.PDATE)*24) || '시간 전' "
+			    +"                  ELSE ROUND((SYSDATE - P.PDATE)*24*60) || '분 전' "
+			    +"             END "
+			    +"   END AS AGO , P.STATUS"
+				+" FROM POST P INNER JOIN MEMBER M ON P.MID = M.MID "
+				+" WHERE pNo = #{pNo}")
 		public Post selectOne(@Param("pNo")Integer pNo, @Param("mId")String mId);
-		
+	
+		//공개글 중 조회수가 가장 많은 5건 - 메인화면 우측 리스트에 사용
+		@Select(" SELECT * FROM ( "
+				+" SELECT P.PNO, P.MID, M.MNAME, P.PTITLE, P.PVIEWCOUNT "
+			    +" FROM POST P INNER JOIN MEMBER M ON P.MID = M.MID "
+			    +" WHERE STATUS = 'A' "
+			    +" ORDER BY PVIEWCOUNT DESC) "
+			    +" WHERE ROWNUM < 6 ")
+		public List<Map> selectPostRanking();
+
 		//POST 한개의 전체 콘텐츠 불러들임
 		@Select(" select pno, filename from post_image "
 				+" WHERE pNo = #{pNo}")

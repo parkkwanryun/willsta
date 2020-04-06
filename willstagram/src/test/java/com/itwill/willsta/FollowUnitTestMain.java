@@ -29,14 +29,14 @@ public class FollowUnitTestMain {
 	@Test
 	@Ignore
 	public void follow() throws Exception{
-		boolean follow = followDao.follow(new Follow("준수","예준"));
+		int follow = followDao.follow(new Follow("준수","예준"));
 		System.out.println("## 팔로"+follow);
 		
 	}
 
 	@Test
 	public void unfollow() throws Exception{
-		boolean unfollow = followDao.unfollow("똑순이", "e");
+		int unfollow = followDao.unfollow("똑순이", "e");
 		System.out.println("## 당신 언팔." +unfollow);
 		
 	}
@@ -55,7 +55,12 @@ public class FollowUnitTestMain {
 		System.out.println("### following:"+following);
 	}
 	
-	
+	@Test
+	@Ignore
+	public void followCheck() {
+		int followCheck=followDao.followCheck("hjs", "ss501");
+		System.out.println("### followCheck:"+followCheck);
+	}
 	
 	
 	

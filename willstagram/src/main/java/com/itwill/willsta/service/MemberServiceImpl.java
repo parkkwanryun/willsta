@@ -82,4 +82,9 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectByIdContainFollowInfo(mId);
 		
 	}
+
+	@Override
+	public List<Member> selectByRandom(String mId) {
+		return memberDao.selectByRandom(mId);
+	}
 }
