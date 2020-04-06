@@ -34,23 +34,29 @@ public class FollowController {
 	PostService postService; 
 	@Autowired
 	MemberService memberService;
-
+	
+	/*
+	 * @MemberLoginCheck
+	 * @RequestMapping(value="/my_page") public ModelAndView
+	 * myPage(HttpServletRequest request) { ModelAndView mv = new ModelAndView();
+	 * String mId = (String)request.getSession().getAttribute("mId"); Member member
+	 * = memberService.selectByIdContainFollowInfo(mId); List<Member> random =
+	 * memberService.selectByRandom(mId); List<Post> postList =
+	 * postService.selectMyList(0,mId); for (Post post : postList) {
+	 * post.setTagArray(post.getHasTag().split(" ")); }
+	 * 
+	 * mv.addObject("random", random); mv.addObject("member", member);
+	 * mv.addObject("postList", postList); mv.setViewName("myPage"); return mv; }
+	 */
+	
 	@MemberLoginCheck
-	@RequestMapping(value="/my_page")
-	public ModelAndView myPage(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView();
-		String mId = (String)request.getSession().getAttribute("mId");
-		Member member = memberService.selectByIdContainFollowInfo(mId);
-		List<Member> random = memberService.selectByRandom(mId);
-		List<Post> postList = postService.selectMyList(0,mId);
-		for (Post post : postList) {
-			post.setTagArray(post.getHasTag().split(" "));
-		}
+	@RequestMapping(value="/personal_info")
+	public ModelAndView personal_info(HttpServletRequest request) {
 		
-		mv.addObject("random", random);
-		mv.addObject("member", member);
-		mv.addObject("postList", postList);
-		mv.setViewName("myPage");
+		String mId = (String)request.getSession().getAttribute("mId");
+		ModelAndView mv = postService.personal_main_page(mId);
+		
+		mv.setViewName("personal");
 		return mv;
 	}
 	
@@ -193,16 +199,7 @@ public class FollowController {
 		return mv;
 	}
 	
-	@MemberLoginCheck
-	@RequestMapping(value="/personal_info")
-	public ModelAndView personal_info(HttpServletRequest request) {
-		
-		String mId = (String)request.getSession().getAttribute("mId");
-		ModelAndView mv = postService.personal_main_page(mId);
-		
-		mv.setViewName("personal");
-		return mv;
-	}
+	
 
 }
 

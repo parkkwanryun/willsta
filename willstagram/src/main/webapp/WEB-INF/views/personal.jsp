@@ -46,9 +46,9 @@
 									<div class="user_profile">
 										<div class="user-pro-img">
 											<img src="contents/member_image/${member.mImage}" width="200px" alt="">
-												<div class="usy-name">
+												
 															<h3>${member.mName}</h3>
-															<div class="epi-sec epi2">
+															
 											<div class="add-dp" id="OpenImgUpload">
 												<input type="file" id="file">
 												<label for="file"><i class="fas fa-camera"></i></label>												
@@ -112,7 +112,7 @@
 							<div class="col-lg-6 col-md-8 no-pd">
 								<div class="main-ws-sec">
 									<!-- 최상단에 버튼이 필요한 경우 살려서 쓸것 -->
-									<div class="post-topbar">
+									<!-- <div class="post-topbar">
 										<div class="user-picy">
 											<img src="images/resources/user-pic.png" alt="">
 										</div>
@@ -120,9 +120,9 @@
 											<ul>
 												<li><a class="post-jb active" href="#" title="">글쓰기</a></li>
 											</ul>
-										</div><!--post-st end-->
-									</div><!--post-topbar end-->
-									<div class="posts-section">
+										</div>post-st end
+									</div>post-topbar end
+									<div class="posts-section"> -->
 									
 									<!-- post-bar가 반복되면 됨 -->
 								<c:forEach var="post" items="${postList}">
@@ -218,7 +218,7 @@
 										</div><!--process-comm end-->
 								</div><!--main-ws-sec end-->
 							</div>
-							<div class="col-lg-3 pd-right-none no-pd">
+							 <div class="col-lg-3 pd-right-none no-pd"> 
 								<div class="right-sidebar">
 									<div class="widget widget-about">
 										<img src="images/wd-logo.png" alt="">

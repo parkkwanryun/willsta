@@ -40,8 +40,8 @@
 									Profiles
 								</a>
 								<ul>
-									<li><a href="user-profile.jsp" title="">User Profile</a></li>
-									<li><a href="my-profile-feed.jsp" title="">my-profile-feed</a></li>
+									
+									<li><a href="personal.jsp" title="">my profile</a></li>
 								</ul>
 							</li>
 							<li>
