@@ -3,6 +3,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 
   <jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
+<style type="text/css" >
+input.error, textarea.error {
+	border: 1px solid red;
+}
+label.error {
+	margin-left: 5px;
+	color: red;
+}
+.valid {
+	border: 1px solid green;
+}
+</style>
 
 <body class="sign-in">
 	<div class="wrapper">		
@@ -60,7 +72,7 @@
 												</div>
 											</div>
 											<div class="col-lg-12 no-pdd">
-												<button type="submit" value="submit">Sign in</button>
+												<button type="submit" value="submit" class="btnChk">Sign in</button>
 											</div>
 										</div>
 									</form>
@@ -207,5 +219,6 @@
  <jsp:include page="/WEB-INF/commons/include_footer_js.jsp"/>
  <script type="text/javascript" src="js/wMember.js"></script>
  <script src="js/jquery.validate.min.js"></script>
+ 
 </body>
 </html>
