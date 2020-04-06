@@ -45,25 +45,25 @@
 										<div class="user-profile">
 											<div class="username-dt">
 												<div class="usr-pic">
-													<img src="contents/member_image/${member.mImage}" alt="">
+													<img src="contents/member_image/hjs.jpg" alt="">
 												</div>
 											</div><!--username-dt end-->
 											<div class="user-specs">
-												<h3>${member.mName}</h3>
-												<span>${member.mEmail}</span>
+												<h3>예준수</h3>
+												<span>Graphic Designer at Self Employed</span>
 											</div>
 										</div><!--user-profile end-->
 										<ul class="user-fw-status">
 											<li>
 												<h4>Following</h4>
-												<span>${member.followingCount}</span>
+												<span>34</span>
 											</li>
 											<li>
 												<h4>Followers</h4>
-												<span>${member.followerCount}</span>
+												<span>155</span>
 											</li>
 											<li>
-												<a href="my_page" title="">View Profile</a>
+												<a href="my-profile.html" title="">View Profile</a>
 											</li>
 										</ul>
 									</div><!--user-data end-->
@@ -73,16 +73,54 @@
 											<i class="la la-ellipsis-v"></i>
 										</div><!--sd-title end-->
 										<div class="suggestions-list">
-											<c:forEach var="mList" items="${memberList}">
-												<div class="suggestion-usd">
-													<img src="contents/member_image/${mList.mImage}" alt="" width="40px">
-													<div class="sgt-text">
-														<h4>${mList.mName}</h4>
-														<span>${mList.mEmail}</span>
-													</div>
-													<span><i class="la la-plus"></i></span>
+											<div class="suggestion-usd">
+												<img src="images/resources/s1.png" alt="">
+												<div class="sgt-text">
+													<h4>Jessica William</h4>
+													<span>Graphic Designer</span>
 												</div>
-											</c:forEach>
+												<span><i class="la la-plus"></i></span>
+											</div>
+											<div class="suggestion-usd">
+												<img src="images/resources/s2.png" alt="">
+												<div class="sgt-text">
+													<h4>John Doe</h4>
+													<span>PHP Developer</span>
+												</div>
+												<span><i class="la la-plus"></i></span>
+											</div>
+											<div class="suggestion-usd">
+												<img src="images/resources/s3.png" alt="">
+												<div class="sgt-text">
+													<h4>Poonam</h4>
+													<span>Wordpress Developer</span>
+												</div>
+												<span><i class="la la-plus"></i></span>
+											</div>
+											<div class="suggestion-usd">
+												<img src="images/resources/s4.png" alt="">
+												<div class="sgt-text">
+													<h4>Bill Gates</h4>
+													<span>C & C++ Developer</span>
+												</div>
+												<span><i class="la la-plus"></i></span>
+											</div>
+											<div class="suggestion-usd">
+												<img src="images/resources/s5.png" alt="">
+												<div class="sgt-text">
+													<h4>Jessica William</h4>
+													<span>Graphic Designer</span>
+												</div>
+												<span><i class="la la-plus"></i></span>
+											</div>
+											<div class="suggestion-usd">
+												<img src="images/resources/s6.png" alt="">
+												<div class="sgt-text">
+													<h4>John Doe</h4>
+													<span>PHP Developer</span>
+												</div>
+												<span><i class="la la-plus"></i></span>
+											</div>
 											<div class="view-more">
 												<a href="#" title="">View More</a>
 											</div>
@@ -100,8 +138,8 @@
 											<li><a href="#" title="">Copyright Policy</a></li>
 										</ul>
 										<div class="cp-sec">
-											<img src="images/logo.png" alt="">
-											<p><img src="images/cp.png" alt="">Copyright 2020</p>
+											<img src="images/logo2.png" alt="">
+											<p><img src="images/cp.png" alt="">Copyright 2019</p>
 										</div>
 									</div><!--tags-sec end-->
 								</div><!--main-left-sidebar end-->
@@ -127,46 +165,42 @@
 										<div class="post-bar" post_no="${post.pNo}">
 											<div class="post_topbar">
 												<div class="usy-dt">
-													<img src="contents/member_image/${post.mImage}" width=40px height=40px>
+													<img src="images/resources/us-pic.png" alt="">
 													<div class="usy-name">
 														<h3>${post.mName}</h3>
-														<span><img src="images/clock.png" alt="">${post.aGo}</span>
+														<span><img src="images/clock.png" alt="">3 min ago</span>
 													</div>
 												</div>
 												<div class="ed-opts">
 													<a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-													<!-- 이 포스트가 내꺼인 경우에만 보여주는 메뉴 -->
-													<c:if test="${post.mId!=sessionScope.loginId}">
-														<ul class="ed-options">
-															<li><a class="updatePost" href="#" title="">Edit Post</a></li>
-															<li><a class="deletePost" href="#" title="">Delete Post</a></li>
-															<li><a class="hiddenPost" href="#" title="">
-															<c:if test="${post.status=='A'}">Hide</c:if>
-															<c:if test="${post.status=='H'}">Show</c:if>
-															</a></li>
-														</ul>
-													</c:if>
+													<ul class="ed-options">
+														<li><a class="updatePost" href="#" title="">Edit Post</a></li>
+														<li><a class="deletePost" href="#" title="">Unsaved</a></li>
+														<li><a class="hiddenPost" href="#" title="">Hide</a></li>
+													</ul>
 												</div>
 											</div>
 											<!-- 여기에 사진(컨텐츠)들어옴 -->
 											<div class="contents">
 												<c:if test="${fn:startsWith(post.fileName, 'img')}">
 													<div class="image">
-														<img class="center-block" style="margin:10px 0px;"
-															src="contents/post_image/${post.fileName}" alt="여기에이미지들어옴"
-															width="500" height="300" >
+														<a href="#"><img class="center-block" style="margin:10px 0px;"
+															src="contents/post_contents/${post.fileName}" alt="여기에이미지들어옴"
+															width="500" height="300" ></a>
 													</div>
 												</c:if>
 												<c:if test="${fn:startsWith(post.fileName, 'mov')}">
 													<div class="embed-responsive embed-responsive-4by3" style="margin-bottom:10px;" >
+														<a href="#">
 													  		<iframe class="embed-responsive-item" style="padding-top:10px;"
-													  			src="contents/post_image/${post.fileName}"></iframe>
+													  			src="contents/post_contents/${post.fileName}"></iframe>
+													  	</a>
 													</div>
 												</c:if>
 											</div>
 											<div class="job_descp">
 												<h3>${post.pTitle}</h3>
-												<p>${post.pContents}<br><a href="#" title="">view more</a></p>
+												<p>${post.pContents}<a href="#" title="">view more</a></p>
 												<ul class="skill-tags">
 													<c:forEach var='tag' items="${post.tagArray}">
 														<li><a href="#" title="">${tag}</a></li>
@@ -175,39 +209,83 @@
 												</ul>
 											</div>
 											<div class="job-status-bar">
-													<ul class="like-com">
-														<li><a href="#" class="like"><i class="fas fa-heart"></i> Like</a>
-															<img src="images/liked-img.png" alt=""> <span class='likeCount'>${post.likeCount}</span>
+												<ul class="like-com">
+													<li>
+														<a href="#"><i class="fas fa-heart"></i> Like</a>
+														<img src="images/liked-img.png" alt="">
+														<span>${post.likeCount}</span>
+													</li> 
+													<li><a href="#" class="com"><i class="fas fa-comment-alt"></i> Comment 15</a></li>
+												</ul>
+												<a href="#"><i class="fas fa-eye"></i>Views ${post.pViewCount}</a>
+											</div>
+										</div><!--post-bar end-->
+								</c:forEach>	
+									
+											<div class="comment-section">
+												<a href="#" class="plus-ic">
+													<i class="la la-plus"></i>
+												</a>
+												<div class="comment-sec">
+													<ul>
+														<li>
+															<div class="comment-list">
+																<div class="bg-img">
+																	<img src="images/resources/bg-img1.png" alt="">
+																</div>
+																<div class="comment">
+																	<h3>John Doe</h3>
+																	<span><img src="images/clock.png" alt=""> 3 min ago</span>
+																	<p>Lorem ipsum dolor sit amet, </p>
+																	<a href="#" title="" class="active"><i class="fa fa-reply-all"></i>Reply</a>
+																</div>
+															</div><!--comment-list end-->
+															<ul>
+																<li>
+																	<div class="comment-list">
+																		<div class="bg-img">
+																			<img src="images/resources/bg-img2.png" alt="">
+																		</div>
+																		<div class="comment">
+																			<h3>John Doe</h3>
+																			<span><img src="images/clock.png" alt=""> 3 min ago</span>
+																			<p>Hi John </p>
+																			<a href="#" title=""><i class="fa fa-reply-all"></i>Reply</a>
+																		</div>
+																	</div><!--comment-list end-->
+																</li>
+															</ul>
 														</li>
-														<!-- a: 누를 시 comment-section toggle-->
-														<li><a href="#" class="com"> <i class="fas fa-comment-alt"></i> Comment 15</a></li>
+														<li>
+															<div class="comment-list">
+																<div class="bg-img">
+																	<img src="images/resources/bg-img3.png" alt="">
+																</div>
+																<div class="comment">
+																	<h3>John Doe</h3>
+																	<span><img src="images/clock.png" alt=""> 3 min ago</span>
+																	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at.</p>
+																	<a href="#" title=""><i class="fa fa-reply-all"></i>Reply</a>
+																</div>
+															</div><!--comment-list end-->
+														</li>
 													</ul>
-													<a href="#"><i class="fas fa-eye"></i>Views
-														${post.pViewCount}</a>
-													<!-- comment-section-->
-													<div class="comment-section"></div>
-													<!--comment-section end-->
-												</div>
-												<!-- post-comment -->
+												</div><!--comment-sec end-->
 												<div class="post-comment">
 													<div class="cm_img">
 														<img src="images/resources/bg-img4.png" alt="">
 													</div>
 													<div class="comment_box">
-														<form id="comment-insert-form">
-															<!-- 댓글 내용 쓰는 곳 -->
-															<input type="text" placeholder="Post a comment"
-																id="comment-cContent" name="comment-cContent">
-															<button type="button" id="comment-insert-button">Send</button>
+														<form>
+															<input type="text" placeholder="Post a comment">
+															<button type="submit">Send</button>
 														</form>
 													</div>
-												</div>
-												<!--post-comment end-->
-										</div><!--post-bar end-->
-								</c:forEach>	
-								    </div><!--posty end-->
+												</div><!--post-comment end-->
+											</div><!--comment-section end-->
+										</div><!--posty end-->
 										<div class="process-comm">
-											<div class="spinner"">
+											<div class="spinner">
 												<div class="bounce1"></div>
 												<div class="bounce2"></div>
 												<div class="bounce3"></div>
@@ -219,8 +297,8 @@
 								<div class="right-sidebar">
 									<div class="widget widget-about">
 										<img src="images/wd-logo.png" alt="">
-										<h3>WillStarGram</h3>
-										<span>Itwill Class5 Team2 Project</span>
+										<h3>Track Time on Workwise</h3>
+										<span>Pay only for the Hours worked</span>
 										<div class="sign_link">
 											<h3><a href="sign-in.html" title="">Sign up</a></h3>
 											<a href="#" title="">Learn More</a>
@@ -228,30 +306,150 @@
 									</div><!--widget-about end-->
 									<div class="widget widget-jobs">
 										<div class="sd-title">
-											<h3>Top Views</h3>
+											<h3>Top Jobs</h3>
 											<i class="la la-ellipsis-v"></i>
 										</div>
 										<div class="jobs-list">
-											<c:forEach var="postRank" items="${postRankList}">
-												<div class="job-info" post_no="${postRank.PNO}">
-													<div class="job-details">
-														<h3>${postRank.MNAME}</h3>
-														<p><a href="#" title="" class="top-views">${postRank.PTITLE}</a></p>
-													</div>
-													<div class="hr-rate">
-														<span>${postRank.PVIEWCOUNT}</span>
-													</div>
-												</div><!--job-info end-->
-											</c:forEach>
+											<div class="job-info">
+												<div class="job-details">
+													<h3>Senior Product Designer</h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+												</div>
+												<div class="hr-rate">
+													<span>$25/hr</span>
+												</div>
+											</div><!--job-info end-->
+											<div class="job-info">
+												<div class="job-details">
+													<h3>Senior UI / UX Designer</h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+												</div>
+												<div class="hr-rate">
+													<span>$25/hr</span>
+												</div>
+											</div><!--job-info end-->
+											<div class="job-info">
+												<div class="job-details">
+													<h3>Junior Seo Designer</h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+												</div>
+												<div class="hr-rate">
+													<span>$25/hr</span>
+												</div>
+											</div><!--job-info end-->
+											<div class="job-info">
+												<div class="job-details">
+													<h3>Senior PHP Designer</h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+												</div>
+												<div class="hr-rate">
+													<span>$25/hr</span>
+												</div>
+											</div><!--job-info end-->
+											<div class="job-info">
+												<div class="job-details">
+													<h3>Senior Developer Designer</h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+												</div>
+												<div class="hr-rate">
+													<span>$25/hr</span>
+												</div>
+											</div><!--job-info end-->
 										</div><!--jobs-list end-->
 									</div><!--widget-jobs end-->
-									<div class="widget widget-ad">
-										<div class="sign_link" style="padding:10px">
-											<h3><a href="http://ec2-54-180-83-67.ap-northeast-2.compute.amazonaws.com:8080/myshop/product/list" title="">
-												<img src="images/dapara.png" alt="">
-												</a>
-											</h3>
+									<div class="widget widget-jobs">
+										<div class="sd-title">
+											<h3>Most Viewed This Week</h3>
+											<i class="la la-ellipsis-v"></i>
 										</div>
+										<div class="jobs-list">
+											<div class="job-info">
+												<div class="job-details">
+													<h3>Senior Product Designer</h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+												</div>
+												<div class="hr-rate">
+													<span>$25/hr</span>
+												</div>
+											</div><!--job-info end-->
+											<div class="job-info">
+												<div class="job-details">
+													<h3>Senior UI / UX Designer</h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+												</div>
+												<div class="hr-rate">
+													<span>$25/hr</span>
+												</div>
+											</div><!--job-info end-->
+											<div class="job-info">
+												<div class="job-details">
+													<h3>Junior Seo Designer</h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+												</div>
+												<div class="hr-rate">
+													<span>$25/hr</span>
+												</div>
+											</div><!--job-info end-->
+										</div><!--jobs-list end-->
+									</div><!--widget-jobs end-->
+									<div class="widget suggestions full-width">
+										<div class="sd-title">
+											<h3>Most Viewed People</h3>
+											<i class="la la-ellipsis-v"></i>
+										</div><!--sd-title end-->
+										<div class="suggestions-list">
+											<div class="suggestion-usd">
+												<img src="images/resources/s1.png" alt="">
+												<div class="sgt-text">
+													<h4>Jessica William</h4>
+													<span>Graphic Designer</span>
+												</div>
+												<span><i class="la la-plus"></i></span>
+											</div>
+											<div class="suggestion-usd">
+												<img src="images/resources/s2.png" alt="">
+												<div class="sgt-text">
+													<h4>John Doe</h4>
+													<span>PHP Developer</span>
+												</div>
+												<span><i class="la la-plus"></i></span>
+											</div>
+											<div class="suggestion-usd">
+												<img src="images/resources/s3.png" alt="">
+												<div class="sgt-text">
+													<h4>Poonam</h4>
+													<span>Wordpress Developer</span>
+												</div>
+												<span><i class="la la-plus"></i></span>
+											</div>
+											<div class="suggestion-usd">
+												<img src="images/resources/s4.png" alt="">
+												<div class="sgt-text">
+													<h4>Bill Gates</h4>
+													<span>C &amp; C++ Developer</span>
+												</div>
+												<span><i class="la la-plus"></i></span>
+											</div>
+											<div class="suggestion-usd">
+												<img src="images/resources/s5.png" alt="">
+												<div class="sgt-text">
+													<h4>Jessica William</h4>
+													<span>Graphic Designer</span>
+												</div>
+												<span><i class="la la-plus"></i></span>
+											</div>
+											<div class="suggestion-usd">
+												<img src="images/resources/s6.png" alt="">
+												<div class="sgt-text">
+													<h4>John Doe</h4>
+													<span>PHP Developer</span>
+												</div>
+												<span><i class="la la-plus"></i></span>
+											</div>
+											<div class="view-more">
+												<a href="#" title="">View More</a>
+											</div>
+										</div><!--suggestions-list end-->
 									</div>
 								</div><!--right-sidebar end-->
 							</div>
@@ -265,24 +463,17 @@
 			<div class="post-project">
 				<h3>글쓰기</h3>
 				<div class="post-project-fields">
-					<form id="postWrite"  method="get">
+					<form id="postWrite">
 						<div class="row">
 							<div class="col-lg-12">
-								<input type="hidden" id="pNo" name="pNo" >
-								<input type="text" id="pTitle" name="pTitle" placeholder="Title">
+								<input type="text" name="pTitle" placeholder="Title">
 							</div>
 							<div class="col-lg-12">
-								<input type="text" id="hasTag" name="hasTag" placeholder="tag">
+								<input type="text" name="hasTag" placeholder="tag">
 							</div>
 							<div class="col-lg-12">
-								<textarea id="pContents" name="pContents" placeholder="Description"></textarea>
+								<textarea name="pContents" placeholder="Description"></textarea>
 							</div>
-							<div class="col-lg-12 img-list" style="margin-bottom:10px;">
-								<!-- 여기 이미지 들어옴 -->
-						    </div>
-							<div class="col-lg-12">
-								<input type=file name=file1 size=400 class="TXTFLD" multiple>
-						    </div>
 							<div class="col-lg-12">
 								<ul>
 									<li><button class="active" type="submit" value="post">완료</button></li>
@@ -452,6 +643,8 @@
 
 	</div><!--theme-layout end-->
 
+
+
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/popper.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -459,12 +652,78 @@
 <script type="text/javascript" src="lib/slick/slick.min.js"></script>
 <script type="text/javascript" src="js/scrollbar.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
-<script type="text/javascript" src="js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="js/messages_ko.js"></script>
-<script type="text/javascript" src="js/wPost.js"></script>
-<script type="text/javascript" src="js/wComments.js"></script>
-
+<script type="text/javascript">
+	
+	//document ready
+		$(function(){
+			//post쓰기
+			$(document).on('submit','#postWrite',function(e){
+				var params = $(this).serialize();
+				$.ajax({
+					url:'write_post',
+					method:'POST',
+					data:params,
+					dataType:'html',
+					success: function(resultText){
+							$('div.posts-section').prepend(resultText);
+					}
+					
+				});
+				
+				 $(".post-popup.job_post").removeClass("active");
+			     $(".wrapper").removeClass("overlay");
+				
+				e.preventDefault();
+			});
+			
+			//post삭제
+			$(document).on('click','ul.ed-options a.deletePost',function(e){
+				var $post = $(e.target).parents('div.post-bar');
+				var params = "pNo="+ $post.attr('post_no');
+				$.ajax({
+					url:'delete_post',
+					method:'POST',
+					data:params,
+					dataType:'text',
+					success: function(resultText){
+						if(resultText.trim()=='success'){
+							$post.remove();
+						}else{
+							alert('delete fail');
+						}
+					}
+				});
+				e.preventDefault();
+			});
+			
+			//컨텐츠 보기 detail
+			$(document).on('click','div.contents a',function(e){
+				var $post = $(e.target).parents('div.post-bar');
+				var params = "pNo="+ $post.attr('post_no');
+				$.ajax({
+					url:'get_post',
+					method:'POST',
+					data:params,
+					dataType:'text',
+					success: function(resultText){
+						$('div.post_deatil').html(resultText);
+						$('div.post_deatil').addClass("active");
+						$(".wrapper").addClass("overlay");
+					}
+				});
+				e.preventDefault();
+			});
+			
+			$(document).on('click','button.btn-default',function(e){
+				$('div.post_deatil').removeClass("active");
+				$(".wrapper").removeClass("overlay");
+				e.preventDefault();
+			});
+			
+			
+		});
+	
+	</script>
 </head>
 </body>
 </html>
-

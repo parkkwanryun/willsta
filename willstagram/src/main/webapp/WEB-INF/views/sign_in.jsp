@@ -29,7 +29,7 @@
 									<li data-tab="tab-2"><a href="#" title="">Sign up</a></li>				
 								</ul>			
 								<div class="sign_in_sec current" id="tab-1">
-									<h3>Sign in 이번주 안에 끝낸다</h3>
+									<h3>Sign in</h3>
 
 									<form id="member_login_action" method="POST">
 										<div class="row">
@@ -80,9 +80,11 @@
 								<!--sign_in_sec end-->
 								<div class="sign_in_sec" id="tab-2">
 									<div class="signup-tab">
-									</div><!--signup-tab end-->	
+									</div><!--signup-tab end (회원가입 탭)-->	
 
 									<div class="dff-tab current" id="tab-3">
+									
+									
 										<form id="member_register_action" method="POST">
 										
 											<div class="row">
@@ -125,7 +127,7 @@
 												<div class="col-lg-12 no-pdd">
 													<div class="checky-sec st2">
 														<div class="fgt-sec">
-															<input type="checkbox" name="cc" id="c2">
+															<input type="checkbox" name="mRetire" id="c2">
 															<label for="c2">
 																<span></span>
 															</label>

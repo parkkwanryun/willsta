@@ -2,6 +2,7 @@ package com.itwill.willsta.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -15,19 +16,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.itwill.willsta.domain.Follow;
 import com.itwill.willsta.domain.Member;
 import com.itwill.willsta.exception.MemberNotFoundException;
 import com.itwill.willsta.exception.PasswordMismatchException;
-import com.itwill.willsta.service.FollowService;
 import com.itwill.willsta.service.MemberService;
 
 @Controller
 public class MemberController {
 	@Autowired
 	MemberService memberService;
-	@Autowired
-	FollowService followService;
+	
+	
 	@RequestMapping(value="/")
 	public String index() {
 		return "";
@@ -37,17 +36,20 @@ public class MemberController {
 	public String sign_in() {
 		return "sign_in";
 	}
-
+	
+	
+	/*로그인*/
 	@ResponseBody
 	@RequestMapping(value="/sign_in_action", method = RequestMethod.POST, produces="text/plain; charset=UTF-8")
 	public String sign_in_action_post(@RequestParam("mId")String mId, @RequestParam("mPass")String mPass, 
 										HttpSession session, Model model) {
-		System.out.println("mId:"+mId+" mPass:"+mPass);
+		System.out.println("로그인 컨트롤러 테스트"+"mId:"+mId+" mPass:"+mPass);
 		String forwardPath = "";
 		try {
 			Member signInMember = memberService.signIn(mId, mPass);
 			session.setAttribute("mId", mId);
 			session.setAttribute("sMemberId", signInMember);
+			session.setMaxInactiveInterval(00);
 			forwardPath="true";
 		} catch (MemberNotFoundException e) {
 			model.addAttribute("fmId", mId);
@@ -65,29 +67,39 @@ public class MemberController {
 		}
 		return forwardPath;
 	}
-
+	
+	/*로그아웃*/
 	@ResponseBody
 	@RequestMapping(value="/sign_out_action")
 	public String sign_out_action(HttpSession session) {
 		System.out.println("sign_out_action 컨트롤러 테스트");
 		session.invalidate();
-		String forwardPath ="sign_in";
-		return forwardPath;
-	}
-	@RequestMapping(value="/sign_up_action",method = RequestMethod.POST, produces="text/plain; charset=UTF-8")
-	public String sign_up_action(@ModelAttribute Member member, HttpSession session) {
-		System.out.println("sign_up_action 컨트롤러 테스트");
-		String forwardPath ="true";
-		boolean signUpMember = memberService.updateMember(member);
-		if(signUpMember) {
-			forwardPath="true";
-		}else {
-			forwardPath="false";
-		}
-		return forwardPath;
+		return "sign_in";
 	}
 	
-	
+	/*회원가입*/
+	@ResponseBody
+	@RequestMapping(value="/sign_up_action",method = RequestMethod.POST, produces="application/json; charset=UTF-8")
+	public String sign_up_action(Member member, HttpServletRequest request, HttpSession session, Model model) {
+		System.out.println("sign_up_action 회원가입 컨트롤러 테스트1");
+		String forwardPath = "";
+		String mId = (String) request.getSession().getAttribute("mId");
+		String mPass = (String) request.getSession().getAttribute("mPass");
+		String mName = (String) request.getSession().getAttribute("mName");
+		String mEmail = (String) request.getSession().getAttribute("mEmail");
+		String mPhone = (String) request.getSession().getAttribute("mPhone");
+		String mImage = (String) request.getSession().getAttribute("mImage");
+		String mRetire = (String) request.getSession().getAttribute("mRetire");
+
+		boolean newMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire,0,0));
+			if(newMember) {
+				System.out.println("sign_up_action 컨트롤러 테스트2");
+				forwardPath= "true";
+			}else {
+				forwardPath= "false";
+			}
+		return forwardPath;
+}
 	
 	@MemberLoginCheck
 	@RequestMapping(value="/my-profile-feed")
@@ -99,7 +111,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	//@MemberLoginCheck
+	@MemberLoginCheck
 	@RequestMapping(value = "/profiles")
 	public ModelAndView memberList(String mId,String mIdYou) {
 		ModelAndView mv=new ModelAndView();
@@ -109,7 +121,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	//@MemberLoginCheck
+	@MemberLoginCheck
 	@ResponseBody
 	@RequestMapping(value = "/search_member", method = RequestMethod.POST)
 	public ModelAndView findMemberList(@RequestParam(value = "find") String find, String mId) {

@@ -9,7 +9,7 @@ public interface DmDao {
 	public int dmInsert(DM dm);
 	
 	// DM 채팅방 리스트 조회
-	public List<DM> dmSelectAll();
+	public List<DM> dmSelectAll(String mId);
 	
 	// DM 채팅방 선택조회
 	public DM dmSelectOne(int dmNo);

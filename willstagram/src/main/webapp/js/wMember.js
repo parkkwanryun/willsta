@@ -1,38 +1,28 @@
 // 로그인 form 처리 
 
 	/*
-	 1. 로그인 정보를 컨트롤러로 Json 형태로 전송? 
-	   OR  넣어준 id 와 password value 값만 전송? 
-	 컨트롤러로 요청
-	 2. id, password 유효성체크
-	  자바 단에서 요청받은 컨트롤러에서의 세션 유무 체크(Interceptor) 
-	 3. logout 시, login으로 버튼 바꿔주는 이벤트처리(show, hide)
-	 4. session 유지 시간 세팅 
+	 1. 로그인
+	  id 와 password value 값 => 로그인 정보를 컨트롤러로 html 형태로 전송 (완료)
+	 
+	 2. id, password 유효성 체크(validate)
+	  자바 단에서 요청받은 컨트롤러에서의 세션 유무 체크(Interceptor)  => id/ password 틀릴 시 안내문구 띄워주기(jsp)
+	  
+	 3. session 유지 시간 세팅 (web.xml --> session 유효시간 = 1day ms) (완료)
+	 
+	 4. 회원가입 (진행중) insert.
+	 
+	 5. 회원탈퇴( mRetire -> T ) remove. 
+	 
+	 6. 회원정보 수정 (Account Setting) update.
 	 */ 
 
-	/*
-	  회원가입 
-	*/
-function member_register_action(e){
-	alert(target);
-		var parameter = $(e.target).serialize();
-		$.ajax({
-			url:'sign_up_action',
-			data:parameter,
-			method:'POST',
-			dataType:'text',
-			success: function(textData){
-				if(textData.trim()=="true"){
-					location.href ='willstagram/index';
-				}else if(textData.trim()=="false"){
-					
-				}
-			}
-		});
-		e.preventDefault();
-	};
 
+
+	
 $(function() {
+	/*
+	 로그인
+	*/
 	$(document).on(
 			'submit',
 			'#member_login_action',
@@ -49,6 +39,7 @@ $(function() {
 					dataType : "text",
 					success : function(textData) {
 						if (textData.trim() == "true") {
+							alert(member_login_action.mId.value+'님 환영합니다.');
 							location.href = '/willstagram/index';
 						} else if (textData.trim() == "false") {
 
@@ -58,12 +49,47 @@ $(function() {
 				e.preventDefault();
 			}
 			
-	);
-	
-	$('#member_register_action').click(function(e){
-		member_register_action();
-		e.preventDefault();
-	});	
+	)
+	/*
+	  회원가입 
+	*/
+	$(document).on(
+			'submit',
+			'#member_register_action',
+			function(e) {
+				var params = "mId=" + member_register_action.mId.value
+						+ "&mPass=" + member_register_action.mPass.value
+						+ "&mName=" + member_register_action.mName.value
+						+ "&mEmail=" + member_register_action.mEmail.value
+						+ "&mPhone=" + member_register_action.mPhone.value
+						+ "&mImage=" + member_register_action.mImage.value
+						+ "&mRetire="+ member_register_action.mRetire.value;
+				$.ajax({
+					url : 'sign_up_action',
+					data : params,
+					method : 'POST',
+					dataType : 'json',
+					success : function(jsonObject) {
+						
+						member_register_action.mId.value = jsonObject.mId;
+						member_register_action.mPass.value = jsonObject.mPass;
+						member_register_action.mName.value = jsonObject.mName;
+						member_register_action.mEmail.value = jsonObject.mEmail;
+						member_register_action.mPhone.value = jsonObject.mPhone;
+						member_register_action.mImage.value = jsonObject.mImage;
+						member_register_action.mRetire.value = jsonObject.mRetire;
+						
+						if (jsonObject.trim() == "true") {
+							alert(member_login_action.mId.value+'님 환영합니다.');
+							location.href = '/willstagram/index';
+						} else if (jsonObject.trim() == "false") {
+
+						}
+						location.href = 'willstagram/index';
+					} 
+			});
+				//e.preventDefault();
+	})
 });
 
 		

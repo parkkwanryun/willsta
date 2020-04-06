@@ -8,9 +8,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -36,7 +38,7 @@ public class FollowController {
 	public ModelAndView myPage(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		String mId = (String)request.getSession().getAttribute("mId");
-		List<Post> postList = postService.selectMyList(mId);
+		List<Post> postList = postService.selectMyList(0,mId);
 		for (Post post : postList) {
 			post.setTagArray(post.getHasTag().split(" "));
 		}
@@ -147,17 +149,42 @@ public class FollowController {
 		mv.setViewName("myPage");
 		return mv;
 	}
-
 	@RequestMapping(value = "/follow_Check")
-	   public ModelAndView followCheck(String mId, @RequestParam(value = "mIdYou") String mIdYou,HttpSession session) {
-	      ModelAndView mv=new ModelAndView();
-	      mId=(String) session.getAttribute("mId");
+	   public String followCheck(@RequestParam(value = "mIdYou") String mIdYou,HttpSession session, Model model) {
+	      String mId=(String) session.getAttribute("mId");
+	      System.out.println(mIdYou);
+	      //mIdYou="ss501";
+	      String check="";
 	      int followCheck=followService.followCheck(mId, mIdYou);
-	      mv.addObject("followCheck",followCheck);
-	      mv.setViewName("profiles");
-	      return mv;
+	      if (followCheck > 0 ) {
+			System.out.println("### follow상태");
+			check="true";
+	      }else {
+			System.out.println("### follow 아닌 상태");
+			check="false";
+	      }
+	      return check;
 	   }
 	
+	@RequestMapping(value = "/follow")
+		public ModelAndView follow(@RequestParam(value = "mIdYou") String mIdYou,HttpSession session) {
+		ModelAndView mv=new ModelAndView();
+		String mId=(String)session.getAttribute("mId");
+		int follow=followService.follow(new Follow(mId, mIdYou));
+		mv.addObject("follow", follow);
+		mv.setViewName("profiles");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/unFollow")
+		public ModelAndView unFollow(@RequestParam(value = "mIdYou") String mIdYou,HttpSession session) {
+		ModelAndView mv=new ModelAndView();
+		String mId=(String)session.getAttribute("mId");
+		int unFollow=followService.unfollow(mIdYou, mId);
+		mv.addObject("unFollow", unFollow);
+		mv.setViewName("profiles");
+		return mv;
+	}
 	
 
 }

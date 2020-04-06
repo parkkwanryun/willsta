@@ -2,6 +2,7 @@ package com.itwill.willsta.service;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,8 @@ public class PostServiceImpl implements PostService {
 	@Autowired
 	MemberService memberService;
 	
-	String uploadFolder = "\\\\192.168.15.22\\contents\\post_image";
+	//String uploadFolder = "\\\\192.168.15.22\\contents\\post_image";
+	String uploadFolder = "/contents/post_image";
 	@Override
 	public Post createPost(Post post, MultipartFile[] uploadFile) {
 		/*
@@ -160,8 +162,8 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<Post> selectMyList(String userId) {
-		return postDao.selectMyList(userId);
+	public List<Post> selectMyList(Integer lastpNo, String userId) {
+		return postDao.selectMyList(lastpNo, userId);
 	}
 
 	@Override
@@ -200,9 +202,12 @@ public class PostServiceImpl implements PostService {
 		ModelAndView mv = new ModelAndView();
 		
 		Member member = memberService.selectByIdContainFollowInfo(mId);
-		System.out.println(member);
+		List<Member> memberList = memberService.selectByRandom(mId);
+		List<Map> postRankList = postDao.selectPostRanking();
 		mv.addObject("member", member);
-		List<Post> postList = selectMyList(mId);
+		mv.addObject("memberList", memberList);
+		mv.addObject("postRankList", postRankList);
+		List<Post> postList = selectMyList(0, mId);
 		for (Post post : postList) {
 			post.setTagArray(post.getHasTag().split(" "));
 		}

@@ -4,6 +4,7 @@ function post_write(){
 	var formData = new FormData();
 	
 	var paramArray = $('#postWrite').serializeArray();
+
 	for (var i = 0; i < paramArray.length; i++) {
 		if(paramArray[i].name=='pNo' && paramArray[i].value>0){
 			postno=paramArray[i].value;
@@ -16,7 +17,6 @@ function post_write(){
 	for (var i = 0; i < files.length; i++) {
 		formData.append("uploadFile", files[i]);
 	}
-	
 	
 	$.ajax({
 		url:'write_post',
@@ -108,6 +108,43 @@ function post_write(){
 		        $(".wrapper").addClass("overlay");
 		    });
 			
+			//추가post가져오기
+			$(document).on("click", ".spinner", function(e){
+		        var $post = $("div.post-bar").last();
+				var params = "lastpNo="+ $post.attr('post_no');
+		        $.ajax({
+					url:'add_post',
+					method:'POST',
+					data:params,
+					dataType:'html',
+					success: function(resultText){
+						$('div.posts-section').append(resultText);
+					}
+				});
+		        e.preventDefault();
+		    });
+			
+			//스크롤이벤트 : 문서의 끝 위치에 오면 post 추가 조회
+			$(window).on("scroll", function(e){
+				//문서의높이에 윈도우높이를 제외한 값이 스크롤의 최대값이다
+				if(($(document).height()-$(window).height()) != $(document).scrollTop()){
+					return;
+				}				
+		        var $post = $("div.post-bar").last();
+				var params = "lastpNo="+ $post.attr('post_no');
+		        $.ajax({
+					url:'add_post',
+					method:'POST',
+					data:params,
+					dataType:'html',
+					success: function(resultText){
+						$('div.posts-section').append(resultText);
+					}
+				});
+		        e.preventDefault();
+		    });
+			
+			
 			//post숨기거나 보이기
 			$(document).on('click','ul.ed-options a.hiddenPost',function(e){
 				var $post = $(e.target).parents('div.post-bar');
@@ -151,6 +188,24 @@ function post_write(){
 				e.preventDefault();
 			});
 			
+			//Top Views를 통해 컨텐츠 보기 detail
+			$(document).on('click','.job-info a',function(e){
+				var $post = $(e.target).parents('.job-info');
+				var params = "pNo="+ $post.attr('post_no');
+				$.ajax({
+					url:'get_post',
+					method:'POST',
+					data:params,
+					dataType:'text',
+					success: function(resultText){
+						$('div.post_deatil').html(resultText);
+						$('div.post_deatil').addClass("active");
+						$(".wrapper").addClass("overlay");
+					}
+				});
+				e.preventDefault();
+			});
+			
 			$(document).on('click','button.btn-default',function(e){
 				$('div.post_deatil').removeClass("active");
 				$(".wrapper").removeClass("overlay");
@@ -165,7 +220,7 @@ function post_write(){
 					url:'insert_like',
 					data:params,
 					type: "POST",
-					dataType:'html',
+					dataType:'text',
 					success: function(resultText){
 						var likeCount = $(e.target).siblings('span.likeCount').text();
 						if(resultText.trim()=='insert'){
@@ -180,6 +235,8 @@ function post_write(){
 				});
 				e.preventDefault();
 			});
+			
+			
 			var sel_files=[];
 			$(document).on('change', 'input.TXTFLD', function(e){
 				var files = e.target.files;

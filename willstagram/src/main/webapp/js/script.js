@@ -4,6 +4,10 @@ $(window).on("load", function() {
     //  ============= POST JOB POPUP FUNCTION =========
 
     $(".post-jb").on("click", function(){
+    	postWrite.pNo.value = "";
+		postWrite.pTitle.value = "";
+		postWrite.hasTag.value = "";
+		postWrite.pContents.value = "";
         $(".post-popup.job_post").addClass("active");
         $(".wrapper").addClass("overlay");
         return false;

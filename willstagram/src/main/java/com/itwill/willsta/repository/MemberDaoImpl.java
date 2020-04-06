@@ -68,4 +68,10 @@ public class MemberDaoImpl implements MemberDao{
 		return memberMapper.selectByIdContainFollowInfo(mId);
 	}
 	
+	/*친구추천 - 랜덤로딩 5건*/
+	@Override
+	public List<Member> selectByRandom(String mId) {
+		return memberMapper.selectByRandom(mId);
+	}
+	
 }
