@@ -53,12 +53,12 @@ public class MemberController {
 		} catch (MemberNotFoundException e) {
 			model.addAttribute("fmId", mId);
 			model.addAttribute("msg1", e.getMessage());
-			forwardPath = "false";
+			forwardPath = "false1";
 			e.printStackTrace();
 		} catch (PasswordMismatchException e) {
 			model.addAttribute("fmId", mId);
 			model.addAttribute("msg2", e.getMessage());
-			forwardPath = "false";
+			forwardPath = "false2";
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
