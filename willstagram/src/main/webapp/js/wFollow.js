@@ -1,2 +1,10 @@
-
+$(function(){
+	$(document).on(
+			
+	
+	
+	)
+	
+	
+});
 		
