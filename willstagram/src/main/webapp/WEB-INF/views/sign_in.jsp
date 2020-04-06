@@ -4,6 +4,11 @@
 
   <jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
 <style type="text/css" >
+#msg1{font-size:12px;
+		color: red;}
+#msg2{font-size:12px;
+		color: red;}
+
 input.error, textarea.error {
 	border: 1px solid red;
 	text-size: 1px;
@@ -49,7 +54,7 @@ label.error {
 										<div class="row">
 											<div class="col-lg-12 no-pdd">
 												<div class="sn-field">
-													<input type="text" name="mId" placeholder="ID">
+													<input type="text" id="i" name="mId" placeholder="ID">
 													<div id="msg1"></div>
 													<span id="msg"></span>
 													<i class="la la-user"></i>
@@ -57,7 +62,7 @@ label.error {
 											</div>
 											<div class="col-lg-12 no-pdd">
 												<div class="sn-field">
-													<input type="password" name="mPass" placeholder="Password">
+													<input type="password" id="p" name="mPass" placeholder="Password">
 													<div id="msg2"></div>	
 													<span id="msg"></span>
 													<i class="la la-lock"></i>

@@ -6,7 +6,9 @@
 	    2.자바 단에서 요청받은 컨트롤러에서의 세션 유무 체크(Interceptor)(완료)
 	 	3.session 유지 시간 세팅 (web.xml --> session 유효시간 = 1day ms) (완료)
 	    3.로그인 시, id와 password 유효성 체크(validate) (글자 수 제한) (완료)
-	    4.id/ password 틀릴 시 안내문구 띄워주기(jsp단에서 div msg 삽입)  
+	    4.id/ password(없는아이디, 틀린비밀번호 시) 안내문구 띄워주기
+	    (jsp단에서 div msg 삽입 / javascript show, hide 이벤트처리)  (완료)
+	      																
 
 	 <<회원가입>>
 	 	1.회원가입 시, id와 password, email, name, phone 유효성 체크(validate)
@@ -21,38 +23,53 @@
 
 
 	/*
-	 2)로그인 함수
+	 1)로그인 함수
 	*/
-	function member_login_action_function(e){
-		 var mlaf = $('#member_login_action').serialize();
+	function member_login_action_function(){
+		 var mlafArray = $('#member_login_action').serializeArray();
+		 
 			$.ajax({
 				url:'sign_in_action',
 				method:'POST',
-				data:mlaf,
+				data:mlafArray,
 				dataType:'text',
 				success : function(textData) {
 					if (textData.trim() == "true") {
 						console.log('text!!');
 						alert(member_login_action.mId.value+'님 환영합니다.');
 						location.href = '/willstagram/index';
-					} else if (textData.trim() == "false") {
-						$('#msg1').html('아이디를 확인하십시오.').css({
-																	color:"red"
-																	});
-						$('#msg2').html('비밀번호를 확인하십시오.').css('color','red')
-						
-						/*
-						 $('#element').css({
-						    margin: "5px",
-						    padding: "10px",
-						    color: "black"
-							}); 
-						 */
+					}else if (textData.trim() == "false1") {
+						id_check_function();
+					}else if(textData.trim() == "false2"){
+						password_check_function();
 					}
 				}
 			})
-			e.preventDefault();
 	}
+	
+	/*
+	 2) Id, Password 체크 
+	 */
+	function id_check_function(){
+		var mlafArray = $('#member_login_action').serializeArray();
+		for (var i = 0; i < mlafArray.length; i++) {
+			if(mlafArray[i].name!='mId' &&mlafArray[i].name=='mPass'){
+				$('#msg1').html('Id Error. Please Check Id Again');
+				$('#i').focus();
+			}
+		}	
+	}
+	function password_check_function(){
+		var mlafArray = $('#member_login_action').serializeArray();
+		for (var i = 0; i < mlafArray.length; i++) {
+			if(mlafArray[i].name!='mPass' && mlafArray[i].name=='mId'){
+				$('#msg2').html('Password Error. Please Check Password Again');
+				$('#p').focus();
+			}
+		}	
+	}
+	
+	
 /*
 1)DOM Tree 로딩 후 이벤트 처리
 */
@@ -76,7 +93,7 @@ $(function() {
 					required: "Please check your Id",
 					minlength: "Please write Id more than {0} characters",
 					maxlength: "Please write Id less than {0} characters",
-					remote:	"{0} 는 중복된 아이디입니다."
+					//remote:	"{0} 는 중복된 아이디입니다."
 				},
 				mPass:{
 					required: "Please check your password",
