@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.willsta.domain.Follow;
@@ -162,6 +163,7 @@ public class FollowController {
 		mv.setViewName("myPage");
 		return mv;
 	}
+	@ResponseBody
 	@RequestMapping(value = "/follow_Check", method = RequestMethod.POST)
 	   public String followCheck(@RequestParam(value = "mIdYou") String mIdYou,HttpSession session, Model model) {
 	      String mId=(String) session.getAttribute("mId");
