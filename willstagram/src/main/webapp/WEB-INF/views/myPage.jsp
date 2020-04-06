@@ -246,8 +246,8 @@
 											<ul class="flw-status">
 												<li>
 													<h4>Following</h4>
-													<span>${member.followingCount}</span>
-													<b>${member.followingList}</b>
+													<span><a>${member.followingCount}</a></span>
+													<b>2,900</b>
 												</li>
 												<li>
 													<h4>Followers</h4>
@@ -284,7 +284,7 @@
 											<div class="suggestion-usd">
 												<img src="images/resources/s2.png" alt="">
 												<div class="sgt-text">
-													<h4>${member.mName}</h4>
+													<h4>${random.mName}</h4>
 													<span>PHP Developer</span>
 												</div>
 												<span><i class="la la-plus"></i></span>
