@@ -31,7 +31,7 @@ public class FollowController {
 	@Autowired
 	FollowService followService;
 	@Autowired
-	PostService postService;
+	PostService postService; 
 
 	@MemberLoginCheck
 	@RequestMapping(value="/my_page")
