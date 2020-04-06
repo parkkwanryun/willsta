@@ -171,7 +171,8 @@
 										<!-- post-bar가 반복되면 됨 -->
 										<c:forEach var="post" items="${postList}">
 
-											<div class="post-bar" post_no="${post.pNo}">
+											<div class="post-bar post-bar-${post.pNo}"
+												post_no="${post.pNo}">
 												<div class="post_topbar">
 													<div class="usy-dt">
 														<img src="contents/member_image/${post.mImage}" width=40px
@@ -229,42 +230,37 @@
 												</div>
 												<div class="job-status-bar">
 													<ul class="like-com">
-														<li><a
-															class="like <c:if test='${post.myLike > 0}'> active </c:if>"
+														<li><a class="like <c:if test='${post.myLike > 0}'> active </c:if>"
 															href="#"><i class="fas fa-heart"></i> Like</a> <img
 															src="images/liked-img.png" alt=""> <span
 															class="likeCount">${post.likeCount}</span></li>
+														<li><a href="#" post_no="${post.pNo}" class="com comment_list_click">
+															<i class="fas fa-comment-alt"></i> Comments </a></li>
 													</ul>
 													<a href="#"><i class="fas fa-eye"></i>Views
 														${post.pViewCount}</a>
 												</div>
+												
 												<!-- comment-section -->
 												<div class="comment-section" post_no="${post.pNo}">
-													<ul>
-														<li><a href="#" class="com comment_list_click">
-																<i class="fas fa-comment-alt"></i> Comments </a>
-														</li>
-													</ul>
 													
 													<!-- comment-sec -->
-													<div class="comment-sec" >
-														
-													</div>
+
 													<!--comment-sec end-->
 													
 												</div>
 												<!--comment-section end-->
+												
 												<!-- post-comment -->
 												<div class="post-comment" post_no="${post.pNo}">
 													<div class="cm_img">
 														<img src="images/resources/bg-img4.png" alt="">
 													</div>
 													<div class="comment_box">
-														<form>
+														<form class="comments_insert_form">
 															<!-- 댓글 내용 쓰는 곳 -->
 															<input type="text" placeholder="Post a comment"
-																name="cContents"> 
-															<input type="hidden" name="pNo" value="${post.pNo}">
+																name="cContents" class="cContents">
 															<button type="button" class="comments_insert_button">Send</button>
 														</form>
 													</div>
