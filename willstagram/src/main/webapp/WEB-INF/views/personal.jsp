@@ -34,39 +34,39 @@
 			<!-- Menubar End -->
 		</header>
 <!-- common_top_menu end -->
+
+
 		<main>
 			<div class="main-section">
 				<div class="container">
 					<div class="main-section-data">
 						<div class="row">
 							<div class="col-lg-3 col-md-4 pd-left-none no-pd">
-								<div class="main-left-sidebar no-margin">
-									<div class="user-data full-width">
-										<div class="user-profile">
-											<div class="username-dt">
-												<div class="usr-pic">
-													<img src="contents/member_image/${member.mImage}" alt="">
-												</div>
-											</div><!--username-dt end-->
-											<div class="user-specs">
-												<h3>${member.mName}</h3>
-												<span>${member.mEmail}</span>
+								<div class="main-left-sidebar" style="margin-top:130px;">
+									<div class="user_profile">
+										<div class="user-pro-img">
+											<img src="contents/member_image/${member.mImage}" width="200px" alt="">
+											<div class="add-dp" id="OpenImgUpload">
+												<input type="file" id="file">
+												<label for="file"><i class="fas fa-camera"></i></label>												
 											</div>
-										</div><!--user-profile end-->
-										<ul class="user-fw-status">
-											<li>
-												<h4>Following</h4>
-												<span>${member.followingCount}</span>
-											</li>
-											<li>
-												<h4>Followers</h4>
-												<span>${member.followerCount}</span>
-											</li>
-											<li>
-												<a href="personal_info" title="">View Profile</a>
-											</li>
-										</ul>
-									</div><!--user-data end-->
+										</div><!--user-pro-img end-->
+										<div class="user_pro_status">
+											<ul class="flw-status">
+												<li>
+													<h4>Following</h4>
+													<span></span>
+													<b><a href="#" title="">${member.followingCount}</a></b>
+												</li>
+												<li>
+													<h4>Followers</h4>
+													<span></span>
+													<b><a href="#" title="">${member.followerCount}</a></b>
+												</li>
+											</ul>
+										</div><!--user_pro_status end-->
+									</div><!-- user_profile end -->
+									
 									<div class="suggestions full-width">
 										<div class="sd-title">
 											<h3>친구추천</h3>

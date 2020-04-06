@@ -29,7 +29,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="profiles.html" title="">
+								<a href="profiles" title="">
 									<span><img src="images/icon3.png" alt=""></span>
 									Profiles
 								</a>

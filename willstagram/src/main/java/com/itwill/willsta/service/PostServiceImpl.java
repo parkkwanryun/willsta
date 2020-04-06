@@ -215,5 +215,21 @@ public class PostServiceImpl implements PostService {
 		return mv;
 	}
 	
+	@Override
+	public ModelAndView personal_main_page(String mId) {
+		ModelAndView mv = new ModelAndView();
+		
+		Member member = memberService.selectByIdContainFollowInfo(mId);
+		List<Member> memberList = memberService.selectByRandom(mId);
+		mv.addObject("member", member);
+		mv.addObject("memberList", memberList);
+		List<Post> postList = selectMyList(0, mId);
+		for (Post post : postList) {
+			post.setTagArray(post.getHasTag().split(" "));
+		}
+		mv.addObject("postList", postList);
+		return mv;
+	}
+	
 
 }

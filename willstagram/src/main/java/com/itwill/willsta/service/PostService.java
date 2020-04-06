@@ -34,5 +34,7 @@ public interface PostService {
 
 	ModelAndView main_page(String mId);
 
+	ModelAndView personal_main_page(String mId);
+
 	
 }

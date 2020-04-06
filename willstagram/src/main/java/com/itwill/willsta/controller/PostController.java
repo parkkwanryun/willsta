@@ -149,7 +149,16 @@ public class PostController {
 		return "fail";
 	}
 	
-	
+	@MemberLoginCheck
+	@RequestMapping(value="/personal_info")
+	public ModelAndView personal_info(HttpServletRequest request) {
+		
+		String mId = (String)request.getSession().getAttribute("mId");
+		ModelAndView mv = postService.personal_main_page(mId);
+		
+		mv.setViewName("personal");
+		return mv;
+	}
 	
 	
 }
