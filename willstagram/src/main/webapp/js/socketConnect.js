@@ -14,7 +14,12 @@ var socket = null;
 			console.log('Info : connection opened.');
 		};
 		ws.onmessage = function(event) { // socket.send() 후 ReplyEchoHandler가 handleTextMessage메소드로부터 메시지를 받아옴											// 실행
-			console.log(event.data + '\n');
+			
+			var msgArray = (event.data).split(",");
+			var mIdYou = msgArray[0];
+			var mId = msgArray[1];
+			var contents = msgArray[2];
+			console.log("보낸이:"+mIdYou+"/"+"받는이:"+mId+"/"+"내용:"+contents);
 		};
 		ws.onclose = function(event) { // connection 이 close 되었을때 실행
 			console.log('Info: connection closed.');
@@ -24,5 +29,6 @@ var socket = null;
 		};
 		ws.onerror = function(event) { // connection 이 error가 나왔을때
 			console.log('Info: connection closed.');
+			
 		};
 	}

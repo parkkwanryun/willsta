@@ -45,7 +45,7 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
 				
 				WebSocketSession mIdYouSession = userSessions.get(mIdYou);
 				if(mIdYouSession != null) {
-					TextMessage tmpMsg = new TextMessage(mId + "님이 " + contents + "내용을 보냈습니다");
+					TextMessage tmpMsg = new TextMessage(mId+","+mIdYou+","+contents);
 					mIdYouSession.sendMessage(tmpMsg);
 				}
 			}
