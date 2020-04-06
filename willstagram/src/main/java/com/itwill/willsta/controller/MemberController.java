@@ -49,7 +49,7 @@ public class MemberController {
 			Member signInMember = memberService.signIn(mId, mPass);
 			session.setAttribute("mId", mId);
 			session.setAttribute("sMemberId", signInMember);
-			session.setMaxInactiveInterval(00);
+			//session.setMaxInactiveInterval(00);
 			forwardPath="true";
 		} catch (MemberNotFoundException e) {
 			model.addAttribute("fmId", mId);
@@ -80,7 +80,7 @@ public class MemberController {
 	/*회원가입*/
 	@ResponseBody
 	@RequestMapping(value="/sign_up_action",method = RequestMethod.POST, produces="application/json; charset=UTF-8")
-	public Member sign_up_action(@RequestParam("mId")String mId,
+	public boolean sign_up_action(@RequestParam("mId")String mId,
 								@RequestParam("mPass")String mPass,
 								@RequestParam("mName")String mName,
 								@RequestParam("mEmail")String mEmail,
@@ -88,18 +88,16 @@ public class MemberController {
 								@RequestParam("mImage")String mImage,
 								@RequestParam("mRetire")String mRetire,
 								HttpServletRequest request, HttpSession session) {
-		System.out.println("sign_up_action 회원가입 컨트롤러 테스트1");
-		Member insertMember = null;
-		String mId1 = (String) request.getSession().getAttribute(mId);
+		//String mId1 = (String) request.getSession().getAttribute("mId");
 
-		boolean newMember = memberService.insertMember(new Member(mId1,mPass,mName,mEmail,mPhone,mImage,mRetire,0,0));
+		boolean newMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire));
 			if(newMember) {
-				System.out.println("sign_up_action 컨트롤러 테스트2");
-				insertMember= new Member(mId1,mPass,mName,mEmail,mPhone,mImage,mRetire,0,0);
+				System.out.println("이제 자네는 우리 회원일세");
+				newMember= true;
 			}else {
-				insertMember= null;
+				newMember= false;
 			}
-		return insertMember;
+		return newMember;
 }
 	
 	@MemberLoginCheck

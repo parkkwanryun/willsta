@@ -16,7 +16,7 @@ public interface MemberMapper {
 	
 	/*회원 가입*/
 	@Insert("INSERT INTO MEMBER VALUES (#{mId},#{mPass},#{mName},#{mEmail},#{mPhone},#{mImage},#{mRetire})")
-	public boolean insertMember(@Param("member") Member member);
+	public boolean insertMember(Member member);
 	
 	/*회원정보 로딩*/
 	@Select("SELECT m.mId, m.mPass, m.mName, m.mEmail, m.mPhone, m.mImage, "
