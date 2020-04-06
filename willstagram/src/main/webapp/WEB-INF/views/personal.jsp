@@ -46,6 +46,9 @@
 									<div class="user_profile">
 										<div class="user-pro-img">
 											<img src="contents/member_image/${member.mImage}" width="200px" alt="">
+												<div class="usy-name">
+															<h3>${member.mName}</h3>
+															<div class="epi-sec epi2">
 											<div class="add-dp" id="OpenImgUpload">
 												<input type="file" id="file">
 												<label for="file"><i class="fas fa-camera"></i></label>												
