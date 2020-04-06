@@ -36,8 +36,18 @@
 						alert(member_login_action.mId.value+'님 환영합니다.');
 						location.href = '/willstagram/index';
 					} else if (textData.trim() == "false") {
-						$('#msg1').html('아이디를 확인하십시오.').css('color','red')
+						$('#msg1').html('아이디를 확인하십시오.').css({
+																	color:"red"
+																	});
 						$('#msg2').html('비밀번호를 확인하십시오.').css('color','red')
+						
+						/*
+						 $('#element').css({
+						    margin: "5px",
+						    padding: "10px",
+						    color: "black"
+							}); 
+						 */
 					}
 				}
 			})
