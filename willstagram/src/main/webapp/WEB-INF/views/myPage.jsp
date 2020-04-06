@@ -284,7 +284,7 @@
 											<div class="suggestion-usd">
 												<img src="images/resources/s2.png" alt="">
 												<div class="sgt-text">
-													<h4>${random.mName}</h4>
+													<h4>${member.mName}</h4>
 													<span>PHP Developer</span>
 												</div>
 												<span><i class="la la-plus"></i></span>
