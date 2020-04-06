@@ -46,10 +46,9 @@ public class MemberController {
 		System.out.println("로그인 컨트롤러 테스트"+"mId:"+mId+" mPass:"+mPass);
 		String forwardPath = "";
 		try {
-			Member signInMember = memberService.signIn("hjs", "1");
+			Member signInMember = memberService.signIn(mId, mPass);
 			session.setAttribute("mId", mId);
 			session.setAttribute("sMemberId", signInMember);
-		//	System.out.println("로그인 컨트롤러 테스트2"+"mId:"+mId+" mPass:"+mPass);
 			forwardPath="true";
 		} catch (MemberNotFoundException e) {
 			model.addAttribute("fmId", mId);

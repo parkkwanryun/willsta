@@ -6,9 +6,11 @@
 <style type="text/css" >
 input.error, textarea.error {
 	border: 1px solid red;
+	text-size: 1px;
 }
 label.error {
-	margin-left: 5px;
+	margin-left: 1px;
+	font-size: 10pt;
 	color: red;
 }
 .valid {
@@ -48,6 +50,7 @@ label.error {
 											<div class="col-lg-12 no-pdd">
 												<div class="sn-field">
 													<input type="text" name="mId" placeholder="ID">
+													<div id="msg1"></div>
 													<span id="msg"></span>
 													<i class="la la-user"></i>
 												</div><!--sn-field end-->
@@ -55,6 +58,7 @@ label.error {
 											<div class="col-lg-12 no-pdd">
 												<div class="sn-field">
 													<input type="password" name="mPass" placeholder="Password">
+													<div id="msg2"></div>	
 													<span id="msg"></span>
 													<i class="la la-lock"></i>
 												</div>

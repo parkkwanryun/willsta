@@ -5,14 +5,13 @@
 	  	1.id 와 password value 값 => 로그인 정보를 컨트롤러로 html 형태로 전송 (완료)
 	    2.자바 단에서 요청받은 컨트롤러에서의 세션 유무 체크(Interceptor)(완료)
 	 	3.session 유지 시간 세팅 (web.xml --> session 유효시간 = 1day ms) (완료)
-	    3.로그인 시, id와 password 유효성 체크(validate) (글자 수 제한)
+	    3.로그인 시, id와 password 유효성 체크(validate) (글자 수 제한) (완료)
 	    4.id/ password 틀릴 시 안내문구 띄워주기(jsp단에서 div msg 삽입)  
-	  	
-	  	
-	  	
+
 	 <<회원가입>>
-	 	1.회원가입 이미지 업로드 / <1>중복된 아이디는 컨트롤러 필요?
-	 	insert (이미지 업로드 / mRetire 체크 ON-> F 로 바꿀 것)
+	 	1.회원가입 시, id와 password, email, name, phone 유효성 체크(validate)
+	 	2.회원가입 이미지 업로드 / 중복된 아이디는 컨트롤러 필요?
+	 	3.insert (이미지 업로드 / mRetire 체크 ON-> F 로 바꿀 것)
 	  
 	 <<회원정보수정&탈퇴>>  
 	    1.DELETE / UPDATE 
@@ -26,7 +25,6 @@
 	*/
 	function member_login_action_function(e){
 		 var mlaf = $('#member_login_action').serialize();
-
 			$.ajax({
 				url:'sign_in_action',
 				method:'POST',
@@ -38,11 +36,12 @@
 						alert(member_login_action.mId.value+'님 환영합니다.');
 						location.href = '/willstagram/index';
 					} else if (textData.trim() == "false") {
-						
+						$('#msg1').html('아이디를 확인하십시오.').css('color','red')
+						$('#msg2').html('비밀번호를 확인하십시오.').css('color','red')
 					}
 				}
 			})
-		e.preventDefault();
+			e.preventDefault();
 	}
 /*
 1)DOM Tree 로딩 후 이벤트 처리
