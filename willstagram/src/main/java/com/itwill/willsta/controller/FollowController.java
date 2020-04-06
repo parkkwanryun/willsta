@@ -149,7 +149,7 @@ public class FollowController {
 		mv.setViewName("myPage");
 		return mv;
 	}
-	@RequestMapping(value = "/follow_Check")
+	@RequestMapping(value = "/follow_Check", method = RequestMethod.POST)
 	   public String followCheck(@RequestParam(value = "mIdYou") String mIdYou,HttpSession session, Model model) {
 	      String mId=(String) session.getAttribute("mId");
 	      System.out.println(mIdYou);
