@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwill.willsta.domain.DM;
+import com.itwill.willsta.domain.DmContents;
 import com.itwill.willsta.domain.Member;
 import com.itwill.willsta.service.DmService;
 import com.itwill.willsta.service.MemberService;
@@ -26,16 +27,8 @@ public class DmController {
 	@RequestMapping(value = "/sessionCheck")
 	public String returnSessionCheck(HttpSession httpSession) {
 		String loginId = (String)httpSession.getAttribute("mId");
-		/*
-		if(sessionId != null && sessionId.equals("")) {
-			textData = sessionId;
-		} else {
-			textData = "faild";
-		}
-		*/
 		return loginId;
 	}
-	
 	@ResponseBody
 	@RequestMapping(value = "/messages_room_create")
 	public String messageRoomInsert(HttpSession httpSession,
@@ -54,18 +47,30 @@ public class DmController {
 		} 
 		return isSuccess;
 	}
-	
-	
 	@RequestMapping(value = "/messages")
-	public String messageForm(HttpServletRequest httpServletRequest) {
-		String mId = (String)httpServletRequest.getSession().getAttribute("mId");
+	public String messageForm(HttpSession httpSession) {
+		String mId = (String)httpSession.getAttribute("mId");
 		List<DM> dmList = dmService.dmSelectAll(mId); 
-		httpServletRequest.getSession().setAttribute("dmList", dmList);
-		
-		System.out.println("컨트롤러 호출 성공");
-		
-		httpServletRequest.getSession().setAttribute("mId", mId);
-		
+		httpSession.setAttribute("dmList", dmList);
+		httpSession.setAttribute("mId", mId);
 		return "messages";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/message_detail")
+	public String messageDetail(HttpSession httpSession, @RequestParam("dmNo") int dmNo) {
+		System.out.println("@@@@@@@@@@@@@@ dmNo ="+dmNo);
+		
+		String isSuccess = "true";
+		List<DmContents> dmcList = dmService.dmNoSelectAll(dmNo);
+		if(dmcList == null) {
+			isSuccess = "false";
+		}
+		httpSession.setAttribute("dmcList", dmcList);
+		System.out.println(dmcList);
+		for (DmContents dmContents : dmcList) {
+			System.out.println(dmContents);
+		}
+		return isSuccess;
 	}
 }

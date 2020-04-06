@@ -11,8 +11,8 @@ public interface DmContentsDao {
 	//DM 메시지 전체 조회
 	public List<DmContents> dmcSelectAll();
 	
-	//DM 특정 방번호에 대한 메시지 전체 조회
-	public List<DmContents> dmNoSelectAll(int dmNo);
+	//DM 특정 유저의 채팅목록에 대한 메시지 전체 조회
+	public List<DmContents> dmNoSelectAll(Integer dmNo);
 	
 	//DM 특정 메시지 조회
 	public DmContents dmcSelectOne(int dmContentsNo);

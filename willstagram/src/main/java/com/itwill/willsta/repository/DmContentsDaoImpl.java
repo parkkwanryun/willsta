@@ -26,7 +26,7 @@ public class DmContentsDaoImpl implements DmContentsDao {
 	}
 	// 특정 방번호 메시지 전체 조회
 	@Override
-	public List<DmContents> dmNoSelectAll(int dmNo) {
+	public List<DmContents> dmNoSelectAll(Integer dmNo) {
 		return dmContentsMapper.dmNoSelectAll(dmNo);
 	}
 

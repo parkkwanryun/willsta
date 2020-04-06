@@ -18,7 +18,7 @@ import com.itwill.willsta.service.DmService;
 
 public class ReplyEchoHandler extends TextWebSocketHandler {
 	List<WebSocketSession> sessions = new ArrayList<>();
-	Map<String, WebSocketSession> userSessions = new HashMap<String, WebSocketSession>();
+	Map<String, WebSocketSession> userSessions = new HashMap<>();
 	
 	
 	// 세션 커넥션 연결 되었을 때(클라이언트가 서버에 접속 성공시)
@@ -26,35 +26,42 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		System.out.println("afterConnectionEstablished :" + session);
 		sessions.add(session);
-		String senderId = getId(session);
-		userSessions.put(senderId, session);
+		String mId = getId(session);
+		userSessions.put(mId, session);
 	}
 
 	// 소켓에 메시지 전송시
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		System.out.println(message.getPayload());
-		String senderId = getId(session);
-		System.out.println(senderId);
-		// protocol: 내용, 메세지 샌더, 메세지 리시버, (reply, sender, receiver)
 		String msg = message.getPayload();
 		
 		if(!StringUtils.isEmpty(msg)) {
-			String[] strs = msg.split(","); 
+			String[] strs = msg.split(",");
 			if(strs != null && strs.length == 3) {
-				String contents = strs[0];
-				String msgSender = strs[1];
-				String msgReceiver = strs[2];
+				String mId = strs[0];
+				String mIdYou = strs[1];
+				String contents = strs[2];
 				
-				WebSocketSession msgReceiverSession = userSessions.get(msgReceiver);
-				if(msgReceiverSession != null) {
-					TextMessage tmpMsg = new TextMessage(msgSender + "님이 메시지를 송신 하셨습니다.");
-					msgReceiverSession.sendMessage(tmpMsg);
+				WebSocketSession mIdYouSession = userSessions.get(mIdYou);
+				if(mIdYouSession != null) {
+					TextMessage tmpMsg = new TextMessage(mId + "님이 " + contents + "내용을 보냈습니다");
+					mIdYouSession.sendMessage(tmpMsg);
 				}
 			}
 		}
-	}
+		// protocol: mId, mIdYou, contents, 
 
+		/*
+		if(!StringUtils.isEmpty(msg)) {
+			String[] strs = msg.split(","); 
+			if(strs != null && strs.length == 3) {
+				String mId = strs[0];
+				String mIdYou = strs[1];
+				String contents = strs[2];
+			*/	
+		
+			}
 	// 세션 커넥션 종료시 데이터
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
@@ -64,9 +71,6 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
 	private String getId(WebSocketSession session) {
 		Map<String, Object> httpSession = session.getAttributes();
 		String loginId = (String) httpSession.get("mId");
-		if (loginId == null) 
-			return session.getId();
-		 else 
-			return loginId;
+		return loginId;
 	}
 }

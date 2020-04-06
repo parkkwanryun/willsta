@@ -13,15 +13,14 @@ public class DmContents {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DmContents(Integer dmNo, Integer dmContentsNo, String dmContentsMessage, String dmContentsDate,
-			String dmContentsImage) {
-		super();
+	public DmContents(Integer dmNo, Integer dmContentsNo, String dmContentsMessage, String dmContentsDate) {
 		this.dmNo = dmNo;
 		this.dmContentsNo = dmContentsNo;
 		this.dmContentsMessage = dmContentsMessage;
 		this.dmContentsDate = dmContentsDate;
-		this.dmContentsImage = dmContentsImage;
+	
 	}
+	
 
 	public Integer getDmNo() {
 		return dmNo;
@@ -66,8 +65,7 @@ public class DmContents {
 	@Override
 	public String toString() {
 		return "DmContents [dmNo=" + dmNo + ", dmContentsNo=" + dmContentsNo + ", dmContentsMessage="
-				+ dmContentsMessage + ", dmContentsDate=" + dmContentsDate + ", dmContentsImage=" + dmContentsImage
-				+ "]\n";
+				+ dmContentsMessage + ", dmContentsDate=" + dmContentsDate + ", dmContentsImage=" + "]\n";
 	}
 	
 	
