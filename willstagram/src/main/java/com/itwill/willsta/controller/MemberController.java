@@ -80,25 +80,26 @@ public class MemberController {
 	/*회원가입*/
 	@ResponseBody
 	@RequestMapping(value="/sign_up_action",method = RequestMethod.POST, produces="application/json; charset=UTF-8")
-	public String sign_up_action(Member member, HttpServletRequest request, HttpSession session, Model model) {
+	public Member sign_up_action(@RequestParam("mId")String mId,
+								@RequestParam("mPass")String mPass,
+								@RequestParam("mName")String mName,
+								@RequestParam("mEmail")String mEmail,
+								@RequestParam("mPhone")String mPhone,
+								@RequestParam("mImage")String mImage,
+								@RequestParam("mRetire")String mRetire,
+								HttpServletRequest request, HttpSession session) {
 		System.out.println("sign_up_action 회원가입 컨트롤러 테스트1");
-		String forwardPath = "";
-		String mId = (String) request.getSession().getAttribute("mId");
-		String mPass = (String) request.getSession().getAttribute("mPass");
-		String mName = (String) request.getSession().getAttribute("mName");
-		String mEmail = (String) request.getSession().getAttribute("mEmail");
-		String mPhone = (String) request.getSession().getAttribute("mPhone");
-		String mImage = (String) request.getSession().getAttribute("mImage");
-		String mRetire = (String) request.getSession().getAttribute("mRetire");
+		Member insertMember = null;
+		String mId1 = (String) request.getSession().getAttribute(mId);
 
-		boolean newMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire,0,0));
+		boolean newMember = memberService.insertMember(new Member(mId1,mPass,mName,mEmail,mPhone,mImage,mRetire,0,0));
 			if(newMember) {
 				System.out.println("sign_up_action 컨트롤러 테스트2");
-				forwardPath= "true";
+				insertMember= new Member(mId1,mPass,mName,mEmail,mPhone,mImage,mRetire,0,0);
 			}else {
-				forwardPath= "false";
+				insertMember= null;
 			}
-		return forwardPath;
+		return insertMember;
 }
 	
 	@MemberLoginCheck
