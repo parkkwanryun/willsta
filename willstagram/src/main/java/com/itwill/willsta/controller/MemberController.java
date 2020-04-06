@@ -49,7 +49,7 @@ public class MemberController {
 			Member signInMember = memberService.signIn(mId, mPass);
 			session.setAttribute("mId", mId);
 			session.setAttribute("sMemberId", signInMember);
-			session.setMaxInactiveInterval(00);
+			//session.setMaxInactiveInterval(00);
 			forwardPath="true";
 		} catch (MemberNotFoundException e) {
 			model.addAttribute("fmId", mId);
@@ -80,25 +80,24 @@ public class MemberController {
 	/*회원가입*/
 	@ResponseBody
 	@RequestMapping(value="/sign_up_action",method = RequestMethod.POST, produces="application/json; charset=UTF-8")
-	public String sign_up_action(Member member, HttpServletRequest request, HttpSession session, Model model) {
-		System.out.println("sign_up_action 회원가입 컨트롤러 테스트1");
-		String forwardPath = "";
-		String mId = (String) request.getSession().getAttribute("mId");
-		String mPass = (String) request.getSession().getAttribute("mPass");
-		String mName = (String) request.getSession().getAttribute("mName");
-		String mEmail = (String) request.getSession().getAttribute("mEmail");
-		String mPhone = (String) request.getSession().getAttribute("mPhone");
-		String mImage = (String) request.getSession().getAttribute("mImage");
-		String mRetire = (String) request.getSession().getAttribute("mRetire");
+	public boolean sign_up_action(@RequestParam("mId")String mId,
+								@RequestParam("mPass")String mPass,
+								@RequestParam("mName")String mName,
+								@RequestParam("mEmail")String mEmail,
+								@RequestParam("mPhone")String mPhone,
+								@RequestParam("mImage")String mImage,
+								@RequestParam("mRetire")String mRetire,
+								HttpServletRequest request, HttpSession session) {
+		//String mId1 = (String) request.getSession().getAttribute("mId");
 
-		boolean newMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire,0,0));
+		boolean newMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire));
 			if(newMember) {
-				System.out.println("sign_up_action 컨트롤러 테스트2");
-				forwardPath= "true";
+				System.out.println("이제 자네는 우리 회원일세");
+				newMember= true;
 			}else {
-				forwardPath= "false";
+				newMember= false;
 			}
-		return forwardPath;
+		return newMember;
 }
 	
 	@MemberLoginCheck
