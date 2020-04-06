@@ -234,22 +234,17 @@
 															href="#"><i class="fas fa-heart"></i> Like</a> <img
 															src="images/liked-img.png" alt=""> <span
 															class="likeCount">${post.likeCount}</span></li>
+														<li><a href="#" class="com comment_list_click"><i
+																class="fas fa-comment-alt"></i> Comments </a></li>
 													</ul>
 													<a href="#"><i class="fas fa-eye"></i>Views
 														${post.pViewCount}</a>
 												</div>
 												<!-- comment-section -->
 												<div class="comment-section" post_no="${post.pNo}">
-													<ul>
-														<li><a href="#" class="com comment_list_click">
-																<i class="fas fa-comment-alt"></i> Comments </a>
-														</li>
-													</ul>
 													
 													<!-- comment-sec -->
-													<div class="comment-sec" >
-														
-													</div>
+													
 													<!--comment-sec end-->
 													
 												</div>
@@ -260,10 +255,10 @@
 														<img src="images/resources/bg-img4.png" alt="">
 													</div>
 													<div class="comment_box">
-														<form>
+														<form class="comments_insert_form">
 															<!-- 댓글 내용 쓰는 곳 -->
 															<input type="text" placeholder="Post a comment"
-																name="cContents"> 
+																name="cContents" class="cContents"> 
 															<input type="hidden" name="pNo" value="${post.pNo}">
 															<button type="button" class="comments_insert_button">Send</button>
 														</form>
