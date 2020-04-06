@@ -20,7 +20,7 @@
 		      	<c:forEach var="pi" items="${postImages}" varStatus="vs">	
 		      		<div class="carousel-item <c:if test="${vs.index==0}">active</c:if>">
 			          	<c:if test="${fn:startsWith(pi.fileName, 'img')}">
-							<img style="width:100%; height: 550px;" class="d-block w-100" src="contents/post_image/${pi.fileName}" alt="${pi.fileName}" >
+							<img style="width:100%; height: 480px;" class="d-block w-100" src="contents/post_image/${pi.fileName}" alt="${pi.fileName}" >
 						</c:if>
 						<c:if test="${fn:startsWith(pi.fileName, 'mov')}">
 							<div class="embed-responsive embed-responsive-4by3">
@@ -41,8 +41,8 @@
 		        <span class="sr-only">Next</span>
 		      </a>
 	     </div>
-	     <div class="post-content">
-	       <p>${post.pContents}</p>
+	     <div class="post-content" style="margin-top:10px;">
+	       <pre>${post.pContents}</pre>
 	     </div>
      </div>
      

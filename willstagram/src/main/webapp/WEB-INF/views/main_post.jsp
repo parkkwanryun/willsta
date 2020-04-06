@@ -136,7 +136,7 @@
 												<div class="ed-opts">
 													<a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
 													<!-- 이 포스트가 내꺼인 경우에만 보여주는 메뉴 -->
-													<c:if test="${post.mId!=sessionScope.loginId}">
+													<c:if test="${post.mId==sessionScope.mId}">
 														<ul class="ed-options">
 															<li><a class="updatePost" href="#" title="">Edit Post</a></li>
 															<li><a class="deletePost" href="#" title="">Delete Post</a></li>
@@ -166,7 +166,7 @@
 											</div>
 											<div class="job_descp">
 												<h3>${post.pTitle}</h3>
-												<p>${post.pContents}<br><a href="#" title="">view more</a></p>
+												<p>${fn:substring(post.pContents, 1, 30)}<br><a href="#" title="">view more</a></p>
 												<ul class="skill-tags">
 													<c:forEach var='tag' items="${post.tagArray}">
 														<li><a href="#" title="">${tag}</a></li>
