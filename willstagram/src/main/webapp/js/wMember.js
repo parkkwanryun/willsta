@@ -70,8 +70,7 @@ $(function() {
 					method : 'POST',
 					dataType : 'json',
 					success : function(jsonObject) {
-						
-						member_register_action.mId.value = jsonObject.mId;
+						member_register_action.mId.value = jsonObject.mId1;
 						member_register_action.mPass.value = jsonObject.mPass;
 						member_register_action.mName.value = jsonObject.mName;
 						member_register_action.mEmail.value = jsonObject.mEmail;
@@ -81,7 +80,7 @@ $(function() {
 						
 						if (jsonObject.trim() == "true") {
 							alert(member_login_action.mId.value+'님 환영합니다.');
-							location.href = '/willstagram/index';
+							location.href = '/willstagram/sign_in';
 						} else if (jsonObject.trim() == "false") {
 
 						}
