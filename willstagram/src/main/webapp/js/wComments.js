@@ -27,7 +27,7 @@ function postCommentsListFunction($postComments){
 							"				<h3>"+mId+"</h3>" +
 							"				<span><img src='images/clock.png' alt=''>"+cTime+"</span>" +
 							"				<p>"+cContents+"</p>" +
-							"				<a href='#' class='active' comments_no='"+cNo+"'><i class='fa fa-reply-all'></i>Reply</a>" +
+							"				<a href='#' class='active' comments_no='"+cNo+"' data-toggle='collapse'><i class='fa fa-reply-all'></i>Reply</a>" +
 							"			</div>" +
 							" 		</div>" +	
 							"	</li>" +
@@ -55,7 +55,7 @@ function commentsInsertActionFunction($comments, pNo){
 			if(result.trim() == "true"){
 				alert("댓글 쓰기 성공");
 				$comments[0].reset();
-				//$("a[post_no='"+pNo+"']").trigger('click');
+				$("a[post_no="+pNo+"]").trigger('click');
 				
 			}else if(result.trim() == "false"){
 				alert("댓글 쓰기 실패");
@@ -64,6 +64,27 @@ function commentsInsertActionFunction($comments, pNo){
 		}
 	});
 }
+
+
+//대댓글 작성 form 보여주기
+function reCommentsInsertFormShowFunction($reCommentsForm, cNo){
+	var html = "";
+	html += "<div class='post-comment'>" +
+			"	<div class='comment_box'>" +
+			"		<form class='comments_insert_form' comments_no='"+cNo+"'>" +
+			"			<input type='text' placeholder='Post a comment'" +
+			"				name='cContents' class='cContents'>" +
+			"			<input type='hidden' name='cNo' value='"+cNo+"' >" +
+			"			<button type='button' class='comments_insert_button' comments_no='"+cNo+"'>Send</button>" +
+			"		</form>" +
+			"	</div>" +
+			"</div>";
+	$reCommentsForm.append(html);
+}
+
+
+
+
 
 //document ready
 $(function() {
@@ -85,12 +106,12 @@ $(function() {
 		e.preventDefault();
 	});
 	
-	//대댓글 쓰기
+	//대댓글 쓰기 폼 보이기
 	$(document).on("click", ".active", function(e){
 		console.log(e.target);
-		var reComments = $(".comment-sec-"+$(e.target).attr("comments_no")).find(".comments_insert_form");
-		console.log(reComments);
-		
+		var $reCommentsForm = $(".comment-sec-"+$(e.target).attr("comments_no"));
+		console.log($reCommentsForm);
+		reCommentsInsertFormShowFunction($reCommentsForm, +$(e.target).attr("comments_no"));
 		e.preventDefault();
 	});
 });
