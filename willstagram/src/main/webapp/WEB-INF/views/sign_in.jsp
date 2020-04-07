@@ -54,16 +54,17 @@ label.error {
 										<div class="row">
 											<div class="col-lg-12 no-pdd">
 												<div class="sn-field">
-													<input type="text" id="i" name="mId" placeholder="ID">
-													<div id="msg1"></div>
+													<input type="text" id="i" class="required" name="mId" placeholder="ID" onkeyup="noSpaceForm(this)">
+												
+													<div id="msg1">아이디를 다시 확인해주세요.</div>
 													<span id="msg"></span>
 													<i class="la la-user"></i>
 												</div><!--sn-field end-->
 											</div>
 											<div class="col-lg-12 no-pdd">
 												<div class="sn-field">
-													<input type="password" id="p" name="mPass" placeholder="Password">
-													<div id="msg2"></div>	
+													<input type="password" id="p" class="required" name="mPass" placeholder="Password" onkeyup="noSpaceForm(this)">
+													<div id="msg2">비밀번호가 틀렸습니다.</div>	
 													<span id="msg"></span>
 													<i class="la la-lock"></i>
 												</div>
@@ -109,37 +110,37 @@ label.error {
 											<div class="row">
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="text" name="mId" placeholder="id">
+														<input type="text" name="mId" class="required" placeholder="id" onkeyup="noSpaceForm(this)">
 														<i class="la la-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="password" name="mPass" placeholder="Password">
+														<input type="password" name="mPass" class="required" placeholder="Password" onkeyup="noSpaceForm(this)">
 														<i class="la la-lock"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="password" name="mName" placeholder="Name">
+														<input type="password" name="mName" class="required" placeholder="Name" onkeyup="noSpaceForm(this)">
 														<i class="la la-lock"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="text" name="mEmail" placeholder="bluepk2034@naver.com">
+														<input type="text" name="mEmail" class="required" placeholder="bluepk2034@naver.com" onkeyup="noSpaceForm(this)">
 														<i class="la la-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="text" name="mPhone" placeholder="Phone Number">
+														<input type="text" name="mPhone" class="required" placeholder="Phone Number" onkeyup="noSpaceForm(this)">
 														<i class="la la-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="text" name="mImage" placeholder="profile_image_upload">
+														<input type="text" name="mImage" class="required" placeholder="profile_image_upload" onkeyup="noSpaceForm(this)">
 														<i class="la la-user"></i>
 													</div>
 												</div>
