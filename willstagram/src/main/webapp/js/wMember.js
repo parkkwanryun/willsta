@@ -6,15 +6,20 @@
 	    2.자바 단에서 요청받은 컨트롤러에서의 세션 유무 체크(Interceptor)(완료)
 	 	3.session 유지 시간 세팅 (web.xml --> session 유효시간 = 1day ms) (완료)
 	    3.로그인 시, id와 password 유효성 체크(validate) (글자 수 제한) (완료)
-	    4.id/ password(없는아이디, 틀린비밀번호 시) 안내문구 띄워주기
+	    4.id/ password(없는 아이디, 틀린비밀번호 시) 안내문구 띄워주기
 	    (jsp단에서 div msg 삽입 / javascript show, hide 이벤트처리)  (완료)
-	      																
+	      				(input text 삭제 시 warning 문구 삭제 처리) 
+	    5.아이디 / 비밀번호 공백 불가 alert 안내 (완료)														
+		6.비밀번호 찾기 (Forgot Password?) or 임시비밀번호 안내
+		
+		
 
 	 <<회원가입>>
 	 	1.회원가입 시, id와 password, email, name, phone 유효성 체크(validate)
 	 	2.회원가입 이미지 업로드 / 중복된 아이디는 컨트롤러 필요?
 	 	3.insert (이미지 업로드 / mRetire 체크 ON-> F 로 바꿀 것)
-	  
+	    4.회원가입 시 체크박스 필수 체크 알림.
+	    
 	 <<회원정보수정&탈퇴>>  
 	    1.DELETE / UPDATE 
 	    (Profile-Account-Setting)
@@ -35,13 +40,12 @@
 				dataType:'text',
 				success : function(textData) {
 					if (textData.trim() == "true") {
-						console.log('text!!');
 						alert(member_login_action.mId.value+'님 환영합니다.');
 						location.href = '/willstagram/index';
 					}else if (textData.trim() == "false1") {
-						id_check_function();
+						id_check();
 					}else if(textData.trim() == "false2"){
-						password_check_function();
+						password_check();
 					}
 				}
 			})
@@ -50,30 +54,68 @@
 	/*
 	 2) Id, Password 체크 
 	 */
-	function id_check_function(){
+	function id_check(){
 		var mlafArray = $('#member_login_action').serializeArray();
-		for (var i = 0; i < mlafArray.length; i++) {
-			if(mlafArray[i].name!='mId' &&mlafArray[i].name=='mPass'){
-				$('#msg1').html('Id Error. Please Check Id Again');
-				$('#i').focus();
+			for (var i = 0; i < mlafArray.length; i++) {
+				if(mlafArray[i].name!='mId' && mlafArray[i].name=='mPass'){
+					$('#msg1').show();
+					$('#i').focus();
+				}
 			}
 		}	
-	}
-	function password_check_function(){
+	function password_check(){
 		var mlafArray = $('#member_login_action').serializeArray();
+		
 		for (var i = 0; i < mlafArray.length; i++) {
 			if(mlafArray[i].name!='mPass' && mlafArray[i].name=='mId'){
-				$('#msg2').html('Password Error. Please Check Password Again');
+				$('#msg2').show();
 				$('#p').focus();
 			}
 		}	
 	}
+	/*
+	 3) 아이디, 비밀번호 공백 체크(로그인, 회원가입)
+	 */
+	function noSpaceForm(obj) { // 공백 사용 금지
+	    var str_space = /\s/;  // 공백 체크
+	    if(str_space.exec(obj.value)) { //공백 체크
+	        alert("해당 항목에는 공백을 사용할수 없습니다.");
+	        obj.focus();
+	        obj.value = obj.value.replace(' ',''); // 공백제거
+	        return false; 
+	    }
+	}
+	/*
+	 4)input text 내 데이터 삭제 시 경고문구 없애줌
+	 */
+
+	
+	
+	/*
+	 5) 체크박스 체크 
+	 */
+	
+	/*
+	function check_box_function(){
+		   var count = $('input:checkbox[name=mRetire]:checked').length;
+		    if(count > 0){
+		        return true;
+		    }else{
+		        alert('check box select');
+		        return false;
+		    }
+	}
+	*/
 	
 	
 /*
 1)DOM Tree 로딩 후 이벤트 처리
 */
 $(function() {
+
+	$('#msg1').hide();
+	$('#msg2').hide();
+	
 	  //로그인 유효성 검증 (validate function)
 	$('#member_login_action').validate({
 		rules:{
@@ -90,15 +132,15 @@ $(function() {
 		},
 			messages:{
 				mId:{//{0} is a duplicate ID : 컨트롤러 작성필요?
-					required: "Please check your Id",
-					minlength: "Please write Id more than {0} characters",
-					maxlength: "Please write Id less than {0} characters",
+					required: "아이디를 입력해주세요",
+					minlength: "아이디는 최소 {0}글자 이상입니다",
+					maxlength: "아이디는 최대 {0}글자 이하입니다",
 					//remote:	"{0} 는 중복된 아이디입니다."
 				},
 				mPass:{
-					required: "Please check your password",
-					minlength: "Please write Password more than {0} characters",
-					maxlength: "Please write Password more than {0} characters"
+					required: "비밀번호를 입력해주세요",
+					minlength: "비밀번호는 최소 {0}글자 이상입니다",
+					maxlength: "비밀번호는 최대 {0}글자 이하입니다"
 				}
 			},
 			//유효성 통과 후 호출
