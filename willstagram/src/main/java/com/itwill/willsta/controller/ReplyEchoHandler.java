@@ -35,17 +35,17 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		System.out.println(message.getPayload());
 		String msg = message.getPayload();
-		
 		if(!StringUtils.isEmpty(msg)) {
 			String[] strs = msg.split(",");
-			if(strs != null && strs.length == 3) {
+			if(strs != null && strs.length == 4) {
 				String mId = strs[0];
 				String mIdYou = strs[1];
 				String contents = strs[2];
+				String msgDate = strs[3];
 				
 				WebSocketSession mIdYouSession = userSessions.get(mIdYou);
 				if(mIdYouSession != null) {
-					TextMessage tmpMsg = new TextMessage(mId+","+mIdYou+","+contents);
+					TextMessage tmpMsg = new TextMessage(mId+","+mIdYou+","+contents+","+msgDate);
 					mIdYouSession.sendMessage(tmpMsg);
 				}
 			}
