@@ -172,8 +172,7 @@
 										<!-- post-bar가 반복되면 됨 -->
 										<c:forEach var="post" items="${postList}">
 
-											<div class="post-bar post-bar-${post.pNo}"
-												post_no="${post.pNo}">
+											<div class="post-bar post-bar-${post.pNo}" post_no="${post.pNo}">
 												<div class="post_topbar">
 													<div class="usy-dt">
 														<img src="contents/member_image/${post.mImage}" width=40px
@@ -235,8 +234,10 @@
 															href="#"><i class="fas fa-heart"></i> Like</a> <img
 															src="images/liked-img.png" alt=""> <span
 															class="likeCount">${post.likeCount}</span></li>
-														<li><a href="#" post_no="${post.pNo}" class="com comment_list_click">
-															<i class="fas fa-comment-alt"></i> Comments </a></li>
+														<li>
+															<a href="#" post_no="${post.pNo}" class="com comment_list_click">
+															<i class="fas fa-comment-alt"></i> Comments </a>
+														</li>
 													</ul>
 													<a href="#"><i class="fas fa-eye"></i>Views
 														${post.pViewCount}</a>
@@ -253,7 +254,7 @@
 												<!--comment-section end-->
 												
 												<!-- post-comment -->
-												<div class="post-comment" post_no="${post.pNo}">
+												<div class="post-comment">
 													<div class="cm_img">
 														<img src="images/resources/bg-img4.png" alt="">
 													</div>
@@ -263,7 +264,7 @@
 															<input type="text" placeholder="Post a comment"
 																name="cContents" class="cContents">
 															<input type="hidden" name="pNo" value="${post.pNo}" >
-															<button type="button" class="comments_insert_button">Send</button>
+															<button type="button" class="comments_insert_button" post_no="${post.pNo}">Send</button>
 														</form>
 													</div>
 												</div>

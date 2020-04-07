@@ -5,9 +5,12 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,7 +23,7 @@ public class CommentsController {
 	private CommentsService commentsService;
 	
 	@MemberLoginCheck
-	@PostMapping(value = "/commentsInsert", produces = "text/plain;charset=UTF-8")
+	@PostMapping(value = "/commentsInsert", produces = "text/html;charset=UTF-8")
 	public String commentsInsert(@RequestParam(value = "pNo", defaultValue = "15") int pNo,
 									   		 @RequestParam String cContents,
 									   		 HttpSession session) throws Exception {
@@ -39,12 +42,12 @@ public class CommentsController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/postCommentsList", produces = "application/json;charset=UTF-8")
+	@MemberLoginCheck
+	@PostMapping(value = "/postCommentsList", produces = "application/json;charset=UTF-8")
 	public List<Comments> postCommentsList(@RequestParam(value = "pNo") int pNo) throws Exception {
 		List<Comments> postCommentsList = commentsService.postCommentsList(pNo);
 		return postCommentsList;
 	}
-	
 	
 	public String reCommentsInsert() throws Exception {
 		
