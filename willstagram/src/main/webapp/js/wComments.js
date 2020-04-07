@@ -44,8 +44,8 @@ function postCommentsListFunction($postComments){
 
 //댓글 작성 ajax 요청
 function commentsInsertActionFunction($comments){
-	var params = "pNo="+$comments.attr("post_no");
-	
+	var params = $comments.serialize();
+	console.log(params);
 	$.ajax({
 		url : "commentsInsert",
 		data : params,
@@ -53,6 +53,7 @@ function commentsInsertActionFunction($comments){
 		dataType : "text",
 		success : function(result) {
 			if(result.trim() == "true"){
+				alert("댓글 쓰기 성공");
 				
 			}else if(result.trim() == "false"){
 				
@@ -64,7 +65,7 @@ function commentsInsertActionFunction($comments){
 //document ready
 $(function() {
 	// 포스트-댓글 전체 보이기
-	$(document).on("click", "a.comment_list_click", function(e){
+	$(document).on("click", ".comment_list_click", function(e){
 		console.log(e.target);
 		var $postComments = $(".post-bar-"+$(e.target).attr("post_no")).find(".comment-section");
 		console.log($postComments);
@@ -73,11 +74,9 @@ $(function() {
 	});
 	
 	// 댓글 쓰기
-	$(document).on("click", ".comments_insert_button", function(e) {
+	$(document).on("click", ".comments_insert_button", function(e){
 		console.log(e.target);
-		console.log($(e.target).parent(".comments_insert_form").attr("post_no"));
-		var $comments = $(e.target).parent(".comments_insert_form").attr("post_no");
-		
+		var $comments = $(".post-bar-"+$(e.target).attr("post_no")).find(".comments_insert_form");
 		commentsInsertActionFunction($comments);
 		e.preventDefault();
 	});
