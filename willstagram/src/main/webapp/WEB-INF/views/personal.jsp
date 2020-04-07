@@ -90,6 +90,7 @@
 														<h4>${mList.mName}</h4>
 														<span>${mList.mEmail}</span>
 													</div>
+												<!-- 	<span><i class="la la-plus"></i></span> -->
 													<span><i class="la la-plus"></i></span>
 												</div>
 											</c:forEach>
