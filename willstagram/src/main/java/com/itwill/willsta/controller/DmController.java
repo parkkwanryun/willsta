@@ -66,12 +66,5 @@ public class DmController {
 		return dmcList; 
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "/messages_room_create")
-	public int messagesContentsInsert (HttpSession httpSession) {
-		
-		return 0;
-	}
-	
 	
 }

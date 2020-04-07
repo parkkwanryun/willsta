@@ -16,9 +16,6 @@ var socket = null;
 			console.log('Info : connection opened.');
 		};
 	// 메시지 전송 버튼 클릭 후 메시지를 저장하는 콜백함수
-		function messagesContentsInsert(mId, mIdYou, msg, msgDate){
-			
-		}
 		
 	// 메시지 전송 버튼 클릭 시 작동하는 콜백함수
 	function message_send_function(e){
@@ -32,9 +29,6 @@ var socket = null;
 			var msgDate = currentTime;								//보낸시간
 			if(msg != null && msg != "" && msg != '&nbsp'){
 			socket.send(mId+","+mIdYou+","+msg+","+msgDate);
-			
-			messagesContentsInsert(mId, mIdYou, msg, msgDate);		//메시지 소켓 전송 성공 시 테이블 저장
-			
 			$("#msg").val("");
 			var htmlData ="";
 			htmlData +=	"<div class='main-message-box'>";
