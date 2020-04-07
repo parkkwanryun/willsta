@@ -33,7 +33,7 @@ $(function(){
 	});
 	
 	//팔로잉리스트
-	$(document).on('click','.follow',function(e){
+	$(document).on('click','.followingList',function(e){
 		var $mIdYou=$(e.target).parents("div.company-up-info");
 		var param="mIdYou="+$mIdYou.attr("mIdYou");
 		$.ajax({
@@ -50,9 +50,10 @@ $(function(){
 	});
 	
 	//팔로우리스트
-	$(document).on('click','.follow',function(e){
+	$(document).on('click','.followList',function(e){
 		var $mIdYou=$(e.target).parents("div.company-up-info");
 		var param="mId="+$mIdYou.attr("mId");
+		
 		$.ajax({
 			url: "followList",
 			method: "POST",
