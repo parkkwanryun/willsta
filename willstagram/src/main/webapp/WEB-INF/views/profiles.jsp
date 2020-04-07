@@ -53,7 +53,14 @@
 											</c:otherwise>
 										</c:choose>
 									</div>
-									<a href="user-profile.html" title="" class="view-more-pro">View Profile</a>
+									<c:choose>
+										<c:when test="${member.mId==sessionScope.mId}">								
+											<a href="personal_info" title="" class="view-more-pro">View Profile</a>
+										</c:when>
+										<c:otherwise>
+											<a href="" title="" class="view-more-pro">View Profile</a>
+										</c:otherwise>
+									</c:choose>
 								</div><!--company_profile_info end-->
 								</c:forEach>
 								<!-- loop end -->
