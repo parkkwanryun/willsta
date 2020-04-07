@@ -233,7 +233,8 @@
 														<li><a class="like <c:if test='${post.myLike > 0}'> active </c:if>"
 															href="#"><i class="fas fa-heart"></i> Like</a> <img
 															src="images/liked-img.png" alt=""> <span
-															class="likeCount">${post.likeCount}</span></li>
+															class="likeCount">${post.likeCount}</span>
+														</li>
 														<li>
 															<a href="#" post_no="${post.pNo}" class="com comment_list_click">
 															<i class="fas fa-comment-alt"></i> Comments </a>
@@ -249,7 +250,6 @@
 
 													<!--comment-sec end-->
 													
-												
 												
 													<!-- post-comment -->
 													<div class="post-comment">

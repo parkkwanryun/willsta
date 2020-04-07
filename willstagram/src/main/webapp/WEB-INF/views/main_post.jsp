@@ -119,12 +119,12 @@
 											</ul>
 										</div><!--post-st end-->
 									</div><!--post-topbar end-->
-									<div class="posts-section">
+									<div class="posts-section posty">
 									
 									<!-- post-bar가 반복되면 됨 -->
-								<c:forEach var="post" items="${postList}">
+									<c:forEach var="post" items="${postList}">
 								
-										<div class="post-bar" post_no="${post.pNo}">
+										<div class="post-bar post-bar-${post.pNo}" post_no="${post.pNo}">
 											<div class="post_topbar">
 												<div class="usy-dt">
 													<img src="contents/member_image/${post.mImage}" width=40px height=40px>
@@ -175,37 +175,46 @@
 												</ul>
 											</div>
 											<div class="job-status-bar">
-													<ul class="like-com">
-														<li><a href="#" class="like"><i class="fas fa-heart"></i> Like</a>
-															<img src="images/liked-img.png" alt=""> <span class='likeCount'>${post.likeCount}</span>
-														</li>
-														<!-- a: 누를 시 comment-section toggle-->
-														<li><a href="#" class="com"> <i class="fas fa-comment-alt"></i> Comment 15</a></li>
-													</ul>
-													<a href="#"><i class="fas fa-eye"></i>Views
+												<ul class="like-com">
+													<li><a href="#" class="like"><i class="fas fa-heart"></i> Like</a>
+														<img src="images/liked-img.png" alt=""> <span class='likeCount'>${post.likeCount}</span>
+													</li>
+													<li>
+														<a href="#" post_no="${post.pNo}" class="com comment_list_click">
+														<i class="fas fa-comment-alt"></i> Comments </a>
+													</li>
+												</ul>
+												<a href="#"><i class="fas fa-eye"></i>Views
 														${post.pViewCount}</a>
-													<!-- comment-section-->
-													<div class="comment-section"></div>
-													<!--comment-section end-->
-												</div>
+											</div>
+												
+											<!-- comment-section -->
+											<div class="comment-section" post_no="${post.pNo}">
+												<!-- comment-sec -->
+
+												<!--comment-sec end-->
+													
+												
 												<!-- post-comment -->
 												<div class="post-comment">
-													<div class="cm_img">
-														<img src="images/resources/bg-img4.png" alt="">
-													</div>
 													<div class="comment_box">
-														<form id="comment-insert-form">
+														<form class="comments_insert_form" post_no="${post.pNo}">
 															<!-- 댓글 내용 쓰는 곳 -->
 															<input type="text" placeholder="Post a comment"
-																id="comment-cContent" name="comment-cContent">
-															<button type="button" id="comment-insert-button">Send</button>
+																name="cContents" class="cContents">
+															<input type="hidden" name="pNo" value="${post.pNo}" >
+															<button type="button" class="comments_insert_button" post_no="${post.pNo}">Send</button>
 														</form>
 													</div>
 												</div>
 												<!--post-comment end-->
-										</div><!--post-bar end-->
-								</c:forEach>	
-								    </div><!--posty end-->
+											</div>
+											<!--comment-section end-->
+										</div>
+										<!--post-bar end-->
+									</c:forEach>
+							    </div>
+								<!--posty end-->
 										<div class="process-comm">
 											<div class="spinner"">
 												<div class="bounce1"></div>
