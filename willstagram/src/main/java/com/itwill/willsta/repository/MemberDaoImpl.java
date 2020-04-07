@@ -59,8 +59,8 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	
 	@Override
-	public List<Member> findMemberList(String mId) {
-		return memberMapper.findMemberList(mId);
+	public List<Member> findMemberList(String findId) {
+		return memberMapper.findMemberList(findId);
 	}
 
 	@Override

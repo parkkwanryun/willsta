@@ -61,8 +61,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public List<Member> findMemberList(String mId) {
-		return memberDao.findMemberList(mId);
+	public List<Member> findMemberList(String findId) {
+		return memberDao.findMemberList(findId);
 	}
 
 	@Override

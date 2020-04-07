@@ -32,7 +32,7 @@ $(function(){
 	$('.userSearch').submit(function(e) {
 		
 		//키워드 값 변수에 저장
-		userKeyword="find="+$('input[name=search]').val();
+		userKeyword="findId="+$('input[name=search]').val();
 		console.log(userKeyword);
 		
 		$.ajax({
@@ -93,6 +93,7 @@ $(function(){
        }            
        var $member = $("div.company-up-info").last();
        var params = "lastId="+ $member.attr('mIdYou');
+       console.log(params);
          $.ajax({
           url:'profiles',
           method:'POST',
@@ -104,5 +105,6 @@ $(function(){
        });
          e.preventDefault();
      });
-	*/
+     */
+	
 }); 
