@@ -31,6 +31,7 @@
 	 1)로그인 함수
 	*/
 	function member_login_action_function(){
+		
 		 var mlafArray = $('#member_login_action').serializeArray();	 
 			$.ajax({
 				url:'sign_in_action',
@@ -57,17 +58,19 @@
 		var mlafArray = $('#member_login_action').serializeArray();
 			for (var i = 0; i < mlafArray.length; i++) {
 				if(mlafArray[i].name!='mId' && mlafArray[i].name=='mPass'){
-					$('#msg1').show();
+					$('#i-error').text('아이디를 다시 확인해주세요.').show();
+					//validate 활용
+					//$('#msg1').text('아이디를 다시 확인해주세요.')
 					$('#i').focus();
 				}
 			}
 		}	
 	function password_check(){
 		var mlafArray = $('#member_login_action').serializeArray();
-		
 		for (var i = 0; i < mlafArray.length; i++) {
 			if(mlafArray[i].name!='mPass' && mlafArray[i].name=='mId'){
-				$('#msg2').show();
+				$('#p-error').text('비밀번호가 틀렸습니다.').show();
+				//$('#msg2').text('비밀번호가 틀렸습니다.').show();
 				$('#p').focus();
 			}
 		}	
@@ -84,13 +87,10 @@
 	        return false; 
 	    }
 	}
-	/*
-	 4)input text 내 데이터 삭제 시 경고문구 없애줌(div 동적 생성)
-	 */
-
+	
 	
 	/*
-	 5) 체크박스 체크 
+	 4) 체크박스 체크 
 	 */
 	
 	/*
@@ -110,12 +110,12 @@
 1)DOM Tree 로딩 후 이벤트 처리
 */
 $(function() {
-
 	$('#msg1').hide();
 	$('#msg2').hide();
 	
 	  //로그인 유효성 검증 (validate function)
 	$('#member_login_action').validate({
+		
 		rules:{
 			mId:{
 				required:true,
@@ -143,6 +143,7 @@ $(function() {
 			},
 			//유효성 통과 후 호출
 			submitHandler:function(){
+				$('#msg1').text('');	
 				member_login_action_function();
 			},
 			errorClass:"error",
