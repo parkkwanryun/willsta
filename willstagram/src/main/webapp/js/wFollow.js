@@ -33,39 +33,44 @@ $(function(){
 	});
 	
 	//팔로잉리스트
-	$(document).on('click','.followingList',function(e){
-		var $mIdYou=$(e.target).parents("div.company-up-info");
-		var param="mIdYou="+$mIdYou.attr("mIdYou");
+	function message_detail_function(e){
+		var dmNo = $(e.target).find('#mIdYou').text();
+		var params = "mIdYou=" + mId;
 		$.ajax({
-			url: "followingList",
-			method: "POST",
-			data: param,
-			dataType: "text",
-			success:function(){
-				$(e.target).hide();
-				$(e.target.parentNode).prev().children().show();
+			url : 'followingList',
+			method : 'GET',
+			data : params,
+			dataType : 'json',
+			success : function(jsonArrayData) {
+				console.log(jsonArrayData);
+				/*
+				$(function() {
+					message_send_function(e);
+				});
+				*/
 			}
 		});
-		e.preventDefault();
-	});
+	}
 	
 	//팔로우리스트
-	$(document).on('click','.followList',function(e){
-		var $mIdYou=$(e.target).parents("div.company-up-info");
-		var param="mId="+$mIdYou.attr("mId");
-		
+	function message_detail_function(e){
+		var dmNo = $(e.target).find('#mId').text();
+		var params = "mId=" + dmNo;
 		$.ajax({
-			url: "followList",
-			method: "POST",
-			data: param,
-			dataType: "text",
-			success:function(){
-				$(e.target).hide();
-				$(e.target.parentNode).prev().children().show();
+			url : 'followList',
+			method : 'GET',
+			data : params,
+			dataType : 'json',
+			success : function(jsonArrayData) {
+				console.log(jsonArrayData);
+				/*
+				$(function() {
+					message_send_function(e);
+				});
+				*/
 			}
 		});
-		e.preventDefault();
-	});
+	}
 	
 	
 	
