@@ -1,3 +1,18 @@
+/*
+ * Controller 부분 
+ *  follow list  (완료)
+ *  following list (완료)
+ *  follow count (완료)
+ *  following count (완료)
+ 할것들 
+ - follow & following list UI 아니면 bootstrap 써서 뽑기 
+ - 친구추천목록에서 +버튼누르면 팔로잉 되게만들기.
+
+  
+ */
+
+
+
 $(function(){
 	//팔로잉카운트
 	$(document).on('click','.follow',function(e){
@@ -33,16 +48,22 @@ $(function(){
 	});
 	
 	//팔로잉리스트
-	function message_detail_function(e){
-		var dmNo = $(e.target).find('#mIdYou').text();
-		var params = "mIdYou=" + mId;
+	function followingList(e){
+		var mIdYou = $(e.target).find('#mIdYou').text();
+		var params = "mIdYou=" + mIdYou;
 		$.ajax({
 			url : 'followingList',
-			method : 'GET',
+			method : 'POST',
 			data : params,
 			dataType : 'json',
 			success : function(jsonArrayData) {
+				for(var i; i<=params.size(); i++){
+					params[i].following.name="jhj"
+				}
+				
 				console.log(jsonArrayData);
+				
+				
 				/*
 				$(function() {
 					message_send_function(e);
@@ -132,3 +153,47 @@ $(document).ready(function(){
 		}
 	});
 })
+
+
+
+
+
+	function displayGuestListXML() {
+		if (xhr.readyState == 4) {
+			if (xhr.status == 200) {
+				var xmlDoc = xhr.responseXML;
+				//var xmlStr = xhr.responseText;
+				var guestNodeList = xmlDoc.getElementsByTagName("guest");
+				var html = "";
+
+				for (var i = 0; i < guestNodeList.length; i++) {
+					var guestE = guestNodeList[i];
+
+					var title = guestE.getElementsByTagName("guest_title")[0].firstChild.nodeValue;
+					var no = guestE.getElementsByTagName("guest_no")[0].firstChild.nodeValue;
+
+					html += "<div class='guest_item'>";
+					html += "<h3 class='guest_title'  guest_no='"+no+"'><a href=''>"
+							+ title + "[XML]</a></h3></div>";
+
+				}
+
+				document.getElementById('guest_list').innerHTML = html;
+			}
+			showLoadingDialog(false);
+		}
+	}
+
+
+
+document.getElementById('menu-b')
+				.getElementsByTagName('a').item(0)
+				.addEventListener('click',function(e){
+					//ajax요청
+					sendRequest('guest/guest_list_json.jsp',
+								null,
+								displayGuestListJSON,
+								'GET',true);
+					showLoadingDialog(true);
+					e.preventDefault();
+				});

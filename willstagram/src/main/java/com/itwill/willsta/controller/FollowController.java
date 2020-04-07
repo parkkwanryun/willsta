@@ -81,7 +81,7 @@ public class FollowController {
 	
 	
 	@ResponseBody
-	@RequestMapping(value="/followList" )
+	@RequestMapping(value="/followList" , method = RequestMethod.POST)
 	public List<Follow> followers(@RequestParam(value="mId",required = true )String mId) { 
 		List<Follow> followers = followService.followers(mId);
 		for(Follow follow : followers) {
@@ -93,7 +93,7 @@ public class FollowController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/followingList" )
+	@RequestMapping(value="/followingList" , method = RequestMethod.POST )
 	public List<Follow> followingList(@RequestParam(value="mIdYou",required = true)String mIdYou) {
 		List<Follow> following = followService.following(mIdYou);
 		for(Follow follow : following) {
