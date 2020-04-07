@@ -102,38 +102,6 @@
 <script type="text/javascript" src="lib/slick/slick.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript" src="js/wSearch.js"></script>
-<script type="text/javascript">
-
-$(document).find('.message-us').on('click',function(e){
-	 var mIdYou = $(e.target.parentNode.parentNode.parentNode.parentNode).find('h3').text();
-	$.ajax({
-		url:'sessionCheck',
-		method:'GET',
-		dataType: 'text',
-		success:function(loginId){
-				if(loginId.trim() == null){
-					alert('로그인 하세요')
-					location.href('/willstagram/sign_in')
-				} else {
-					var params = "mId="+loginId+"&"+"mIdYou="+mIdYou;
-					$.ajax({
-						url:'messages_room_create',
-						method:'GET',
-						data : params,
-						dataType:'text',
-						success:function(isSuccess){
-							if(isSuccess.trim() == 'success'){
-								location.href = "/willstagram/messages";
-							} else {
-								location.href = "/willstagram/messages";
-							}
-						}
-					});
-
-				}
-		}
-	});
-});
-</script>
+<script type="text/javascript" src="js/socketConnect.js"></script>
 </body>
 </html>

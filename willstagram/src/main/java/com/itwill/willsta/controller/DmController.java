@@ -57,20 +57,12 @@ public class DmController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/message_detail")
-	public String messageDetail(HttpSession httpSession, @RequestParam("dmNo") int dmNo) {
-		System.out.println("@@@@@@@@@@@@@@ dmNo ="+dmNo);
-		
-		String isSuccess = "true";
+	@RequestMapping(value = "/message_detail", produces = "application/json;charset=UTF-8")
+	public List<DmContents> messageDetail(HttpSession httpSession, @RequestParam("dmNo") int dmNo) {
 		List<DmContents> dmcList = dmService.dmNoSelectAll(dmNo);
-		if(dmcList == null) {
-			isSuccess = "false";
-		}
-		httpSession.setAttribute("dmcList", dmcList);
-		System.out.println(dmcList);
 		for (DmContents dmContents : dmcList) {
 			System.out.println(dmContents);
 		}
-		return isSuccess;
+		return dmcList; 
 	}
 }
