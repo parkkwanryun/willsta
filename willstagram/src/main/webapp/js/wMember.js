@@ -31,8 +31,7 @@
 	 1)로그인 함수
 	*/
 	function member_login_action_function(){
-		 var mlafArray = $('#member_login_action').serializeArray();
-		 
+		 var mlafArray = $('#member_login_action').serializeArray();	 
 			$.ajax({
 				url:'sign_in_action',
 				method:'POST',
@@ -86,10 +85,9 @@
 	    }
 	}
 	/*
-	 4)input text 내 데이터 삭제 시 경고문구 없애줌
+	 4)input text 내 데이터 삭제 시 경고문구 없애줌(div 동적 생성)
 	 */
 
-	
 	
 	/*
 	 5) 체크박스 체크 
@@ -185,7 +183,7 @@ $(function() {
 						} else if (jsonObject.trim() == "false") {
 						}
 						*/
-						location.href = 'willstagram/index';
+						location.href = '/willstagram/sign_in';
 					} 
 			});
 				e.preventDefault();

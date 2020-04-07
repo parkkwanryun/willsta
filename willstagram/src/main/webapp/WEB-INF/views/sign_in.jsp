@@ -55,7 +55,6 @@ label.error {
 											<div class="col-lg-12 no-pdd">
 												<div class="sn-field">
 													<input type="text" id="i" class="required" name="mId" placeholder="ID" onkeyup="noSpaceForm(this)">
-												
 													<div id="msg1">아이디를 다시 확인해주세요.</div>
 													<span id="msg"></span>
 													<i class="la la-user"></i>

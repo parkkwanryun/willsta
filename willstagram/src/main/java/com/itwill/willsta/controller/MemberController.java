@@ -51,13 +51,9 @@ public class MemberController {
 			session.setAttribute("sMemberId", signInMember);
 			forwardPath="true";
 		} catch (MemberNotFoundException e) {
-			model.addAttribute("fmId", mId);
-			model.addAttribute("msg1", e.getMessage());
 			forwardPath = "false1";
 			e.printStackTrace();
 		} catch (PasswordMismatchException e) {
-			model.addAttribute("fmId", mId);
-			model.addAttribute("msg2", e.getMessage());
 			forwardPath = "false2";
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -88,7 +84,6 @@ public class MemberController {
 								@RequestParam("mRetire")String mRetire,
 								HttpServletRequest request, HttpSession session) {
 		//String mId1 = (String) request.getSession().getAttribute("mId");
-
 		boolean newMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire));
 			if(newMember) {
 				System.out.println("이제 자네는 우리 회원일세");
