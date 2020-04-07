@@ -49,7 +49,7 @@
 												</ul>
 											</c:when>
 											<c:otherwise>
-												<b>My profile</b>
+												<b>My Profile</b>
 											</c:otherwise>
 										</c:choose>
 									</div>

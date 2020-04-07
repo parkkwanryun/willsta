@@ -1,26 +1,5 @@
 $(function(){
-	/*
-	//스크롤이벤트 : 문서의 끝 위치에 오면 사용자 추가 조회
-    $(window).on("scroll", function(e){
-       //문서의높이에 윈도우높이를 제외한 값이 스크롤의 최대값이다
-       if(($(document).height()-$(window).height()) != $(document).scrollTop()){
-          return;
-       }            
-       var $member = $("div.company-up-info").last();
-       var params = "lastId="+ $member.attr('mIdYou');
-       console.log(params);
-         $.ajax({
-          url:'profiles',
-          method:'POST',
-          data:params,
-          dataType:'html',
-          success: function(resultText){
-             $('div.companies-list').append(resultText);
-          }
-       });
-         e.preventDefault();
-     });
-	*/
+	
 	//팔로우 여부 체크
 	var mIdArray=$('#mId-List').serializeArray();
 	//console.log(mIdArray);
@@ -48,6 +27,7 @@ $(function(){
 		});
 	}
 	
+	//검색 두번했을때 버튼 다시 보임..
 	//사용자 검색
 	$('.userSearch').submit(function(e) {
 		
@@ -61,7 +41,7 @@ $(function(){
 			data:userKeyword,
 			dataType:'text',
 			success:function(resultText){
-				//console.log(resultText);
+				console.log(resultText);
 				$('div.wrapper').html(resultText);
 				$('div.company-title').children().text("Search Profile");
 			}
@@ -102,9 +82,26 @@ $(function(){
 		});
 		e.preventDefault();
 	});
-	
-	
-	
-     
-	
+
+	//스크롤이벤트 : 문서의 끝 위치에 오면 사용자 추가 조회
+    $(window).on("scroll", function(e){
+       //문서의높이에 윈도우높이를 제외한 값이 스크롤의 최대값이다
+       if(($(document).height()-$(window).height()) != $(document).scrollTop()){
+          return;
+       }            
+       var $member = $("div.company-up-info").last();
+       var params = "lastId="+ $member.attr('mIdYou');
+       console.log(params);
+         $.ajax({
+          url:'profiles',
+          method:'POST',
+          data:params,
+          dataType:'html',
+          success: function(resultText){
+             $('div.companies-list').append(resultText);
+          }
+       });
+         e.preventDefault();
+     });
+    
 }); 
