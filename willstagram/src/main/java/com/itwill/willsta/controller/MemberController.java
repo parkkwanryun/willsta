@@ -111,7 +111,7 @@ public class MemberController {
 	
 	@MemberLoginCheck
 	@RequestMapping(value = "/profiles")
-	public ModelAndView memberList(String mId,String mIdYou) {
+	public ModelAndView memberList() {
 		ModelAndView mv=new ModelAndView();
 		List<Member> memberList=memberService.memberList();
 		mv.addObject("memberList",memberList);
@@ -122,9 +122,9 @@ public class MemberController {
 	@MemberLoginCheck
 	@ResponseBody
 	@RequestMapping(value = "/search_member", method = RequestMethod.POST)
-	public ModelAndView findMemberList(@RequestParam(value = "find") String find, String mId) {
+	public ModelAndView findMemberList(@RequestParam(value = "findId") String findId) {
 		ModelAndView mv=new ModelAndView();
-		List<Member> findMemberList=memberService.findMemberList(find);
+		List<Member> findMemberList=memberService.findMemberList(findId);
 		mv.addObject("memberList",findMemberList);
 		mv.setViewName("profiles");
 		return mv;

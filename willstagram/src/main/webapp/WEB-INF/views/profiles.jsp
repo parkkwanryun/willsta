@@ -40,11 +40,18 @@
 										</c:choose>
 										<h3 class="member-id">${member.mId}</h3>
 										<h4>${member.mName}</h4>
-										<ul>
-											<li><a href="#" title="" class="unFollow">UnFollow</a></li><!-- follow중인 상태 -->
-											<li><a href="#" title="" class="follow">Follow</a></li>
-											<li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
-										</ul>
+										<c:choose>
+											<c:when test="${member.mId!=sessionScope.mId}">
+												<ul>	
+													<li><a href="#" title="" class="unFollow">UnFollow</a></li><!-- follow중인 상태 -->
+													<li><a href="#" title="" class="follow">Follow</a></li>
+													<li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
+												</ul>
+											</c:when>
+											<c:otherwise>
+												<b>My profile</b>
+											</c:otherwise>
+										</c:choose>
 									</div>
 									<a href="user-profile.html" title="" class="view-more-pro">View Profile</a>
 								</div><!--company_profile_info end-->

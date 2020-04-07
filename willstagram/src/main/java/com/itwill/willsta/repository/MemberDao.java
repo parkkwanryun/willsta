@@ -42,5 +42,5 @@ public interface MemberDao {
 	List<Member> memberList();
 	
 	/*사용자 검색*/
-	List<Member> findMemberList(String mId);
+	List<Member> findMemberList(String findId);
 }
