@@ -109,31 +109,31 @@ label.error {
 											<div class="row">
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="text" name="mId" class="required" placeholder="id" onkeyup="noSpaceForm(this)">
+														<input type="text" name="mId" class="required" placeholder="id" >
 														<i class="la la-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="password" name="mPass" class="required" placeholder="Password" onkeyup="noSpaceForm(this)">
+														<input type="password" name="mPass" class="required" placeholder="Password" >
 														<i class="la la-lock"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="password" name="mName" class="required" placeholder="Name" onkeyup="noSpaceForm(this)">
+														<input type="password" name="mName" class="required" placeholder="Name" >
 														<i class="la la-lock"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="text" name="mEmail" class="required" placeholder="bluepk2034@naver.com" onkeyup="noSpaceForm(this)">
+														<input type="text" name="mEmail" class="required" placeholder="bluepk2034@naver.com" >
 														<i class="la la-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="text" name="mPhone" class="required" placeholder="Phone Number" onkeyup="noSpaceForm(this)">
+														<input type="text" name="mPhone" class="required" placeholder="Phone Number">
 														<i class="la la-user"></i>
 													</div>
 												</div>

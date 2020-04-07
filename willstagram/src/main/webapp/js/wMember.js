@@ -31,7 +31,7 @@
 	 1)로그인 함수
 	*/
 	function member_login_action_function(){
-		
+
 		 var mlafArray = $('#member_login_action').serializeArray();	 
 			$.ajax({
 				url:'sign_in_action',
@@ -87,8 +87,7 @@
 	        return false; 
 	    }
 	}
-	
-	
+
 	/*
 	 4) 체크박스 체크 
 	 */
