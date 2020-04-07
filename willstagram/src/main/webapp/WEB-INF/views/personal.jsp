@@ -59,7 +59,11 @@
 												<li>
 													<h4>Following</h4>
 													<span></span>
-													<b><a href="#" title="">${member.followingCount}</a></b>
+													<a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+														  ${member.followingCount}
+														</a>
+													<%-- <b><a href="#" title="">${member.followingCount}</a></b> --%>
+													<%-- <button onclick ="#" >${member.followingList}</button> --%>
 												</li>
 												<li>
 													<h4>Followers</h4>
