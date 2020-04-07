@@ -55,7 +55,7 @@ function commentsInsertActionFunction($comments, pNo){
 			if(result.trim() == "true"){
 				alert("댓글 쓰기 성공");
 				$comments[0].reset();
-				$("a[post_no='"+pNo+"']").trigger('click');
+				//$("a[post_no='"+pNo+"']").trigger('click');
 				
 			}else if(result.trim() == "false"){
 				alert("댓글 쓰기 실패");
