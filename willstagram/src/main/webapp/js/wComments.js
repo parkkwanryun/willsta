@@ -1,10 +1,9 @@
 // 포스트-댓글 전체 보이기 ajax요청
 function postCommentsListFunction($postComments){
 	var params = "pNo="+$postComments.attr("post_no");
-	var pNo = $postComments.attr("post_no");
 	console.log(params);
 	if($postComments.children().length > 1){
-		$postComments.children().fadeToggle(600);
+		$postComments.children().fadeToggle(500);
 	}else {
 		$.ajax({
 			url : "postCommentsList",
@@ -20,7 +19,7 @@ function postCommentsListFunction($postComments){
  					var mId = jsonObject.mId;
 					var cTime = jsonObject.cTime;
 					var cContents = jsonObject.cContents;
-					html += "<div class='comment-sec' style='display:none' comments_no='"+cNo+"'>" +
+					html += "<div class='comment-sec comment-sec-"+cNo+"' style='display:none' comments_no='"+cNo+"'>" +
 							"<ul>" +
 							"	<li>" +
 							"		<div class='comment-list'>"	+	
@@ -36,7 +35,7 @@ function postCommentsListFunction($postComments){
 							"</div>";
 				});
 				$postComments.append(html);
-				$postComments.children().fadeToggle(600);
+				$postComments.children().fadeToggle(500);
 			}
 		});
 	}
@@ -44,7 +43,7 @@ function postCommentsListFunction($postComments){
 
 
 //댓글 작성 ajax 요청
-function commentsInsertActionFunction($comments,no){
+function commentsInsertActionFunction($comments, pNo){
 	var params = $comments.serialize();
 	console.log(params);
 	$.ajax({
@@ -56,7 +55,7 @@ function commentsInsertActionFunction($comments,no){
 			if(result.trim() == "true"){
 				alert("댓글 쓰기 성공");
 				$comments[0].reset();
-				$("a[post_no='"+no+"']").trigger('click');
+				$("a[post_no='"+pNo+"']").trigger('click');
 				
 			}else if(result.trim() == "false"){
 				alert("댓글 쓰기 실패");
@@ -89,6 +88,9 @@ $(function() {
 	//대댓글 쓰기
 	$(document).on("click", ".active", function(e){
 		console.log(e.target);
-		console.log($(e.target))
+		var reComments = $(".comment-sec-"+$(e.target).attr("comments_no")).find(".comments_insert_form");
+		console.log(reComments);
+		
+		e.preventDefault();
 	});
 });

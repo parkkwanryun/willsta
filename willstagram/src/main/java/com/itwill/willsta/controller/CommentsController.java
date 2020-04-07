@@ -23,7 +23,7 @@ public class CommentsController {
 	private CommentsService commentsService;
 	
 	@MemberLoginCheck
-	@PostMapping(value = "/commentsInsert", produces = "text/html;charset=UTF-8")
+	@PostMapping(value = "/commentsInsert", produces = "text/plain;charset=UTF-8")
 	public String commentsInsert(@RequestParam(value = "pNo", defaultValue = "15") int pNo,
 									   		 @RequestParam String cContents,
 									   		 HttpSession session) throws Exception {
@@ -49,9 +49,24 @@ public class CommentsController {
 		return postCommentsList;
 	}
 	
-	public String reCommentsInsert() throws Exception {
-		
-		return "";
+	@MemberLoginCheck
+	@PostMapping(value = "/reCommentsInsert", produces = "text/plain;charset=UTF-8")
+	public String reCommentsInsert(@RequestParam(value = "pNo", defaultValue = "15") int pNo,
+								   @RequestParam String cContents,
+								   HttpSession session) throws Exception {
+		String result = "";
+		Comments comments = new Comments();
+		String mId = (String)session.getAttribute("mId");
+		comments.setpNo(pNo);
+		comments.setmId(mId);
+		comments.setcContents(cContents);
+		int createResult = commentsService.createComment(comments);
+		if(createResult == 1) {
+			result = "true";
+		} else {
+			result = "false";
+		}
+		return result;
 	}
 	
 	public String commentsUpdate() throws Exception {

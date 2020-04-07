@@ -167,7 +167,7 @@
 										<!--post-st end-->
 									</div>
 									<!--post-topbar end-->
-									<div class="posts-section">
+									<div class="posts-section posty">
 
 										<!-- post-bar가 반복되면 됨 -->
 										<c:forEach var="post" items="${postList}">
@@ -245,36 +245,33 @@
 												
 												<!-- comment-section -->
 												<div class="comment-section" post_no="${post.pNo}">
-													
 													<!-- comment-sec -->
 
 													<!--comment-sec end-->
 													
+												
+												
+													<!-- post-comment -->
+													<div class="post-comment">
+														<div class="comment_box">
+															<form class="comments_insert_form" post_no="${post.pNo}">
+																<!-- 댓글 내용 쓰는 곳 -->
+																<input type="text" placeholder="Post a comment"
+																	name="cContents" class="cContents">
+																<input type="hidden" name="pNo" value="${post.pNo}" >
+																<button type="button" class="comments_insert_button" post_no="${post.pNo}">Send</button>
+															</form>
+														</div>
+													</div>
+													<!--post-comment end-->
 												</div>
 												<!--comment-section end-->
-												
-												<!-- post-comment -->
-												<div class="post-comment">
-													<div class="cm_img">
-														<img src="images/resources/bg-img4.png" alt="">
-													</div>
-													<div class="comment_box">
-														<form class="comments_insert_form" post_no="${post.pNo}">
-															<!-- 댓글 내용 쓰는 곳 -->
-															<input type="text" placeholder="Post a comment"
-																name="cContents" class="cContents">
-															<input type="hidden" name="pNo" value="${post.pNo}" >
-															<button type="button" class="comments_insert_button" post_no="${post.pNo}">Send</button>
-														</form>
-													</div>
-												</div>
-												<!--post-comment end-->
 											</div>
 											<!--post-bar end-->
 										</c:forEach>
-
 									</div>
 									<!--posty end-->
+
 									<div class="process-comm">
 										<div class="spinner">
 											<div class="bounce1"></div>
