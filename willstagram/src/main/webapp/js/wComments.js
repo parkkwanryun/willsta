@@ -1,5 +1,7 @@
 // 포스트-댓글 전체 보이기 ajax요청
-function postCommentsListFunction($postComments){
+function postCommentsListFunction(e){
+	var $postComments = $(e.target).parents(".post-bar").find(".comment-section");
+	console.log($postComments);
 	var params = "pNo="+$postComments.attr("post_no");
 	console.log(params);
 	if($postComments.children().length > 1){
@@ -19,7 +21,7 @@ function postCommentsListFunction($postComments){
  					var mId = jsonObject.mId;
 					var cTime = jsonObject.cTime;
 					var cContents = jsonObject.cContents;
-					html += "<div class='comment-sec comment-sec-"+cNo+"' style='display:none' comments_no='"+cNo+"'>" +
+					html += "<div class='comment-sec' style='display:none' comments_no='"+cNo+"'>" +
 							"<ul>" +
 							"	<li>" +
 							"		<div class='comment-list'>"	+	
@@ -91,9 +93,7 @@ $(function() {
 	// 포스트-댓글 전체 보이기
 	$(document).on("click", ".comment_list_click", function(e){
 		console.log(e.target);
-		var $postComments = $(".post-bar-"+$(e.target).attr("post_no")).find(".comment-section");
-		console.log($postComments);
-		postCommentsListFunction($postComments);
+		postCommentsListFunction(e);
 		e.preventDefault();
 	});
 	
