@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:forEach var="post" items="${postList}">
-	<div class="post-bar post-bar-${post.pNo}" post_no="${post.pNo}">
+	<div class="post-bar" post_no="${post.pNo}">
 		<div class="post_topbar">
 			<div class="usy-dt">
 				<img src="contents/member_image/${post.mImage}" width=40px height=40px>
@@ -56,7 +56,7 @@
 					<span class="likeCount">${post.likeCount}</span>
 				</li> 
 				<li>
-					<a href="#" post_no="${post.pNo}" class="com comment_list_click">
+					<a href="#"  class="com comment_list_click" post_no="${post.pNo}">
 				    <i class="fas fa-comment-alt"></i> Comments </a>
 				</li>
 			</ul>
@@ -73,12 +73,12 @@
 			<!-- post-comment -->
 			<div class="post-comment">
 				<div class="comment_box">
-					<form class="comments_insert_form" post_no="${post.pNo}">
+					<form class="comments_insert_form">
 						<!-- 댓글 내용 쓰는 곳 -->
 						<input type="text" placeholder="Post a comment"
 							name="cContents" class="cContents">
 						<input type="hidden" name="pNo" value="${post.pNo}" >
-						<button type="button" class="comments_insert_button" post_no="${post.pNo}">Send</button>
+						<button type="button" class="comments_insert_button">Send</button>
 					</form>
 				</div>
 			</div>
