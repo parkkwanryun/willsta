@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
-
   <jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
+  
 <style type="text/css" >
 #msg1{font-size:12px;
 		color: red;}
@@ -21,8 +21,6 @@ label.error {
 .valid {
 	border: 1px solid green;
 }
-
-
 </style>
 
 <body class="sign-in">
@@ -73,7 +71,6 @@ label.error {
 											</div>
 											<div class="col-lg-12 no-pdd">
 												<div class="row">
-
 													<div class="col-lg-9 checky-sec">
 														<!--  로그인 시, 아이디 저장 체크 박스 
 														<div class="fgt-sec">
@@ -87,17 +84,16 @@ label.error {
 														<!--fgt-sec end-->
 														<a href="#" title="">forgot password?</a>
 													</div>
-
 												</div>
 											</div>
 											<div class="col-lg-12 no-pdd">
 												<button type="submit" value="submit">Sign in</button>
 											</div>
+												</div>
 									</form>
 
-
 									<div class="login-resources">
-										<h4>Login through Social Account</h4>
+										<h4>Login via Social Account</h4>
 										<ul>
 											<li><a href="#" title="" class="fb"><i class="fa fa-facebook"></i>Naver Login</a></li>
 										</ul>
@@ -118,37 +114,37 @@ label.error {
 											<div class="row">
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="text" name="mId" class="required" placeholder="id" onkeyup="noSpaceForm(this)">
+														<input type="text" id="mId" name="mId" class="required" placeholder="id" >
 														<i class="la la-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="password" name="mPass" class="required" placeholder="Password" onkeyup="noSpaceForm(this)">
+														<input type="password" id="mPass" name="mPass" class="required" placeholder="Password" >
 														<i class="la la-lock"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="password" name="mName" class="required" placeholder="Name" onkeyup="noSpaceForm(this)">
-														<i class="la la-lock"></i>
-													</div>
-												</div>
-												<div class="col-lg-12 no-pdd">
-													<div class="sn-field">
-														<input type="text" name="mEmail" class="required" placeholder="bluepk2034@naver.com" onkeyup="noSpaceForm(this)">
+														<input type="text" id="mName" name="mName" class="required" placeholder="Name" >
 														<i class="la la-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="text" name="mPhone" class="required" placeholder="Phone Number" onkeyup="noSpaceForm(this)">
+														<input type="text" id="mEmail" name="mEmail" class="required" placeholder="bluepk2034@naver.com" >
 														<i class="la la-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="text" name="mImage" class="required" placeholder="profile_image_upload" onkeyup="noSpaceForm(this)">
+														<input type="text" id="mPhone"name="mPhone" class="required" placeholder="Phone Number" >
+														<i class="la la-user"></i>
+													</div>
+												</div>
+												<div class="col-lg-12 no-pdd">
+													<div class="sn-field">
+														<input type="text" id="mImage" name="mImage" class="required" placeholder="profile_image_upload" >
 														<i class="la la-user"></i>
 													</div>
 												</div>
