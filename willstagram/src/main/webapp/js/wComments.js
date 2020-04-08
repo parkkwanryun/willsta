@@ -45,7 +45,12 @@ function postCommentsListFunction(e){
 
 
 //댓글 작성 ajax 요청
-function commentsInsertActionFunction($comments, pNo){
+function commentsInsertActionFunction(e){
+	console.log($(e.target).parents(".post-bar"));
+	var $comments = $(e.target).parents(".post-bar").find(".comments_insert_form");
+	console.log($comments);
+	var pNo = $(e.target).parents(".comment-section").attr("post_no");
+	console.log(pNo);
 	var params = $comments.serialize();
 	console.log(params);
 	$.ajax({
@@ -55,12 +60,11 @@ function commentsInsertActionFunction($comments, pNo){
 		dataType : "text",
 		success : function(result) {
 			if(result.trim() == "true"){
-				alert("댓글 쓰기 성공");
 				$comments[0].reset();
 				$("a[post_no="+pNo+"]").trigger('click');
 				
 			}else if(result.trim() == "false"){
-				alert("댓글 쓰기 실패");
+				alert("댓글쓰기 실패");
 				$comments.select();
 			}
 		}
@@ -100,9 +104,7 @@ $(function() {
 	// 댓글 쓰기
 	$(document).on("click", ".comments_insert_button", function(e){
 		console.log(e.target);
-		var $comments = $(".post-bar-"+$(e.target).attr("post_no")).find(".comments_insert_form");
-		console.log($comments);
-		commentsInsertActionFunction($comments, $(e.target).attr("post_no"));
+		commentsInsertActionFunction(e);
 		e.preventDefault();
 	});
 	
