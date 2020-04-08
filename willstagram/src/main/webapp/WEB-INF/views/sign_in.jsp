@@ -42,7 +42,7 @@ label.error {
 								<div class="cm-logo">
 									<img src="images/helloMain.PNG" alt="">
 									<!--  <img src="images/cm-logo.png" alt=""> -->
-									<p>Workwise is a domestic social networking platform where
+									<p>Willstagram is a domestic social networking platform where
 										businesses and independent professionals connect and
 										collaborate remotely</p>
 								</div>
@@ -162,7 +162,7 @@ label.error {
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="text" id="mImage" name="mImage"  
+														<input type="text" id="mImage" name="mImage"
 															class="required" placeholder="profile_image_upload">
 														<i class="la la-user"></i>
 													</div>
