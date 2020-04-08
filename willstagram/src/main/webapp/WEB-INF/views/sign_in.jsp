@@ -47,7 +47,7 @@ label.error {
 										collaborate remotely</p>
 								</div>
 								<!--cm-logo end-->
-								<img src="images/zzzz.jpg" alt="">
+								<img src="images/gangsanim.PNG" alt="">
 							</div>
 							<!--cmp-info end-->
 						</div>
