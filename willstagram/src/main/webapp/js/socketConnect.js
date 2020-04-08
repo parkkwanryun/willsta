@@ -4,11 +4,16 @@
 // DOM TREE 생성 후 connetWS 실행
 $(document).ready(function(){
 	connectWS();
-	
-
 });
 
 var socket = null;
+var jsonData = {
+		mId : null,
+		mIdYou : null,
+		msg : null,
+		msgDate : null,
+		dmNo : null
+};
 	function connectWS() {
 		var ws = new WebSocket("ws://localhost/willstagram/replyEcho");
 		socket = ws;
@@ -16,48 +21,70 @@ var socket = null;
 			console.log('Info : connection opened.');
 		};
 	// 메시지 전송 버튼 클릭 후 메시지를 저장하는 콜백함수
-		
+	function message_send_insert_function(jsonData){
+		var messages = jsonData.mId+","+jsonData.mIdYou+","+jsonData.msg+","+jsonData.msgDate+","+jsonData.dmNo;
+		var params = "messages="+messages;
+		$.ajax({
+			url : 'messages_insert',
+			method : 'POST',
+			data : params,
+			dataType : 'json',
+			success : function(rowCount) {
+				console.log(rowCount);
+			}
+		});
+	}
+	// 메시지 송/수신 시 채팅창에 출력하는 콜백함수
+	function message_insert_html(jsonData){
+		var htmlData ="";
+		htmlData +=	"<div class='main-message-box'>";
+		htmlData +=		"<div class='message-dt st3'>";
+		htmlData +=			"<div class='message-inner-dt'>";
+		htmlData +=				"<p>"+jsonData.msg+"</p>";
+		htmlData +=			"</div>";
+		htmlData +=			"<span>"+jsonData.msgDate+"분</span>";
+		htmlData +=		"</div>";
+		htmlData +=		"<div class='messg-usr-img'>";
+		htmlData +=			"<img src='contents/member_image/${dm.mImage}' alt=''>"
+		htmlData +=		"</div>";
+		htmlData +=	"</div>";
+		$('.messages-line').append(htmlData);
+	}
+	
 	// 메시지 전송 버튼 클릭 시 작동하는 콜백함수
 	function message_send_function(e){
 		$('#btnSend').on('click', function(event) {
 			event.preventDefault();
 			var d = new Date();
-	        var currentTime = d.getHours() + "시" + d.getMinutes();
-			let mId = $(e.target).find('.usr-mg-info h4').text();		//보낸사람
-			let mIdYou = $(e.target).find('.usr-mg-info h3').text();	//받는사람
-			let msg = $('#msg').val();									//내용
-			var msgDate = currentTime;								//보낸시간
-			if(msg != null && msg != "" && msg != '&nbsp'){
-			socket.send(mId+","+mIdYou+","+msg+","+msgDate);
+			//jsonData 만들어지는 시점
+			jsonData.mId = $(e.target).find('.usr-mg-info h4').text();			//보낸사람
+			jsonData.mIdYou = $(e.target).find('.usr-mg-info h3').text();		//받는사람
+			jsonData.msg = $('#msg').val();										//내용
+			jsonData.msgDate = d.getHours() + "시" + d.getMinutes();			//보낸시간
+			jsonData.dmNo = $(e.target).find('#dmNo').text();					//방번호
+			console.log(jsonData);
+			
+			if(jsonData.msg != null && jsonData.msg != "" && jsonData.msg != '&nbsp'){
+			socket.send(jsonData.mId+","+jsonData.mIdYou+","+jsonData.msg+","+jsonData.msgDate);
 			$("#msg").val("");
-			var htmlData ="";
-			htmlData +=	"<div class='main-message-box'>";
-			htmlData +=		"<div class='message-dt st3'>";
-			htmlData +=			"<div class='message-inner-dt'>";
-			htmlData +=				"<p>"+msg+"</p>";
-			htmlData +=			"</div>";
-			htmlData +=			"<span>"+msgDate+"분</span>";
-			htmlData +=		"</div>";
-			htmlData +=		"<div class='messg-usr-img'>";
-			htmlData +=			"<img src='contents/member_image/${dm.mImage}' alt=''>"
-			htmlData +=		"</div>";
-			htmlData +=	"</div>";
-			$('.messages-line').append(htmlData);
+			message_insert_html(jsonData);
+			message_send_insert_function(jsonData);
 			}
 		});
 	}
-	// 유저 채팅리스트 출력
+	// 유저 채팅리스트 출력 콜백함수
 	function message_list_function(jsonArrayData){
 		console.log(jsonArrayData);
+		
 	}
 
 	
-	// 메세지 유저 리스트 클릭 시 작동하는 콜백함수
+	// 메세지 유저 클릭 시 작동하는 콜백함수
 	function message_detail_function(e){
 		var dmNo = $(e.target).find('#dmNo').text();
 		var params = "dmNo=" + dmNo;
 		$.ajax({
-			url : 'message_detail',
+			url : 'messageRoom_detail',
 			method : 'GET',
 			data : params,
 			dataType : 'json',
@@ -123,13 +150,13 @@ var socket = null;
 			htmlData +=		"</div>";
 			htmlData +=	"</div>";
 			$('.messages-line').append(htmlData);
+			
 			}
 		}
 
 	//채팅방 오픈
 	$(function() {
 		$(document).find('.messages-list .usr-msg-details ').on('click', function(e) {
-			$('.messages-line').html("");
 			e.preventDefault();
 			message_detail_function(e);
 		});
