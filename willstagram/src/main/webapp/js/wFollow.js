@@ -17,7 +17,7 @@
 
 $(function(){
 	//팔로잉카운트
-	$(document).on('click','.follow',function(e){
+	$(document).on('click','.followingCount',function(e){
 		var $mIdYou=$(e.target).parents("div.company-up-info");
 		var param="mIdYou="+$mIdYou.attr("mIdYou");
 		$.ajax({
@@ -33,7 +33,7 @@ $(function(){
 		e.preventDefault();
 	});
 	//팔로워카운트
-	$(document).on('click','.follow',function(e){
+	$(document).on('click','.followCount',function(e){
 		var $mIdYou=$(e.target).parents("div.company-up-info");
 		var param="mIdYou="+$mIdYou.attr("mIdYou");
 		$.ajax({
