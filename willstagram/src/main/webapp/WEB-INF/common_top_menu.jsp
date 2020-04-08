@@ -35,7 +35,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="personal_info" title="">
+								<a href=personal_info title="">
 									<span><img src="images/icon4.png" alt=""></span>
 									My page
 								</a>

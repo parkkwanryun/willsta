@@ -83,15 +83,30 @@
 											<i class="la la-ellipsis-v"></i>
 										</div><!--sd-title end-->
 										<div class="suggestions-list">
+										
 											<c:forEach var="mList" items="${memberList}">
+											
 												<div class="suggestion-usd">
+												
 													<img src="contents/member_image/${mList.mImage}" alt="" width="40px">
 													<div class="sgt-text">
 														<h4>${mList.mName}</h4>
 														<span>${mList.mEmail}</span>
 													</div>
 												<!-- 	<span><i class="la la-plus"></i></span> -->
-													<span><i class="la la-plus"></i></span>
+											
+													<span><button type="button" color='blue' value='follow' id='follow' >follow</button></span>
+													<!--   
+													
+													
+													왜 안 돼 ? ?????????????????????????????????????????????????
+													팔로우 버튼 눌렀을때 어떤사람을 팔로가능하고 어떤사람은 팔로우안됌 
+													
+													
+													
+													-->
+													
+												
 												</div>
 											</c:forEach>
 											<div class="view-more">
@@ -475,6 +490,7 @@
 <script type="text/javascript" src="js/wPost.js"></script>
 <script type="text/javascript" src="js/wComments.js"></script>
 <script type="text/javascript" src="js/wFollow.js"></script>
+<script type="text/javascript" src="js/wSearch.js"></script>
 </head>
 </body>
 </html>
