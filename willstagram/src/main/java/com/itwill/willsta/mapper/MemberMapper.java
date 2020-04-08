@@ -63,14 +63,15 @@ public interface MemberMapper {
 	//SELECT mPass FROM MEMBER WHERE mId = 'pkr' AND mName = '세미'
 	public Member findPw(@Param("mId") String mId, @Param("mName")String mName);
 
-	
 	/*임시비밀번호 발급*/
 	@Update("UPDATE MEMBER SET mPass=#{mPass} WHERE mId=#{mId}")
 	public Member getTempPw(@Param("mId") String mPass, @Param("mEmail") String mId);
-
 	
-	@Select("SELECT mid, mname, mimage FROM member")
+	@Select("SELECT mid, mname, mimage FROM member WHERE rownum < 13 ORDER BY mid")
 	public List<Member> memberList();
+	
+	@Select("SELECT A.* FROM(SELECT rownum, mid, mname, mimage FROM member WHERE mid > #{lastId} ORDER BY mid)A WHERE rownum < 13")
+	public List<Member> addMemberList(@Param("lastId")String lastId);
 	
 	@Select("SELECT mid, mname, mimage FROM member where mid like '%${findId}%' ")
 	public List<Member> findMemberList(@Param("findId") String findId);

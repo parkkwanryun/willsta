@@ -142,6 +142,19 @@ public class MemberController {
 	
 	@MemberLoginCheck
 	@ResponseBody
+	@RequestMapping(value = "/add_profile", produces = "text/html;charset=utf-8")
+	public ModelAndView addMember(@RequestParam(value = "lastId", required = true)String lastId) {
+		ModelAndView mv=new ModelAndView();
+		System.out.println("### 마지막 아이디 ->"+lastId);
+		List<Member> addMemberList=memberService.addMemberList(lastId);
+		mv.addObject("memberList",addMemberList);
+		mv.setViewName("profile");
+		return mv;
+		
+	}
+	
+	@MemberLoginCheck
+	@ResponseBody
 	@RequestMapping(value = "/search_member", method = RequestMethod.POST)
 	public ModelAndView findMemberList(@RequestParam(value = "findId") String findId) {
 		ModelAndView mv=new ModelAndView();
