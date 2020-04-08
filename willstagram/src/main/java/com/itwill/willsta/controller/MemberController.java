@@ -105,10 +105,12 @@ public class MemberController {
 	}
 	
 	@MemberLoginCheck
-	@RequestMapping(value = "/profiles")
-	public ModelAndView memberList() {
+	@ResponseBody
+	@RequestMapping(value = "/profiles" , produces = "text/html;charset=utf-8")
+	public ModelAndView memberList(@Param("lastId")String lastId) {
 		ModelAndView mv=new ModelAndView();
-		List<Member> memberList=memberService.memberList();
+		System.out.println("### 마지막 아이디 ->"+lastId);
+		List<Member> memberList=memberService.memberList(lastId);
 		mv.addObject("memberList",memberList);
 		mv.setViewName("profiles");
 		return mv;

@@ -69,8 +69,11 @@ public interface MemberMapper {
 	public Member getTempPw(@Param("mId") String mPass, @Param("mEmail") String mId);
 
 	
-	@Select("SELECT mid, mname, mimage FROM member")
-	public List<Member> memberList();
+	@Select({" <script>  SELECT A.* FROM ( SELECT mid, mname, mimage FROM member ",
+			 " <if test='lastId gt lastId'><![CDATA[AND mid < #{lastId} ]]></if> ",
+			 " ORDER BY mid) A ",
+			 " <![CDATA[WHERE ROWNUM < 13]]> </script> "})
+	public List<Member> memberList(@Param("lastId")String lastId);
 	
 	@Select("SELECT mid, mname, mimage FROM member where mid like '%${findId}%' ")
 	public List<Member> findMemberList(@Param("findId") String findId);

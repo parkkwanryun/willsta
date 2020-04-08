@@ -39,7 +39,7 @@ public interface MemberDao {
 	Member getTempPw(String mPass, String mId);
 	
 	/*사용자 전체목록*/
-	List<Member> memberList();
+	List<Member> memberList(String lastId);
 	
 	/*사용자 검색*/
 	List<Member> findMemberList(String findId);

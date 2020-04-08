@@ -54,8 +54,8 @@ public class MemberDaoImpl implements MemberDao{
 	}//
 
 	@Override
-	public List<Member> memberList() {
-		return memberMapper.memberList();
+	public List<Member> memberList(String lastId) {
+		return memberMapper.memberList(lastId);
 	}
 	
 	@Override
