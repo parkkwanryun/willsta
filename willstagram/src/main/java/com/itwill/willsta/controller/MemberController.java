@@ -106,6 +106,20 @@ public class MemberController {
 		return newId+"";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/profile-account-setting", method=RequestMethod.POST, produces="text/plain; charset=UTF-8")
+	public String AccountSetting(@RequestParam("mId")String mId,
+										@RequestParam("mPass")String mPass,
+										@RequestParam("mName")String mName,
+										@RequestParam("mEmail")String mEmail,
+										@RequestParam("mPhone")String mPhone,
+										@RequestParam("mImage")String mImage,
+										@RequestParam("mRetire")String mRetire) {
+		
+		return "profile-account-setting";
+	}
+	
+	
 	@MemberLoginCheck
 	@RequestMapping(value="/my-profile-feed")
 	public ModelAndView selectById(@Param("mId")String mId) {

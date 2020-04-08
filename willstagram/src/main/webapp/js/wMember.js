@@ -17,7 +17,7 @@
 
  <<회원가입>> (~4/12)
  1.회원가입 시, id와 password, email, name, phone 유효성 체크(validate) 
- - 유효성 체크 중, 아이디 중복 검사 (완료)
+ - 유효성 체크 중, 아이디 중복 검사 (완료) : Talend ApI check 이용
  
  2.회원가입 시 체크박스(mRetire 체크 ON-> F) 필수 체크 알림. 
  3.회원가입 이미지 업로드 (4/12)
@@ -26,6 +26,8 @@
  <<회원정보수정&탈퇴>> (~4/14)
  1.DELETE / UPDATE 
  (Profile-Account-Setting) 
+
+ <<네이버 아이디 로그인>>
  */
 
 /*
@@ -114,6 +116,19 @@ function member_register_action_function() {
  * $('input:checkbox[name=mRetire]:checked').length; if(count > 0){ return true;
  * }else{ alert('약관에 동의하여 주십시오'); return false; } }
  */
+
+
+/*
+   5) Account Setting 
+ */
+function account_setting(){
+	var asArray = $('#member_register_action').serializeArray();
+}
+
+
+
+
+
 
 /*
  * &&DOM Tree 로딩 후 이벤트 처리&&
