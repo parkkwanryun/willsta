@@ -40,7 +40,7 @@ function post_write(){
 };
 
 //document ready
-		$(function(){
+$(function(){
 			//post쓰기
 			$('#postWrite').validate({
 				rules:{
@@ -260,4 +260,4 @@ function post_write(){
 			});
 			
 			
-		});
+});

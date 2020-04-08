@@ -107,11 +107,11 @@ $(function() {
 	});
 	
 	//대댓글 쓰기 폼 보이기
-	$(document).on("click", ".active", function(e){
+	/*$(document).on("click", ".active", function(e){
 		console.log(e.target);
 		var $reCommentsForm = $(".comment-sec-"+$(e.target).attr("comments_no"));
 		console.log($reCommentsForm);
 		reCommentsInsertFormShowFunction($reCommentsForm, +$(e.target).attr("comments_no"));
 		e.preventDefault();
-	});
+	});*/
 });
