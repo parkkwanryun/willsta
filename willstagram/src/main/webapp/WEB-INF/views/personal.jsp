@@ -100,18 +100,8 @@
 													</div>
 													<span><i midyou='${mList.mId}' class="la la-plus follow" ></i></span> 
 											
-													<!-- <span><div id="btn_group">
-													<button id="test_btn1" type="button" onclick='follow' value="follow">follow</button>
-													</div></span> -->
-													<!--   
 													
 													
-													왜 안 돼 ? ?????????????????????????????????????????????????
-													팔로우 버튼 눌렀을때 어떤사람을 팔로가능하고 어떤사람은 팔로우안됌 
-													
-													
-													
-													-->
 													
 												
 												</div>

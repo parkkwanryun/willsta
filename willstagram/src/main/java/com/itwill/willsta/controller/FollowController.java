@@ -201,11 +201,10 @@ public class FollowController {
 	*/
 	@RequestMapping(value = "/follow")
 	@ResponseBody
-	public String follow(@RequestParam String mIdYou, HttpSession session) {
-		
+	public String follow(@RequestParam String mIdYou, HttpSession session) {	
 		String mId = (String) session.getAttribute("mId");
 		int follow = followService.follow(new Follow(mId, mIdYou));
-		System.out.println("2." + follow);
+		//System.out.println("2." + follow);
 		return follow + "";
 	}
 	
