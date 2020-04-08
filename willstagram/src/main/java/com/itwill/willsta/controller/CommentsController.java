@@ -51,12 +51,14 @@ public class CommentsController {
 	
 	@MemberLoginCheck
 	@PostMapping(value = "/reCommentsInsert", produces = "text/plain;charset=UTF-8")
-	public String reCommentsInsert(@RequestParam(value = "pNo", defaultValue = "15") int pNo,
+	public String reCommentsInsert(@RequestParam(value = "cNo") int cNo,
+								   @RequestParam(value = "pNo") int pNo,
 								   @RequestParam String cContents,
 								   HttpSession session) throws Exception {
 		String result = "";
 		Comments comments = new Comments();
 		String mId = (String)session.getAttribute("mId");
+		comments.setcNo(cNo);
 		comments.setpNo(pNo);
 		comments.setmId(mId);
 		comments.setcContents(cContents);
