@@ -44,7 +44,7 @@ public class FollowController {
 		String mId = (String) request.getSession().getAttribute("mId");
 		Member member = memberService.selectByIdContainFollowInfo(mId);
 		List<Member> random = memberService.selectByRandom(mId);
-		List<Post> postList = postService.selectMyList(0, mId);
+		List<Post> postList = postService.selectMyList(0, mId, 0);
 		for (Post post : postList) {
 			post.setTagArray(post.getHasTag().split(" "));
 		}

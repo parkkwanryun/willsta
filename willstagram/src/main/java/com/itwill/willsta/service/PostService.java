@@ -22,7 +22,7 @@ public interface PostService {
 
 	int removePost(Integer pNo);
 	
-	List<Post> selectMyList(Integer lastpNo, String userId);
+	List<Post> selectMyList(Integer lastpNo, String userId, Integer queryGbn);
 	
 	Post selectPost(Integer pNo, String mId);
  
