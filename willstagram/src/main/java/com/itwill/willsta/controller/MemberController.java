@@ -105,15 +105,26 @@ public class MemberController {
 	}
 	
 	@MemberLoginCheck
-	@ResponseBody
-	@RequestMapping(value = "/profiles" , produces = "text/html;charset=utf-8")
-	public ModelAndView memberList(@Param("lastId")String lastId) {
+	@RequestMapping(value = "/profiles")
+	public ModelAndView memberList() {
 		ModelAndView mv=new ModelAndView();
-		System.out.println("### 마지막 아이디 ->"+lastId);
-		List<Member> memberList=memberService.memberList(lastId);
+		List<Member> memberList=memberService.memberList();
 		mv.addObject("memberList",memberList);
 		mv.setViewName("profiles");
 		return mv;
+	}
+	
+	@MemberLoginCheck
+	@ResponseBody
+	@RequestMapping(value = "/add_profile", produces = "text/html;charset=utf-8")
+	public ModelAndView addMember(@RequestParam(value = "lastId", required = true)String lastId) {
+		ModelAndView mv=new ModelAndView();
+		System.out.println("### 마지막 아이디 ->"+lastId);
+		List<Member> addMemberList=memberService.addMemberList(lastId);
+		mv.addObject("memberList",addMemberList);
+		mv.setViewName("profile");
+		return mv;
+		
 	}
 	
 	@MemberLoginCheck

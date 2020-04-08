@@ -103,7 +103,7 @@ public class MemberUnitTestMain {
 	@Test //유저 목록
 	@Ignore
 	public void memberList() {
-		List<Member>memberList = memberDao.memberList("kjh");
+		List<Member>memberList = memberDao.memberList();
 		//List<Member>memberList=memberService.memberList();
 		System.out.println("### memberList: "+memberList);
 	}

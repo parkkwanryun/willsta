@@ -30,7 +30,9 @@ public interface MemberService {
 	
 	Member signIn(String mId, String mPass) throws Exception;
 	
-	List<Member> memberList(String lastId);
+	List<Member> memberList();
+	
+	List<Member> addMemberList(String lastId);
 	
 	List<Member> findMemberList(String findId);
 }
