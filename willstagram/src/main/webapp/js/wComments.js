@@ -30,7 +30,7 @@ function postCommentsListFunction(e){
 							"				<span><img src='images/clock.png' alt=''>"+cTime+"</span>" +
 							"				<p>"+cContents+"</p>" +
 							"				<a href='#' class='active active-reply' comments_no='"+cNo+"'>" +
-							"					<i class='fa fa-reply-all'></i>Reply</a>" +
+							"					<i class='fa fa-reply-all'> Reply</i></a>" +
 							"			</div>" +
 							" 		</div>" +	
 							"	</li>" +
@@ -76,28 +76,26 @@ function commentsInsertActionFunction(e){
 //대댓글 작성 form 보여주기
 function reCommentsInsertFormShowFunction(e){
 	console.log($(e.target).parents(".comment-sec"));
-	var $reCommentsForm =  $(e.target).parents(".comment-sec").find(".active-reply");
-	console.log($reCommentsForm);
+	var $reComments =  $(e.target).parents(".comment-sec").find(".active-reply");
+	console.log($reComments);
 	var cNo = $(e.target).parents(".comment-sec").attr("comments_no");
 	var pNo = $(e.target).parents(".comment-section").attr("post_no");
 	console.log(cNo);
 	var html = "";
-	html += "<div class='post-comment' style='display:none;'>" +
-			"	<div class='comment_box'>" +
+	html += "<div class='post-comment' style='display:none'>" +
+			"	<div class='comment_box_inner'>" +
 			"		<form class='comments_insert_form'>" +
 			"			<input type='text' placeholder='Post a comment'" +
 			"				name='cContents' class='cContents' >" +
 			"			<input type='hidden' name='cNo' value='"+cNo+"' >" +
-			"			<input type='hidden' name='cNo' value='"+pNo+"' >" +
-			"			<button type='button' class='comments_insert_button' style='width:11%'>Send</button></div>" +
+			"			<input type='hidden' name='pNo' value='"+pNo+"' >" +
+			"			<button type='button' class='comments_insert_button'>Send</button></div>" +
 			"		</form>" +
 			"	</div>" +
 			"</div>";
-	if($reCommentsForm.children().length > 1){
-		$reCommentsForm.children().fadeToggle(500);
-	}else{
-		$reCommentsForm.append(html);
-		$reCommentsForm.children().fadeToggle(500);
+	if($reComments.children().length == 1){
+		$reComments.append(html);
+		$reComments.children().fadeToggle(500);
 	}
 }
 
@@ -127,4 +125,6 @@ $(function() {
 		reCommentsInsertFormShowFunction(e);
 		e.preventDefault();
 	});
+	
+	
 });
