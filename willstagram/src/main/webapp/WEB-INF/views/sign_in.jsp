@@ -21,6 +21,8 @@ label.error {
 .valid {
 	border: 1px solid green;
 }
+
+
 </style>
 
 <body class="sign-in">
@@ -54,40 +56,46 @@ label.error {
 										<div class="row">
 											<div class="col-lg-12 no-pdd">
 												<div class="sn-field">
-													<input type="text" id="i" class="required" name="mId" placeholder="ID" onkeyup="noSpaceForm(this)">
+													<input type="text" id="i" class="required" name="mId"
+														placeholder="ID" onkeyup="noSpaceForm(this)">
 													<div id="msg1"></div>
-													<span id="msg"></span>
-													<i class="la la-user"></i>
-												</div><!--sn-field end-->
+													<span id="msg"></span> <i class="la la-user"></i>
+												</div>
+												<!--sn-field end-->
 											</div>
 											<div class="col-lg-12 no-pdd">
 												<div class="sn-field">
-													<input type="password" id="p" class="required" name="mPass" placeholder="Password" onkeyup="noSpaceForm(this)">
-													<div id="msg2"></div>	
-													<span id="msg"></span>
-													<i class="la la-lock"></i>
-												</div>
-											</div>					
-											<div class="col-lg-12 no-pdd">
-												<div class="checky-sec">
-													<div class="fgt-sec">
-														<input type="checkbox" name="cc" id="c1">
-														<label for="c1">
-															<span></span>
-														</label>
-														<small>Remember me</small>
-													</div><!--fgt-sec end-->
-													
-													<a href="#" title="">forgot password</a>
+													<input type="password" id="p" class="required" name="mPass"
+														placeholder="Password" onkeyup="noSpaceForm(this)">
+													<div id="msg2"></div>
+													<span id="msg"></span> <i class="la la-lock"></i>
 												</div>
 											</div>
 											<div class="col-lg-12 no-pdd">
-												<button type="submit" value="submit" class="btnChk">Sign in</button>
+												<div class="row">
+
+													<div class="col-lg-9 checky-sec">
+														<!--  로그인 시, 아이디 저장 체크 박스 
+														<div class="fgt-sec">
+															<input type="checkbox" name="cc" id="c1" onkeyup="check_box_function();">
+															<label for="c1">
+																<span></span>
+															</label>
+															<small>Remember me</small>
+														</div>
+													 -->
+														<!--fgt-sec end-->
+														<a href="#" title="">forgot password?</a>
+													</div>
+
+												</div>
 											</div>
-										</div>
+											<div class="col-lg-12 no-pdd">
+												<button type="submit" value="submit">Sign in</button>
+											</div>
 									</form>
-									
-									
+
+
 									<div class="login-resources">
 										<h4>Login through Social Account</h4>
 										<ul>

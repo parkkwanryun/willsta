@@ -10,8 +10,8 @@
 	    (jsp단에서 div msg 삽입 / javascript show, hide 이벤트처리) 
 	      				(input text 삭제 시 warning 문구 삭제 처리)  (완료)
 	    5.아이디 / 비밀번호 공백 불가 alert 안내 (완료)														
-		6.비밀번호 찾기 (Forgot Password?) or 임시비밀번호 안내 (4/8)
-		
+		6.비밀번호 찾기 (Forgot Password?) or 임시비밀번호 안내 ??
+		7.Forgot Password 버튼 위치 조정 (그리드) (완료)
 		
 
 	 <<회원가입>>
@@ -92,18 +92,16 @@
 	/*
 	 4) 체크박스 체크 
 	 */
-	
-	/*
+
 	function check_box_function(){
 		   var count = $('input:checkbox[name=mRetire]:checked').length;
 		    if(count > 0){
 		        return true;
 		    }else{
-		        alert('check box select');
+		        alert('약관에 동의하여 주십시오');
 		        return false;
 		    }
 	}
-	*/
 	
 	
 /*
