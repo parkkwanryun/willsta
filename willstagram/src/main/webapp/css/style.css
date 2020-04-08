@@ -202,6 +202,7 @@ nav ul li:hover > ul,
 .user-profy ul li a,
 .posty,
 .comment_box form button,
+.comment_box_inner form button,
 .post-project-fields form input,
 .post-project-fields form textarea,
 .post-project-fields form select,
@@ -1726,6 +1727,35 @@ a.top-views:hover {
 	resize: none;
 }
 .comment_box form button {
+	float: right;
+	color: #fff;
+	background-color: #4169e1;
+	height: 40px;
+	padding: 0 10px;
+	text-align: center;
+	font-size: 14px;
+	border: 0;
+	margin-left: 10px;
+	cursor: pointer;
+	font-weight: 600;
+}
+
+.comment_box_inner {
+	float: none;
+}
+.comment_box_inner input {
+	width: 362px;
+	height: 40px;
+	border: 1px solid #e5e5e5;
+	background-color: #efefef;
+	padding-left: 10px;
+	color: #b2b2b2;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 40px;
+	resize: none;
+}
+.comment_box_inner form button {
 	float: right;
 	color: #fff;
 	background-color: #4169e1;

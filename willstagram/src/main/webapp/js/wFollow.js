@@ -6,9 +6,10 @@
  *  following count (완료)
  할것들 
  - follow & following list UI 아니면 bootstrap 써서 뽑기 
- - 친구추천목록에서 +버튼누르면 팔로잉 되게만들기.
  - view more 눌렀을때 더 나오게 만들기
- - 자신의 아이디는 안나오게 만들기.
+ - 친구추천목록에서 +버튼누르면 팔로잉 되게만들면서 (완료)
+ - 팔로잉카운트수도같이 늘리기(완료)
+ - 자신의 아이디는 안나오게 만들기.(완료)
 - 마이페이지 펄스널 페이지로 링크바꾸기.(완료)
   
  */
@@ -73,7 +74,7 @@ $(function(){
 				*/
 			}
 		});
-	}
+	};
 	
 	//팔로우리스트
 	function message_detail_function(e){
@@ -93,30 +94,52 @@ $(function(){
 				*/
 			}
 		});
-	}
+	};
 	
+	$('#follow_count_a').on(
+			'click',
+			function(e){
+				var $mIdYou = $(e.target);
+				var param = "mIdYou=" + $mIdYou.attr("midyou");
+				
+			})
 	
 	
 	
 	
 	//팔로우
-	$(document).on('click','.follow',function(e){
-		var $mIdYou=$(e.target).parents("div.company-up-info");
-		var param="mIdYou="+$mIdYou.attr("mIdYou");
-		$.ajax({
-			url: "follow",
-			method: "POST",
-			data: param,
-			dataType: "text",
-			success:function(){
-				$(e.target).hide();
-				$(e.target.parentNode).prev().children().show();
-			}
-		});
-		e.preventDefault();
-	});
+	$('.follow').on(
+			'click',
+			function(e) {
+				var $mIdYou = $(e.target);
+				/*
+				console.log('--------------->' + e.target);
+				console.log('--------------->' + $mIdYou);
+				console.log('--------------->' + $mIdYou.attr("midyou"));
+				*/
+				var param = "mIdYou=" + $mIdYou.attr("midyou");
+				$.ajax({
+					url : "follow",
+					method : "POST",
+					data : param,
+					dataType : "text",
+					success : function(data) {
+
+						// location.href='personal_info'; get방식이였다면.
+						$(e.target).hide();
+						// $(e.target.parentNode).prev().children().show();
+						$('#follow_count_a').text(
+								parseInt($('#follow_count_a').text()) + 1);
+
+					}
+				});
+				e.preventDefault();
+				e.stopPropagation();
+
+			});
+
 	
-	
+
 	//언팔로우
 	$(document).on('click','.unFollow',function(e){
 		var $mIdYou=$(e.target).parents("div.company-up-info");
@@ -136,9 +159,10 @@ $(function(){
 	
 	
 });
-		
+
+/*
+
 $(document).ready(function(){
-	/*list 안의 내용 열리기 새거 열면 전에꺼 닫히고, 열린거 누르면 다시 닫힘*/
 	$(".show-open").css('display','none'); //우선 내용부분을 모두 감춰줍니다
 	$(".bms-list-tr").click(function(){ //클릭했을때
 		var check = $(this).next().css("display") == "none"; //변수로, 열릴 부분의 display 상태 체크
@@ -156,9 +180,9 @@ $(document).ready(function(){
 	});
 })
 
+*/
 
-
-
+/*
 
 	function displayGuestListXML() {
 		if (xhr.readyState == 4) {
@@ -199,3 +223,5 @@ document.getElementById('menu-b')
 					showLoadingDialog(true);
 					e.preventDefault();
 				});
+*/	
+	

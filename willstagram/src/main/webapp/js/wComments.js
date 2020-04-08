@@ -21,15 +21,16 @@ function postCommentsListFunction(e){
  					var mId = jsonObject.mId;
 					var cTime = jsonObject.cTime;
 					var cContents = jsonObject.cContents;
-					html += "<div class='comment-sec' style='display:none' comments_no='"+cNo+"'>" +
+					html += "<div class='comment-sec' style='display:none;' comments_no='"+cNo+"'>" +
 							"<ul>" +
 							"	<li>" +
 							"		<div class='comment-list'>"	+	
-							"			<div class='comment' >" +
+							"			<div class='comment'>" +
 							"				<h3>"+mId+"</h3>" +
 							"				<span><img src='images/clock.png' alt=''>"+cTime+"</span>" +
 							"				<p>"+cContents+"</p>" +
-							"				<a href='#' class='active' comments_no='"+cNo+"' data-toggle='collapse'><i class='fa fa-reply-all'></i>Reply</a>" +
+							"				<a href='#' class='active active-reply' comments_no='"+cNo+"'>" +
+							"					<i class='fa fa-reply-all'> Reply</i></a>" +
 							"			</div>" +
 							" 		</div>" +	
 							"	</li>" +
@@ -73,19 +74,29 @@ function commentsInsertActionFunction(e){
 
 
 //대댓글 작성 form 보여주기
-function reCommentsInsertFormShowFunction($reCommentsForm, cNo){
+function reCommentsInsertFormShowFunction(e){
+	console.log($(e.target).parents(".comment-sec"));
+	var $reComments =  $(e.target).parents(".comment-sec").find(".active-reply");
+	console.log($reComments);
+	var cNo = $(e.target).parents(".comment-sec").attr("comments_no");
+	var pNo = $(e.target).parents(".comment-section").attr("post_no");
+	console.log(cNo);
 	var html = "";
-	html += "<div class='post-comment'>" +
-			"	<div class='comment_box'>" +
-			"		<form class='comments_insert_form' comments_no='"+cNo+"'>" +
+	html += "<div class='post-comment' style='display:none'>" +
+			"	<div class='comment_box_inner'>" +
+			"		<form class='comments_insert_form'>" +
 			"			<input type='text' placeholder='Post a comment'" +
-			"				name='cContents' class='cContents'>" +
+			"				name='cContents' class='cContents' >" +
 			"			<input type='hidden' name='cNo' value='"+cNo+"' >" +
-			"			<button type='button' class='comments_insert_button' comments_no='"+cNo+"'>Send</button>" +
+			"			<input type='hidden' name='pNo' value='"+pNo+"' >" +
+			"			<button type='button' class='comments_insert_button'>Send</button></div>" +
 			"		</form>" +
 			"	</div>" +
 			"</div>";
-	$reCommentsForm.append(html);
+	if($reComments.children().length == 1){
+		$reComments.append(html);
+		$reComments.children().fadeToggle(500);
+	}
 }
 
 
@@ -109,11 +120,11 @@ $(function() {
 	});
 	
 	//대댓글 쓰기 폼 보이기
-	/*$(document).on("click", ".active", function(e){
+	$(document).on("click", ".active-reply", function(e){
 		console.log(e.target);
-		var $reCommentsForm = $(".comment-sec-"+$(e.target).attr("comments_no"));
-		console.log($reCommentsForm);
-		reCommentsInsertFormShowFunction($reCommentsForm, +$(e.target).attr("comments_no"));
+		reCommentsInsertFormShowFunction(e);
 		e.preventDefault();
-	});*/
+	});
+	
+	
 });

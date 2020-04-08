@@ -160,10 +160,10 @@ public class PostServiceImpl implements PostService {
 		
 		return postDao.delete(pNo);
 	}
-
+	//검색조건 queryGbn 1이 아니면 내글 만 보게 설정
 	@Override
-	public List<Post> selectMyList(Integer lastpNo, String userId) {
-		return postDao.selectMyList(lastpNo, userId);
+	public List<Post> selectMyList(Integer lastpNo, String userId, Integer queryGbn) {
+		return postDao.selectMyList(lastpNo, userId, queryGbn);
 	}
 
 	@Override
@@ -207,7 +207,7 @@ public class PostServiceImpl implements PostService {
 		mv.addObject("member", member);
 		mv.addObject("memberList", memberList);
 		mv.addObject("postRankList", postRankList);
-		List<Post> postList = selectMyList(0, mId);
+		List<Post> postList = selectMyList(0, mId, 1);
 		for (Post post : postList) {
 			post.setTagArray(post.getHasTag().split(" "));
 		}
@@ -223,7 +223,7 @@ public class PostServiceImpl implements PostService {
 		List<Member> memberList = memberService.selectByRandom(mId);
 		mv.addObject("member", member);
 		mv.addObject("memberList", memberList);
-		List<Post> postList = selectMyList(0, mId);
+		List<Post> postList = selectMyList(0, mId, 0);
 		for (Post post : postList) {
 			post.setTagArray(post.getHasTag().split(" "));
 		}

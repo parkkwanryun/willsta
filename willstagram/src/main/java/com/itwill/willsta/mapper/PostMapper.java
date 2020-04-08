@@ -54,6 +54,7 @@ public interface PostMapper {
 
 	//로그인 후 리스트 자신과 자신의 팔로잉 멤버의 글을 리스트를 작성일이 최신인 것 순으로 정렬
 	//tag사이에는 lt를 쓸 수 있는데 그외 sql에서는 <![CDATA[  ]]>사이에 sql을 넣어야 한다.
+	//queryGbn = 1인경우만 다른사람 글을 볼 수 있음 mypage에 자기 글만 보여주기 위해 사용
 	@Select({"<script>",
 		" SELECT A.* ",
 		" FROM (SELECT P.PNO, P.PTITLE, P.PCONTENTS, P.HASTAG, P.PDATE, P.MID, M.MNAME, M.MIMAGE, PVIEWCOUNT, ",
@@ -69,12 +70,13 @@ public interface PostMapper {
 	    "   END AS AGO, P.STATUS ",
 		" FROM POST P INNER JOIN MEMBER M ON P.MID = M.MID ",
 		" WHERE (P.MID = #{mId} ",
-		"       OR P.MID IN (SELECT mIdYou FROM FOLLOW WHERE MID = #{mId})) ",
+		"      <if test='queryGbn eq 1'>  OR (P.MID IN (SELECT mIdYou FROM FOLLOW WHERE MID = #{mId}) "
+		+ "				   AND P.STATUS='A')</if>) ",
 		"  <if test='lastpNo gt 0'><![CDATA[AND P.PNO < #{lastpNo} ]]></if>",
 		" ORDER BY P.PNO DESC) A ",
 		"  <![CDATA[WHERE ROWNUM < 6]]>",
 			"</script>"})
-	public List<Post> selectMyList(@Param("lastpNo")Integer lastpNo, @Param("mId")String mId);
+	public List<Post> selectMyList(@Param("lastpNo")Integer lastpNo, @Param("mId")String mId, @Param("queryGbn")Integer queryGbn);
 	  
 	//POST 한개 가져오기
 		@Select(" SELECT P.PNO, P.PTITLE, P.PCONTENTS, P.HASTAG, P.PDATE, P.MID, M.MNAME, M.MIMAGE, PVIEWCOUNT,"
