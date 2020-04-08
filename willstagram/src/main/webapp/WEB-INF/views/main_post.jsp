@@ -89,6 +89,7 @@
 										</div><!--suggestions-list end-->
 									</div><!--suggestions end-->
 									<div class="tags-sec full-width">
+									<!--  breadcrumb 일단 막아놈
 										<ul>
 											<li><a href="#" title="">Help Center</a></li>
 											<li><a href="#" title="">About</a></li>
@@ -99,6 +100,7 @@
 											<li><a href="#" title="">Language</a></li>
 											<li><a href="#" title="">Copyright Policy</a></li>
 										</ul>
+									 -->
 										<div class="cp-sec">
 											<img src="images/logo.png" alt="">
 											<p><img src="images/cp.png" alt="">Copyright 2020</p>
@@ -189,7 +191,7 @@
 											</div>
 												
 											<!-- comment-section -->
-											<div class="comment-section" post_no="${post.pNo}">
+											<div class="comment-section" post_no="${post.pNo}" ">
 												<!-- comment-sec -->
 
 												<!--comment-sec end-->
@@ -230,10 +232,7 @@
 										<img src="images/wd-logo.png" alt="">
 										<h3>WillStarGram</h3>
 										<span>Itwill Class5 Team2 Project</span>
-										<div class="sign_link">
-											<h3><a href="sign-in.html" title="">Sign up</a></h3>
-											<a href="#" title="">Learn More</a>
-										</div>
+										
 									</div><!--widget-about end-->
 									<div class="widget widget-jobs">
 										<div class="sd-title">
