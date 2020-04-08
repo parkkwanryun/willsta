@@ -11,6 +11,7 @@
 	.suggestion-usd {padding: 15px 5px;}
 	.cp-sec p {margin-top: 10px;float: none;}
 	.comment_box input {width: 281px;}
+	.comment_box_inner input {width: 271px;}
 	.job-details {width: 112px;}
 	.job-details h3 {line-height: 18px;}
 	.sd-title h3 {font-size: 15px;}
@@ -56,6 +57,7 @@
 	main {padding: 20px 0 60px 0;}
 	.user-specs span {font-size: 13px;}
 	.comment_box input {width: 275px;}
+	.comment_box_inner input {width: 265px;}
 	.job-details {width: auto;}
 	.hr-rate {margin-top: 15px;}
 	.suggestion-usd {padding: 15px 20px;}
@@ -105,6 +107,8 @@
 	.forum-bar ul {float: right;}
 	.comment_box input {width: 84%;}
 	.comment_box {width: 88%;}
+	.comment_box_inner input {width: 80%;}
+	.comment_box_inner {width: 88%;}
 	.no-pd {padding: 0;}
 	.sign-in-page {padding: 60px 0;}
 	.overview-box {width: 100%;}
@@ -147,6 +151,10 @@
 	.comment_box form button {float: none;}
 	.post-comment {text-align: center;}
 	.comment_box form button {padding: 0 15px;}
+	.comment_box_inner {width: 100%;}
+	.comment_box_inner input {width: 100%;margin-bottom: 10px;}
+	.comment_box_inner form button {float: none;}
+	.comment_box_inner form button {padding: 0 15px;}
 	.job-details {width: 80%;}
 	.cover-sec {height: 200px;}
 	.cover-sec img {height: 100%;object-fit: cover;}

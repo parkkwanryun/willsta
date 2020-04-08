@@ -1,6 +1,7 @@
 package com.itwill.willsta.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,6 +67,18 @@ public class FollowServiceImpl implements FollowService {
 	@Override
 	public int followCheck(String mId, String mIdYou) {
 		return followDao.followCheck(mId, mIdYou);
+	}
+
+	@Override
+	public List<Map> followingList(String mId) {
+		
+		return followDao.followingList(mId);
+	}
+
+	@Override
+	public List<Map> followerList(String mIdYou) {
+		
+		return followDao.followerList(mIdYou);
 	}
 
 

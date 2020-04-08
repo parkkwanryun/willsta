@@ -6,9 +6,10 @@
  *  following count (완료)
  할것들 
  - follow & following list UI 아니면 bootstrap 써서 뽑기 
- - 친구추천목록에서 +버튼누르면 팔로잉 되게만들기.
  - view more 눌렀을때 더 나오게 만들기
- - 자신의 아이디는 안나오게 만들기.
+ - 친구추천목록에서 +버튼누르면 팔로잉 되게만들면서 (완료)
+ - 팔로잉카운트수도같이 늘리기(완료)
+ - 자신의 아이디는 안나오게 만들기.(완료)
 - 마이페이지 펄스널 페이지로 링크바꾸기.(완료)
   
  */
@@ -95,6 +96,13 @@ $(function(){
 		});
 	};
 	
+	$('#follow_count_a').on(
+			'click',
+			function(e){
+				var $mIdYou = $(e.target);
+				var param = "mIdYou=" + $mIdYou.attr("midyou");
+				
+			})
 	
 	
 	
@@ -104,11 +112,12 @@ $(function(){
 			'click',
 			function(e) {
 				var $mIdYou = $(e.target);
+				/*
 				console.log('--------------->' + e.target);
 				console.log('--------------->' + $mIdYou);
 				console.log('--------------->' + $mIdYou.attr("midyou"));
+				*/
 				var param = "mIdYou=" + $mIdYou.attr("midyou");
-
 				$.ajax({
 					url : "follow",
 					method : "POST",

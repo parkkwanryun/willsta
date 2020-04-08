@@ -83,20 +83,41 @@ public class MemberController {
 								@RequestParam("mImage")String mImage,
 								@RequestParam("mRetire")String mRetire) {
 		//String mId1 = (String) request.getSession().getAttribute("mId");
-		boolean newId = memberService.existedMember(mId);
-		if(newId) {
+
 		boolean newMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire));
 			if(newMember) {
-				System.out.println("이제 자네는 우리 회원일세");
 				newMember= true;
 			}else {
 				newMember= false;
 			}
-		}else {
-			newId = false;
-		}
-		return newId;
+		return newMember;
 }	
+	/*아이디 중복 체크*/
+	@ResponseBody
+	@RequestMapping(value="/duplicate_check", method= RequestMethod.GET, produces="text/plain; charset=UTF-8")
+	public String existedMember(@RequestParam(name = "mId") String mId) {
+		boolean newId = memberService.existedMember(mId);
+		if(newId) {
+			System.out.println("중복된 아이디 입니다.");
+			newId = false;
+		}else {
+			newId = true;
+		}
+		return newId+"";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/profile-account-setting", method=RequestMethod.POST, produces="text/plain; charset=UTF-8")
+	public String AccountSetting(@RequestParam("mId")String mId,
+										@RequestParam("mPass")String mPass,
+										@RequestParam("mName")String mName,
+										@RequestParam("mEmail")String mEmail,
+										@RequestParam("mPhone")String mPhone,
+										@RequestParam("mImage")String mImage,
+										@RequestParam("mRetire")String mRetire) {
+		
+		return "profile-account-setting";
+	}
 	
 	
 	@MemberLoginCheck

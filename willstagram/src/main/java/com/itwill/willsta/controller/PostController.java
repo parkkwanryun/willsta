@@ -29,7 +29,7 @@ public class PostController {
 	public ModelAndView selectMyList(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		String mId = (String)request.getSession().getAttribute("mId");
-		List<Post> postList = postService.selectMyList(0,mId);
+		List<Post> postList = postService.selectMyList(0,mId,1);
 		for (Post post : postList) {
 			post.setTagArray(post.getHasTag().split(" "));
 		}
@@ -53,7 +53,7 @@ public class PostController {
 	public ModelAndView selectAddPost(@RequestParam(value="lastpNo", required = true) Integer lastpNo, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		String mId = (String)request.getSession().getAttribute("mId");
-		List<Post> postList = postService.selectMyList(lastpNo, mId);
+		List<Post> postList = postService.selectMyList(lastpNo, mId,0);
 		for (Post post : postList) {
 			post.setTagArray(post.getHasTag().split(" "));
 		}
