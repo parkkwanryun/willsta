@@ -88,22 +88,14 @@
 											<i class="la la-ellipsis-v"></i>
 										</div><!--sd-title end-->
 										<div class="suggestions-list">
-										
 											<c:forEach var="mList" items="${memberList}">
-											
 												<div class="suggestion-usd">
-												
 													<img src="contents/member_image/${mList.mImage}" alt="" width="40px">
 													<div class="sgt-text">
 														<h4>${mList.mName}</h4>
 														<span>${mList.mEmail}</span>
 													</div>
 													<span><i midyou='${mList.mId}' class="la la-plus follow" ></i></span> 
-											
-													
-													
-													
-												
 												</div>
 											</c:forEach>
 											<div class="view-more">

@@ -208,16 +208,23 @@ public class FollowController {
 		return follow + "";
 	}
 	
-	@RequestMapping(value = "/unFollow")
-		public ModelAndView unFollow(@RequestParam(value = "mIdYou") String mIdYou,HttpSession session) {
-		ModelAndView mv=new ModelAndView();
-		String mId=(String)session.getAttribute("mId");
-		int unFollow=followService.unfollow(mIdYou, mId);
-		mv.addObject("unFollow", unFollow);
-		mv.setViewName("profiles");
-		return mv;
-	}
+	/*
+	 * @RequestMapping(value = "/unFollow")
+	 * 
+	 * @ResponseBody public String unfollow(@RequestParam String mIdYou, HttpSession session) { 
+	 * String mId = (String) session.getAttribute("mId"); 
+	 * int unfollow = followService.unfollow(mId, mIdYou); 
+	 * //System.out.println("2." + follow);
+	 * return unfollow + ""; }
+	 */
 	
+	  @RequestMapping(value = "/unFollow") public ModelAndView
+	  unFollow(@RequestParam(value = "mIdYou") String mIdYou,HttpSession session) {
+	  ModelAndView mv=new ModelAndView(); String
+	  mId=(String)session.getAttribute("mId"); int
+	  unFollow=followService.unfollow(mIdYou, mId); mv.addObject("unFollow",
+	  unFollow); mv.setViewName("profiles"); return mv; }
+	 
 	
 
 }
