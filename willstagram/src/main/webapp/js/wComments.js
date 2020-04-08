@@ -21,7 +21,7 @@ function postCommentsListFunction(e){
  					var mId = jsonObject.mId;
 					var cTime = jsonObject.cTime;
 					var cContents = jsonObject.cContents;
-					html += "<div class='comment-sec' style='display:none' comments_no='"+cNo+"'>" +
+					html += "<div class='comment-sec' style='display:none;' comments_no='"+cNo+"'>" +
 							"<ul>" +
 							"	<li>" +
 							"		<div class='comment-list'>"	+	
@@ -82,14 +82,14 @@ function reCommentsInsertFormShowFunction(e){
 	var pNo = $(e.target).parents(".comment-section").attr("post_no");
 	console.log(cNo);
 	var html = "";
-	html += "<div class='post-comment' style='display:none'>" +
+	html += "<div class='post-comment' style='display:none;'>" +
 			"	<div class='comment_box'>" +
 			"		<form class='comments_insert_form'>" +
 			"			<input type='text' placeholder='Post a comment'" +
-			"				name='cContents' class='cContents'>" +
+			"				name='cContents' class='cContents' >" +
 			"			<input type='hidden' name='cNo' value='"+cNo+"' >" +
 			"			<input type='hidden' name='cNo' value='"+pNo+"' >" +
-			"			<button type='button' class='comments_insert_button'>Send</button>" +
+			"			<button type='button' class='comments_insert_button' style='width:11%'>Send</button></div>" +
 			"		</form>" +
 			"	</div>" +
 			"</div>";
