@@ -10,8 +10,8 @@
 	    (jsp단에서 div msg 삽입 / javascript show, hide 이벤트처리) 
 	      				(input text 삭제 시 warning 문구 삭제 처리)  (완료)
 	    5.아이디 / 비밀번호 공백 불가 alert 안내 (완료)														
-		6.비밀번호 찾기 (Forgot Password?) or 임시비밀번호 안내 ??
-		7.Forgot Password 버튼 위치 조정 (그리드) (완료)
+		6.Forgot Password 버튼 위치 조정 (그리드) (완료)
+		7.비밀번호 찾기 (Forgot Password?) or 임시비밀번호 안내 ??
 		
 
 	 <<회원가입>>
@@ -30,7 +30,7 @@
 
 
 	/*
-	 1)로그인 함수
+	 1)로그인
 	*/
 	function member_login_action_function(){
 
@@ -76,6 +76,7 @@
 			}
 		}	
 	}
+	
 	/*
 	 3) 아이디, 비밀번호 공백 체크(로그인, 회원가입)
 	 */
@@ -90,9 +91,45 @@
 	}
 
 	/*
-	 4) 체크박스 체크 
+	 4) 회원가입
 	 */
-
+	function member_register_action_function(){
+		var mrafArray = $('#member_register_action').serializeArray();
+	
+		$.ajax({
+			url : 'sign_up_action',
+			data : mrafArray,
+			method : 'POST',
+			dataType : 'text',
+			success : function(textData) {
+				if (textData.trim() == "true") {
+					member_register_action.mId.value = textData.mId;
+					member_register_action.mPass.value = textData.mPass;
+					member_register_action.mName.value = textData.mName;
+					member_register_action.mEmail.value = textData.mEmail;
+					member_register_action.mPhone.value = textData.mPhone;
+					member_register_action.mImage.value = textData.mImage;
+					member_register_action.mRetire.value = textData.mRetire;
+					alert('회원가입1');
+					location.href = '/willstagram/sign_in';
+					
+					
+					//profile account setting으로 위 회원정보 데이터를 전송할 $.ajax({}); 만들기
+				}else if(textData.trim() == "false"){
+					alert('회원가입 실패');
+				}
+				/*
+				*/
+			} 
+	});
+		e.preventDefault();
+	}
+	
+	
+	/*
+	 5) 회원가입 체크박스 체크 
+	 */
+	/*
 	function check_box_function(){
 		   var count = $('input:checkbox[name=mRetire]:checked').length;
 		    if(count > 0){
@@ -102,6 +139,7 @@
 		        return false;
 		    }
 	}
+	*/
 	
 	
 /*
@@ -111,14 +149,14 @@ $(function() {
 	$('#msg1').hide();
 	$('#msg2').hide();
 	
-	  //로그인 유효성 검증 (validate function)
+	  //1.로그인 유효성 검증
 	$('#member_login_action').validate({
 		
 		rules:{
 			mId:{
 				required:true,
 				minlength: 3,
-				maxlength:10,
+				maxlength:10
 			},
 			mPass:{
 				required:true,
@@ -147,47 +185,77 @@ $(function() {
 			errorClass:"error",
 			validClass:"valid"
 	});
+	
+	// 2.회원가입 유효성 검증
+	$('#member_register_action').validate({
+		rules:{
+			mId:{
+				required:true,
+				minlength:3,
+				maxlength:10,
+				remote:{type:"post",url:"/sign_up_action"}
+			},
+			mPass:{
+				required:true,
+				minlength:1,
+				maxlength:10
+			},
+			mName:{
+				required:true,
+				minlength:2,
+				maxlength:5
+			},
+			mEmail:{
+				required:true,
+				minlength:2
+			},
+			mPhone:{
+				required:true
+			},
+			mImage:{
+				required:true
+			},
+			mRetire:{
+				required:true
+			}
+		},
+			messages:{
+				mId:{
+					required: "아이디를 입력해주세요",
+					minlength: "아이디는 최소 {0}글자 이상입니다",
+					maxlength: "아이디는 최대 {0}글자 이하입니다",
+					remote: $("#mId").val()+" 는 이미 존재하는 아이디입니다.",
+				},
+				mPass:{
+					required: "비밀번호를 입력해주세요",
+					minlength: "비밀번호는 최소 {0}글자 이상입니다",
+					maxlength: "비밀번호는 최대 {0}글자 이하입니다"
+				},
+				mName:{
+					required: "이름을 입력해주세요",
+					minlength: "이름은 최소 2글자 이상입니다",
+				},
+				mEmail:{
+					required: "이메일을 입력해주세요",
+				},
+				mPhone:{
+					required: "전화번호를 입력해주세요",
+				},
+				mImage:{
+					required: "프로필 이미지를 업로드해주세요",
+				},
+				mRetire:{
+					required: "약관에 동의해주세요",
+				}
+			},
+			submitHandler:function(){
+				member_register_action_function();
+			},
+			errorClass:"error",
+			validClass:"valid"
+	});
 })	
-	/*
-	  회원가입 
-	*/
-	$(document).on(
-			'submit',
-			'#member_register_action',
-			function(e) {
-				var params = "mId=" + member_register_action.mId.value
-						+ "&mPass=" + member_register_action.mPass.value
-						+ "&mName=" + member_register_action.mName.value
-						+ "&mEmail=" + member_register_action.mEmail.value
-						+ "&mPhone=" + member_register_action.mPhone.value
-						+ "&mImage=" + member_register_action.mImage.value
-						+ "&mRetire="+ member_register_action.mRetire.value;
-				$.ajax({
-					url : 'sign_up_action',
-					data : params,
-					method : 'POST',
-					dataType : 'json',
-					success : function(jsonObject) {
-						member_register_action.mId.value = jsonObject.mId;
-						member_register_action.mPass.value = jsonObject.mPass;
-						member_register_action.mName.value = jsonObject.mName;
-						member_register_action.mEmail.value = jsonObject.mEmail;
-						member_register_action.mPhone.value = jsonObject.mPhone;
-						member_register_action.mImage.value = jsonObject.mImage;
-						member_register_action.mRetire.value = jsonObject.mRetire;
-						/*
-						if (jsonObject.trim() == "true") {
-							alert(member_login_action.mId.value+'님 환영합니다.');
-							location.href = '/willstagram/sign_in';
-						} else if (jsonObject.trim() == "false") {
-						}
-						*/
-						location.href = '/willstagram/sign_in';
-					} 
-			});
-				e.preventDefault();
-	})
-
+	
 
 
 		

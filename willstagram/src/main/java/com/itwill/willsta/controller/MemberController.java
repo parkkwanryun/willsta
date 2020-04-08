@@ -74,16 +74,17 @@ public class MemberController {
 	
 	/*회원가입*/
 	@ResponseBody
-	@RequestMapping(value="/sign_up_action",method = RequestMethod.POST, produces="application/json; charset=UTF-8")
+	@RequestMapping(value="/sign_up_action",method = RequestMethod.POST, produces="text/plain; charset=UTF-8")
 	public boolean sign_up_action(@RequestParam("mId")String mId,
 								@RequestParam("mPass")String mPass,
 								@RequestParam("mName")String mName,
 								@RequestParam("mEmail")String mEmail,
 								@RequestParam("mPhone")String mPhone,
 								@RequestParam("mImage")String mImage,
-								@RequestParam("mRetire")String mRetire,
-								HttpServletRequest request, HttpSession session) {
+								@RequestParam("mRetire")String mRetire) {
 		//String mId1 = (String) request.getSession().getAttribute("mId");
+		boolean newId = memberService.existedMember(mId);
+		if(newId) {
 		boolean newMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire));
 			if(newMember) {
 				System.out.println("이제 자네는 우리 회원일세");
@@ -91,8 +92,12 @@ public class MemberController {
 			}else {
 				newMember= false;
 			}
-		return newMember;
-}
+		}else {
+			newId = false;
+		}
+		return newId;
+}	
+	
 	
 	@MemberLoginCheck
 	@RequestMapping(value="/my-profile-feed")
