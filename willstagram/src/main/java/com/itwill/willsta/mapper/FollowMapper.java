@@ -1,6 +1,7 @@
 package com.itwill.willsta.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -23,12 +24,12 @@ public interface FollowMapper {
 	
 	
 	/*Following List 내가 팔로우하고있는사람들 보기*/
-	@Select(" select mIdYou  from follow where mId =#{mId}")
+	@Select("select f.mid, f.midyou, m.mname, m.memail, m.mphone, m.mimage from follow f inner join member m on f.midyou = m.mid where f.mid =#{mId}")
 	public List<Follow> following(String mId);
 	
 	
 	/*Follower List 나를 팔로하고있는 사람들 */
-	@Select("select mId from follow where mIdYou =#{mIdYou}")
+	@Select("select f.midyou, f.mid, m.mname, m.memail, m.mphone, m.mimage from follow f inner join member m on f.mid = m.mid where f.midyou =#{mIdYou}")
 	public List<Follow> followers(String mIdYou);
 	
 	/*Followers count 나를 팔로하고있는 사람들 수   */
@@ -44,4 +45,16 @@ public interface FollowMapper {
 	@Select("select count(*) as followCheck from follow where mId=#{mId} and mIdyou=#{mIdYou}")
 	public int followCheck(@Param("mId") String mId,@Param("mIdYou") String mIdYou);
 	
+	
+	// Following List 
+	@Select("select f.mid, f.midyou, m.mname, m.memail, m.mphone, m.mimage from follow f inner join member m on f.midyou = m.mid where f.mid =#{mId}")
+	public List<Map> followingList(String mId);
+	
+	// Follower List
+	@Select("select f.midyou, f.mid, m.mname, m.memail, m.mphone, m.mimage \r\n" + 
+			"from follow f inner join member m on f.mid = m.mid\r\n" + 
+			"where f.midyou =#{mIdYou}")
+	public List<Map> followerList(String mIdYou);	
 }
+
+
