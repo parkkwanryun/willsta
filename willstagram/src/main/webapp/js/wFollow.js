@@ -96,6 +96,13 @@ $(function(){
 		});
 	};
 	
+	$('#follow_count_a').on(
+			'click',
+			function(e){
+				var $mIdYou = $(e.target);
+				var param = "mIdYou=" + $mIdYou.attr("midyou");
+				
+			})
 	
 	
 	

@@ -3,6 +3,7 @@ package com.itwill.willsta.repository;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -54,6 +55,18 @@ public class FollowDaoImpl implements FollowDao{
 	@Override
 	public int followCheck(String mId, String mIdYou) {
 		return followMapper.followCheck(mId, mIdYou);
+	}
+
+	@Override
+	public List<Map> followingList(String mId) {
+		
+		return followMapper.followingList(mId);
+	}
+
+	@Override
+	public List<Map> followerList(String mIdYou) {
+		
+		return followMapper.followerList(mIdYou);
 	}
 
 

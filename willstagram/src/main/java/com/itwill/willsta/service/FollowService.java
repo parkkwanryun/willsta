@@ -1,6 +1,7 @@
 package com.itwill.willsta.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,4 +23,7 @@ public interface FollowService {
 	
 	int followCheck(String mId,String mIdYou);
 
+	List<Map> followingList(String mId);
+	
+	List<Map> followerList(String mIdYou);	
 }

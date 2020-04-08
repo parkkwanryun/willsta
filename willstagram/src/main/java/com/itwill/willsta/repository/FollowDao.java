@@ -1,6 +1,7 @@
 package com.itwill.willsta.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import com.itwill.willsta.domain.Follow;
 
@@ -28,7 +29,10 @@ public interface FollowDao {
 	 
 	 int followCheck(String mId, String mIdYou);
 	 
+	 // FollowingList
+	 List<Map> followingList(String mId);
 	 
-	 
+	 //Follower List
+	 List<Map> followerList(String mIdYou);	
 	 
 }

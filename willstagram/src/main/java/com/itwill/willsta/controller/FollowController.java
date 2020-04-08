@@ -83,10 +83,10 @@ public class FollowController {
 	
 	
 	@ResponseBody
-	@RequestMapping(value="/followList" , method = RequestMethod.POST)
-	public List<Follow> followers(@RequestParam(value="mId",required = true )String mId) { 
+	@RequestMapping(value = "/followerList", method = RequestMethod.POST)
+	public List<Follow> followers(@RequestParam(value = "mId", required = true) String mId) {
 		List<Follow> followers = followService.followers(mId);
-		for(Follow follow : followers) {
+		for (Follow follow : followers) {
 			follow.setmId(mId);
 			System.out.println(follow);
 		}
@@ -95,16 +95,16 @@ public class FollowController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/followingList" , method = RequestMethod.POST )
-	public List<Follow> followingList(@RequestParam(value="mIdYou",required = true)String mIdYou) {
+	@RequestMapping(value = "/followingList", method = RequestMethod.POST)
+	public List<Follow> followingList(@RequestParam(value = "mIdYou", required = true) String mIdYou) {
 		List<Follow> following = followService.following(mIdYou);
-		for(Follow follow : following) {
+		for (Follow follow : following) {
 			follow.setmIdYou(mIdYou);
 			System.out.println(follow);
 		}
-		
+
 		return following;
-				
+
 	}
 	@ResponseBody
 	@RequestMapping(value="/followingCount" , produces = "text/html;charset=utf-8")
