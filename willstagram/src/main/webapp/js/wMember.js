@@ -40,7 +40,6 @@
 				dataType:'text',
 				success : function(textData) {
 					if (textData.trim() == "true") {
-						alert(member_login_action.mId.value+'님 환영합니다.');
 						location.href = '/willstagram/index';
 					}else if (textData.trim() == "false1") {
 						id_check();

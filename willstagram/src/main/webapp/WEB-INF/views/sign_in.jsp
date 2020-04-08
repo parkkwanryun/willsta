@@ -77,6 +77,7 @@ label.error {
 														</label>
 														<small>Remember me</small>
 													</div><!--fgt-sec end-->
+													
 													<a href="#" title="">forgot password</a>
 												</div>
 											</div>
