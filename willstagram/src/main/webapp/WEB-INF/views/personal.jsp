@@ -21,7 +21,12 @@
 	<link rel="stylesheet" type="text/css" href="lib/slick/slick-theme.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/responsive.css">
+	<title>Button Test</title> <style> 
+	#test_btn1{ border-radius: 5px; margin-right:-4px; } 
 	
+	 #btn_group button{ border: 1px solid skyblue; background-color: rgba(0,0,0,0); color: skyblue; padding: 5px; }
+	  #btn_group button:hover{ color:white; background-color: skyblue; } </style>
+
 
 <body>	
 
@@ -95,7 +100,9 @@
 													</div>
 												<!-- 	<span><i class="la la-plus"></i></span> -->
 											
-													<span><button type="button" color='blue' value='follow' id='follow' >follow</button></span>
+													<span><div id="btn_group">
+													<button id="test_btn1" type="button" value='follow'>follow</button>
+													</div></span>
 													<!--   
 													
 													
