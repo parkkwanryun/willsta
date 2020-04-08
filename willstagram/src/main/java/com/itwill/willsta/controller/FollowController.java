@@ -184,27 +184,47 @@ public class FollowController {
 	      }
 	      return check;
 	   }
-	
-	@RequestMapping(value = "/follow")
+	  /*
+	  @RequestMapping(value = "/follow")
 		public ModelAndView follow(@RequestParam(value = "mIdYou") String mIdYou,HttpSession session) {
+		System.out.println("확인");
+		
 		ModelAndView mv=new ModelAndView();
-		String mId=(String)session.getAttribute("mId");
-		int follow=followService.follow(new Follow(mId, mIdYou));
-		mv.addObject("follow", follow);
-		mv.setViewName("profiles");
+		String mId=(String)session.getAttribute("mId"); 
+		int	follow=followService.follow(new Follow(mId, mIdYou)); 
+		
+		mv.addObject("follow",follow);
+		mv.setViewName("profiles"); 
+		
 		return mv;
 	}
-	
-	@RequestMapping(value = "/unFollow")
-		public ModelAndView unFollow(@RequestParam(value = "mIdYou") String mIdYou,HttpSession session) {
-		ModelAndView mv=new ModelAndView();
-		String mId=(String)session.getAttribute("mId");
-		int unFollow=followService.unfollow(mIdYou, mId);
-		mv.addObject("unFollow", unFollow);
-		mv.setViewName("profiles");
-		return mv;
+	*/
+	@RequestMapping(value = "/follow")
+	@ResponseBody
+	public String follow(@RequestParam String mIdYou, HttpSession session) {	
+		String mId = (String) session.getAttribute("mId");
+		int follow = followService.follow(new Follow(mId, mIdYou));
+		//System.out.println("2." + follow);
+		return follow + "";
 	}
 	
+	/*
+	 * @RequestMapping(value = "/unFollow")
+	 * 
+	 * @ResponseBody public String unfollow(@RequestParam String mIdYou, HttpSession session) { 
+	 * String mId = (String) session.getAttribute("mId"); 
+	 * int unfollow = followService.unfollow(mId, mIdYou); 
+	 * //System.out.println("2." + follow);
+	 * return unfollow + ""; }
+	 */
+	
+	  @RequestMapping(value = "/unFollow") public ModelAndView
+	  unFollow(@RequestParam(value = "mIdYou") String mIdYou,HttpSession session) {
+	  ModelAndView mv=new ModelAndView(); String
+	  mId=(String)session.getAttribute("mId"); int
+	  unFollow=followService.unfollow(mIdYou, mId); mv.addObject("unFollow",
+	  unFollow); mv.setViewName("profiles"); return mv; }
+	 
 	
 
 }
