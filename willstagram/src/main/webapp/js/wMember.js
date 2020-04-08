@@ -7,18 +7,20 @@
 	 	3.session 유지 시간 세팅 (web.xml --> session 유효시간 = 1day ms) (완료)
 	    3.로그인 시, id와 password 유효성 체크(validate) (글자 수 제한) (완료)
 	    4.id/ password(없는 아이디, 틀린비밀번호 시) 안내문구 띄워주기
-	    (jsp단에서 div msg 삽입 / javascript show, hide 이벤트처리)  (완료)
-	      				(input text 삭제 시 warning 문구 삭제 처리) 
+	    (jsp단에서 div msg 삽입 / javascript show, hide 이벤트처리) 
+	      				(input text 삭제 시 warning 문구 삭제 처리)  (완료)
 	    5.아이디 / 비밀번호 공백 불가 alert 안내 (완료)														
-		6.비밀번호 찾기 (Forgot Password?) or 임시비밀번호 안내
+		6.비밀번호 찾기 (Forgot Password?) or 임시비밀번호 안내 (4/8)
 		
 		
 
 	 <<회원가입>>
-	 	1.회원가입 시, id와 password, email, name, phone 유효성 체크(validate)
-	 	2.회원가입 이미지 업로드 / 중복된 아이디는 컨트롤러 필요?
+	 	1.회원가입 시, id와 password, email, name, phone 유효성 체크(validate) (4/8)
+	    2.회원가입 시 체크박스 필수 체크 알림. (4/8)
+	    
 	 	3.insert (이미지 업로드 / mRetire 체크 ON-> F 로 바꿀 것)
-	    4.회원가입 시 체크박스 필수 체크 알림.
+	 	4.회원가입 이미지 업로드 / 중복된 아이디는 컨트롤러 필요?
+	    
 	    
 	 <<회원정보수정&탈퇴>>  
 	    1.DELETE / UPDATE 
