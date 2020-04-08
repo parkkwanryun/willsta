@@ -47,8 +47,8 @@ public class PostDaoImpl implements PostDao {
 	}
 
 	@Override
-	public List<Post> selectMyList(Integer lastpNo, String userId) {
-		 return postMapper.selectMyList(lastpNo, userId);
+	public List<Post> selectMyList(Integer lastpNo, String userId, Integer queryGbn) {
+		 return postMapper.selectMyList(lastpNo, userId,queryGbn);
 	}
 
 	@Override
