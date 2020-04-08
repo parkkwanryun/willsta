@@ -73,7 +73,7 @@ $(function(){
 				*/
 			}
 		});
-	}
+	};
 	
 	//팔로우리스트
 	function message_detail_function(e){
@@ -93,30 +93,44 @@ $(function(){
 				*/
 			}
 		});
-	}
+	};
 	
 	
 	
 	
 	
 	//팔로우
-	$(document).on('click','.follow',function(e){
-		var $mIdYou=$(e.target).parents("div.company-up-info");
-		var param="mIdYou="+$mIdYou.attr("mIdYou");
-		$.ajax({
-			url: "follow",
-			method: "POST",
-			data: param,
-			dataType: "text",
-			success:function(){
-				$(e.target).hide();
-				$(e.target.parentNode).prev().children().show();
-			}
-		});
-		e.preventDefault();
-	});
+	$('.follow').on(
+			'click',
+			function(e) {
+				var $mIdYou = $(e.target);
+				console.log('--------------->' + e.target);
+				console.log('--------------->' + $mIdYou);
+				console.log('--------------->' + $mIdYou.attr("midyou"));
+				var param = "mIdYou=" + $mIdYou.attr("midyou");
+
+				$.ajax({
+					url : "follow",
+					method : "POST",
+					data : param,
+					dataType : "text",
+					success : function(data) {
+
+						// location.href='personal_info'; get방식이였다면.
+						$(e.target).hide();
+						// $(e.target.parentNode).prev().children().show();
+						$('#follow_count_a').text(
+								parseInt($('#follow_count_a').text()) + 1);
+
+					}
+				});
+				e.preventDefault();
+				e.stopPropagation();
+
+			});
+
 	
-	
+
 	//언팔로우
 	$(document).on('click','.unFollow',function(e){
 		var $mIdYou=$(e.target).parents("div.company-up-info");
@@ -136,9 +150,10 @@ $(function(){
 	
 	
 });
-		
+
+/*
+
 $(document).ready(function(){
-	/*list 안의 내용 열리기 새거 열면 전에꺼 닫히고, 열린거 누르면 다시 닫힘*/
 	$(".show-open").css('display','none'); //우선 내용부분을 모두 감춰줍니다
 	$(".bms-list-tr").click(function(){ //클릭했을때
 		var check = $(this).next().css("display") == "none"; //변수로, 열릴 부분의 display 상태 체크
@@ -156,9 +171,9 @@ $(document).ready(function(){
 	});
 })
 
+*/
 
-
-
+/*
 
 	function displayGuestListXML() {
 		if (xhr.readyState == 4) {
@@ -199,3 +214,5 @@ document.getElementById('menu-b')
 					showLoadingDialog(true);
 					e.preventDefault();
 				});
+*/	
+	
