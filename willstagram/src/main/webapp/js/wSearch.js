@@ -6,6 +6,7 @@ $(function(){
 	for (var i = 0; i < mIdArray.length; i++) {
 		var mId=mIdArray[i].value;
 		var param="mIdYou="+mId;
+		//console.log(mId);
 		$.ajax({
 			url:'follow_Check',
 			method:'POST',
@@ -41,7 +42,7 @@ $(function(){
 			data:userKeyword,
 			dataType:'text',
 			success:function(resultText){
-				console.log(resultText);
+				//console.log(resultText);
 				$('div.wrapper').html(resultText);
 				$('div.company-title').children().text("Search Profile");
 			}
@@ -82,26 +83,27 @@ $(function(){
 		});
 		e.preventDefault();
 	});
-	/*
+	
 	//스크롤이벤트 : 문서의 끝 위치에 오면 사용자 추가 조회
     $(window).on("scroll", function(e){
        //문서의높이에 윈도우높이를 제외한 값이 스크롤의 최대값이다
        if(($(document).height()-$(window).height()) != $(document).scrollTop()){
           return;
-       }            
+       }
        var $member = $("div.company-up-info").last();
        var params = "lastId="+ $member.attr('mIdYou');
        console.log(params);
          $.ajax({
-          url:'profiles',
+          url:'add_profile',
           method:'POST',
           data:params,
           dataType:'html',
           success: function(resultText){
+        	 //console.log(resultText)
              $('div.companies-list').append(resultText);
           }
        });
          e.preventDefault();
      });
-    */
+    
 }); 

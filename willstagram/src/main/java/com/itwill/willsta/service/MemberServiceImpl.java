@@ -59,6 +59,11 @@ public class MemberServiceImpl implements MemberService{
 	public List<Member> memberList() {
 		return memberDao.memberList();
 	}
+	
+	@Override
+	public List<Member> addMemberList(String lastId) {
+		return memberDao.addMemberList(lastId);
+	}
 
 	@Override
 	public List<Member> findMemberList(String findId) {
@@ -87,4 +92,8 @@ public class MemberServiceImpl implements MemberService{
 	public List<Member> selectByRandom(String mId) {
 		return memberDao.selectByRandom(mId);
 	}
+
+	
+
+	
 }

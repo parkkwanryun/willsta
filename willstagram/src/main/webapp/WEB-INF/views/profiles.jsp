@@ -4,13 +4,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <body>
 	<div class="wrapper">
-		
 		<header>
 			<!-- Menubar Starts -->
 			<jsp:include page="../common_top_menu.jsp"/>
 			<!-- Menubar End -->
 		</header>	
-
+		<form id ="mId-List">
 
 
 		<section class="companies-info">
@@ -19,7 +18,7 @@
 					<h3>All Profiles</h3>
 				</div><!--company-title end-->
 				<div class="companies-list">
-					<form id ="mId-List">
+					
 						<div class="row">
 						<!-- loop start -->
 						<c:forEach var="member" items="${memberList}" varStatus="status">
@@ -66,9 +65,9 @@
 								<!-- loop end -->
 							</div>
 						</div>
-					</form>
+					
 				</div><!--companies-list end-->
-				
+				</form>
 				<div class="process-comm">
 					<div class="spinner">
 						<div class="bounce1"></div>

@@ -38,8 +38,11 @@ public interface MemberDao {
 	/*임시비밀번호 발급*/
 	Member getTempPw(String mPass, String mId);
 	
-	/*사용자 전체목록*/
+	/*사용자 목록*/
 	List<Member> memberList();
+	
+	/*사용자 다음목록*/
+	List<Member> addMemberList(String lastId);
 	
 	/*사용자 검색*/
 	List<Member> findMemberList(String findId);
