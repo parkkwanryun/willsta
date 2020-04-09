@@ -17,7 +17,7 @@
 
 
 $(function(){
-	//팔로잉카운트
+	// 팔로잉카운트
 	$(document).on('click','.followingCount',function(e){
 		var $mIdYou=$(e.target).parents("div.company-up-info");
 		var param="mIdYou="+$mIdYou.attr("mIdYou");
@@ -33,7 +33,7 @@ $(function(){
 		});
 		e.preventDefault();
 	});
-	//팔로워카운트
+	// 팔로워카운트
 	$(document).on('click','.followCount',function(e){
 		var $mIdYou=$(e.target).parents("div.company-up-info");
 		var param="mIdYou="+$mIdYou.attr("mIdYou");
@@ -50,7 +50,7 @@ $(function(){
 		e.preventDefault();
 	});
 	
-	//팔로잉리스트
+	// 팔로잉리스트
 	function followingList(e){
 		var mIdYou = $(e.target).find('#mIdYou').text();
 		var params = "mIdYou=" + mIdYou;
@@ -68,15 +68,13 @@ $(function(){
 				
 				
 				/*
-				$(function() {
-					message_send_function(e);
-				});
-				*/
+				 * $(function() { message_send_function(e); });
+				 */
 			}
 		});
 	};
 	
-	//팔로우리스트
+	// 팔로우리스트
 	function message_detail_function(e){
 		var dmNo = $(e.target).find('#mId').text();
 		var params = "mId=" + dmNo;
@@ -88,35 +86,115 @@ $(function(){
 			success : function(jsonArrayData) {
 				console.log(jsonArrayData);
 				/*
-				$(function() {
-					message_send_function(e);
-				});
-				*/
+				 * $(function() { message_send_function(e); });
+				 */
 			}
 		});
 	};
 	
-	$('#follow_count_a').on(
-			'click',
-			function(e){
-				var $mIdYou = $(e.target);
-				var param = "mIdYou=" + $mIdYou.attr("midyou");
-				
-			})
+
+
+
+
+
+$('#follow_count_a').on('click',
+	function(e) {
+		var $mIdYou = $(e.target);
+		var param = "mId=" + $mIdYou.attr("mid");
+		console.log(param);
+		$.ajax({url : "followingList",
+				method : "POST",
+				data : param,
+				dataType : "JSON",
+				success : function(jsonArray) {
+					console.log(jsonArray);
+					var html="<div class='sd-title'>";
+					html+="<h3>팔로잉리스트</h3>";
+					html+="<i class='la la-ellipsis-v'></i>";
+					html+="</div>";
+					html+="<div class='suggestions-list' style='display:none'>";
+										
+					$.each(jsonArray,function(i, jsonObject) {
+					for (var i = 0; i < jsonArray.length; i++) {
+						var jsonArrayObject = jsonArray[i];
+						var mId = jsonArrayObject.mId;
+						/*
+					 	[
+							{
+							"mId": "1543",
+							"mPass": "1543",
+							"mName": "1543",
+							"mEmail": "1543",
+							"mPhone": "1543",
+							"mImage": "1543",
+							"mRetire": null,
+							"followerCount": null,
+							"followingCount": null,
+							"followCount": null
+							},
+						 */
+						var mImage = jsonArrayObject.mImage;
+						var mName = jsonArrayObject.mName;
+						var mEmail = jsonArrayObject.mEmail;
+					
+							html += "<div class='suggestion-usd'>";
+							html += "<img src='contents/member_image/"
+								+ mImage
+								+ "' alt='' width='40px'>"
+								+ "<div class='sgt-text'>"
+								+ "<h4>"
+								+ mName
+								+ "</h4>"
+								+ "<span>"
+								+ mEmail
+								+ "</span>"
+								+ "</div>"
+								+ "<span><i midyou='"
+								+ mId
+								+ "' class='la la-plus follow' ></i></span>"
+								+ "</div>";
+
+							
+						}
+					
+					});
+					 	html+="</div>";
+					 	console.log($('div.suggestions > div.suggestions-list').size());
+					 	if($('div.suggestions > div.suggestions-list').size()>1){
+					 		$('div.suggestions > div.suggestions-list').eq(1).slideToggle({
+					 			duration:500
+					 		});
+					 		$('div.suggestions > div.suggestions-list').eq(0).slideToggle({
+					 			duration:500
+					 		});
+					 	}else{
+					 		console.log('append');
+					 		$('div.suggestions').append(html);
+					 		$('div.suggestions div.suggestions-list').eq(1).slideToggle({
+					 			duration:500
+					 		});
+					 		$('div.suggestions > div.suggestions-list').eq(0).slideToggle({
+					 			duration:500
+					 		});
+					 	}
+					 	
+						}
+					});
+			e.preventDefault();
+		});
+
 	
 	
-	
-	
-	//팔로우
+	// 팔로우
 	$('.follow').on(
 			'click',
 			function(e) {
 				var $mIdYou = $(e.target);
 				/*
-				console.log('--------------->' + e.target);
-				console.log('--------------->' + $mIdYou);
-				console.log('--------------->' + $mIdYou.attr("midyou"));
-				*/
+				 * console.log('--------------->' + e.target);
+				 * console.log('--------------->' + $mIdYou);
+				 * console.log('--------------->' + $mIdYou.attr("midyou"));
+				 */
 				var param = "mIdYou=" + $mIdYou.attr("midyou");
 				$.ajax({
 					url : "follow",
@@ -140,7 +218,7 @@ $(function(){
 
 	
 
-	//언팔로우
+	// 언팔로우
 	$(document).on('click','.unFollow',function(e){
 		var $mIdYou=$(e.target).parents("div.company-up-info");
 		var param="mIdYou="+$mIdYou.attr("mIdYou");
@@ -161,67 +239,46 @@ $(function(){
 });
 
 /*
-
-$(document).ready(function(){
-	$(".show-open").css('display','none'); //우선 내용부분을 모두 감춰줍니다
-	$(".bms-list-tr").click(function(){ //클릭했을때
-		var check = $(this).next().css("display") == "none"; //변수로, 열릴 부분의 display 상태 체크
-		$(this).siblings().removeClass('bms-list-tr-active');//클릭하는 부분의 형제들에 배경색을 제거해줍니다
-		var except = $(this).next();//선택된부분의 다음(내용)부분만 열리기 위해, 변수를 선언해주는데요. 이는 다음을 보시면 이해가 가실겁니다.
-		if(check)// 열릴부분의 display가 none으로 되어있다면, 
-		{
-			$(this).next().css('display','block'); //열릴부분의 display를 block으로 변경해주고,
-			$(".show-open").not(except).css('display','none'); //그외의 내용부분(.not() 으로 제어함) 은 display를 none으로 안보이게 변경시킵니다.
-			$(this).addClass('bms-list-tr-active');//클릭한 부분에 클래스를 더해 배경색을 보여줍니다.		
-        }else{ //클릭 2번했을 경우 check는 display block으로 변했기때문에 그때의 상황에 맞춰 상태조절,
-			$(this).next().css('display','none'); //선택된 다음 부분의 display를 감춥니다.
-			$(this).removeClass('bms-list-tr-active');//선택된 부분의 배경색을 뺍니다. 
-		}
-	});
-})
-
-*/
+ * 
+ * $(document).ready(function(){ $(".show-open").css('display','none'); //우선
+ * 내용부분을 모두 감춰줍니다 $(".bms-list-tr").click(function(){ //클릭했을때 var check =
+ * $(this).next().css("display") == "none"; //변수로, 열릴 부분의 display 상태 체크
+ * $(this).siblings().removeClass('bms-list-tr-active');//클릭하는 부분의 형제들에 배경색을
+ * 제거해줍니다 var except = $(this).next();//선택된부분의 다음(내용)부분만 열리기 위해, 변수를 선언해주는데요. 이는
+ * 다음을 보시면 이해가 가실겁니다. if(check)// 열릴부분의 display가 none으로 되어있다면, {
+ * $(this).next().css('display','block'); //열릴부분의 display를 block으로 변경해주고,
+ * $(".show-open").not(except).css('display','none'); //그외의 내용부분(.not() 으로 제어함)
+ * 은 display를 none으로 안보이게 변경시킵니다. $(this).addClass('bms-list-tr-active');//클릭한
+ * 부분에 클래스를 더해 배경색을 보여줍니다. }else{ //클릭 2번했을 경우 check는 display block으로 변했기때문에 그때의
+ * 상황에 맞춰 상태조절, $(this).next().css('display','none'); //선택된 다음 부분의 display를
+ * 감춥니다. $(this).removeClass('bms-list-tr-active');//선택된 부분의 배경색을 뺍니다. } }); })
+ * 
+ */
 
 /*
-
-	function displayGuestListXML() {
-		if (xhr.readyState == 4) {
-			if (xhr.status == 200) {
-				var xmlDoc = xhr.responseXML;
-				//var xmlStr = xhr.responseText;
-				var guestNodeList = xmlDoc.getElementsByTagName("guest");
-				var html = "";
-
-				for (var i = 0; i < guestNodeList.length; i++) {
-					var guestE = guestNodeList[i];
-
-					var title = guestE.getElementsByTagName("guest_title")[0].firstChild.nodeValue;
-					var no = guestE.getElementsByTagName("guest_no")[0].firstChild.nodeValue;
-
-					html += "<div class='guest_item'>";
-					html += "<h3 class='guest_title'  guest_no='"+no+"'><a href=''>"
-							+ title + "[XML]</a></h3></div>";
-
-				}
-
-				document.getElementById('guest_list').innerHTML = html;
-			}
-			showLoadingDialog(false);
-		}
-	}
-
-
-
-document.getElementById('menu-b')
-				.getElementsByTagName('a').item(0)
-				.addEventListener('click',function(e){
-					//ajax요청
-					sendRequest('guest/guest_list_json.jsp',
-								null,
-								displayGuestListJSON,
-								'GET',true);
-					showLoadingDialog(true);
-					e.preventDefault();
-				});
-*/	
+ * 
+ * function displayGuestListXML() { if (xhr.readyState == 4) { if (xhr.status ==
+ * 200) { var xmlDoc = xhr.responseXML; //var xmlStr = xhr.responseText; var
+ * guestNodeList = xmlDoc.getElementsByTagName("guest"); var html = "";
+ * 
+ * for (var i = 0; i < guestNodeList.length; i++) { var guestE =
+ * guestNodeList[i];
+ * 
+ * var title =
+ * guestE.getElementsByTagName("guest_title")[0].firstChild.nodeValue; var no =
+ * guestE.getElementsByTagName("guest_no")[0].firstChild.nodeValue;
+ * 
+ * html += "<div class='guest_item'>"; html += "<h3 class='guest_title'  guest_no='"+no+"'><a
+ * href=''>" + title + "[XML]</a></h3></div>"; }
+ * 
+ * document.getElementById('guest_list').innerHTML = html; }
+ * showLoadingDialog(false); } }
+ * 
+ * 
+ * 
+ * document.getElementById('menu-b') .getElementsByTagName('a').item(0)
+ * .addEventListener('click',function(e){ //ajax요청
+ * sendRequest('guest/guest_list_json.jsp', null, displayGuestListJSON,
+ * 'GET',true); showLoadingDialog(true); e.preventDefault(); });
+ */	
 	

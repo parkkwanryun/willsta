@@ -27,18 +27,15 @@ public class FollowDaoImpl implements FollowDao{
 		return followMapper.unFollow(mIdYou, mId);
 	}
 	
-	@Override
-	public List<Follow> followers(String mId) {
-		
-		return followMapper.followers(mId);
-	}
-
-	@Override
-	public List<Follow> following(String mIdYou) {
-		
-		return followMapper.following(mIdYou);
-	}
-
+	/*
+	 * @Override public List<Follow> followers(String mId) {
+	 * 
+	 * return followMapper.followerList(mId); }
+	 * 
+	 * @Override public List<Follow> following(String mIdYou) {
+	 * 
+	 * return followMapper.followingList(mIdYou); }
+	 */
 
 	@Override
 	public int followingCount(String mIdYou) {
@@ -58,17 +55,24 @@ public class FollowDaoImpl implements FollowDao{
 	}
 
 	@Override
-	public List<Map> followingList(String mId) {
-		
-		return followMapper.followingList(mId);
+	public List<Follow> followerList(String mId) {
+		return followMapper.followerList(mId);
 	}
 
 	@Override
-	public List<Map> followerList(String mIdYou) {
-		
-		return followMapper.followerList(mIdYou);
+	public List<Follow> followingList(String mIdYou) {
+		return followMapper.followingList(mIdYou);
 	}
 
+	/*
+	 * @Override public List<Map> followingList(String mId) {
+	 * 
+	 * return followMapper.followingList(mId); }
+	 * 
+	 * @Override public List<Map> followerList(String mIdYou) {
+	 * 
+	 * return followMapper.followerList(mIdYou); }
+	 */
 
 
 	

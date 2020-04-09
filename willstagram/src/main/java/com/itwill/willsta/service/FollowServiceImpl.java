@@ -39,16 +39,16 @@ public class FollowServiceImpl implements FollowService {
 	}
 
 	@Override
-	public List<Follow> followers(String mId) {
+	public List<Follow> followerList(String mId) {
 		
-		return followDao.followers(mId);
+		return followDao.followerList(mId);
 	}
 	
 
 	@Override
-	public List<Follow> following(String mIdYou) {
+	public List<Follow> followingList(String mIdYou) {
 		
-		return followDao.following(mIdYou);
+		return followDao.followingList(mIdYou);
 	}
 
 
@@ -69,18 +69,15 @@ public class FollowServiceImpl implements FollowService {
 		return followDao.followCheck(mId, mIdYou);
 	}
 
-	@Override
-	public List<Map> followingList(String mId) {
-		
-		return followDao.followingList(mId);
-	}
-
-	@Override
-	public List<Map> followerList(String mIdYou) {
-		
-		return followDao.followerList(mIdYou);
-	}
-
-
+	/*
+	 * @Override public List<Map> followingList(String mId) {
+	 * 
+	 * return followDao.followingList(mId); }
+	 * 
+	 * @Override public List<Map> followerList(String mIdYou) {
+	 * 
+	 * return followDao.followerList(mIdYou); }
+	 * 
+	 */
 
 }
