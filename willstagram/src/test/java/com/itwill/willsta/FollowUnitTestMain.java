@@ -42,14 +42,12 @@ public class FollowUnitTestMain {
 	}
 	
 	@Test
-	@Ignore
 	public void followers() throws Exception{
-		List<Follow> followers = followDao.followerList("mId");
+		List<Follow> followers = followDao.followerList("mIdYou");
 		System.out.println("### followers: "+followers);
 	}
 	
 	@Test
-	@Ignore
 	public void following() throws Exception{
 		List<Follow> following = followDao.followingList("mId");
 		System.out.println("### following:"+following);
