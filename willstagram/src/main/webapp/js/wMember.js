@@ -11,24 +11,28 @@
  (input text 삭제 시 warning 문구 삭제 처리)  (완료)
  5.아이디 / 비밀번호 공백 불가 조치 (완료)														
  6.Forgot Password 버튼 위치 조정 (그리드) (완료)
- 
+
  7.비밀번호 찾기 (Forgot Password?) or 임시비밀번호 안내 
 
 
  <<회원가입>> (~4/12)
  1.회원가입 시, id와 password, email, name, phone 유효성 체크(validate) 
  - 유효성 체크 중, 아이디 중복 검사 (완료) : Talend ApI check 이용
- 
+
  2.회원가입 시 체크박스(mRetire 체크 ON-> OFF) 필수 체크 알림. 
  3.회원가입 이미지 업로드 (4/12)
 
 
  <<회원정보수정&탈퇴>> (~4/14)
- 1.DELETE / UPDATE 
- (Profile-Account-Setting) form태그 활용 전송.
+ 1.UPDATE 
+ - 회원 정보 수정 시 유효성 체크(validate) 
+ 2.DELETE 
+ 회원 탈퇴  
 
+ <<추가 사항>>
  <<네이버 아이디 로그인>>
  <<관리자모드, 공지사항 게시판>>
+ <<국제화>>
  */
 
 /*
@@ -62,7 +66,6 @@ function id_check() {
 		if (mlafArray[i].name != 'mId' && mlafArray[i].name == 'mPass') {
 			$('#i-error').text('아이디를 다시 확인해주세요.').show();
 			// validate 활용
-			// $('#msg1').text('아이디를 다시 확인해주세요.')
 			$('#i').focus();
 		}
 	}
@@ -72,7 +75,6 @@ function password_check() {
 	for (var i = 0; i < mlafArray.length; i++) {
 		if (mlafArray[i].name != 'mPass' && mlafArray[i].name == 'mId') {
 			$('#p-error').text('비밀번호가 틀렸습니다.').show();
-			// $('#msg2').text('비밀번호가 틀렸습니다.').show();
 			$('#p').focus();
 		}
 	}
@@ -99,37 +101,40 @@ function member_register_action_function() {
 
 				location.href = '/willstagram/sign_in';
 
-				// profile account setting으로 위 회원정보 데이터를 전송할 $.ajax({}); 만들기
 			} else if (textData.trim() == "false") {
-				alert('회원가입 실패');
 			}
-			/*
-			 */
 		}
 	});
 	e.preventDefault();
 }
 /*
- * 4) 회원가입 체크박스 체크
+ * 4) Sending to modify member information in Account Setting in change password
+ * Tab(id=nav-password)
  */
-/*
- * function check_box_function(){ var count =
- * $('input:checkbox[name=mRetire]:checked').length; if(count > 0){ return true;
- * }else{ alert('약관에 동의하여 주십시오'); return false; } }
- */
+function account_setting() {
+	var asArray = $('#member_modify_action').serializeArray();
+	$.ajax({
+		url : 'account-setting',
+		method : 'POST',
+		data : asArray,
+		dataType : 'text',
+		success : function(textData) {
+			if (textData.trim() == "true") {
+				member_modify_action.mId.value = textData.mId;
+				member_modify_action.mPass.value = textData.mPass;
+				member_modify_action.mName.value = textData.mName;
+				member_modify_action.mEmail.value = textData.mEmail;
+				member_modify_action.mPhone.value = textData.mPhone;
+				member_modify_action.mImage.value = textData.mImage;
+				member_modify_action.mRetire.value = textData.mRetire;
 
-
-/*
-   5) Account Setting 
- */
-function account_setting(){
-	var asArray = $('#member_register_action').serializeArray();
+				location.href = '/willstagram/index';
+			} else {
+				alert('회원수정 실패2');
+			}
+		}
+	});
 }
-
-
-
-
-
 
 /*
  * &&DOM Tree 로딩 후 이벤트 처리&&
@@ -140,7 +145,6 @@ $(function() {
 
 	// 로그인 유효성 검증
 	$('#member_login_action').validate({
-
 		rules : {
 			mId : {
 				required : true,
@@ -154,11 +158,10 @@ $(function() {
 			},
 		},
 		messages : {
-			mId : {// {0} is a duplicate ID : 컨트롤러 작성필요?
+			mId : {
 				required : "아이디를 입력해주세요",
 				minlength : "아이디는 최소 {0}글자 이상입니다",
 				maxlength : "아이디는 최대 {0}글자 이하입니다",
-			// remote: "{0} 는 중복된 아이디입니다."
 			},
 			mPass : {
 				required : "비밀번호를 입력해주세요",
@@ -252,6 +255,80 @@ $(function() {
 		},
 		submitHandler : function() {
 			member_register_action_function();
+		},
+		errorClass : "error",
+		validClass : "valid"
+	});
+
+	// 회원 정보 수정 시 유효성 검증
+	$('#member_modify_action').validate({
+		rules : {
+			mId : {
+				required : true,
+				rangelength : [ 3, 10 ],
+				remote : {
+					url : "duplicate_check",
+					method : "GET",
+					type : "text",
+					data : {
+						mId : function() {
+							return $('#mId').val();
+						}
+					}
+				}
+			},
+			mPass : {
+				required : true,
+				rangelength : [ 1, 10 ],
+				maxlength : 10
+			},
+			mEmail : {
+				required : true,
+				email : true
+			},
+			mPhone : {
+				required : true,
+				minlength : 9,
+				digits : true
+
+			},
+			mImage : {
+				required : false
+			},
+			mRetire : {
+				required : false
+			}
+		},
+		messages : {
+			mId : {
+				required : "아이디를 입력해주세요",
+				rangelength : "아이디는 3글자 이상 10글자 이내 입니다",
+
+				remote : "{0}는 이미 존재하는 아이디입니다.",
+			},
+			mPass : {
+				required : "비밀번호를 입력해주세요",
+				rangelength : "비밀번호는 1글자 이상 10글자 이내 입니다"
+			},
+			mEmail : {
+				required : "이메일을 입력해주세요",
+				email : "올바른 형식이 아닙니다 - bluepk2034@naver.com"
+			},
+			mPhone : {
+				required : "휴대폰 번호를 입력해주세요",
+				digits : "-을 제외한 숫자만 입력해주세요",
+				minlength : "전화번호는 최소 9자리 이상입니다."
+			},
+			mImage : {
+				required : "프로필 이미지를 업로드해주세요",
+			},
+			mRetire : {
+				required : false
+			}
+		},
+		submitHandler : function() {
+			alert('이제 회원수정 함수로');
+			account_setting();
 		},
 		errorClass : "error",
 		validClass : "valid"

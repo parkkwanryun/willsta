@@ -82,8 +82,6 @@ public class MemberController {
 								@RequestParam("mPhone")String mPhone,
 								@RequestParam("mImage")String mImage,
 								@RequestParam("mRetire")String mRetire) {
-		//String mId1 = (String) request.getSession().getAttribute("mId");
-
 		boolean newMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire));
 			if(newMember) {
 				newMember= true;
@@ -106,20 +104,33 @@ public class MemberController {
 		return newId+"";
 	}
 	
-	/*회원 정보 수정 탭*/
-	@ResponseBody
-	@RequestMapping(value="/profile-account-setting", method=RequestMethod.POST, produces="text/plain; charset=UTF-8")
-	public String AccountSetting(@RequestParam("mId")String mId,
-										@RequestParam("mPass")String mPass,
-										@RequestParam("mName")String mName,
-										@RequestParam("mEmail")String mEmail,
-										@RequestParam("mPhone")String mPhone,
-										@RequestParam("mImage")String mImage,
-										@RequestParam("mRetire")String mRetire) {
-		
+	/*회원 관리 탭 이동*/
+	@MemberLoginCheck
+	@RequestMapping(value="/profile-account-setting", method= {RequestMethod.GET,RequestMethod.POST}, produces="text/plain; charset=UTF-8")
+	public String AccountSettingAccess() {
 		return "profile-account-setting";
 	}
-	
+	/*회원 정보 수정*/
+	@MemberLoginCheck
+	@ResponseBody
+	@RequestMapping(value="/account-setting", method=RequestMethod.POST, produces="text/plain; charset=UTF-8")
+	public String AccountSetting(@RequestParam("mId")String mId,
+								@RequestParam("mPass")String mPass,
+								@RequestParam("mName")String mName,
+								@RequestParam("mEmail")String mEmail,
+								@RequestParam("mPhone")String mPhone,
+								@RequestParam("mImage")String mImage,
+								@RequestParam("mRetire")String mRetire) {
+		boolean updateMember = memberService.updateMember(new Member(mId, mPass, mName, mEmail, mPhone, mImage, mRetire));
+		if(updateMember) {
+			System.out.println("회원 정보 수정 성공");
+			updateMember= true;
+		}else {
+			System.out.println("회원 정보 수정 실패");
+			updateMember= false;
+		}
+	return updateMember+"";
+	}
 	
 	@MemberLoginCheck
 	@RequestMapping(value="/my-profile-feed")
