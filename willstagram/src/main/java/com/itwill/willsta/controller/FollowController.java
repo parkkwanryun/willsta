@@ -84,25 +84,23 @@ public class FollowController {
 		return mv;
 	}
 	
+	/* 애 안먹힘 . 다시 수정해보시지 .
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "/followingList", method = RequestMethod.POST) public
+	 * List<Member> followerList(@RequestParam(value = "mId", required = true)
+	 * String mId) { ModelAndView mv = new ModelAndView(); List<Follow> followers =
+	 * followService.followerList(mId); List<Member> youMemberList=new
+	 * ArrayList<Member>(); for (Follow follow : followers) { Member youMmeber =
+	 * memberService.selectById(follow.getmIdYou()); youMemberList.add(youMmeber); }
+	 * 
+	 * return youMemberList;
+	 * 
+	 * }
+	 */
 	
-	@ResponseBody
+	@ResponseBody // 애는팔로워 팔로잉 바뀌면서 발류랑 펑션이랑다르지만 값잘나오니까 냅둬.
 	@RequestMapping(value = "/followerList", method = RequestMethod.POST)
-	public List<Member> followerList(@RequestParam(value = "mId", required = true) String mId) {
-		ModelAndView mv = new ModelAndView();
-		List<Follow> followers = followService.followerList(mId);
-		List<Member> youMemberList=new ArrayList<Member>();
-		for (Follow follow : followers) {
-			Member youMmeber = memberService.selectById(follow.getmIdYou());
-			youMemberList.add(youMmeber);
-		}
-		
-		return youMemberList;
-
-	}
-	
-	
-	@ResponseBody
-	@RequestMapping(value = "/followingList", method = RequestMethod.POST)
 	public List<Member> followingList(@RequestParam(value = "mId", required = true) String mId) {
 		ModelAndView mv = new ModelAndView();
 		List<Follow> following = followService.followingList(mId);
@@ -115,6 +113,7 @@ public class FollowController {
 		return youMemberList;
 
 	}
+	
 	@ResponseBody
 	@RequestMapping(value="/followingCount" , produces = "text/html;charset=utf-8")
 	public ModelAndView followingCount(@RequestParam(value="mIdYou",required = true )String mIdYou) {
@@ -126,6 +125,7 @@ public class FollowController {
 		
 		return mv;
 	}
+	
 	@ResponseBody
 	@RequestMapping(value="/followersCount" , produces = "text/html;charset=utf-8")
 	public ModelAndView followerCount(@RequestParam(value="mId",required = true )String mId) {

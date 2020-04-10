@@ -64,7 +64,7 @@
 												<li>
 													<h4>Following</h4>
 													<span></span>
-													<b><a mid='${member.mId}' id="follow_count_a" href="#" title="">${member.followingCount}</a></b>
+													<b><a mid='${member.mId}' id="followings" href="#" title="">${member.followingCount}</a></b>
 													
 												
 													<%-- <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">

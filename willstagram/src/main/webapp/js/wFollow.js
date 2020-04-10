@@ -22,100 +22,99 @@
 $(function(){
 	
 
-// 팔로잉 리스트  # 팔로우 카운트 된숫자를 클릭했을때 내가 팔로우하고있는 리스트 뽑기. 나 울어 ㅠㅠㅠㅠㅠㅠㅠㅠㅠ
-$('#follow_count_a').on('click',
-	function(e) {
-		var $mIdYou = $(e.target);
-		var param = "mId=" + $mIdYou.attr("mid");
-		console.log(param);
-		$.ajax({url : "followingList",
-				method : "POST",
-				data : param,
-				dataType : "JSON",
-				success : function(jsonArray) {
-					console.log(jsonArray);
-					var html="<div class='sd-title'>";
-					html+="<h3>팔로잉리스트</h3>";
-					html+="<i class='la la-ellipsis-v'></i>";
-					html+="</div>";
-					html+="<div class='suggestions-list' style='display:none'>";
-										
-					$.each(jsonArray,function(i, jsonObject) {
-					for (var i = 0; i < jsonArray.length; i++) {
-						var jsonArrayObject = jsonArray[i];
-						var mId = jsonArrayObject.mId;
-						/*
-					 	[
-							{
-							"mId": "1543",
-							"mPass": "1543",
-							"mName": "1543",
-							"mEmail": "1543",
-							"mPhone": "1543",
-							"mImage": "1543",
-							"mRetire": null,
-							"followerCount": null,
-							"followingCount": null,
-							"followCount": null
-							},
-						 */
-						var mImage = jsonArrayObject.mImage;
-						var mName = jsonArrayObject.mName;
-						var mEmail = jsonArrayObject.mEmail;
-					
-							html += "<div class='suggestion-usd'>";
-							html += "<img src='contents/member_image/"
-								+ mImage
-								+ "' alt='' width='40px'>"
-								+ "<div class='sgt-text'>"
-								+ "<h4>"
-								+ mName
-								+ "</h4>"
-								+ "<span>"
-								+ mEmail
-								+ "</span>"
-								+ "</div>"
-								+ "<span><i mid='"
-								+ mId
-								+ "' class='la la-plus unfollow' ></i></span>"
-								+ "</div>";
-
+// 팔로우 리스트  # 팔로우 카운트 된숫자를 클릭했을때 내가 팔로우하고있는 리스트 뽑기. 나 울어 ㅠㅠㅠㅠㅠㅠㅠㅠㅠ
+	$('#followers').on('click',
+			function(e) {
+				var $mIdYou = $(e.target);
+				var param = "mId=" + $mIdYou.attr("mid");
+				console.log(param);
+				$.ajax({url : "followerList",
+						method : "POST",
+						data : param,
+						dataType : "JSON",
+						success : function(jsonArray) {
+							console.log(jsonArray);
+							var html="<div class='sd-title'>";
+							html+="<h3>팔로워리스트</h3>";
+							html+="<i class='la la-ellipsis-v'></i>";
+							html+="</div>";
+							html+="<div class='suggestions-list' style='display:none'>";
+												
+							$.each(jsonArray,function(i, jsonObject) {
+							for (var i = 0; i < jsonArray.length; i++) {
+								var jsonArrayObject = jsonArray[i];
+								var mId = jsonArrayObject.mId;
+								/*
+							 	[
+									{
+									"mId": "1543",
+									"mPass": "1543",
+									"mName": "1543",
+									"mEmail": "1543",
+									"mPhone": "1543",
+									"mImage": "1543",
+									"mRetire": null,
+									"followerCount": null,
+									"followingCount": null,
+									"followCount": null
+									},
+								 */
+								var mImage = jsonArrayObject.mImage;
+								var mName = jsonArrayObject.mName;
+								var mEmail = jsonArrayObject.mEmail;
 							
-						}
-					
-					});
-					 	html+="</div>";
-					 	console.log($('div.suggestions > div.suggestions-list').size());
-					 	if($('div.suggestions > div.suggestions-list').size()>1){
-					 		$('div.suggestions > div.suggestions-list').eq(1).slideToggle({
-					 			duration:500
-					 		});
-					 		$('div.suggestions > div.suggestions-list').eq(0).slideToggle({
-					 			duration:500
-					 		});
-					 	}else{
-					 		console.log('append');
-					 		$('div.suggestions').append(html);
-					 		$('div.suggestions div.suggestions-list').eq(1).slideToggle({
-					 			duration:500
-					 		});
-					 		$('div.suggestions > div.suggestions-list').eq(0).slideToggle({
-					 			duration:500
-					 		});
-					 	}
-					 	
-						}
-					});
-			e.preventDefault();
-		});
+									html += "<div class='suggestion-usd'>";
+									html += "<img src='contents/member_image/"
+										+ mImage
+										+ "' alt='' width='40px'>"
+										+ "<div class='sgt-text'>"
+										+ "<h4>"
+										+ mName
+										+ "</h4>"
+										+ "<span>"
+										+ mEmail
+										+ "</span>"
+										+ "</div>"
+										+ "<span><i midyou='"
+										+ mId
+										+ "' class='la la-plus follow' ></i></span>"
+										+ "</div>";
 
+									
+								}
+							
+							});
+							 	html+="</div>";
+							 	console.log($('div.suggestions > div.suggestions-list').size());
+							 	if($('div.suggestions > div.suggestions-list').size()>1){
+							 		$('div.suggestions > div.suggestions-list').eq(1).slideToggle({
+							 			duration:500
+							 		});
+							 		$('div.suggestions > div.suggestions-list').eq(0).slideToggle({
+							 			duration:500
+							 		});
+							 	}else{
+							 		console.log('append');
+							 		$('div.suggestions').append(html);
+							 		$('div.suggestions div.suggestions-list').eq(1).slideToggle({
+							 			duration:500
+							 		});
+							 		$('div.suggestions > div.suggestions-list').eq(0).slideToggle({
+							 			duration:500
+							 		});
+							 	}
+							 	
+								}
+							});
+					e.preventDefault();
+				});
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-$('#followers').on('click',
+$('#followings').on('click',
 		function(e) {
 			var $mIdYou = $(e.target);
 			var param = "mId=" + $mIdYou.attr("mid");
 			console.log(param);
-			$.ajax({url : "followerList",
+			$.ajax({url : "followingList",
 					method : "POST",
 					data : param,
 					dataType : "JSON",
