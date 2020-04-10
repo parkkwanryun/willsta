@@ -7,11 +7,17 @@ import com.itwill.willsta.domain.DM;
 import com.itwill.willsta.domain.DmContents;
 
 public interface DmService {
-	// DM 채팅방 생성
-	public int dmInsert(DM dm);
+	// 첫 채팅방 생성
+	public int dmFirstInsert(String mId);
+	
+	// 상대 채팅방 생성
+	public int dmLastInsert(int dmNo, String mId);
 
 	// DM 채팅방 전체 조회
-	public List<DM> dmSelectAll(String mId);
+	public List<DM> dmSelectAll(String mId, Integer dmNo);
+	
+	// DM 채팅방 유저 전체 조회
+	public List<DM> dmRoomSelectAll(String mId);
 	
 	// 특정 DM 채팅방 조회
 	public DM dmSelectOne(int dmNo);

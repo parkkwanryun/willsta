@@ -31,26 +31,46 @@ public class DmController {
 		return loginId;
 	}
 	@ResponseBody
-	@RequestMapping(value = "/messages_room_create")
-	public String messageRoomInsert(@RequestParam("mId") String mId,
-									@RequestParam("mIdYou") String mIdYou) {
-		String isSuccess = "success";
-		List<DM> dmList = dmService.dmSelectAll(mId);
-		for (DM dm : dmList) {
-			if(dm.getmIdYou().equalsIgnoreCase(mIdYou)) {
-				isSuccess = "faild";
-				break;
-			}
+	@RequestMapping(value = "/messages_firstRoom_create")
+	public String messageRoomInsert(@RequestParam("mId") String mId) {
+		String isSuccess = "false";
+		if(dmService.dmFirstInsert(mId) != 0) {
+			isSuccess = "success";
 		}
-		if(isSuccess == "success") {
-			dmService.dmInsert(new DM(-999, mId, mIdYou, "sysdate"));
-		} 
+		return "isSuccess";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/messages_Childroom_create")
+	public String messageRoomInsert(@RequestParam("mId") String mId,
+									@RequestParam("dmNo") int dmNo) {
+		System.out.println("@@@@@@@@@@@@@@@@"+mId);
+		System.out.println("@@@@@@@@@@@@@@@@"+dmNo);
+		String isSuccess = "success";
+		if(dmNo == 0) {
+			dmService.dmFirstInsert(mId);
+		} else {
+			List<DM> dmList = dmService.dmSelectAll(mId,dmNo);
+			for (DM dm : dmList) {
+				if(dm.getmId().equalsIgnoreCase(mId)) {
+					isSuccess = "faild";
+					break;
+				}
+			}
+			if(isSuccess == "success") {
+				dmService.dmLastInsert(dmNo, mId);
+			} 
+		}
 		return isSuccess;
 	}
+	
+	
+	
 	@RequestMapping(value = "/messages")
 	public String messageForm(HttpSession httpSession) {
 		String mId = (String)httpSession.getAttribute("mId");
-		List<DM> dmList = dmService.dmSelectAll(mId); 
+		List<DM> dmList = dmService.dmRoomSelectAll(mId); 
+		System.out.println("@@@@@@@@mId:"+mId);
 		httpSession.setAttribute("dmList", dmList);
 		httpSession.setAttribute("mId", mId);
 		return "messages";
@@ -77,9 +97,8 @@ public class DmController {
 		String mIdYou = strs[1];
 		String contents = strs[2];
 		String msgDate = strs[3];
-		String dmNo = strs[4]; 
-		String msg = mId+":"+contents;
-		rowCount = dmService.dmcInsert(new DmContents(Integer.parseInt(dmNo),-999,msg,"sysdate"));
+		String dmNo = strs[4];
+		rowCount = dmService.dmcInsert(new DmContents(Integer.parseInt(dmNo), -999, contents, "sysdate", mIdYou));
 		System.out.println(rowCount);
 		}
 		return rowCount;

@@ -60,7 +60,7 @@ div.messages-list>ul>li:hover {
 													</div>
 													<div class="usr-mg-info">
 														<h4 style='display: none'>${dm.mId}</h4>
-														<h3>${dm.mIdYou}</h3>
+														<h3>${dm.mId}</h3>
 													</div>
 													<!--usr-mg-info end-->
 													<span class="posted_time">${dm.dmDate}</span> <span

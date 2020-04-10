@@ -7,20 +7,31 @@ public class DmContents {
 	private Integer dmContentsNo;
 	private String dmContentsMessage;
 	private String dmContentsDate;
+	private String dmSenderId;
 	private String dmContentsImage;
 	
 	public DmContents() {
-		// TODO Auto-generated constructor stub
 	}
 
-	public DmContents(Integer dmNo, Integer dmContentsNo, String dmContentsMessage, String dmContentsDate) {
+	public DmContents(Integer dmNo, Integer dmContentsNo, String dmContentsMessage, String dmContentsDate,
+			String dmSenderId, String dmContentsImage) {
+		super();
 		this.dmNo = dmNo;
 		this.dmContentsNo = dmContentsNo;
 		this.dmContentsMessage = dmContentsMessage;
 		this.dmContentsDate = dmContentsDate;
-	
+		this.dmSenderId = dmSenderId;
+		this.dmContentsImage = dmContentsImage;
 	}
 	
+	public DmContents(Integer dmNo, Integer dmContentsNo, String dmContentsMessage, String dmContentsDate,
+			String dmSenderId) {
+		this.dmNo = dmNo;
+		this.dmContentsNo = dmContentsNo;
+		this.dmContentsMessage = dmContentsMessage;
+		this.dmContentsDate = dmContentsDate;
+		this.dmSenderId = dmSenderId;
+	}
 
 	public Integer getDmNo() {
 		return dmNo;
@@ -54,6 +65,14 @@ public class DmContents {
 		this.dmContentsDate = dmContentsDate;
 	}
 
+	public String getDmSenderId() {
+		return dmSenderId;
+	}
+
+	public void setDmSenderId(String dmSenderId) {
+		this.dmSenderId = dmSenderId;
+	}
+
 	public String getDmContentsImage() {
 		return dmContentsImage;
 	}
@@ -65,7 +84,8 @@ public class DmContents {
 	@Override
 	public String toString() {
 		return "DmContents [dmNo=" + dmNo + ", dmContentsNo=" + dmContentsNo + ", dmContentsMessage="
-				+ dmContentsMessage + ", dmContentsDate=" + dmContentsDate + ", dmContentsImage=" + "]\n";
+				+ dmContentsMessage + ", dmContentsDate=" + dmContentsDate + ", dmSenderId=" + dmSenderId
+				+ ", dmContentsImage=" + dmContentsImage + "]";
 	}
 	
 	

@@ -37,15 +37,15 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
 		String msg = message.getPayload();
 		if(!StringUtils.isEmpty(msg)) {
 			String[] strs = msg.split(",");
-			if(strs != null && strs.length == 4) {
+			if(strs != null && strs.length == 5) {
 				String mId = strs[0];
 				String mIdYou = strs[1];
 				String contents = strs[2];
 				String msgDate = strs[3];
-				
+				String dmNo	= strs[4];
 				WebSocketSession mIdYouSession = userSessions.get(mIdYou);
 				if(mIdYouSession != null) {
-					TextMessage tmpMsg = new TextMessage(mId+","+mIdYou+","+contents+","+msgDate);
+					TextMessage tmpMsg = new TextMessage(mId+","+mIdYou+","+contents+","+msgDate+","+dmNo);
 					mIdYouSession.sendMessage(tmpMsg);
 				}
 			}

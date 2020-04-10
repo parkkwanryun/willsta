@@ -16,17 +16,27 @@ import com.itwill.willsta.repository.MemberDao;
 public class DmServiceImpl implements DmService {
 	@Autowired
 	private DmDao dmDao;
-	
 	@Autowired
 	private DmContentsDao dmContentsDao;
 	
+	//첫 채팅방 생성
 	@Override
-	public int dmInsert(DM dm) {
-		 return dmDao.dmInsert(dm);
+	public int dmFirstInsert(String mId) {
+		return dmDao.dmFirstInsert(mId);
+	}
+	// 상대 채팅방 생성
+	@Override
+	public int dmLastInsert(int dmNo, String mId) {
+		return dmDao.dmLastInsert(dmNo, mId);
 	}
 	@Override
-	public List<DM> dmSelectAll(String mId) {
-		return dmDao.dmSelectAll(mId);
+	public List<DM> dmSelectAll(String mId, Integer dmNo) {
+		return dmDao.dmSelectAll(mId, dmNo);
+	}
+	
+	@Override
+	public List<DM> dmRoomSelectAll(String mId) {
+		return dmDao.dmRoomSelectAll(mId);
 	}
 	@Override
 	public DM dmSelectOne(int dmNo) {
@@ -64,4 +74,6 @@ public class DmServiceImpl implements DmService {
 	public int dmcDelete(int dmContentsNo) {
 		return dmContentsDao.dmcDelete(dmContentsNo);
 	}
+
+
 }

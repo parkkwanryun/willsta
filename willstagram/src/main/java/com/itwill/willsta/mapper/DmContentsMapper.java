@@ -18,7 +18,7 @@ public interface DmContentsMapper {
 			"ORDER BY dmContentsDate ASC")
 	public List<DmContents> dmcSelectAll();
 	
-	@Select("SELECT dmNo, dmContentsNo, dmContentsMessage, to_char(dmContentsDate,'HH24:MI:SS') as dmContentsDate " + 
+	@Select("SELECT dmNo, dmContentsNo, dmContentsMessage, to_char(dmContentsDate,'HH24:MI:SS') as dmContentsDate, dmSenderId, dmContentsImage " + 
 			"FROM dm_contents " + 
 			"WHERE dmNo = #{dmNo} " + 
 			"ORDER BY dmContentsDate ASC")
@@ -29,8 +29,8 @@ public interface DmContentsMapper {
 			"WHERE dmContentsNo = #{dmContentsNo}")
 	public DmContents dmcSelectOne(int dmContentsNo);
 	
-	@Insert("INSERT INTO dm_contents(dmNo, dmContentsNo, dmContentsMessage, dmContentsDate) " + 
-			"VALUES(#{dmNo}, dm_contents_number_seq.nextval, #{dmContentsMessage}, sysdate)")
+	@Insert("INSERT INTO dm_contents(dmNo, dmContentsNo, dmContentsMessage, dmContentsDate, dmSenderId) " + 
+			"VALUES(#{dmNo}, dm_contents_number_seq.nextval, #{dmContentsMessage}, sysdate, #{dmSenderId})")
 	public int dmcInsert(DmContents dmContents);
 	
 	@Update("UPDATE dm_contents " + 

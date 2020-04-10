@@ -12,13 +12,21 @@ import com.itwill.willsta.domain.DM;
 
 @Mapper
 public interface DMMapper {
-	//채팅방 목록 전체 출력
-	@Select("SELECT d.dmNo, d.mId, d.mIdYou, to_char(dmDate,'MM/DD') as dmDate, " + 
+	//채팅방 채팅중인 목록 전체 출력
+	@Select("SELECT d.dmNo, d.mId, to_char(dmDate,'MM/DD') as dmDate, " + 
 			"        (SELECT m.mImage FROM member m WHERE m.mId IN( " + 
-			"            (SELECT d.mIdYou FROM DM WHERE m.mId = d.mIdYou))) as mImage " + 
+			"            (SELECT d.mId FROM DM WHERE m.mId = d.mId))) as mImage " + 
 			"FROM dm d " + 
-			"WHERE d.mId = #{mId}")
-	public List<DM> dmSelectAll(String mId);	
+			"WHERE d.mId != #{mId} AND d.dmNo = #{dmNo}")
+	public List<DM> dmSelectAll(String mId, Integer dmNo);	
+	
+	// 채팅방 목록 전체 출력
+	@Select("SELECT d.dmNo, d.mId, to_char(dmDate,'MM/DD') as dmDate, " + 
+			"        (SELECT m.mImage FROM member m WHERE m.mId IN( " + 
+			"            (SELECT d.mId FROM DM WHERE m.mId = d.mId))) as mImage " + 
+			"FROM dm d " + 
+			"WHERE d.mId != #{mId}")
+	public List<DM> dmRoomSelectAll(String mId);	
 	
 	//로그인한 사람의 채팅방만 출력
 	@Select("SELECT dmNo, mId, mIdYou, to_char(dmDate,'MM/DD') as dmDate"
@@ -32,9 +40,13 @@ public interface DMMapper {
 			"WHERE dmNo = #{dmNo}")
 	public int dmUpdate(DM dm);
 	
-	//채팅방 생성
-	@Insert("INSERT INTO dm(dmNo, mId, mIdYou, dmDate) VALUES(dm_number_seq.nextval, #{mId}, #{mIdYou}, sysdate)")
-	public int dmInsert(DM dm);
+	//상대 채팅방 생성
+	@Insert("INSERT INTO dm(dmNo, mId, dmDate) VALUES(#{dmNo}, #{mId}, sysdate)")
+	public int dmLastInsert(int dmNo, String mId);
+	
+	//첫 채팅방 생성
+	@Insert("INSERT INTO dm(dmNo, mId, dmDate) VALUES(dm_number_seq.nextval, #{mId}, sysdate)")
+	public int dmFirstInsert(String mId);
 	
 	//채팅방 삭제
 	@Delete("DELETE FROM dm " + 
