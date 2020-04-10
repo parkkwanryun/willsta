@@ -60,8 +60,6 @@ function commentsInsertActionAfterListFunction(e){
 		method : "POST",
 		dataType : "html",
 		success : function(htmlData){
-			console.log(htmlData);
-			$postComments.append(htmlData);
 			$postComments.children().fadeToggle(500);
 		}
 	});
