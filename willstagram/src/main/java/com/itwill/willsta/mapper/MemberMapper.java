@@ -19,8 +19,8 @@ public interface MemberMapper {
 	
 	/*회원정보 로딩*/
 	@Select("SELECT m.mId, m.mPass, m.mName, m.mEmail, m.mPhone, m.mImage, "
-			+ " (select count(*) from follow x where x.mid = m.mId) as followingCount,"
-			+ " (select count(*) from follow x where x.midyou = m.mId) as followerCount "
+			+ " (select count(*) from follow x where x.mid = m.mId) as followerCount,"
+			+ " (select count(*) from follow x where x.midyou = m.mId) as followingCount "
 			+ " FROM MEMBER M "
 			+ " WHERE m.mId=#{mId}")
 	public Member selectByIdContainFollowInfo(@Param("mId") String mId);
@@ -28,8 +28,8 @@ public interface MemberMapper {
 	/*친구추천 - 랜덤로딩 5건*/
 	@Select("SELECT * FROM ("
 			+ " SELECT m.mId, m.mPass, m.mName, m.mEmail, m.mPhone, m.mImage, "
-			+ " (select count(*) from follow x where x.mid = m.mId) as followingCount,"
-			+ " (select count(*) from follow x where x.midyou = m.mId) as followerCount "
+			+ " (select count(*) from follow x where x.mid = m.mId) as followerCount,"
+			+ " (select count(*) from follow x where x.midyou = m.mId) as followingCount "
 			+ " FROM MEMBER M "
 			+ " WHERE MID NOT IN (SELECT MIDYOU FROM FOLLOW WHERE MID = #{mId}) "
 			+ " ORDER BY DBMS_RANDOM.RANDOM)"

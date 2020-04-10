@@ -64,7 +64,7 @@
 												<li>
 													<h4>Following</h4>
 													<span></span>
-													<b><a mid='${member.mId}' id="follow_count_a" href="#" title="">${member.followingCount}</a></b>
+													<b><a mid='${member.mId}' id="followings" href="#" title="">${member.followingCount}</a></b>
 													
 												
 													<%-- <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -76,7 +76,7 @@
 												<li>
 													<h4>Followers</h4>
 													<span></span>
-													<b><a  href="#" title="">${member.followerCount}</a></b>
+													<b><a mid='${member.mId}' id="followers"  href="#" title="">${member.followerCount}</a></b>
 												</li>
 											</ul>
 										</div><!--user_pro_status end-->
@@ -95,7 +95,9 @@
 														<h4>${mList.mName}</h4>
 														<span>${mList.mEmail}</span>
 													</div>
-													<span><i midyou='${mList.mId}' class="la la-plus follow" ></i></span> 
+													<span><i mid='${mList.mId}' class="la la-plus follow" ></i></span> 
+										
+													
 												</div>
 											</c:forEach>
 											<div class="view-more">
