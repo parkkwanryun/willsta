@@ -1,220 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
+    pageEncoding="UTF-8"%> 
 <jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
 
 <body>
 	<div class="wrapper">	
 		<header>
-			<div class="container">
-				<div class="header-data">
-					<div class="logo">
-						<a href="index.html" title=""><img src="images/logo.png" alt=""></a>
-					</div><!--logo end-->
-					<div class="search-bar">
-						<form>
-							<input type="text" name="search" placeholder="Search...">
-							<button type="submit"><i class="la la-search"></i></button>
-						</form>
-					</div><!--search-bar end-->
-					<nav>
-						<ul>
-							<li>
-								<a href="index.html" title="">
-									<span><img src="images/icon1.png" alt=""></span>
-									Home
-								</a>
-							</li>
-							<li>
-								<a href="companies.html" title="">
-									<span><img src="images/icon2.png" alt=""></span>
-									Companies
-								</a>
-								<ul>
-									<li><a href="companies.html" title="">Companies</a></li>
-									<li><a href="company-profile.html" title="">Company Profile</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="projects.html" title="">
-									<span><img src="images/icon3.png" alt=""></span>
-									Projects
-								</a>
-							</li>
-							<li>
-								<a href="profiles.html" title="">
-									<span><img src="images/icon4.png" alt=""></span>
-									Profiles
-								</a>
-								<ul>
-									<li><a href="user-profile.html" title="">User Profile</a></li>
-									<li><a href="my-profile-feed.html" title="">my-profile-feed</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="jobs.html" title="">
-									<span><img src="images/icon5.png" alt=""></span>
-									Jobs
-								</a>
-							</li>
-							<li>
-								<a href="#" title="" class="not-box-openm">
-									<span><img src="images/icon6.png" alt=""></span>
-									Messages
-								</a>
-								<div class="notification-box msg" id="message">
-									<div class="nt-title">
-										<h4>Setting</h4>
-										<a href="#" title="">Clear all</a>
-									</div>
-									<div class="nott-list">
-										<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img1.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="messages.html" title="">Jassica William</a> </h3>
-							  					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.</p>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img2.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="messages.html" title="">Jassica William</a></h3>
-							  					<p>Lorem ipsum dolor sit amet.</p>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img3.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="messages.html" title="">Jassica William</a></h3>
-							  					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut labore et dolore magna aliqua.</p>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				
-						  				
-						  				
-						  				
-						  				<div class="view-all-nots">
-						  					<a href="messages.html" title="">View All Messsages</a>
-						  				</div>
-									</div><!--nott-list end-->
-								</div><!--notification-box end-->
-							</li>
-							<li>
-								<a href="#" title="" class="not-box-open">
-									<span><img src="images/icon7.png" alt=""></span>
-									Notification
-								</a>
-								<div class="notification-box noti" id="notification">
-									<div class="nt-title">
-										<h4>Setting</h4>
-										<a href="#" title="">Clear all</a>
-									</div>
-									<div class="nott-list">
-										<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img1.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img2.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img3.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img2.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="view-all-nots">
-						  					<a href="#" title="">View All Notification</a>
-						  				</div>
-									</div><!--nott-list end-->
-								</div><!--notification-box end-->
-							</li>
-						</ul>
-					</nav><!--nav end-->
-					<div class="menu-btn">
-						<a href="#" title=""><i class="fa fa-bars"></i></a>
-					</div><!--menu-btn end-->
-					<div class="user-account">
-						<div class="user-info">
-							<img src="images/resources/user.png" alt="">
-							<a href="#" title="">John</a>
-							<i class="la la-sort-down"></i>
-						</div>
-						<div class="user-account-settingss">
-							<h3>Online Status</h3>
-							<ul class="on-off-status">
-								<li>
-									<div class="fgt-sec">
-										<input type="radio" name="cc" id="c5">
-										<label for="c5">
-											<span></span>
-										</label>
-										<small>Online</small>
-									</div>
-								</li>
-								<li>
-									<div class="fgt-sec">
-										<input type="radio" name="cc" id="c6">
-										<label for="c6">
-											<span></span>
-										</label>
-										<small>Offline</small>
-									</div>
-								</li>
-							</ul>
-							<h3>Custom Status</h3>
-							<div class="search_form">
-								<form>
-									<input type="text" name="search">
-									<button type="submit">Ok</button>
-								</form>
-							</div><!--search_form end-->
-							<h3>Setting</h3>
-							<ul class="us-links">
-								<li><a href="profile-account-setting.html" title="">Account Setting</a></li>
-								<li><a href="#" title="">Privacy</a></li>
-								<li><a href="#" title="">Faqs</a></li>
-								<li><a href="#" title="">Terms & Conditions</a></li>
-							</ul>
-							<h3 class="tc"><a href="sign-in.html" title="">Logout</a></h3>
-						</div><!--user-account-settingss end-->
-					</div>
-				</div><!--header-data end-->
-			</div>
-		</header><!--header end-->	
-
+		<!-- Menubar Starts -->
+			<jsp:include page="../common_top_menu.jsp" />
+			<!-- Menubar End -->
+		</header>
 
 		<section class="profile-account-setting">
 			<div class="container">
@@ -225,7 +19,9 @@
 								<div class="nav nav-tabs" id="nav-tab" role="tablist">
 								    <a class="nav-item nav-link active" id="nav-acc-tab" data-toggle="tab" href="#nav-acc" role="tab" aria-controls="nav-acc" aria-selected="true"><i class="la la-cogs"></i>Account Setting</a>
 								    <a class="nav-item nav-link" id="nav-status-tab" data-toggle="tab" href="#nav-status" role="tab" aria-controls="nav-status" aria-selected="false"><i class="fa fa-line-chart"></i>Status</a>
-								    <a class="nav-item nav-link" id="nav-password-tab" data-toggle="tab" href="#nav-password" role="tab" aria-controls="nav-password" aria-selected="false"><i class="fa fa-lock"></i>Change Password</a>
+								    
+								    <a class="nav-item nav-link" id="nav-password-tab" data-toggle="tab" href="#nav-password" role="tab" aria-controls="nav-password" aria-selected="false"><i class="fa fa-lock"></i>Modify Information</a>
+								    
 								    <a class="nav-item nav-link" id="nav-notification-tab" data-toggle="tab" href="#nav-notification" role="tab" aria-controls="nav-notification" aria-selected="false"><i class="fa fa-flash"></i>Notifications</a>
 								    <a class="nav-item nav-link" id="nav-privcy-tab" data-toggle="tab" href="#privcy" role="tab" aria-controls="privacy" aria-selected="false"><i class="fa fa-group"></i>Requests</a>
 								    <a class="nav-item nav-link" id="security" data-toggle="tab" href="#security-login" role="tab" aria-controls="security-login" aria-selected="false"><i class="fa fa-user-secret"></i>Security and Login</a>
@@ -346,13 +142,32 @@
 							  	<div class="tab-pane fade" id="nav-password" role="tabpanel" aria-labelledby="nav-password-tab">
 							  		<div class="acc-setting">
 										<h3>Account Setting</h3>
-										<form id = "member_Modify">
+										<form id = "member_modify_action" method="POST">
+										
+										<!-- 아이디 변경 -->
+											<div class="cp-field">
+												<h5>New Id</h5>
+												<div class="cpp-fiel">
+													<input type="text" name="mId" class="required" placeholder="New Id">
+													<i class="la la-user"></i>
+												</div>
+											</div>
+										
 										<!-- 비밀번호 변경 -->
 											<div class="cp-field">
 												<h5>New Password</h5>
 												<div class="cpp-fiel">
-													<input type="text" name="mPass" placeholder="Old Password">
+													<input type="text" name="mPass" class="required" placeholder="New Password">
 													<i class="fa fa-lock"></i>
+												</div>
+											</div>
+											
+											<!-- 아이디 변경 -->
+											<div class="cp-field">
+												<h5>New Name</h5>
+												<div class="cpp-fiel">
+													<input type="text" name="mName" class="required" placeholder="New Name">
+													<i class="la la-user"></i>
 												</div>
 											</div>
 											
@@ -360,41 +175,40 @@
 											<div class="cp-field">
 												<h5>New Email</h5>
 												<div class="cpp-fiel">
-													<input type="text" name="mEmail" placeholder="New Password">
-													<i class="fa fa-lock"></i>
+													<input type="text" name="mEmail" class="required" placeholder="New Email">
+													<i class="la la-user"></i>
 												</div>
 											</div>
-											
 											
 												<!-- 전화번호 변경 -->
 											<div class="cp-field">
 												<h5>New Phone</h5>
 												<div class="cpp-fiel">
-													<input type="text" name="mPhone" placeholder="Repeat Password">
-													<i class="fa fa-lock"></i>
+													<input type="text" name="mPhone" class="required" placeholder="New Phone">
+													<i class="la la-user"></i>
 												</div>
 											</div>
 
-												<!-- 프로필 이미지 변경 -->
+												<!-- 프로필 이미지 변경(이미지 업로드) -->
 											<div class="cp-field">
-												<h5>New Phone</h5>
+												<h5>New Image</h5>
 												<div class="cpp-fiel">
-													<input type="text" name="mImage" placeholder="Repeat Password">
-													<i class="fa fa-lock"></i>
+													<input type="text" name="mImage" class="required" placeholder="New Image">
+													<i class="la la-user"></i>
 												</div>
 											</div>
-											
 											
 											<div class="cp-field">
 												<h5><a href="#" title="">Forgot Password?</a></h5>
 											</div>
 											<div class="save-stngs pd2">
 												<ul>
-													<li><button type="submit">Save Setting</button></li>
-													<li><button type="submit">Restore Setting</button></li>
+													<li><button type="submit" value="submit">Save Setting</button></li>
 												</ul>
 											</div><!--save-stngs end-->
 										</form>
+										
+										
 									</div><!--acc-setting end-->
 							  	</div>
 							  	<div class="tab-pane fade" id="nav-notification" role="tabpanel" aria-labelledby="nav-notification-tab">
@@ -967,8 +781,6 @@
 		 <jsp:include page="/WEB-INF/commons/include_footy_js.jsp"/>
 			<!--footer end-->
 	</div><!--theme-layout end-->
-
-
 
  <jsp:include page="/WEB-INF/commons/include_footer_js.jsp"/>
  <script type="text/javascript" src="js/wMember.js"></script>
