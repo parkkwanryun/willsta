@@ -1,4 +1,4 @@
-// 포스트-댓글 전체 보이기 ajax요청
+//포스트-댓글 전체 보이기 ajax요청
 function postCommentsListFunction(e){
 	var $postComments = $(e.target).parents(".post-bar").find(".comment-section");
 	console.log($postComments);
@@ -11,33 +11,10 @@ function postCommentsListFunction(e){
 			url : "postCommentsList",
 			data : params,
 			method : "POST",
-			dataType : "json",
-			success : function(jsonArray){
-				console.log(jsonArray);
-				var html = "";
-				$.each(jsonArray, function(i, jsonObject){
-					jsonObject = jsonArray[i];
-					var cNo = jsonObject.cNo;
- 					var mId = jsonObject.mId;
-					var cTime = jsonObject.cTime;
-					var cContents = jsonObject.cContents;
-					html += "<div class='comment-sec' style='display:none;' comments_no='"+cNo+"'>" +
-							"<ul>" +
-							"	<li>" +
-							"		<div class='comment-list'>"	+	
-							"			<div class='comment'>" +
-							"				<h3>"+mId+"</h3>" +
-							"				<span><img src='images/clock.png' alt=''>"+cTime+"</span>" +
-							"				<p>"+cContents+"</p>" +
-							"				<a href='#' class='active active-reply' comments_no='"+cNo+"'>" +
-							"					<i class='fa fa-reply-all'> Reply</i></a>" +
-							"			</div>" +
-							" 		</div>" +	
-							"	</li>" +
-							"</ul>" +
-							"</div>";
-				});
-				$postComments.append(html);
+			dataType : "html",
+			success : function(htmlData){
+				console.log(htmlData);
+				$postComments.append(htmlData);
 				$postComments.children().fadeToggle(500);
 			}
 		});
@@ -62,8 +39,7 @@ function commentsInsertActionFunction(e){
 		success : function(result) {
 			if(result.trim() == "true"){
 				$comments[0].reset();
-				//$("a[post_no="+pNo+"]").trigger('click');
-				//console.log(pNo);
+				commentsInsertActionAfterListFunction(e);
 			}else if(result.trim() == "false"){
 				alert("댓글쓰기 실패");
 				$comments.select();
@@ -72,6 +48,24 @@ function commentsInsertActionFunction(e){
 	});
 }
 
+//댓글 작성 후 포스트 댓글 ajax 요청
+function commentsInsertActionAfterListFunction(e){
+	var $postComments = $(e.target).parents(".post-bar").find(".comment-section");
+	console.log($postComments);
+	var params = "pNo="+$postComments.attr("post_no");
+	console.log(params);
+	$.ajax({
+		url : "postCommentsList",
+		data : params,
+		method : "POST",
+		dataType : "html",
+		success : function(htmlData){
+			console.log(htmlData);
+			$postComments.append(htmlData);
+			$postComments.children().fadeToggle(500);
+		}
+	});
+}
 
 //대댓글 작성 form 보여주기
 function reCommentsInsertFormShowFunction(e){
