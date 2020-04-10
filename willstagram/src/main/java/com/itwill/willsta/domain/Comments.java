@@ -4,33 +4,35 @@ import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
-@Component("comments")
 public class Comments {
 	private Integer cNo;
 	private Integer pNo;
 	private String mId;
 	private String cContents;
 	private Date cTime; //Default: SYSDATE
+	private Integer recNo;
 	
 	public Comments() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Comments(Integer cNo, Integer pNo, String mId, String cContents, Date cTime) {
+
+	public Comments(Integer cNo, Integer pNo, String mId, String cContents, Date cTime, Integer recNo) {
 		super();
 		this.cNo = cNo;
 		this.pNo = pNo;
 		this.mId = mId;
 		this.cContents = cContents;
 		this.cTime = cTime;
+		this.recNo = recNo;
 	}
 
-	public Comments(Integer cNo, Integer pNo, String mId, String cContents) {
+	public Comments(Integer cNo, Integer pNo, String mId, String cContents, Integer recNo) {
 		super();
 		this.cNo = cNo;
 		this.pNo = pNo;
 		this.mId = mId;
 		this.cContents = cContents;
+		this.recNo = recNo;
 	}
 
 	public Integer getcNo() {
@@ -73,11 +75,17 @@ public class Comments {
 		this.cTime = cTime;
 	}
 
+	public Integer getRecNo() {
+		return recNo;
+	}
+
+	public void setRecNo(Integer recNo) {
+		this.recNo = recNo;
+	}
+
 	@Override
 	public String toString() {
-		return "comments [cNo=" + cNo + ", pNo=" + pNo + ", mId=" + mId + ", cContents=" + cContents + ", cTime="
-				+ cTime + "]\n";
+		return "Comments [cNo=" + cNo + ", pNo=" + pNo + ", mId=" + mId + ", cContents=" + cContents + ", cTime="
+				+ cTime + ", recNo=" + recNo + "]\n";
 	}
-	
-	
 }

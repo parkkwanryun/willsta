@@ -52,7 +52,7 @@ public class CommentsUnitTest {
     @Test //댓글 작성
     @Ignore
     public void createCommentsTest() throws Exception {
-    	Comments comments = new Comments(-999, 8, "hjs", "DAO insert test");
+    	Comments comments = new Comments(-999, 8, "hjs", "DAO insert test", -999);
     	int createResult = commentsDao.createComments(comments);
     	Assert.assertEquals(1, createResult);
     }
@@ -73,32 +73,11 @@ public class CommentsUnitTest {
     	Assert.assertEquals(1, updateResult);
     }
     
-    @Test //하나의 포스트에 따른 한 맴버의 댓글 수
-    @Ignore
-    public void postCommentsCountBymIdTest() throws Exception {
-    	int postCommentsCount = commentsDao.postCommentsCountBymId(10, "KJS");
-    	Assert.assertEquals(3, postCommentsCount);
-    }
-     
-    @Test //한 맴버가 작성한 총 댓글 수
-    @Ignore
-    public void totalCommentsCountTest() throws Exception {
-    	int totalCommentsCount = commentsDao.totalCommentsCountBymId("KJS");
-    	Assert.assertEquals(5, totalCommentsCount);
-    }
-    
     @Test //하나의 포스트에 달린 총 댓글 수
     @Ignore
     public void postCommentsCountTest() throws Exception {
     	int postCommentsCount = commentsDao.postCommentsCount(15);
     	Assert.assertEquals(10, postCommentsCount);
-    }
-    
-    @Test //한 맴버의 댓글 전체 조회
-    @Ignore
-    public void findCommentsListBymIdTest() throws Exception {
-    	List<Comments> commentsListBymId = commentsDao.findCommentsListBymId("hjs");
-    	System.out.println("### findCommentsListBymId: "+commentsListBymId);
     }
     
     @Test //하나의 포스트에 달린 댓글 전체 조회
