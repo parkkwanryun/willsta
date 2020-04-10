@@ -113,14 +113,14 @@ public class MemberController {
 	@MemberLoginCheck
 	@ResponseBody
 	@RequestMapping(value="/account-setting", method=RequestMethod.POST, produces="text/plain; charset=UTF-8")
-	public String AccountSetting(@RequestParam("mId")String mId,
+	public String AccountSetting(@RequestParam(name="mId")String mId,
 								@RequestParam("mPass")String mPass,
 								@RequestParam("mName")String mName,
 								@RequestParam("mEmail")String mEmail,
 								@RequestParam("mPhone")String mPhone,
-								@RequestParam("mImage")String mImage,
-								@RequestParam("mRetire")String mRetire) {
-		boolean updateMember = memberService.updateMember(new Member(mId, mPass, mName, mEmail, mPhone, mImage, mRetire));
+								@RequestParam("mImage")String mImage) {
+		boolean updateMember = memberService.updateMember(new Member(mId, mPass, mName, mEmail, mPhone, mImage, "off"));
+		System.out.println(updateMember);
 		if(updateMember) {
 			System.out.println("회원 정보 수정 성공");
 			updateMember= true;
@@ -134,6 +134,8 @@ public class MemberController {
 	/*회원탈퇴*/
 	
 	/*비밀번호 찾기*/
+	
+	
 	
 	
 	@MemberLoginCheck
