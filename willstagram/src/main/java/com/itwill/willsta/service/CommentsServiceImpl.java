@@ -44,25 +44,6 @@ public class CommentsServiceImpl implements CommentsService {
 		return findCommentsList;
 	}
 	
-	//한 맴버의 댓글 전체 조회
-	@Override
-	public List<Comments> findCommentsListBymId(String mId) throws Exception {
-		List<Comments> findCommentsListBymId = commentsDao.findCommentsListBymId(mId);
-		return findCommentsListBymId;
-	}
-	
-	//하나의 포스트에 따른 한 맴버의 댓글 수
-	@Override
-	public int postCommentsCountBymId(int pNo, String mId) throws Exception {
-		return commentsDao.postCommentsCountBymId(pNo, mId);
-	}
-	
-	//한 맴버가 작성한 총 댓글 수
-	@Override
-	public int totalCommentsCountBymId(String mId) throws Exception {
-		return commentsDao.totalCommentsCountBymId(mId);
-	}
-	
 	//하나의 포스트에 달린 총 댓글 수
 	@Override
 	public int postCommentsCount(int pNo) throws Exception {

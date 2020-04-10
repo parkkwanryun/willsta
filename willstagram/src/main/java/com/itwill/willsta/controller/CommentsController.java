@@ -81,12 +81,14 @@ public class CommentsController {
 		comments.setpNo(pNo);
 		comments.setmId(mId);
 		comments.setcContents(cContents);
+		/*
 		int createResult = commentsService.createComment(comments);
 		if(createResult == 1) {
 			result = "true";
 		} else {
 			result = "false";
 		}
+		*/
 		return result;
 	}
 	
