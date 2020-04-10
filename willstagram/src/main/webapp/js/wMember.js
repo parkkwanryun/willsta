@@ -11,23 +11,23 @@
  (input text 삭제 시 warning 문구 삭제 처리)  (완료)
  5.아이디 / 비밀번호 공백 불가 조치 (완료)														
  6.Forgot Password 버튼 위치 조정 (그리드) (완료)
+ 7.비밀번호 찾기 (Forgot Password?)(완료) 
 
- 7.비밀번호 찾기 (Forgot Password?) or 임시비밀번호 안내 
 
-
- <<회원가입>> (~4/12)
+ <<회원가입>> (~4/14)
  1.회원가입 시, id와 password, email, name, phone 유효성 체크(validate) 
  - 유효성 체크 중, 아이디 중복 검사 (완료) : Talend ApI check 이용
-
- 2.회원가입 시 체크박스(mRetire 체크 ON-> OFF) 필수 체크 알림. 
- 3.회원가입 이미지 업로드 (4/12)
+ 2.회원가입 이미지 업로드 (4/14)
 
 
  <<회원정보수정&탈퇴>> (~4/14)
  1.UPDATE 
  - 회원 정보 수정 시 유효성 체크(validate) 
+ - 비밀번호 찾기 (Forgot Password?)
  2.DELETE 
- 회원 탈퇴  
+ 회원 탈퇴
+
+
 
  <<추가 사항>>
  <<네이버 아이디 로그인>>
@@ -169,7 +169,6 @@ $(function() {
 				maxlength : "비밀번호는 최대 {0}글자 이하입니다"
 			}
 		},
-		// 유효성 통과 후 호출
 		submitHandler : function() {
 			$('#msg1').text('');
 			member_login_action_function();
@@ -290,12 +289,8 @@ $(function() {
 				required : true,
 				minlength : 9,
 				digits : true
-
 			},
 			mImage : {
-				required : false
-			},
-			mRetire : {
 				required : false
 			}
 		},
@@ -321,9 +316,6 @@ $(function() {
 			},
 			mImage : {
 				required : "프로필 이미지를 업로드해주세요",
-			},
-			mRetire : {
-				required : false
 			}
 		},
 		submitHandler : function() {
