@@ -106,6 +106,7 @@ public class MemberController {
 		return newId+"";
 	}
 	
+	/*회원 정보 수정 탭*/
 	@ResponseBody
 	@RequestMapping(value="/profile-account-setting", method=RequestMethod.POST, produces="text/plain; charset=UTF-8")
 	public String AccountSetting(@RequestParam("mId")String mId,
