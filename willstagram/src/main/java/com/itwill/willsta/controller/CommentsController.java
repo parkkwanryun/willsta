@@ -49,7 +49,7 @@ public class CommentsController {
 		List<Comments> postCommentsList = commentsService.postCommentsList(pNo);
 		for (int i = 0; i < postCommentsList.size(); i++) {
 			Comments comments = postCommentsList.get(i);
-			sb.append("<div class='comment-sec' style='display:none;' comments_no='"+comments.getcNo()+"'>");
+			sb.append("<div class='comment-sec' style='display:none' comments_no='"+comments.getcNo()+"'>");
 			sb.append("<ul>");
 			sb.append("	<li>");
 			sb.append("		<div class='comment-list'>");

@@ -15,7 +15,7 @@ import com.itwill.willsta.domain.Comments;
 public interface CommentsMapper {
 	//댓글 작성
 	@Insert("INSERT INTO comments(cNo, pNo, mId, cContents, recNo)"+
-			"VALUES (comments_number_seq.NEXTVAL, #{pNo}, #{mId}, #{cContents}, comments_number_seq.NEXTVAL)")
+			"VALUES (comments_number_seq.NEXTVAL, #{pNo}, #{mId}, #{cContents}, 0)")
 	public Integer createComments(Comments comments);
 	
 	//댓글 수정

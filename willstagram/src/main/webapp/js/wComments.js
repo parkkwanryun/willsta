@@ -39,6 +39,7 @@ function commentsInsertActionFunction(e){
 		success : function(result) {
 			if(result.trim() == "true"){
 				$comments[0].reset();
+				//postCommentsListFunction(e);
 				commentsInsertActionAfterListFunction(e);
 			}else if(result.trim() == "false"){
 				alert("댓글쓰기 실패");
@@ -54,17 +55,17 @@ function commentsInsertActionAfterListFunction(e){
 	console.log($postComments);
 	var params = "pNo="+$postComments.attr("post_no");
 	console.log(params);
-	$.ajax({
-		url : "postCommentsList",
-		data : params,
-		method : "POST",
-		dataType : "html",
-		success : function(htmlData){
-			console.log(htmlData);
-			$postComments.append(htmlData);
-			$postComments.children().fadeToggle(500);
-		}
-	});
+		$.ajax({
+			url : "postCommentsList",
+			data : params,
+			method : "POST",
+			dataType : "html",
+			success : function(htmlData){
+				console.log(htmlData);
+				$postComments.html(htmlData);
+				$postComments.children().fadeToggle(500);
+			}
+		});
 }
 
 //대댓글 작성 form 보여주기
@@ -133,7 +134,6 @@ $(function() {
 	$(document).on("click", ".comments_insert_button", function(e){
 		//console.log(e.target);
 		commentsInsertActionFunction(e);
-		e.preventDefault();
 	});
 	
 	//대댓글 쓰기 폼 보이기

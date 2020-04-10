@@ -2,8 +2,6 @@ package com.itwill.willsta.domain;
 
 import java.util.Date;
 
-import org.springframework.stereotype.Component;
-
 public class Comments {
 	private Integer cNo;
 	private Integer pNo;

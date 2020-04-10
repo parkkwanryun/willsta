@@ -236,7 +236,7 @@
 															class="likeCount">${post.likeCount}</span>
 														</li>
 														<li>
-															<a href="#" class="com comment_list_click" post_no="${post.pNo}">
+															<a href="#" class="com comment_list_click">
 															<i class="fas fa-comment-alt"></i> Comments </a>
 														</li>
 													</ul>
