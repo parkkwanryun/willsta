@@ -14,11 +14,11 @@ public interface FollowDao {
 	 int unfollow(String mIdYou, String mId);
 	
 	 /* Followers 내 팔로워들 보기 */
-	  List<Follow> followers(String mId);
+	  List<Follow> followerList(String mId);
 	 
 	 /* Following 내가 팔로하는사람들 보기  */
 
-	 List<Follow> following(String mIdYou);
+	 List<Follow> followingList(String mIdYou);
 	 
 	 
 	 /*FollowingCount  */
@@ -29,10 +29,10 @@ public interface FollowDao {
 	 
 	 int followCheck(String mId, String mIdYou);
 	 
-	 // FollowingList
-	 List<Map> followingList(String mId);
-	 
-	 //Follower List
-	 List<Map> followerList(String mIdYou);	
+	/*
+	 * // FollowingList List<Map> followingList(String mId);
+	 * 
+	 * //Follower List List<Map> followerList(String mIdYou);
+	 */
 	 
 }

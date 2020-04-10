@@ -59,6 +59,11 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	
 	@Override
+	public List<Member> addMemberList(String lastId) {
+		return memberMapper.addMemberList(lastId);
+	}
+	
+	@Override
 	public List<Member> findMemberList(String findId) {
 		return memberMapper.findMemberList(findId);
 	}
@@ -73,5 +78,7 @@ public class MemberDaoImpl implements MemberDao{
 	public List<Member> selectByRandom(String mId) {
 		return memberMapper.selectByRandom(mId);
 	}
+
+	
 	
 }

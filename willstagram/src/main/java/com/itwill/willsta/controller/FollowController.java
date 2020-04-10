@@ -1,7 +1,10 @@
 package com.itwill.willsta.controller;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -85,7 +88,7 @@ public class FollowController {
 	@ResponseBody
 	@RequestMapping(value = "/followerList", method = RequestMethod.POST)
 	public List<Follow> followers(@RequestParam(value = "mIdYou", required = true) String mIdYou) {
-		List<Follow> followers = followService.followers(mIdYou);
+		List<Follow> followers = followService.followerList(mIdYou);
 		for (Follow follow : followers) {
 			follow.setmId(mIdYou);
 			System.out.println(follow);
@@ -96,14 +99,16 @@ public class FollowController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/followingList", method = RequestMethod.POST)
-	public List<Follow> followingList(@RequestParam(value = "mId", required = true) String mId) {
-		List<Follow> following = followService.following(mId);
+	public List<Member> followingList(@RequestParam(value = "mId", required = true) String mId) {
+		ModelAndView mv = new ModelAndView();
+		List<Follow> following = followService.followingList(mId);
+		List<Member> youMemberList=new ArrayList<Member>();
 		for (Follow follow : following) {
-			follow.setmIdYou(mId);
-			System.out.println(follow);
+			Member youMmeber = memberService.selectById(follow.getmIdYou());
+			youMemberList.add(youMmeber);
 		}
-
-		return following;
+		
+		return youMemberList;
 
 	}
 	@ResponseBody

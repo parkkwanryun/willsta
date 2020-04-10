@@ -47,13 +47,13 @@ function postCommentsListFunction(e){
 
 //댓글 작성 ajax 요청
 function commentsInsertActionFunction(e){
-	console.log($(e.target).parents(".post-bar"));
+	//console.log($(e.target).parents(".post-bar"));
 	var $comments = $(e.target).parents(".post-bar").find(".comments_insert_form");
-	console.log($comments);
+	//console.log($comments);
 	var pNo = $(e.target).parents(".comment-section").attr("post_no");
 	console.log(pNo);
 	var params = $comments.serialize();
-	console.log(params);
+	//console.log(params);
 	$.ajax({
 		url : "commentsInsert",
 		data : params,
@@ -62,8 +62,8 @@ function commentsInsertActionFunction(e){
 		success : function(result) {
 			if(result.trim() == "true"){
 				$comments[0].reset();
-				$("a[post_no="+pNo+"]").trigger('click');
-				
+				//$("a[post_no="+pNo+"]").trigger('click');
+				//console.log(pNo);
 			}else if(result.trim() == "false"){
 				alert("댓글쓰기 실패");
 				$comments.select();
@@ -75,31 +75,54 @@ function commentsInsertActionFunction(e){
 
 //대댓글 작성 form 보여주기
 function reCommentsInsertFormShowFunction(e){
-	console.log($(e.target).parents(".comment-sec"));
-	var $reComments =  $(e.target).parents(".comment-sec").find(".active-reply");
-	console.log($reComments);
+	//console.log($(e.target).parents(".comment-sec"));
+	var $reCommentsForm =  $(e.target).parents(".comment-sec").find(".active-reply");
+	//console.log($reCommentsForm);
 	var cNo = $(e.target).parents(".comment-sec").attr("comments_no");
 	var pNo = $(e.target).parents(".comment-section").attr("post_no");
-	console.log(cNo);
+	//console.log(cNo);
 	var html = "";
 	html += "<div class='post-comment' style='display:none'>" +
 			"	<div class='comment_box_inner'>" +
-			"		<form class='comments_insert_form'>" +
+			"		<form class='recomments_insert_form'>" +
 			"			<input type='text' placeholder='Post a comment'" +
 			"				name='cContents' class='cContents' >" +
 			"			<input type='hidden' name='cNo' value='"+cNo+"' >" +
 			"			<input type='hidden' name='pNo' value='"+pNo+"' >" +
-			"			<button type='button' class='comments_insert_button'>Send</button></div>" +
+			"			<button type='button' class='recomments_insert_button'>Send</button></div>" +
 			"		</form>" +
 			"	</div>" +
 			"</div>";
-	if($reComments.children().length == 1){
-		$reComments.append(html);
-		$reComments.children().fadeToggle(500);
+	if($reCommentsForm.children().length == 1){
+		$reCommentsForm.append(html);
+		$reCommentsForm.children().fadeToggle(500);
 	}
 }
 
 
+//대댓글 쓰기
+/*
+function reCommentsInsertActionFunction(e){
+	//console.log($(e.target).parents(".comment-section"));
+	console.log($(e.target).parents(".comment-section").find(".recomments_insert_form"));
+	var $reComments = $(e.target).parents(".comment-section").find(".recomments_insert_form");
+	var params = $reComments.serialize();
+	console.log(params);
+	$.ajax({
+		url : "reCommentsInsert",
+		data : params,
+		method : "POST",
+		dataType : "text",
+		success : function(result){
+			if(result.trim() == "true"){
+				$reComments[0].reset();
+				
+			}
+		} 
+	});
+	
+}
+*/
 
 
 
@@ -107,14 +130,14 @@ function reCommentsInsertFormShowFunction(e){
 $(function() {
 	// 포스트-댓글 전체 보이기
 	$(document).on("click", ".comment_list_click", function(e){
-		console.log(e.target);
+		//console.log(e.target);
 		postCommentsListFunction(e);
 		e.preventDefault();
 	});
 	
 	// 댓글 쓰기
 	$(document).on("click", ".comments_insert_button", function(e){
-		console.log(e.target);
+		//console.log(e.target);
 		commentsInsertActionFunction(e);
 		e.preventDefault();
 	});
@@ -126,5 +149,14 @@ $(function() {
 		e.preventDefault();
 	});
 	
+	//대댓글 쓰기
+	/*
+	$(document).on("click", ".recomments_insert_button", function(e){
+		console.log(e.target);
+		reCommentsInsertActionFunction(e);
+		e.preventDefault();
+		e.stopPropagation();
+	});
+	*/
 	
 });

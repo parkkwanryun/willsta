@@ -13,9 +13,9 @@ public interface FollowService {
 
 	int unfollow(String mIdYou, String mId);
 
-	List<Follow> followers(String mId);
+	List<Follow> followerList(String mId);
 
-	List<Follow> following(String mId);
+	List<Follow> followingList(String mIdYou);
 
 	int followingCount(String mIdYou);
 
@@ -23,7 +23,9 @@ public interface FollowService {
 	
 	int followCheck(String mId,String mIdYou);
 
-	List<Map> followingList(String mId);
-	
-	List<Map> followerList(String mIdYou);	
+	/*
+	 * List<Map> followingList(String mId);
+	 * 
+	 * List<Map> followerList(String mIdYou);
+	 */
 }

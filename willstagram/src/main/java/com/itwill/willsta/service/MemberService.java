@@ -32,5 +32,7 @@ public interface MemberService {
 	
 	List<Member> memberList();
 	
+	List<Member> addMemberList(String lastId);
+	
 	List<Member> findMemberList(String findId);
 }
