@@ -2,6 +2,18 @@
     pageEncoding="UTF-8"%> 
 <jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
 
+<style type="text/css">
+input.error, textarea.error {
+	border: 1px solid red;
+	text-size: 1px;
+}
+
+label.error {
+	margin-left: 1px;
+	font-size: 10pt;
+	color: red;
+}
+</style>
 <body>
 	<div class="wrapper">	
 		<header>
@@ -143,31 +155,31 @@
 							  		<div class="acc-setting">
 										<h3>Account Setting</h3>
 										<form id = "member_modify_action" method="POST">
-										
-										<!-- 아이디 변경 -->
+													
+										<!-- 아이디 변경 불가(Hidden) 기존 값 전송 -->
 											<div class="cp-field">
-												<h5>New Id</h5>
+												<h5>Id</h5>
 												<div class="cpp-fiel">
-													<input type="text" name="mId" class="required" placeholder="New Id">
+													<input type="text" name="mId" value="${sMemberId.mId}" readonly placeholder="Id can't be changed">
 													<i class="la la-user"></i>
 												</div>
 											</div>
-										
+											
+										<!-- 이름 변경 불가(Hidden) 기존 값 전송 -->
+											<div class="cp-field">
+												<h5>Name</h5>
+												<div class="cpp-fiel">
+													<input type="text" name="mName" value="${sMemberId.mName}" readonly placeholder="Id can't be changed">
+													<i class="la la-user"></i>
+												</div>
+											</div>
+																			
 										<!-- 비밀번호 변경 -->
 											<div class="cp-field">
 												<h5>New Password</h5>
 												<div class="cpp-fiel">
 													<input type="text" name="mPass" class="required" placeholder="New Password">
-													<i class="fa fa-lock"></i>
-												</div>
-											</div>
-											
-											<!-- 아이디 변경 -->
-											<div class="cp-field">
-												<h5>New Name</h5>
-												<div class="cpp-fiel">
-													<input type="text" name="mName" class="required" placeholder="New Name">
-													<i class="la la-user"></i>
+													<i class="la la-lock"></i>
 												</div>
 											</div>
 											
@@ -783,6 +795,7 @@
 	</div><!--theme-layout end-->
 
  <jsp:include page="/WEB-INF/commons/include_footer_js.jsp"/>
+ <script type="text/javascript" src="js/jquery.validate.min.js"></script>
  <script type="text/javascript" src="js/wMember.js"></script>
 </body>
 </html>
