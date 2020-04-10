@@ -20,6 +20,7 @@ var jsonData = {
 		ws.onopen = function() { // connection이 open 되었을때 실행
 			console.log('Info : connection opened.');
 		};
+		
 	// 메시지 전송 버튼 클릭 후 메시지를 저장하는 콜백함수
 	function message_send_insert_function(jsonData){
 		var messages = jsonData.mId+","+jsonData.mIdYou+","+jsonData.msg+","+jsonData.msgDate+","+jsonData.dmNo;
@@ -51,7 +52,7 @@ var jsonData = {
 		$('.messages-line').append(htmlData);
 	}
 	
-	// 메시지 전송 버튼 클릭 시 작동하는 콜백함수
+	// 메시지 전송 버튼 클릭 시 작동하는 함수
 	function message_send_function(e){
 		$('#btnSend').on('click', function(event) {
 			event.preventDefault();
@@ -63,11 +64,12 @@ var jsonData = {
 			jsonData.msgDate = d.getHours() + "시" + d.getMinutes();			//보낸시간
 			jsonData.dmNo = $(e.target).find('#dmNo').text();					//방번호
 			console.log(jsonData);
-			
 			if(jsonData.msg != null && jsonData.msg != "" && jsonData.msg != '&nbsp'){
 			socket.send(jsonData.mId+","+jsonData.mIdYou+","+jsonData.msg+","+jsonData.msgDate);
 			$("#msg").val("");
+			//화면 출력
 			message_insert_html(jsonData);
+			//DB저장
 			message_send_insert_function(jsonData);
 			}
 		});
@@ -96,34 +98,37 @@ var jsonData = {
 			}
 		});
 	}
+	
+	// 채팅방 리스트 조회 콜백함수
+	function messageRoom_list_function(){
 		
+	}
 	
 	// 채팅방 생성 콜백함수
-	function message_create_function(e){
+	function message_create_function(jsonData){
+		var params = "mId="+jsonData.mId+"&"+"mIdYou="+jsonData.mIdYou;
+		$.ajax({
+			url:'messages_room_create',
+			method:'GET',
+			data : params,
+			dataType:'text',
+			success:function(isSuccess){
+			}
+		});
+	}
+	// 처음 채팅방 생성 콜백함수
+	function message_profile_create_function(e){
 	 var mIdYou = $(e.target.parentNode.parentNode.parentNode.parentNode).find('h3').text();
 		$.ajax({
 			url:'sessionCheck',
 			method:'GET',
 			dataType: 'text',
 			success:function(loginId){
-				if(loginId.trim() == null){
-					alert('로그인 하세요')
-					location.href('/willstagram/sign_in')
-				} else {
-					var params = "mId="+loginId+"&"+"mIdYou="+mIdYou;
-					$.ajax({
-						url:'messages_room_create',
-						method:'GET',
-						data : params,
-						dataType:'text',
-						success:function(isSuccess){
-							if(isSuccess.trim() == 'success'){
-								location.href = "/willstagram/messages";
-							} else {
-								location.href = "/willstagram/messages";
-							}
-						}
-					});
+				jsonData.mId = loginId;
+				jsonData.mIdYou = mIdYou;
+				if(loginId != null && mIdYou != null){
+					message_create_function(jsonData);
+					location.href = "/willstagram/messages";	
 				}
 			}
 		});
@@ -150,10 +155,8 @@ var jsonData = {
 			htmlData +=		"</div>";
 			htmlData +=	"</div>";
 			$('.messages-line').append(htmlData);
-			
 			}
 		}
-
 	//채팅방 오픈
 	$(function() {
 		$(document).find('.messages-list .usr-msg-details ').on('click', function(e) {
@@ -164,6 +167,9 @@ var jsonData = {
 	//보낸사람,받는사람,내용 mId, mIdYou, contents
 	ws.onmessage = function(event) { // socket.send() 후 ReplyEchoHandler가 handleTextMessage메소드로부터 메시지를 받아옴											
 		event.preventDefault();
+		jsonData.mId = event.data.split(",")[1]
+		jsonData.mIdYou = event.data.split(",")[0];
+//		message_create_function(jsonData);
 		message_receive(event);
 	};
 	// connection 이 close 되었을때 실행
@@ -175,7 +181,7 @@ var jsonData = {
 	};
 	$(document).find('.message-us').on('click',function(e){
 		e.preventDefault();
-		message_create_function(e);
+		message_profile_create_function(e);
 	});
 	// connection 이 error가 나왔을때
 	ws.onerror = function(event) { 
