@@ -53,5 +53,27 @@
 <script type="text/javascript" src="js/flatpickr.min.js"></script>
 <script type="text/javascript" src="lib/slick/slick.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
-<script type="text/javascript" src="js/wSearch.js"></script>
 <script type="text/javascript" src="js/socketConnect.js"></script>
+<script type="text/javascript">
+//팔로우 여부 체크
+	var mIdArray=$('#mId-List').serializeArray();
+	for (var i = 0; i < mIdArray.length; i++) {
+		var mId=mIdArray[i].value;
+		var param="mIdYou="+mId;
+		$.ajax({
+			url:'follow_Check',
+			method:'POST',
+			data:param,
+			dataType:'text',
+			async: false,
+			success:function(resultText){
+				if (resultText.trim()=='true') {
+					$("h3:contains("+mId+")").next().next().children().eq(1).children().hide();
+				}else if (resultText.trim()=='false') {
+					$("h3:contains("+mId+")").next().next().children().first().children().hide();
+				}
+			}
+		
+		});
+	}
+</script>

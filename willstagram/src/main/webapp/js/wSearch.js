@@ -2,11 +2,9 @@ $(function(){
 	
 	//팔로우 여부 체크
 	var mIdArray=$('#mId-List').serializeArray();
-	//console.log(mIdArray);
 	for (var i = 0; i < mIdArray.length; i++) {
 		var mId=mIdArray[i].value;
 		var param="mIdYou="+mId;
-		//console.log(mId);
 		$.ajax({
 			url:'follow_Check',
 			method:'POST',
@@ -15,12 +13,8 @@ $(function(){
 			async: false,
 			success:function(resultText){
 				if (resultText.trim()=='true') {
-					//console.log(mId);
-					//console.log(resultText.trim())
 					$("h3:contains("+mId+")").next().next().children().eq(1).children().hide();
 				}else if (resultText.trim()=='false') {
-					//console.log(mId);
-					//console.log(resultText.trim())
 					$("h3:contains("+mId+")").next().next().children().first().children().hide();
 				}
 			}
@@ -92,17 +86,15 @@ $(function(){
        }
        var $member = $("div.company-up-info").last();
        var params = "lastId="+ $member.attr('mIdYou');
-       console.log(params);
          $.ajax({
-          url:'add_profile',
-          method:'POST',
-          data:params,
-          dataType:'html',
-          success: function(resultText){
-        	 //console.log(resultText)
-             $('div.companies-list').append(resultText);
-          }
-       });
+	          url:'add_profile',
+	          method:'POST',
+	          data:params,
+	          dataType:'html',
+	          success: function(resultText){
+	             $('div.companies-list').append(resultText);
+	          }
+         });
          e.preventDefault();
      });
     
