@@ -15,7 +15,7 @@ public interface FollowService {
 
 	List<Follow> followerList(String mId);
 
-	List<Follow> followingList(String mIdYou);
+	List<Follow> followingList(String mId);
 
 	int followingCount(String mIdYou);
 

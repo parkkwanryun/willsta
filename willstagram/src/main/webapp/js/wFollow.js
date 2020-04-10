@@ -6,6 +6,9 @@
  *  following count (완료)
  할것들 
  - follow & following list UI 아니면 bootstrap 써서 뽑기 
+ 	리스트를 잘 불러왔지만 여기서 문제는 리스트 불러온 부분에서  중복이 발생하고 내자신의 이름은 나오면 안된다구.
+  눈물이난다. 
+ 
  - view more 눌렀을때 더 나오게 만들기
  - 친구추천목록에서 +버튼누르면 팔로잉 되게만들면서 (완료)
  - 팔로잉카운트수도같이 늘리기(완료)
@@ -17,86 +20,9 @@
 
 
 $(function(){
-	// 팔로잉카운트
-	$(document).on('click','.followingCount',function(e){
-		var $mIdYou=$(e.target).parents("div.company-up-info");
-		var param="mIdYou="+$mIdYou.attr("mIdYou");
-		$.ajax({
-			url: "followingCount",
-			method: "POST",
-			data: param,
-			dataType: "int",
-			success:function(){
-				$(e.target).hide();
-				$(e.target.parentNode).prev().children().show();
-			}
-		});
-		e.preventDefault();
-	});
-	// 팔로워카운트
-	$(document).on('click','.followCount',function(e){
-		var $mIdYou=$(e.target).parents("div.company-up-info");
-		var param="mIdYou="+$mIdYou.attr("mIdYou");
-		$.ajax({
-			url: "followerCount",
-			method: "POST",
-			data: param,
-			dataType: "int",
-			success:function(){
-				$(e.target).hide();
-				$(e.target.parentNode).prev().children().show();
-			}
-		});
-		e.preventDefault();
-	});
-	
-	// 팔로잉리스트
-	function followingList(e){
-		var mIdYou = $(e.target).find('#mIdYou').text();
-		var params = "mIdYou=" + mIdYou;
-		$.ajax({
-			url : 'followingList',
-			method : 'POST',
-			data : params,
-			dataType : 'json',
-			success : function(jsonArrayData) {
-				for(var i; i<=params.size(); i++){
-					params[i].following.name="jhj"
-				}
-				
-				console.log(jsonArrayData);
-				
-				
-				/*
-				 * $(function() { message_send_function(e); });
-				 */
-			}
-		});
-	};
-	
-	// 팔로우리스트
-	function message_detail_function(e){
-		var dmNo = $(e.target).find('#mId').text();
-		var params = "mId=" + dmNo;
-		$.ajax({
-			url : 'followList',
-			method : 'GET',
-			data : params,
-			dataType : 'json',
-			success : function(jsonArrayData) {
-				console.log(jsonArrayData);
-				/*
-				 * $(function() { message_send_function(e); });
-				 */
-			}
-		});
-	};
 	
 
-
-
-
-
+// 팔로잉 리스트  # 팔로우 카운트 된숫자를 클릭했을때 내가 팔로우하고있는 리스트 뽑기. 나 울어 ㅠㅠㅠㅠㅠㅠㅠㅠㅠ
 $('#follow_count_a').on('click',
 	function(e) {
 		var $mIdYou = $(e.target);
@@ -149,9 +75,9 @@ $('#follow_count_a').on('click',
 								+ mEmail
 								+ "</span>"
 								+ "</div>"
-								+ "<span><i midyou='"
+								+ "<span><i mid='"
 								+ mId
-								+ "' class='la la-plus follow' ></i></span>"
+								+ "' class='la la-plus unfollow' ></i></span>"
 								+ "</div>";
 
 							
@@ -183,28 +109,121 @@ $('#follow_count_a').on('click',
 			e.preventDefault();
 		});
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+$('#followers').on('click',
+		function(e) {
+			var $mIdYou = $(e.target);
+			var param = "mId=" + $mIdYou.attr("mid");
+			console.log(param);
+			$.ajax({url : "followerList",
+					method : "POST",
+					data : param,
+					dataType : "JSON",
+					success : function(jsonArray) {
+						console.log(jsonArray);
+						var html="<div class='sd-title'>";
+						html+="<h3>팔로워리스트</h3>";
+						html+="<i class='la la-ellipsis-v'></i>";
+						html+="</div>";
+						html+="<div class='suggestions-list' style='display:none'>";
+											
+						$.each(jsonArray,function(i, jsonObject) {
+						for (var i = 0; i < jsonArray.length; i++) {
+							var jsonArrayObject = jsonArray[i];
+							var mId = jsonArrayObject.mId;
+							/*
+						 	[
+								{
+								"mId": "1543",
+								"mPass": "1543",
+								"mName": "1543",
+								"mEmail": "1543",
+								"mPhone": "1543",
+								"mImage": "1543",
+								"mRetire": null,
+								"followerCount": null,
+								"followingCount": null,
+								"followCount": null
+								},
+							 */
+							var mImage = jsonArrayObject.mImage;
+							var mName = jsonArrayObject.mName;
+							var mEmail = jsonArrayObject.mEmail;
+						
+								html += "<div class='suggestion-usd'>";
+								html += "<img src='contents/member_image/"
+									+ mImage
+									+ "' alt='' width='40px'>"
+									+ "<div class='sgt-text'>"
+									+ "<h4>"
+									+ mName
+									+ "</h4>"
+									+ "<span>"
+									+ mEmail
+									+ "</span>"
+									+ "</div>"
+									+ "<span><i mid='"
+									+ mId
+									+ "' class='la la-plus follow' ></i></span>"
+									+ "</div>";
+
+								
+							}
+						
+						});
+						 	html+="</div>";
+						 	console.log($('div.suggestions > div.suggestions-list').size());
+						 	if($('div.suggestions > div.suggestions-list').size()>1){
+						 		$('div.suggestions > div.suggestions-list').eq(1).slideToggle({
+						 			duration:500
+						 		});
+						 		$('div.suggestions > div.suggestions-list').eq(0).slideToggle({
+						 			duration:500
+						 		});
+						 	}else{
+						 		console.log('append');
+						 		$('div.suggestions').append(html);
+						 		$('div.suggestions div.suggestions-list').eq(1).slideToggle({
+						 			duration:500
+						 		});
+						 		$('div.suggestions > div.suggestions-list').eq(0).slideToggle({
+						 			duration:500
+						 		});
+						 	}
+						 	
+							}
+						});
+				e.preventDefault();
+			});
+
+
+
+
+
+
+
 	
-	
-	// 팔로우
+	// 팔로우 친구추천리스트에서 버튼 클릭했을때 팔로가능하게하기.
 	$('.follow').on(
 			'click',
 			function(e) {
 				var $mIdYou = $(e.target);
+				console.log('--------------->' + e.target);
+				 console.log('--------------->' + $mIdYou);
+				 console.log('--------------->' + $mIdYou.attr("mid"));
 				/*
-				 * console.log('--------------->' + e.target);
-				 * console.log('--------------->' + $mIdYou);
-				 * console.log('--------------->' + $mIdYou.attr("midyou"));
 				 */
-				var param = "mIdYou=" + $mIdYou.attr("midyou");
+				var param = "mIdYou=" + $mIdYou.attr("mid");
 				$.ajax({
 					url : "follow",
 					method : "POST",
 					data : param,
 					dataType : "text",
 					success : function(data) {
-
 						// location.href='personal_info'; get방식이였다면.
 						$(e.target).hide();
+						$(e.target.parentNode).next().children().show();
+						var html="<span><i class='la la-plus unfollow' ></i></span>";
 						// $(e.target.parentNode).prev().children().show();
 						$('#follow_count_a').text(
 								parseInt($('#follow_count_a').text()) + 1);
@@ -215,12 +234,49 @@ $('#follow_count_a').on('click',
 				e.stopPropagation();
 
 			});
+	
+	
+	
+	
+	$('.unfollow').on(
+			'click',
+			function(e) {
+				var $mIdYou = $(e.target);
+				console.log('--------------->' + e.target);
+				 console.log('--------------->' + $mIdYou);
+				 console.log('--------------->' + $mIdYou.attr("mid"));
+				/*
+				 */
+				var param = "mIdYou=" + $mIdYou.attr("mid");
+				$.ajax({
+					url : "unFollow",
+					method : "POST",
+					data : param,
+					dataType : "text",
+					success : function(data) {
 
+						// location.href='personal_info'; get방식이였다면.
+						$(e.target).hide();
+						$(e.target.parentNode).next().children().show();
+						// $(e.target.parentNode).prev().children().show();
+						$('#follow_count_a').text(
+								parseInt($('#follow_count_a').text()) - 1);
+
+					}
+				});
+				e.preventDefault();
+				e.stopPropagation();
+
+			});
+	
+	
+	
 	
 
-	// 언팔로우
+/*	
+	//언팔로우
 	$(document).on('click','.unFollow',function(e){
-		var $mIdYou=$(e.target).parents("div.company-up-info");
+		var $mIdYou=$(e.target);
 		var param="mIdYou="+$mIdYou.attr("mIdYou");
 		$.ajax({
 			url: "unFollow",
@@ -229,12 +285,46 @@ $('#follow_count_a').on('click',
 			dataType: "text",
 			success:function(){
 				$(e.target).hide(); 
-				$(e.target.parentNode).next().children().show();
+				$(e.target.parentNode).prev().children().show();
+				$('#follow_count_a').text(
+						parseInt($('#follow_count_a').text()) - 1);
 			}
 		});
 		e.preventDefault();
 	});
-	
+	*/
+/*
+	 //언팔로우 친구추천리스트에서 버튼 클릭했을때  언팔가능하게하기.
+	$('.unfollow').on(
+			'click',
+			function(e) {
+				var $mIdYou = $(e.target);
+				console.log('--------------->' + e.target);
+				 console.log('--------------->' + $mIdYou);
+				 console.log('--------------->' + $mIdYou.attr("mid"));
+				
+				 
+				var param = "mIdYou=" + $mIdYou.attr("mid");
+				$.ajax({
+					url : "unfollow",
+					method : "POST",
+					data : param,
+					dataType : "text",
+					success : function(data) {
+
+						// location.href='personal_info'; get방식이였다면.
+						$(e.target).hide();
+						// $(e.target.parentNode).prev().children().show();
+						$('#follow_count_a').text(
+								parseInt($('#follow_count_a').text()) - 1);
+
+					}
+				});
+				e.preventDefault();
+				e.stopPropagation();
+
+			});   */
+
 	
 });
 

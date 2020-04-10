@@ -46,9 +46,9 @@ public class FollowServiceImpl implements FollowService {
 	
 
 	@Override
-	public List<Follow> followingList(String mIdYou) {
+	public List<Follow> followingList(String mId) {
 		
-		return followDao.followingList(mIdYou);
+		return followDao.followingList(mId);
 	}
 
 

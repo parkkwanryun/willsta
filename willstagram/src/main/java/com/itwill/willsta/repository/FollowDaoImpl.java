@@ -60,8 +60,8 @@ public class FollowDaoImpl implements FollowDao{
 	}
 
 	@Override
-	public List<Follow> followingList(String mIdYou) {
-		return followMapper.followingList(mIdYou);
+	public List<Follow> followingList(String mId) {
+		return followMapper.followingList(mId);
 	}
 
 	/*

@@ -29,7 +29,7 @@ public interface FollowMapper {
 	
 	
 	/*Follower List 나를 팔로하고있는 사람들 */
-	@Select("select f.midyou, f.mid, m.mname, m.memail, m.mphone, m.mimage from follow f inner join member m on f.mid = m.mid where f.midyou =#{mIdYou}")
+	@Select("select f.midyou, f.mid, m.mname, m.memail, m.mphone, m.mimage from follow f inner join member m on f.mid = m.mid where f.mid =#{mId}")
 	public List<Follow> followerList(String mIdYou);
 	
 	/*Followers count 나를 팔로하고있는 사람들 수   */

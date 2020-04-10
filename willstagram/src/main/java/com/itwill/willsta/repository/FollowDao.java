@@ -18,7 +18,7 @@ public interface FollowDao {
 	 
 	 /* Following 내가 팔로하는사람들 보기  */
 
-	 List<Follow> followingList(String mIdYou);
+	 List<Follow> followingList(String mId);
 	 
 	 
 	 /*FollowingCount  */

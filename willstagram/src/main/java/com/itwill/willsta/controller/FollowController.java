@@ -87,15 +87,19 @@ public class FollowController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/followerList", method = RequestMethod.POST)
-	public List<Follow> followers(@RequestParam(value = "mIdYou", required = true) String mIdYou) {
-		List<Follow> followers = followService.followerList(mIdYou);
+	public List<Member> followerList(@RequestParam(value = "mId", required = true) String mId) {
+		ModelAndView mv = new ModelAndView();
+		List<Follow> followers = followService.followerList(mId);
+		List<Member> youMemberList=new ArrayList<Member>();
 		for (Follow follow : followers) {
-			follow.setmId(mIdYou);
-			System.out.println(follow);
+			Member youMmeber = memberService.selectById(follow.getmIdYou());
+			youMemberList.add(youMmeber);
 		}
+		
+		return youMemberList;
 
-		return followers;
 	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value = "/followingList", method = RequestMethod.POST)
@@ -122,6 +126,7 @@ public class FollowController {
 		
 		return mv;
 	}
+	@ResponseBody
 	@RequestMapping(value="/followersCount" , produces = "text/html;charset=utf-8")
 	public ModelAndView followerCount(@RequestParam(value="mId",required = true )String mId) {
 		ModelAndView mv = new ModelAndView();
@@ -204,31 +209,34 @@ public class FollowController {
 		return mv;
 	}
 	*/
-	@RequestMapping(value = "/follow")
 	@ResponseBody
+	@RequestMapping(value = "/follow")
 	public String follow(@RequestParam String mIdYou, HttpSession session) {	
 		String mId = (String) session.getAttribute("mId");
 		int follow = followService.follow(new Follow(mId, mIdYou));
-		//System.out.println("2." + follow);
+		System.out.println("2." + follow);
 		return follow + "";
 	}
 	
 	/*
 	 * @RequestMapping(value = "/unFollow")
 	 * 
-	 * @ResponseBody public String unfollow(@RequestParam String mIdYou, HttpSession session) { 
+	 * @ResponseBody 
+	 * public String unfollow(@RequestParam String mIdYou, HttpSession session) { 
 	 * String mId = (String) session.getAttribute("mId"); 
 	 * int unfollow = followService.unfollow(mId, mIdYou); 
 	 * //System.out.println("2." + follow);
 	 * return unfollow + ""; }
 	 */
 	
+	  @ResponseBody
 	  @RequestMapping(value = "/unFollow") public ModelAndView
 	  unFollow(@RequestParam(value = "mIdYou") String mIdYou,HttpSession session) {
-	  ModelAndView mv=new ModelAndView(); String
-	  mId=(String)session.getAttribute("mId"); int
-	  unFollow=followService.unfollow(mIdYou, mId); mv.addObject("unFollow",
-	  unFollow); mv.setViewName("profiles"); return mv; }
+	  ModelAndView mv=new ModelAndView(); 
+	  String mId=(String)session.getAttribute("mId"); 
+	  int unFollow=followService.unfollow(mIdYou, mId);
+	  mv.addObject("unFollow", unFollow); 
+	  mv.setViewName("profiles"); return mv; }
 	 
 	
 
