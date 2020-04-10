@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 public class DM {
 	private Integer dmNo;
 	private String mId;
-	private String mIdYou;
 	private String dmDate;
 	private String mImage;
 	
@@ -14,19 +13,16 @@ public class DM {
 	public DM() {
 		// TODO Auto-generated constructor stub
 	}
-	public DM(Integer dmNo, String mId, String mIdYou, String dmDate, String mImage) {
+	public DM(Integer dmNo, String mId, String dmDate, String mImage) {
 		super();
 		this.dmNo = dmNo;
 		this.mId = mId;
-		this.mIdYou = mIdYou;
 		this.dmDate = dmDate;
 		this.mImage = mImage;
 	}
-	public DM(Integer dmNo, String mId, String mIdYou, String dmDate) {
-		super();
+	public DM(Integer dmNo, String mId, String dmDate) {
 		this.dmNo = dmNo;
 		this.mId = mId;
-		this.mIdYou = mIdYou;
 		this.dmDate = dmDate;
 	}
 	public Integer getDmNo() {
@@ -45,13 +41,6 @@ public class DM {
 		this.mId = mId;
 	}
 
-	public String getmIdYou() {
-		return mIdYou;
-	}
-
-	public void setmIdYou(String mIdYou) {
-		this.mIdYou = mIdYou;
-	}
 
 	public String getDmDate() {
 		return dmDate;
@@ -67,12 +56,12 @@ public class DM {
 	public void setmImage(String mImage) {
 		this.mImage = mImage;
 	}
-
 	@Override
 	public String toString() {
-		return "DM [dmNo=" + dmNo + ", mId=" + mId + ", mIdYou=" + mIdYou + ", dmDate=" + dmDate + ", mImage=" + mImage
-				+ "]\n";
+		return "DM [dmNo=" + dmNo + ", mId=" + mId + ", dmDate=" + dmDate + ", mImage=" + mImage + "]\n";
 	}
+
+
 
 	
 }
