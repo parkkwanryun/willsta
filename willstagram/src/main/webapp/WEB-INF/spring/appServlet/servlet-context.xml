@@ -65,14 +65,8 @@
 	
 	<!-- MessageSource  -->
 	<beans:bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <beans:property name="basenames" value="messages/login"/>
+        <beans:property name="basenames" value="/WEB-INF/messages/sign,/WEB-INF/messages/menu"/>
         <beans:property name="defaultEncoding" value="UTF-8"/>
     </beans:bean>
      
-	<!-- LocaleResolver -->
-    <beans:bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-        <beans:property name="defaultLocale" value="en"/>
-    </beans:bean>
-	
-	
 </beans:beans>

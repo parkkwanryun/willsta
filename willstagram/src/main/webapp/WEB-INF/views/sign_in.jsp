@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <jsp:include page="/WEB-INF/commons/include_header_css.jsp" />
 
 <style type="text/css">
@@ -55,12 +56,11 @@ label.error {
 						<div class="col-lg-6">
 							<div class="login-sec">
 								<ul class="sign-control">
-									<li data-tab="tab-1" class="current"><a href="#" title="">Sign
-											in</a></li>
-									<li data-tab="tab-2"><a href="#" title="">Sign up</a></li>
+									<li data-tab="tab-1" class="current"><a href="#" title=""><s:message code="sign.title"/></a></li>
+									<li data-tab="tab-2"><a href="#" title=""><s:message code="sign.join"/></a></li>
 								</ul>
 								<div class="sign_in_sec current" id="tab-1">
-									<h3>Sign in</h3>
+									<h3><s:message code="sign.title"/></h3>
 
 									<form id="member_login_action" method="POST">
 										<div class="row">
@@ -99,7 +99,7 @@ label.error {
 												</div>
 											</div>
 											<div class="col-lg-12 no-pdd">
-												<button type="submit" value="submit">Sign in</button>
+												<button type="submit" value="submit"><s:message code="sign.title"/></button>
 											</div>
 										</div>
 									</form>
