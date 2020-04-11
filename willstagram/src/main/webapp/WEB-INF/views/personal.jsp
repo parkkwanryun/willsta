@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,13 +66,6 @@
 													<h4>Following</h4>
 													<span></span>
 													<b><a mid='${member.mId}' id="followings" href="#" title="">${member.followingCount}</a></b>
-													
-												
-													<%-- <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-														  ${member.followingCount}
-														</a> --%>
-													<%-- <b><a href="#" title="">${member.followingCount}</a></b> --%>
-													<%-- <button onclick ="#" >${member.followingList}</button> --%>
 												</li>
 												<li>
 													<h4>Followers</h4>
@@ -109,17 +103,8 @@
 										
 									</div><!--suggestions end-->
 									<div class="tags-sec full-width">
-										<ul>
-											<li><a href="#" title="">Help Center</a></li>
-											<li><a href="#" title="">About</a></li>
-											<li><a href="#" title="">Privacy Policy</a></li>
-											<li><a href="#" title="">Community Guidelines</a></li>
-											<li><a href="#" title="">Cookies Policy</a></li>
-											<li><a href="#" title="">Career</a></li>
-											<li><a href="#" title="">Language</a></li>
-											<li><a href="#" title="">Copyright Policy</a></li>
-										</ul>
 										<div class="cp-sec">
+											<p><s:eval expression="new java.util.Date().toLocaleString()"/></p>
 											<img src="images/logo.png" alt="">
 											<p><img src="images/cp.png" alt="">Copyright 2020</p>
 										</div>
@@ -241,30 +226,8 @@
 										<img src="images/wd-logo.png" alt="">
 										<h3>WillStarGram</h3>
 										<span>Itwill Class5 Team2 Project</span>
-										<div class="sign_link">
-											<h3><a href="sign-in.html" title="">Sign up</a></h3>
-											<a href="#" title="">Learn More</a>
-										</div>
 									</div><!--widget-about end-->
-									<div class="widget widget-jobs">
-										<div class="sd-title">
-											<h3>Top Views</h3>
-											<i class="la la-ellipsis-v"></i>
-										</div>
-										<div class="jobs-list">
-											<c:forEach var="postRank" items="${postRankList}">
-												<div class="job-info" post_no="${postRank.PNO}">
-													<div class="job-details">
-														<h3>${postRank.MNAME}</h3>
-														<p><a href="#" title="" class="top-views">${postRank.PTITLE}</a></p>
-													</div>
-													<div class="hr-rate">
-														<span>${postRank.PVIEWCOUNT}</span>
-													</div>
-												</div><!--job-info end-->
-											</c:forEach>
-										</div><!--jobs-list end-->
-									</div><!--widget-jobs end-->
+								
 									<div class="widget widget-ad">
 										<div class="sign_link" style="padding:10px">
 											<h3><a href="http://ec2-54-180-83-67.ap-northeast-2.compute.amazonaws.com:8080/myshop/product/list" title="">

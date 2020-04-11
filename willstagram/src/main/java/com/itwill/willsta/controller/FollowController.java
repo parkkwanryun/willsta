@@ -41,25 +41,6 @@ public class FollowController {
 	
 	
 	@MemberLoginCheck
-	@RequestMapping(value = "/my_page")
-	public ModelAndView myPage(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView();
-		String mId = (String) request.getSession().getAttribute("mId");
-		Member member = memberService.selectByIdContainFollowInfo(mId);
-		List<Member> random = memberService.selectByRandom(mId);
-		List<Post> postList = postService.selectMyList(0, mId, 0);
-		for (Post post : postList) {
-			post.setTagArray(post.getHasTag().split(" "));
-		}
-		mv.addObject("random", random);
-		mv.addObject("member", member);
-		mv.addObject("postList", postList);
-		mv.setViewName("myPage");
-		return mv;
-	}
-	 
-	
-	@MemberLoginCheck
 	@RequestMapping(value="/personal_info")
 	public ModelAndView personal_info(HttpServletRequest request) {
 		
@@ -83,24 +64,25 @@ public class FollowController {
 		mv.setViewName("clickPost");
 		return mv;
 	}
-	
-	/* 애 안먹힘 . 다시 수정해보시지 .
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value = "/followingList", method = RequestMethod.POST) public
-	 * List<Member> followerList(@RequestParam(value = "mId", required = true)
-	 * String mId) { ModelAndView mv = new ModelAndView(); List<Follow> followers =
-	 * followService.followerList(mId); List<Member> youMemberList=new
-	 * ArrayList<Member>(); for (Follow follow : followers) { Member youMmeber =
-	 * memberService.selectById(follow.getmIdYou()); youMemberList.add(youMmeber); }
-	 * 
-	 * return youMemberList;
-	 * 
-	 * }
-	 */
-	
+
 	@ResponseBody // 애는팔로워 팔로잉 바뀌면서 발류랑 펑션이랑다르지만 값잘나오니까 냅둬.
 	@RequestMapping(value = "/followerList", method = RequestMethod.POST)
+	public List<Member> followerList(@RequestParam(value = "mId", required = true) String mId) {
+		ModelAndView mv = new ModelAndView();
+		List<Follow> following = followService.followerList(mId);
+		List<Member> youMemberList=new ArrayList<Member>();
+		for (Follow follow : following) {
+			Member youMmeber = memberService.selectById(follow.getmIdYou());
+			youMemberList.add(youMmeber);
+		}
+		
+		return youMemberList;
+
+	}
+	
+	
+	@ResponseBody // 애는팔로워 팔로잉 바뀌면서 발류랑 펑션이랑다르지만 값잘나오니까 냅둬.
+	@RequestMapping(value = "/followingList", method = RequestMethod.POST)
 	public List<Member> followingList(@RequestParam(value = "mId", required = true) String mId) {
 		ModelAndView mv = new ModelAndView();
 		List<Follow> following = followService.followingList(mId);
@@ -164,9 +146,7 @@ public class FollowController {
 		return postService.insert_like(lk);
 		
 	}
-	
 
-	
 	@MemberLoginCheck
 	@RequestMapping(value="/my_page_post")
 	public ModelAndView selectMainList(HttpServletRequest request) {
@@ -194,21 +174,7 @@ public class FollowController {
 	      }
 	      return check;
 	   }
-	  /*
-	  @RequestMapping(value = "/follow")
-		public ModelAndView follow(@RequestParam(value = "mIdYou") String mIdYou,HttpSession session) {
-		System.out.println("확인");
-		
-		ModelAndView mv=new ModelAndView();
-		String mId=(String)session.getAttribute("mId"); 
-		int	follow=followService.follow(new Follow(mId, mIdYou)); 
-		
-		mv.addObject("follow",follow);
-		mv.setViewName("profiles"); 
-		
-		return mv;
-	}
-	*/
+
 	@ResponseBody
 	@RequestMapping(value = "/follow")
 	public String follow(@RequestParam String mIdYou, HttpSession session) {	
@@ -218,17 +184,7 @@ public class FollowController {
 		return follow + "";
 	}
 	
-	/*
-	 * @RequestMapping(value = "/unFollow")
-	 * 
-	 * @ResponseBody 
-	 * public String unfollow(@RequestParam String mIdYou, HttpSession session) { 
-	 * String mId = (String) session.getAttribute("mId"); 
-	 * int unfollow = followService.unfollow(mId, mIdYou); 
-	 * //System.out.println("2." + follow);
-	 * return unfollow + ""; }
-	 */
-	
+
 	  @ResponseBody
 	  @RequestMapping(value = "/unFollow") public ModelAndView
 	  unFollow(@RequestParam(value = "mIdYou") String mIdYou,HttpSession session) {
