@@ -246,11 +246,7 @@
 												
 												<!-- comment-section -->
 												<div class="comment-section" post_no="${post.pNo}">
-													<!-- comment-sec -->
-
-													<!--comment-sec end-->
 													
-												
 													<!-- post-comment -->
 													<div class="post-comment">
 														<div class="comment_box">

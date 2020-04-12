@@ -53,6 +53,9 @@ public class CommentsController {
 			sb.append("<ul>");
 			sb.append("	<li>");
 			sb.append("		<div class='comment-list'>");
+			if(comments.getRecNo() > 0) {
+				sb.append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+			}
 			sb.append("			<div class='comment'>");
 			sb.append("				<h3>"+comments.getmId()+"</h3>");
 			sb.append("				<span><img src='images/clock.png' alt=''>"+comments.getcTime()+"</span>");

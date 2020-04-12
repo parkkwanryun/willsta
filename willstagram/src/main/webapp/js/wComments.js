@@ -38,11 +38,12 @@ function commentsInsertActionFunction(e){
 		dataType : "text",
 		success : function(result) {
 			if(result.trim() == "true"){
-				location.reload();
+				setTimeout(function() {
+					location.reload();
+				}, 500);
 				//postCommentsListFunction(e);
 			}else if(result.trim() == "false"){
 				alert("댓글쓰기 실패");
-				$comments.select();
 			}
 		}
 	});
@@ -60,7 +61,7 @@ function reCommentsInsertFormShowFunction(e){
 	html += "<div class='post-comment' style='display:none'>" +
 			"	<div class='comment_box_inner'>" +
 			"		<form class='recomments_insert_form'>" +
-			"			<input type='text' placeholder='Post a ReComment'" +
+			"			<input type='text' placeholder='Comment a ReComment'" +
 			"				name='cContents' class='cContents'>" +
 			"			<input type='hidden' name='cNo' value='"+cNo+"' >" +
 			"			<input type='hidden' name='pNo' value='"+pNo+"' >" +
@@ -69,7 +70,7 @@ function reCommentsInsertFormShowFunction(e){
 			"	</div>" +
 			"</div>";
 	if($reCommentsForm.children().length == 1){
-		$reCommentsForm.append(html);
+		$reCommentsForm.prepend(html);
 		$reCommentsForm.children().fadeToggle(500);
 	}
 }
@@ -90,7 +91,11 @@ function reCommentsInsertActionFunction(e){
 		success : function(result){
 			if(result.trim() == "true"){
 				//alert("대댓글 된거니?");
-				location.reload();
+				setTimeout(function() {
+					location.reload();
+				}, 500);
+			}else if(result.trim() == "false"){
+				alert("대댓글쓰기 실패");
 			}
 		} 
 	});
@@ -128,5 +133,5 @@ $(function() {
 		e.preventDefault();
 		e.stopPropagation();
 	});
-	
 });
+
