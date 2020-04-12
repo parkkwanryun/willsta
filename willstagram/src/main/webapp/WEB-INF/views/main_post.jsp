@@ -184,7 +184,7 @@
 														<img src="images/liked-img.png" alt=""> <span class='likeCount'>${post.likeCount}</span>
 													</li>
 													<li>
-														<a href="#"  class="com comment_list_click" post_no="${post.pNo}">
+														<a href="#"  class="com comment_list_click" >
 														<i class="fas fa-comment-alt"></i> Comments </a>
 													</li>
 												</ul>
@@ -194,24 +194,22 @@
 												
 											<!-- comment-section -->
 											<div class="comment-section" post_no="${post.pNo}" ">
-												<!-- comment-sec -->
-
-												<!--comment-sec end-->
-													
-												
-												<!-- post-comment -->
-												<div class="post-comment">
-													<div class="comment_box">
-														<form class="comments_insert_form">
-															<!-- 댓글 내용 쓰는 곳 -->
-															<input type="text" placeholder="Post a comment"
-																name="cContents" class="cContents">
-															<input type="hidden" name="pNo" value="${post.pNo}" >
-															<button type="button" class="comments_insert_button">Send</button>
-														</form>
+													<!-- comment-sec -->
+		
+													<!-- post-comment -->
+													<div class="post-comment">
+														<div class="comment_box">
+															<form class="comments_insert_form">
+																<!-- 댓글 내용 쓰는 곳 -->
+																<input type="text" placeholder="Post a comment"
+																	name="cContents" class="cContents">
+																<input type="hidden" name="pNo" value="${post.pNo}" >
+																<button type="button" class="comments_insert_button">Send</button>
+															</form>
+														</div>
 													</div>
-												</div>
-												<!--post-comment end-->
+													<!--post-comment end-->
+													<!--comment-sec end-->
 											</div>
 											<!--comment-section end-->
 										</div>
