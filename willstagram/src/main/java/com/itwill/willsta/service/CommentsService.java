@@ -7,7 +7,10 @@ import com.itwill.willsta.domain.Comments;
 public interface CommentsService {
 
 	//댓글 작성
-	int createComment(Comments comments) throws Exception;
+	int createComments(Comments comments) throws Exception;
+	
+	//댓글 작성
+	int createReComments(Comments comments) throws Exception;
 
 	//댓글 수정
 	int updateComments(Comments comments) throws Exception;

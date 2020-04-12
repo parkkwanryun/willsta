@@ -38,34 +38,14 @@ function commentsInsertActionFunction(e){
 		dataType : "text",
 		success : function(result) {
 			if(result.trim() == "true"){
-				$comments[0].reset();
+				location.reload();
 				//postCommentsListFunction(e);
-				commentsInsertActionAfterListFunction(e);
 			}else if(result.trim() == "false"){
 				alert("댓글쓰기 실패");
 				$comments.select();
 			}
 		}
 	});
-}
-
-//댓글 작성 후 포스트 댓글 ajax 요청
-function commentsInsertActionAfterListFunction(e){
-	var $postComments = $(e.target).parents(".post-bar").find(".comment-section");
-	console.log($postComments);
-	var params = "pNo="+$postComments.attr("post_no");
-	console.log(params);
-		$.ajax({
-			url : "postCommentsList",
-			data : params,
-			method : "POST",
-			dataType : "html",
-			success : function(htmlData){
-				console.log(htmlData);
-				$postComments.html(htmlData);
-				$postComments.children().fadeToggle(500);
-			}
-		});
 }
 
 //대댓글 작성 form 보여주기
@@ -80,8 +60,8 @@ function reCommentsInsertFormShowFunction(e){
 	html += "<div class='post-comment' style='display:none'>" +
 			"	<div class='comment_box_inner'>" +
 			"		<form class='recomments_insert_form'>" +
-			"			<input type='text' placeholder='Post a comment'" +
-			"				name='cContents' class='cContents' >" +
+			"			<input type='text' placeholder='Post a ReComment'" +
+			"				name='cContents' class='cContents'>" +
 			"			<input type='hidden' name='cNo' value='"+cNo+"' >" +
 			"			<input type='hidden' name='pNo' value='"+pNo+"' >" +
 			"			<button type='button' class='recomments_insert_button'>Send</button></div>" +
@@ -96,9 +76,8 @@ function reCommentsInsertFormShowFunction(e){
 
 
 //대댓글 쓰기
-/*
 function reCommentsInsertActionFunction(e){
-	//console.log($(e.target).parents(".comment-section"));
+	console.log($(e.target).parents(".comment-section"));
 	console.log($(e.target).parents(".comment-section").find(".recomments_insert_form"));
 	var $reComments = $(e.target).parents(".comment-section").find(".recomments_insert_form");
 	var params = $reComments.serialize();
@@ -110,14 +89,12 @@ function reCommentsInsertActionFunction(e){
 		dataType : "text",
 		success : function(result){
 			if(result.trim() == "true"){
-				$reComments[0].reset();
-				
+				//alert("대댓글 된거니?");
+				location.reload();
 			}
 		} 
 	});
-	
 }
-*/
 
 
 
@@ -134,6 +111,7 @@ $(function() {
 	$(document).on("click", ".comments_insert_button", function(e){
 		//console.log(e.target);
 		commentsInsertActionFunction(e);
+		e.preventDefault();
 	});
 	
 	//대댓글 쓰기 폼 보이기
@@ -144,13 +122,11 @@ $(function() {
 	});
 	
 	//대댓글 쓰기
-	/*
 	$(document).on("click", ".recomments_insert_button", function(e){
 		console.log(e.target);
 		reCommentsInsertActionFunction(e);
 		e.preventDefault();
 		e.stopPropagation();
 	});
-	*/
 	
 });

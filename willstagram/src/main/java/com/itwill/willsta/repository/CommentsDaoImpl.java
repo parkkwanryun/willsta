@@ -19,6 +19,13 @@ public class CommentsDaoImpl implements CommentsDao {
 		return commentsMapper.createComments(comments);
 	}
 	
+	//대댓글 작성
+	@Override
+	public int createReComments(Comments comments) throws Exception {
+		return commentsMapper.createReComments(comments);
+	}
+	
+	
 	//댓글 수정
 	@Override
 	public int updateComments(Comments comments) throws Exception {

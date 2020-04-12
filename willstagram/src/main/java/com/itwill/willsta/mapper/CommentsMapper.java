@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
 
 import com.itwill.willsta.domain.Comments;
@@ -17,6 +18,11 @@ public interface CommentsMapper {
 	@Insert("INSERT INTO comments(cNo, pNo, mId, cContents, recNo)"+
 			"VALUES (comments_number_seq.NEXTVAL, #{pNo}, #{mId}, #{cContents}, 0)")
 	public Integer createComments(Comments comments);
+	
+	//대댓글 작성
+	@Insert("INSERT INTO comments(cNo, pNo, mId, cContents, recNo)"+
+			"VALUES (comments_number_seq.NEXTVAL, #{pNo}, #{mId}, #{cContents}, #{recNo})")
+	public Integer createReComments(Comments comments);
 	
 	//댓글 수정
 	@Update("UPDATE comments SET cContents = #{cContents} WHERE cNo = #{cNo}")
@@ -44,8 +50,11 @@ public interface CommentsMapper {
 	public Integer postCommentsCount(@Param("pNo") int pNo);
 	
 	//하나의 포스트에 달린 댓글 전체 조회
-	@Select("SELECT cNo, pNo, mId, cContents, cTime " + 
-			"FROM comments " +
-			"WHERE pNo = #{pNo}")
+	@Select("SELECT  mId, cTime, cNo, recNo, LPAD(' ', 2*(LEVEL-1)) || cContents AS cContents, " + 
+			"        pNo " + 
+			"FROM    comments " + 
+			"WHERE   recNo <= cNo AND pNo = #{pNo} " + 
+			"START WITH  recNo = 0 " + 
+			"CONNECT BY PRIOR cNo = recNo")
 	public List<Comments> postCommentsList(@Param("pNo") int pNo);
 }
