@@ -26,12 +26,8 @@ public class DmServiceImpl implements DmService {
 	}
 	// 상대 채팅방 생성
 	@Override
-	public int dmLastInsert(int dmNo, String mId) {
+	public int dmLastInsert(Integer dmNo, String mId) {
 		return dmDao.dmLastInsert(dmNo, mId);
-	}
-	@Override
-	public List<DM> dmSelectAll(String mId, Integer dmNo) {
-		return dmDao.dmSelectAll(mId, dmNo);
 	}
 	
 	@Override
@@ -73,6 +69,21 @@ public class DmServiceImpl implements DmService {
 	@Override
 	public int dmcDelete(int dmContentsNo) {
 		return dmContentsDao.dmcDelete(dmContentsNo);
+	}
+	@Override
+	public boolean duplicateCheck(String mId, String mIdYou) {
+		boolean isDuplicated = false;
+		List<DM> dmList = dmDao.dmRoomSelectAll(mId);
+		for (DM dm : dmList) {
+			if(dm.getmId().equalsIgnoreCase(mIdYou)) {
+				isDuplicated = true;
+			}
+		}
+		return isDuplicated;
+	}
+	@Override
+	public String dmGetCurrentDmNo() {
+		return dmDao.dmGetCurrentDmNo();
 	}
 
 

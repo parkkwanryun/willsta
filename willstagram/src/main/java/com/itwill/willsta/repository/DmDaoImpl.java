@@ -16,11 +16,8 @@ public class DmDaoImpl implements DmDao {
 	
 	public DmDaoImpl() {
 	}
+	
 	//채팅방 전체 조회
-	@Override
-	public List<DM> dmSelectAll(String mId, Integer dmNo) {
-		return dmMapper.dmSelectAll(mId, dmNo);
-	}
 	@Override
 	public List<DM> dmRoomSelectAll(String mId) {
 		return dmMapper.dmRoomSelectAll(mId);
@@ -47,8 +44,13 @@ public class DmDaoImpl implements DmDao {
 	}
 	// 상대 채팅방 생성
 	@Override
-	public int dmLastInsert(int dmNo, String mId) {
+	public int dmLastInsert(Integer dmNo, String mId) {
 		return dmMapper.dmLastInsert(dmNo, mId);
+	}
+	// 현재 생성된 마지막 방번호 조회
+	@Override
+	public String dmGetCurrentDmNo() {
+		return dmMapper.dmGetCurrentDmNo();
 	}
 
 }
