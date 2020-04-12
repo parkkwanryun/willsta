@@ -7,14 +7,14 @@ public class Comments {
 	private Integer pNo;
 	private String mId;
 	private String cContents;
-	private Date cTime; //Default: SYSDATE
+	private String cTime; //Default: SYSDATE
 	private Integer recNo;
 	
 	public Comments() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Comments(Integer cNo, Integer pNo, String mId, String cContents, Date cTime, Integer recNo) {
+	public Comments(Integer cNo, Integer pNo, String mId, String cContents, String cTime, Integer recNo) {
 		super();
 		this.cNo = cNo;
 		this.pNo = pNo;
@@ -65,11 +65,11 @@ public class Comments {
 		this.cContents = cContents;
 	}
 
-	public Date getcTime() {
+	public String getcTime() {
 		return cTime;
 	}
 
-	public void setcTime(Date cTime) {
+	public void setcTime(String cTime) {
 		this.cTime = cTime;
 	}
 
