@@ -43,9 +43,7 @@ label.error {
 								<div class="cm-logo">
 									<img src="images/helloMain.PNG" alt="">
 									<!--  <img src="images/cm-logo.png" alt=""> -->
-									<p>Willstagram is a domestic social networking platform where
-										businesses and independent professionals connect and
-										collaborate remotely</p>
+									<p><s:message code="sign.introduction"/></p>
 								</div>
 								<!--cm-logo end-->
 								<img src="images/gangsanim.PNG" alt="">
@@ -67,7 +65,7 @@ label.error {
 											<div class="col-lg-12 no-pdd">
 												<div class="sn-field">
 													<input type="text" id="i" class="required" name="mId"
-														placeholder="ID">
+														placeholder="<s:message code='sign.id'/>">
 													<div id="msg1"></div>
 													<span id="msg"></span> <i class="la la-user"></i>
 												</div>
@@ -76,7 +74,7 @@ label.error {
 											<div class="col-lg-12 no-pdd">
 												<div class="sn-field">
 													<input type="password" id="p" class="required" name="mPass"
-														placeholder="Password">
+														placeholder="<s:message code='sign.password'/>">
 													<div id="msg2"></div>
 													<span id="msg"></span> <i class="la la-lock"></i>
 												</div>
@@ -94,7 +92,7 @@ label.error {
 														</div>
 													 -->
 														<!--fgt-sec end-->
-														<a href="#" title="">forgot password?</a>
+														<a href="#" title=""><s:message code="sign.forgotPassword"/></a>
 													</div>
 												</div>
 											</div>
@@ -105,10 +103,10 @@ label.error {
 									</form>
 
 									<div class="login-resources">
-										<h4>Login via Social Account</h4>
+										<h4><s:message code="sign.social"/></h4>
 										<ul>
 											<li><a href="#" title="" class="fb"><i
-													class="fa fa-facebook"></i>Naver Login</a></li>
+													class="fa fa-facebook"></i><s:message code="sign.naver"/></a></li>
 										</ul>
 									</div>
 									<!--login-resources end-->
@@ -129,41 +127,41 @@ label.error {
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
 														<input type="text" id="mId" name="mId" class="required"
-															placeholder="id"> <i class="la la-user"></i>
+															placeholder="<s:message code='sign.id'/>"> <i class="la la-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
 														<input type="password" id="mPass" name="mPass"
-															class="required" placeholder="Password"> <i
+															class="required" placeholder="<s:message code='sign.password'/>"> <i
 															class="la la-lock"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
 														<input type="text" id="mName" name="mName"
-															class="required" placeholder="Name"> <i
+															class="required" placeholder="<s:message code='join.name'/>"> <i
 															class="la la-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
 														<input type="text" id="mEmail" name="mEmail"
-															class="required" placeholder="bluepk2034@naver.com">
+															class="required" placeholder="<s:message code='join.email'/>">
 														<i class="la la-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
 														<input type="text" id="mPhone" name="mPhone"
-															class="required" placeholder="Phone Number"> <i
+															class="required" placeholder="<s:message code='join.phoneNumber'/>"> <i
 															class="la la-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
 														<input type="text" id="mImage" name="mImage"
-															class="required" placeholder="profile_image_upload">
+															class="required" placeholder="<s:message code='join.image'/>">
 														<i class="la la-user"></i>
 													</div>
 												</div>
@@ -172,14 +170,13 @@ label.error {
 														<div class="fgt-sec">
 															<input type="checkbox" name="mRetire" id="c2"> <label
 																for="c2"> <span></span>
-															</label> <small>Yes, I understand and agree to the
-																workwise Terms & Conditions.</small>
+															</label> <small><s:message code="join.agree"/></small>
 														</div>
 														<!--fgt-sec end-->
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
-													<button type="submit" value="submit">Get Started</button>
+													<button type="submit" value="submit"><s:message code="join.signUp"/></button>
 												</div>
 											</div>
 										</form>
