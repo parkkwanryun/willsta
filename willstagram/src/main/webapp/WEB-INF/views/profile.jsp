@@ -53,7 +53,6 @@
 <script type="text/javascript" src="js/flatpickr.min.js"></script>
 <script type="text/javascript" src="lib/slick/slick.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
-<script type="text/javascript" src="js/socketConnect.js"></script>
 <script type="text/javascript">
 //팔로우 여부 체크
 	var mIdArray=$('#mId-List').serializeArray();

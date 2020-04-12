@@ -31,15 +31,26 @@ public class DmController {
 		return loginId;
 	}
 	@ResponseBody
-	@RequestMapping(value = "/messages_firstRoom_create")
-	public String messageRoomInsert(@RequestParam("mId") String mId) {
+	@RequestMapping(value = "/messages_room_create")
+	public String messageRoomInsert(@RequestParam("mId") String mId,
+									@RequestParam("mIdYou") String mIdYou) {
 		String isSuccess = "false";
-		if(dmService.dmFirstInsert(mId) != 0) {
-			isSuccess = "success";
+		System.out.println("@@@@@@@@@@@@@@@@@mId:"+mId);
+		System.out.println("@@@@@@@@@@@@@@@@@mIdYou:"+mIdYou);
+		System.out.println(dmService.dmRoomSelectAll(mId));
+		if(dmService.duplicateCheck(mId, mIdYou) == true) {
+			isSuccess = "false";
+		} else {
+			if(dmService.dmFirstInsert(mId) != 0) {
+				int dmNo = Integer.parseInt(dmService.dmGetCurrentDmNo());
+				System.out.println("@@@@@@@@@@@@@@@@@@@@@@@dmNo:"+dmNo);
+				dmService.dmLastInsert(dmNo, mIdYou);
+				isSuccess = "true";
+			}
 		}
-		return "isSuccess";
+		return isSuccess;
 	}
-	
+	/*
 	@ResponseBody
 	@RequestMapping(value = "/messages_Childroom_create")
 	public String messageRoomInsert(@RequestParam("mId") String mId,
@@ -50,7 +61,7 @@ public class DmController {
 		if(dmNo == 0) {
 			dmService.dmFirstInsert(mId);
 		} else {
-			List<DM> dmList = dmService.dmSelectAll(mId,dmNo);
+			List<DM> dmList = dmService.dmRoomSelectAll(mId);
 			for (DM dm : dmList) {
 				if(dm.getmId().equalsIgnoreCase(mId)) {
 					isSuccess = "faild";
@@ -63,7 +74,7 @@ public class DmController {
 		}
 		return isSuccess;
 	}
-	
+	*/
 	
 	
 	@RequestMapping(value = "/messages")
