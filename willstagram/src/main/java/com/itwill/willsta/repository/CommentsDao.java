@@ -8,6 +8,9 @@ public interface CommentsDao {
 
 	//댓글 작성
 	int createComments(Comments comments) throws Exception;
+	
+	//대댓글 작성
+	int createReComments(Comments comments) throws Exception;
 
 	//댓글 수정
 	int updateComments(Comments comments) throws Exception;

@@ -33,7 +33,7 @@ public class CommentsController {
 		comments.setpNo(pNo);
 		comments.setmId(mId);
 		comments.setcContents(cContents);
-		int createResult = commentsService.createComment(comments);
+		int createResult = commentsService.createComments(comments);
 		if(createResult == 1) {
 			result = "true";
 		} else {
@@ -70,25 +70,23 @@ public class CommentsController {
 	
 	@MemberLoginCheck
 	@PostMapping(value = "/reCommentsInsert", produces = "text/plain;charset=UTF-8")
-	public String reCommentsInsert(@RequestParam(value = "cNo") int cNo,
+	public String reCommentsInsert(@RequestParam(value = "cNo") int recNo,
 								   @RequestParam(value = "pNo") int pNo,
 								   @RequestParam String cContents,
 								   HttpSession session) throws Exception {
 		String result = "";
 		Comments comments = new Comments();
 		String mId = (String)session.getAttribute("mId");
-		comments.setcNo(cNo);
+		comments.setRecNo(recNo);
 		comments.setpNo(pNo);
 		comments.setmId(mId);
 		comments.setcContents(cContents);
-		/*
-		int createResult = commentsService.createComment(comments);
+		int createResult = commentsService.createReComments(comments);
 		if(createResult == 1) {
 			result = "true";
 		} else {
 			result = "false";
 		}
-		*/
 		return result;
 	}
 	

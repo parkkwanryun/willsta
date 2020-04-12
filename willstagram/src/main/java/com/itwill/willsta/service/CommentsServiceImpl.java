@@ -15,8 +15,14 @@ public class CommentsServiceImpl implements CommentsService {
 	
 	//댓글 작성
 	@Override
-	public int createComment(Comments comments) throws Exception {
+	public int createComments(Comments comments) throws Exception {
 		return commentsDao.createComments(comments);
+	}
+	
+	//대댓글 작성
+	@Override
+	public int createReComments(Comments comments) throws Exception {
+		return commentsDao.createReComments(comments);
 	}
 	
 	//댓글 수정
