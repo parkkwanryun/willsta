@@ -39,9 +39,8 @@ function commentsInsertActionFunction(e){
 		success : function(result) {
 			if(result.trim() == "true"){
 				setTimeout(function() {
-					location.reload();
+					window.location.reload();
 				}, 500);
-				//postCommentsListFunction(e);
 			}else if(result.trim() == "false"){
 				alert("댓글쓰기 실패");
 			}
@@ -90,9 +89,8 @@ function reCommentsInsertActionFunction(e){
 		dataType : "text",
 		success : function(result){
 			if(result.trim() == "true"){
-				//alert("대댓글 된거니?");
 				setTimeout(function() {
-					location.reload();
+					window.location.reload();
 				}, 500);
 			}else if(result.trim() == "false"){
 				alert("대댓글쓰기 실패");
