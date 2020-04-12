@@ -171,7 +171,7 @@ public class MemberController {
 		System.out.println("### 마지막 아이디 ->"+lastId);
 		List<Member> addMemberList=memberService.addMemberList(lastId);
 		mv.addObject("memberList",addMemberList);
-		mv.setViewName("profile");
+		mv.setViewName("profiles_scroll");
 		return mv;
 		
 	}
