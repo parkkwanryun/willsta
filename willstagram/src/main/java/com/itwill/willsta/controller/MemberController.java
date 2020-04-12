@@ -1,6 +1,7 @@
 package com.itwill.willsta.controller;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -35,15 +36,19 @@ public class MemberController {
 	public String sign_in() {
 		return "sign_in";
 	}
-	
+	Logger logger;
 	
 	/*로그인*/
 	@ResponseBody
 	@RequestMapping(value="/sign_in_action", method = RequestMethod.POST, produces="text/plain; charset=UTF-8")
 	public String sign_in_action_post(@RequestParam("mId")String mId, @RequestParam("mPass")String mPass, 
-										HttpSession session, Model model) {
+										HttpSession session, Model model,
+										HttpServletRequest request) {
 		System.out.println("로그인 컨트롤러 테스트"+"mId:"+mId+" mPass:"+mPass);
 		String forwardPath = "";
+		//String a= request.getSession().getServletContext().getRealPath("/");
+
+		//logger.info("프로젝트 경로 찾기" + a);
 		try {
 			Member signInMember = memberService.signIn(mId, mPass);
 			session.setAttribute("mId", mId);
