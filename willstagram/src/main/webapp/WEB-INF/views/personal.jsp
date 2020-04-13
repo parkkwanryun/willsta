@@ -83,7 +83,9 @@
 										</div><!--sd-title end-->
 										<div class="suggestions-list">
 											<c:forEach var="mList" items="${memberList}">
+											
 												<div class="suggestion-usd">
+												<c:if test="${mList.mId!=sessionScope.mId }">
 													<img src="contents/member_image/${mList.mImage}" alt="" width="40px">
 													<div class="sgt-text">
 														<h4>${mList.mName}</h4>
@@ -91,8 +93,10 @@
 													</div>
 													<span><i mid='${mList.mId}' class="la la-plus follow" ></i></span> 
 										
-													
+													</c:if>
+					
 												</div>
+											
 											</c:forEach>
 											<div class="view-more">
 												<a href="#" title="">View More</a>
