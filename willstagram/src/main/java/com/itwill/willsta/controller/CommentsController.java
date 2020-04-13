@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,9 +20,9 @@ public class CommentsController {
 	
 	@MemberLoginCheck
 	@PostMapping(value = "/commentsInsert", produces = "text/plain;charset=UTF-8")
-	public String commentsInsert(@RequestParam(value = "pNo", defaultValue = "15") int pNo,
-									   		 @RequestParam String cContents,
-									   		 HttpSession session) throws Exception {
+	public String commentsInsert(@RequestParam(value = "pNo") int pNo,
+								 @RequestParam String cContents,
+								 HttpSession session) throws Exception {
 		String result = "";
 		Comments comments = new Comments();
 		String mId = (String)session.getAttribute("mId");
@@ -49,7 +50,7 @@ public class CommentsController {
 			sb.append("<div class='comment-sec' style='display:none' comments_no='"+comments.getcNo()+"'>");
 			sb.append("<ul>");
 			sb.append("	<li>");
-			if(comments.getmId() == sessionmId) {
+			if(comments.getmId().equals(sessionmId)) {
 				sb.append("<div class='ed-opts ed-opts-comment'>");
 				sb.append("<a href='#' title='' class='ed-opts-open'><i class='la la-ellipsis-v'></i></a>");
 				sb.append("	<ul class='ed-options ed-options-comment'>");
@@ -106,12 +107,18 @@ public class CommentsController {
 		return ""+postCommentsCount;
 	}
 	
-	public String commentsUpdate() throws Exception {
+	@MemberLoginCheck
+	@PostMapping(value = "/commentsUpdate", produces = "application/json;charset=UTF-8")
+	public Comments commentsUpdate(@RequestParam(value = "cNo") int cNo,
+								   @RequestParam Comments comments, 
+								   HttpSession session) throws Exception {
 		
-		return "";
+		return comments;
 	}
 	
-	public String commentsDelete() throws Exception {
+	@MemberLoginCheck
+	@PostMapping(value = "/commentsDelete")
+	public String commentsDelete(@RequestParam(value = "cNo") int cNo) throws Exception {
 		
 		return "";
 	}
