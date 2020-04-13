@@ -1115,6 +1115,22 @@ a.top-views:hover {
 	visibility: hidden;
 	z-index: 0;
 }
+.ed-options-comment {
+	position: relative;
+	top: 100%;
+	right: 0;
+	width: 130px;
+	background-color: #fff;
+	-webkit-box-shadow: 0 0 10px rgba(0,0,0,0.28);
+	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.28);
+	-ms-box-shadow: 0 0 10px rgba(0,0,0,0.28);
+	-o-box-shadow: 0 0 10px rgba(0,0,0,0.28);
+	box-shadow: 0 0 10px rgba(0,0,0,0.28);
+	padding: 20px;
+	opacity: 0;
+	visibility: hidden;
+	z-index: 0;
+}
 .ed-options.active {
 	opacity: 1;
 	visibility: visible;
@@ -1744,7 +1760,7 @@ a.top-views:hover {
 	float: none;
 }
 .comment_box_inner input {
-	width: 347px;
+	width: 326px;
 	height: 40px;
 	border: 1px solid #e5e5e5;
 	background-color: #efefef;
