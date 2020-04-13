@@ -81,7 +81,7 @@ public class FollowController {
 	}
 	
 	
-	@ResponseBody // 애는팔로워 팔로잉 바뀌면서 발류랑 펑션이랑다르지만 값잘나오니까 냅둬.
+	@ResponseBody 
 	@RequestMapping(value = "/followingList", method = RequestMethod.POST)
 	public List<Member> followingList(@RequestParam(value = "mId", required = true) String mId) {
 		ModelAndView mv = new ModelAndView();

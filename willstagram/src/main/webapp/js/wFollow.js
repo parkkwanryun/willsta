@@ -94,6 +94,8 @@ $(function(){
 							html+="<i class='la la-ellipsis-v'></i>";
 							html+="</div>";
 							html+="<div class='suggestions-list'>";
+							
+						//	$.each(jsonArray,function(i, jsonObject) {
 							for (var i = 0; i < jsonArray.length; i++) {
 								var jsonArrayObject = jsonArray[i];
 								var mId = jsonArrayObject.mId;
@@ -115,31 +117,32 @@ $(function(){
 										+ "</div>"
 										+ "<span><i mid='"
 										+ mId
-										+ "' class='la la-plus ' ></i></span>"
+										+ "' class='la la-minus ' ></i></span>"
 										
 										+ "</div>";
 								}
-							 	html+="</div>";
-							 	console.log($('div.suggestions > div.suggestions-list').size());
-							 	if($('div.suggestions > div.suggestions-list').size()>1){
-							 		$('div.suggestions > div.suggestions-list').eq(1).slideToggle({
-							 			duration:500
-							 		});
-							 		$('div.suggestions > div.suggestions-list').eq(0).slideToggle({
-							 			duration:500
-							 		});
-							 	}else{
-							 		console.log('append');
-							 		$('div.suggestions').append(html);
-							 		$('div.suggestions div.suggestions-list').eq(1).slideToggle({
-							 			duration:500
-							 		});
-							 		$('div.suggestions > div.suggestions-list').eq(0).slideToggle({
-							 			duration:500
-							 		});
-							 	}
+							//});
+							html+="</div>";
+						 	console.log($('div.suggestions > div.suggestions-list').size());
+						 	if($('div.suggestions > div.suggestions-list').size()>1){
+						 		$('div.suggestions > div.suggestions-list').eq(1).slideToggle({
+						 			duration:500
+						 		});
+						 		$('div.suggestions > div.suggestions-list').eq(0).slideToggle({
+						 			duration:500
+						 		});
+						 	}else{
+						 		console.log('append');
+						 		$('div.suggestions').append(html);
+						 		$('div.suggestions div.suggestions-list').eq(1).slideToggle({
+						 			duration:500
+						 		});
+						 		$('div.suggestions > div.suggestions-list').eq(0).slideToggle({
+						 			duration:500
+						 		});
+						 	}
 							 
-							 	$('div.suggestions').html(html);
+							 $('div.suggestions').html(html);
 							}
 						});
 				e.preventDefault();
