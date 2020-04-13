@@ -56,7 +56,7 @@ public class CommentsController {
 			sb.append("</div>");
 			sb.append("		<div class='comment-list'>");
 			if(comments.getRecNo() > 0) {
-				sb.append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+				sb.append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
 			}
 			sb.append("			<div class='comment'>");
 			sb.append("				<h3>"+comments.getmId()+"</h3>");
