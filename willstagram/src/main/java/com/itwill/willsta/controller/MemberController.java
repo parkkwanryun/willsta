@@ -1,5 +1,7 @@
 package com.itwill.willsta.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.willsta.domain.Member;
@@ -23,6 +26,8 @@ import com.itwill.willsta.service.MemberService;
 
 @Controller
 public class MemberController {
+	MultipartFile multipartFile;
+	
 	@Autowired
 	MemberService memberService;
 	
@@ -85,9 +90,9 @@ public class MemberController {
 								@RequestParam("mEmail")String mEmail,
 								@RequestParam("mPhone")String mPhone,
 								@RequestParam("mImage")String mImage,
-								@RequestParam("mRetire")String mRetire) {
-		
-		
+								@RequestParam("mRetire")String mRetire,
+								HttpServletRequest request){
+		String path="/var/lib/tomcat8/webapps/upload_mImage/";
 		
 		boolean newMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire));
 			if(newMember) {
@@ -96,7 +101,7 @@ public class MemberController {
 				newMember= false;
 			}
 		return newMember;
-}	
+	}	
 	/*아이디 중복 체크*/
 	@ResponseBody
 	@RequestMapping(value="/duplicate_check", method= RequestMethod.GET, produces="text/plain; charset=UTF-8")

@@ -37,7 +37,6 @@
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
 		
-		<!--  -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<beans:bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
