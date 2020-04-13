@@ -1,9 +1,9 @@
 //포스트-댓글 전체 보이기 ajax요청
 function postCommentsListFunction(e){
 	var $postComments = $(e.target).parents(".post-bar").find(".comment-section");
-	console.log($postComments);
+	//console.log($postComments);
 	var params = "pNo="+$postComments.attr("post_no");
-	console.log(params);
+	//console.log(params);
 	if($postComments.children().length > 1){
 		$postComments.children().fadeToggle(500);
 	}else {
@@ -13,45 +13,45 @@ function postCommentsListFunction(e){
 			method : "POST",
 			dataType : "text",
 			success : function(htmlData){
-				console.log(htmlData);
+				//console.log(htmlData);
 				postCommentsCount(e);
 				$postComments.append(htmlData);
 				$postComments.children().fadeToggle(500);
 			}
 		});
 	}
-};
+}
 
 
 //포스트-댓글 수 ajax 요청
 function postCommentsCount(e){
 	var $postComments = $(e.target).parents(".post-bar").find(".comment-section");
-	console.log($postComments);
+	//console.log($postComments);
 	var params = "pNo="+$postComments.attr("post_no");
-	console.log(params);
+	//console.log(params);
 	$.ajax({
 		url : "postCommentsCount",
 		data : params,
 		method : "POST",
 		dataType : "text",
 		success : function(count){
-			console.log(count);
+			//console.log(count);
 			//어딘가에.append("<div>"+count+"</div>");
 			$(e).html("<i class='fas fa-comment-alt'></i> Comments &nbsp;"+count);
 		}
 	});
-};
+}
 
 
 //DOM tree 생성 후 포스트-댓글 수 ajax 요청
 function postCommentsCount2($aNodeList){
 	for (var i = 0; i < $aNodeList.length; i++) {
 		var $postComments = $($aNodeList.get(i)).parents(".post-bar").find(".comment-section");
-		console.log($postComments);
+		//console.log($postComments);
 		var params = "pNo="+$postComments.attr("post_no");
-		console.log(params);
+		//console.log(params);
 		$.ajax({
-			async:false,
+			async : false,
 			url : "postCommentsCount",
 			data : params,
 			method : "POST",
@@ -62,7 +62,7 @@ function postCommentsCount2($aNodeList){
 			}
 		});
 	}
-};
+}
 
 
 //댓글 작성 ajax 요청
@@ -143,6 +143,24 @@ function reCommentsInsertActionFunction(e){
 }
 
 
+//댓글 수정
+function commentsUpdateActionFunction(e){
+	console.log($(e.target).parents(".comment-sec"));
+	var cNo = $(e.target).parents(".comment-sec").attr("comments_no");
+	var params = "cNo="+cNo; 
+	console.log(cNo);
+	$.ajax({
+		url : "/commentsUpdate",
+		data : params,
+		method : "POST",
+		dataType : "json",
+		success : function(jsonObject){
+			
+		}
+	});
+}
+
+
 
 //document ready
 $(function() {
@@ -175,6 +193,16 @@ $(function() {
 		e.stopPropagation();
 	});
 	
+	//댓글 수정
+	$(document).on("click", ".updateComment", function(e){
+		commentsUpdateActionFunction(e);
+		e.preventDefault();
+	});
+	
+	//댓글 삭제
+	
+	
+	//DOM tree 생성 후 포스트-댓글 수 나타내기
 	postCommentsCount2($('.comment_list_click'));
 });
 
