@@ -22,7 +22,8 @@
 $(function(){
 	
 
-// 팔로우 리스트  # 팔로우 카운트 된숫자를 클릭했을때 내가 팔로우하고있는 리스트 뽑기. 나 울어 ㅠㅠㅠㅠㅠㅠㅠㅠㅠ
+// 팔로우 리스트  # 팔로우 카운트 된숫자를 클릭했을때 내가 팔로우하고있는 리스트 뽑기. 나 울어 ㅠㅠㅠㅠㅠㅠㅠㅠㅠ 
+	// 그리고 뽑았으면 언팔로우도 가능하게 해야됨 .근데 화면에 없느거라서 오또케하냐 
 		$('#followers').on('click',	function(e) {
 				var $mIdYou = $(e.target);
 				var param = "mId=" + $mIdYou.attr("mid");
@@ -61,7 +62,7 @@ $(function(){
 													+ "</div>"
 													+ "<span><i midyou='"
 													+ mId
-													+ "' class='la la-plus follow' ></i></span>"
+													+ "' class='la la-plus ' ></i></span>"
 													+ "</div>";	
 											}
 										 	html+="</div>";
@@ -111,7 +112,7 @@ $(function(){
 										+ "</div>"
 										+ "<span><i mid='"
 										+ mId
-										+ "' class='la la-plus follow' ></i></span>"
+										+ "' class='la la-plus ' ></i></span>"
 										+ "</div>";
 								}
 							 	html+="</div>";
