@@ -5,13 +5,16 @@
  *  follow count (완료)
  *  following count (완료)
  할것들 
- - follow & following list UI 아니면 bootstrap 써서 뽑기 
+ - follower & following list UI 아니면 bootstrap 써서 뽑기 
  	리스트를 잘 불러왔지만 여기서 문제는 리스트 불러온 부분에서  중복이 발생하고 내자신의 이름은 나오면 안된다구.
-  눈물이난다. 
+  눈물이난다. (반완료)
+  -- 팔로워 리스트에서 언팔가능하게 만들기 근데 이게 폼에는 팔로우기능이 이미 적혀있어서 .. 만들기어려벤
+ 
  
  - view more 눌렀을때 더 나오게 만들기
  - 친구추천목록에서 +버튼누르면 팔로잉 되게만들면서 (완료)
  - 팔로잉카운트수도같이 늘리기(완료)
+ --  팔로우되면 언팔도 되게 만들어야지 ..
  - 자신의 아이디는 안나오게 만들기.(완료)
 - 마이페이지 펄스널 페이지로 링크바꾸기.(완료)
   
@@ -79,6 +82,7 @@ $(function(){
 			var $mIdYou = $(e.target);
 			var param = "mId=" + $mIdYou.attr("mid");
 			console.log(param);
+		//	$('.la la-plus').append('<h1>'+unfollow+'</h1>');
 			$.ajax({url : "followingList",
 					method : "POST",
 					data : param,
@@ -90,7 +94,6 @@ $(function(){
 							html+="<i class='la la-ellipsis-v'></i>";
 							html+="</div>";
 							html+="<div class='suggestions-list'>";
-												
 							for (var i = 0; i < jsonArray.length; i++) {
 								var jsonArrayObject = jsonArray[i];
 								var mId = jsonArrayObject.mId;
@@ -112,10 +115,29 @@ $(function(){
 										+ "</div>"
 										+ "<span><i mid='"
 										+ mId
-										+ "' class='la la-plus' ></i></span>"
+										+ "' class='la la-plus ' ></i></span>"
+										
 										+ "</div>";
 								}
 							 	html+="</div>";
+							 	console.log($('div.suggestions > div.suggestions-list').size());
+							 	if($('div.suggestions > div.suggestions-list').size()>1){
+							 		$('div.suggestions > div.suggestions-list').eq(1).slideToggle({
+							 			duration:500
+							 		});
+							 		$('div.suggestions > div.suggestions-list').eq(0).slideToggle({
+							 			duration:500
+							 		});
+							 	}else{
+							 		console.log('append');
+							 		$('div.suggestions').append(html);
+							 		$('div.suggestions div.suggestions-list').eq(1).slideToggle({
+							 			duration:500
+							 		});
+							 		$('div.suggestions > div.suggestions-list').eq(0).slideToggle({
+							 			duration:500
+							 		});
+							 	}
 							 
 							 	$('div.suggestions').html(html);
 							}
@@ -130,7 +152,7 @@ $(function(){
 
 
 	
-	// 팔로우 친구추천리스트에서 버튼 클릭했을때 팔로가능하게하기.
+	// 팔로우 친구추천리스트에서 버튼 클릭했을때 팔로가능하게하기. 
 	$('.follow').on(
 			'click',
 			function(e) {
@@ -150,11 +172,11 @@ $(function(){
 						// location.href='personal_info'; get방식이였다면.
 						$(e.target).hide();
 						$(e.target.parentNode).next().children().show();
-						var html="<span><i class='la la-plus unfollow' ></i></span>";
 						// $(e.target.parentNode).prev().children().show();
-						$('#follow_count_a').text(
+						$('#followings').text(
 								parseInt($('#followings').text()) + 1);
-
+						var html="<span><i class='la la-plus unfollow' ></i></span>";
+						
 					}
 				});
 				e.preventDefault();
@@ -186,7 +208,7 @@ $(function(){
 						$(e.target).hide();
 						$(e.target.parentNode).next().children().show();
 						// $(e.target.parentNode).prev().children().show();
-						$('#follow_count_a').text(
+						$('#followings').text(
 								parseInt($('#followings').text()) - 1);
 
 					}
