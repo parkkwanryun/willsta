@@ -56,21 +56,21 @@
 										</div><!--user-profile end-->
 										<ul class="user-fw-status">
 											<li>
-												<h4>Following</h4>
+												<h4><s:message code="main.follow"/></h4>
 												<span>${member.followingCount}</span>
 											</li>
 											<li>
-												<h4>Followers</h4>
+												<h4><s:message code="main.follower"/></h4>
 												<span>${member.followerCount}</span>
 											</li>
 											<li>
-												<a href="personal_info" title="">View Profile</a>
+												<a href="personal_info" title=""><s:message code="main.myProfile"/></a>
 											</li>
 										</ul>
 									</div><!--user-data end-->
 									<div class="suggestions full-width">
 										<div class="sd-title">
-											<h3>친구추천</h3>
+											<h3><s:message code="main.suggestion"/></h3>
 											<i class="la la-ellipsis-v"></i>
 										</div><!--sd-title end-->
 										<div class="suggestions-list">
@@ -119,7 +119,7 @@
 										</div>
 										<div class="post-st">
 											<ul>
-												<li><a class="post-jb active" href="#" title="">글쓰기</a></li>
+												<li><a class="post-jb active" href="#" title=""><s:message code="post.write"/></a></li>
 											</ul>
 										</div><!--post-st end-->
 									</div><!--post-topbar end-->
@@ -142,8 +142,8 @@
 													<!-- 이 포스트가 내꺼인 경우에만 보여주는 메뉴 -->
 													<c:if test="${post.mId==sessionScope.mId}">
 														<ul class="ed-options">
-															<li><a class="updatePost" href="#" title="">Edit Post</a></li>
-															<li><a class="deletePost" href="#" title="">Delete Post</a></li>
+															<li><a class="updatePost" href="#" title=""><s:message code="post.edit"/></a></li>
+															<li><a class="deletePost" href="#" title=""><s:message code="post.delete"/></a></li>
 															<li><a class="hiddenPost" href="#" title="">
 															<c:if test="${post.status=='A'}">Hide</c:if>
 															<c:if test="${post.status=='H'}">Show</c:if>
@@ -170,7 +170,7 @@
 											</div>
 											<div class="job_descp">
 												<h3>${post.pTitle}</h3>
-												<p>${fn:substring(post.pContents, 1, 30)}<br><a href="#" title="">view more</a></p>
+												<p>${fn:substring(post.pContents, 1, 30)}<br><a href="#" title=""><s:message code="post.view"/></a></p>
 												<ul class="skill-tags">
 													<c:forEach var='tag' items="${post.tagArray}">
 														<li><a href="#" title="">${tag}</a></li>
@@ -180,15 +180,15 @@
 											</div>
 											<div class="job-status-bar">
 												<ul class="like-com">
-													<li><a href="#" class="like"><i class="fas fa-heart"></i> Like</a>
+													<li><a href="#" class="like"><i class="fas fa-heart"></i> <s:message code="post.like"/></a>
 														<img src="images/liked-img.png" alt=""> <span class='likeCount'>${post.likeCount}</span>
 													</li>
 													<li>
 														<a href="#"  class="com comment_list_click" >
-														<i class="fas fa-comment-alt"></i> Comments </a>
+														<i class="fas fa-comment-alt"></i> <s:message code="post.comment"/> </a>
 													</li>
 												</ul>
-												<a href="#"><i class="fas fa-eye"></i>Views
+												<a href="#"><i class="fas fa-eye"></i><s:message code="post.views"/>
 														${post.pViewCount}</a>
 											</div>
 												
@@ -201,10 +201,10 @@
 														<div class="comment_box">
 															<form class="comments_insert_form">
 																<!-- 댓글 내용 쓰는 곳 -->
-																<input type="text" placeholder="Post a comment"
+																<input type="text" placeholder="<s:message code='post.postComment'/>"
 																	name="cContents" class="cContents">
 																<input type="hidden" name="pNo" value="${post.pNo}" >
-																<button type="button" class="comments_insert_button">Send</button>
+																<button type="button" class="comments_insert_button"><s:message code="post.commentSend"/></button>
 															</form>
 														</div>
 													</div>
@@ -236,7 +236,7 @@
 									</div><!--widget-about end-->
 									<div class="widget widget-jobs">
 										<div class="sd-title">
-											<h3>Top Views</h3>
+											<h3><s:message code="post.topView"/></h3>
 											<i class="la la-ellipsis-v"></i>
 										</div>
 										<div class="jobs-list">
@@ -271,19 +271,19 @@
 		<!-- 글쓰기 팝업 -->
 		<div class="post-popup job_post">
 			<div class="post-project">
-				<h3>글쓰기</h3>
+				<h3><s:message code="post.write"/></h3>
 				<div class="post-project-fields">
 					<form id="postWrite"  method="get">
 						<div class="row">
 							<div class="col-lg-12">
 								<input type="hidden" id="pNo" name="pNo" >
-								<input type="text" id="pTitle" name="pTitle" placeholder="Title">
+								<input type="text" id="pTitle" name="pTitle" placeholder="<s:message code='post.write.title'/>">
 							</div>
 							<div class="col-lg-12">
-								<input type="text" id="hasTag" name="hasTag" placeholder="tag">
+								<input type="text" id="hasTag" name="hasTag" placeholder="<s:message code='post.write.tag'/>">
 							</div>
 							<div class="col-lg-12">
-								<textarea id="pContents" name="pContents" placeholder="Description"></textarea>
+								<textarea id="pContents" name="pContents" placeholder="<s:message code='post.write.description'/>"></textarea>
 							</div>
 							<div class="col-lg-12 img-list" style="margin-bottom:10px;">
 								<!-- 여기 이미지 들어옴 -->
@@ -293,8 +293,8 @@
 						    </div>
 							<div class="col-lg-12">
 								<ul>
-									<li><button class="active" type="submit" value="post">완료</button></li>
-									<li><a href="#" title="">취소</a></li>
+									<li><button class="active" type="submit" value="post"><s:message code="post.write.completion"/></button></li>
+									<li><a href="#" title=""><s:message code="post.write.cancel"/></a></li>
 								</ul>
 							</div>
 						</div>

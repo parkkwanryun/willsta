@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 	
  <div class="post-project">
 	<h3>${post.pTitle}</h3>
@@ -47,6 +48,6 @@
      </div>
      
      <div class="pull-right">
-       <button type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+       <button type="button" class="btn btn-default btn-close" data-dismiss="modal"><s:message code="post.detailClose"/></button>
      </div>
  </div>
