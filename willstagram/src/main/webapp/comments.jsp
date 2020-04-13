@@ -1,20 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div class="comment-sec">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:forEach var="comments" items="${postCommentsList}">
+<div class="comment-sec" style="display:none" comments_no="${comments.cNo}">
 	<ul>
 		<li>
 			<div class="comment-list">
-				<div class="bg-img">
-					<img src="images/resources/bg-img1.png" alt="">
-				</div>
+			<c:if test="${comments.RecNo > 0}">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</c:if>
 				<div class="comment">
-					<h3>John Doe</h3>
-					<span><img src="images/clock.png" alt=""> 3 min ago</span>
-					<p>Lorem ipsum dolor sit amet,</p>
-					<a href="#" title="" class="active"><i class="fa fa-reply-all"></i>Reply</a>
+					<h3>${comments.mId }</h3>
+					<span><img src="images/clock.png" alt="">${comments.cTime}</span>
+					<p>${comments.cContents}</p>
+					<a href="#" title="" class="active acrive-reply" comments_no="${comments.cNo}">
+						<i class="fa fa-reply-all"> Reply</i></a>
 				</div>
 			</div>
 		</li>
 	</ul>
 </div>
-<!--comment-sec end-->
+</c:forEach>
