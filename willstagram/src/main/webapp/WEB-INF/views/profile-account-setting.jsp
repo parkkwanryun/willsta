@@ -205,7 +205,7 @@ label.error {
 											<div class="cp-field">
 												<h5>New Image</h5>
 												<div class="cpp-fiel">
-													<input type="text" name="mImage" class="required" placeholder="New Image">
+													<input type="file" name="mImage" class="required" placeholder="New Image">
 													<i class="la la-user"></i>
 												</div>
 											</div>

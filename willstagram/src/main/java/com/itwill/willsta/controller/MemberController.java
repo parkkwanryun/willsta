@@ -86,6 +86,9 @@ public class MemberController {
 								@RequestParam("mPhone")String mPhone,
 								@RequestParam("mImage")String mImage,
 								@RequestParam("mRetire")String mRetire) {
+		
+		
+		
 		boolean newMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire));
 			if(newMember) {
 				newMember= true;
