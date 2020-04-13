@@ -11,11 +11,54 @@ function postCommentsListFunction(e){
 			url : "postCommentsList",
 			data : params,
 			method : "POST",
-			dataType : "html",
+			dataType : "text",
 			success : function(htmlData){
 				console.log(htmlData);
+				postCommentsCount(e);
 				$postComments.append(htmlData);
 				$postComments.children().fadeToggle(500);
+			}
+		});
+	}
+};
+
+
+//포스트-댓글 수 ajax 요청
+function postCommentsCount(e){
+	var $postComments = $(e.target).parents(".post-bar").find(".comment-section");
+	console.log($postComments);
+	var params = "pNo="+$postComments.attr("post_no");
+	console.log(params);
+	$.ajax({
+		url : "postCommentsCount",
+		data : params,
+		method : "POST",
+		dataType : "text",
+		success : function(count){
+			console.log(count);
+			//어딘가에.append("<div>"+count+"</div>");
+			$(e).html("<i class='fas fa-comment-alt'></i> Comments &nbsp;"+count);
+		}
+	});
+};
+
+
+//DOM tree 생성 후 포스트-댓글 수 ajax 요청
+function postCommentsCount2($aNodeList){
+	for (var i = 0; i < $aNodeList.length; i++) {
+		var $postComments = $($aNodeList.get(i)).parents(".post-bar").find(".comment-section");
+		console.log($postComments);
+		var params = "pNo="+$postComments.attr("post_no");
+		console.log(params);
+		$.ajax({
+			async:false,
+			url : "postCommentsCount",
+			data : params,
+			method : "POST",
+			dataType : "text",
+			success : function(count){
+				console.log(count);
+				$($aNodeList.get(i)).html("<i class='fas fa-comment-alt'></i> Comments &nbsp;"+count);
 			}
 		});
 	}
@@ -103,14 +146,14 @@ function reCommentsInsertActionFunction(e){
 
 //document ready
 $(function() {
-	// 포스트-댓글 전체 보이기
+	//포스트-댓글 전체 보이기
 	$(document).on("click", ".comment_list_click", function(e){
 		//console.log(e.target);
 		postCommentsListFunction(e);
 		e.preventDefault();
 	});
 	
-	// 댓글 쓰기
+	//댓글 쓰기
 	$(document).on("click", ".comments_insert_button", function(e){
 		//console.log(e.target);
 		commentsInsertActionFunction(e);
@@ -131,5 +174,7 @@ $(function() {
 		e.preventDefault();
 		e.stopPropagation();
 	});
+	
+	postCommentsCount2($('.comment_list_click'));
 });
 

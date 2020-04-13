@@ -186,7 +186,7 @@
 														<a href="#" title="" class="ed-opts-open"><i
 															class="la la-ellipsis-v"></i></a>
 														<!-- 이 포스트가 내꺼인 경우에만 보여주는 메뉴 -->
-														<c:if test="${post.mId!=sessionScope.loginId}">
+														<c:if test="${post.mId==sessionScope.loginId}">
 															<ul class="ed-options">
 																<li><a class="updatePost" href="#" title="">Edit
 																		Post</a></li>
@@ -247,7 +247,26 @@
 												<!-- comment-section -->
 												<div class="comment-section" post_no="${post.pNo}">
 														<!-- comment-sec -->
-		
+														<c:forEach var="comments" items="${postCommentsList}">
+														<div class="comment-sec" style="display:none" comments_no="${comments.cNo}">
+															<ul>
+																<li>
+																	<div class="comment-list">
+																	<c:if test="${comments.RecNo > 0}">
+																		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	</c:if>
+																		<div class="comment">
+																			<h3>${comments.mId }</h3>
+																			<span><img src="images/clock.png" alt="">${comments.cTime}</span>
+																			<p>${comments.cContents}</p>
+																			<a href="#" title="" class="active acrive-reply" comments_no="${comments.cNo}">
+																				<i class="fa fa-reply-all"> Reply</i></a>
+																		</div>
+																	</div>
+																</li>
+															</ul>
+														</div>
+														</c:forEach>
 														<!-- post-comment -->
 														<div class="post-comment">
 															<div class="comment_box">

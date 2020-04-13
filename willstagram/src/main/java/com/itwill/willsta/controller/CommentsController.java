@@ -40,24 +40,24 @@ public class CommentsController {
 	@MemberLoginCheck
 	@PostMapping(value = "/postCommentsList", produces = "text/plain;charset=UTF-8")
 	public String postCommentsList(@RequestParam(value = "pNo") int pNo, HttpSession session) throws Exception {
-		String mId = (String)session.getAttribute("mId");
+		String sessionmId = (String)session.getAttribute("mId");
 		StringBuffer sb = new StringBuffer();
 		List<Comments> postCommentsList = commentsService.postCommentsList(pNo);
+		
 		for (int i = 0; i < postCommentsList.size(); i++) {
 			Comments comments = postCommentsList.get(i);
 			sb.append("<div class='comment-sec' style='display:none' comments_no='"+comments.getcNo()+"'>");
 			sb.append("<ul>");
 			sb.append("	<li>");
-			sb.append("<div class='ed-opts'>");
-			sb.append("<a href='#' title='' class='ed-opts-open'><i class='la la-ellipsis-v'></i></a>");
-			if(comments.getmId() == mId) {
+			if(comments.getmId() == sessionmId) {
+				sb.append("<div class='ed-opts ed-opts-comment'>");
+				sb.append("<a href='#' title='' class='ed-opts-open'><i class='la la-ellipsis-v'></i></a>");
 				sb.append("	<ul class='ed-options ed-options-comment'>");
 				sb.append("		<li><a class='updatePost updateComment' href='#' title=''>Edit</a></li>");
 				sb.append("		<li><a class='deletePost deleteComment' href='#' title=''>Unsaved</a></li>");
-				sb.append("		</a></li>");
 				sb.append("	</ul>");
+				sb.append("</div>");
 			}
-			sb.append("</div>");
 			sb.append("		<div class='comment-list'>");
 			if(comments.getRecNo() > 0) {
 				sb.append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
@@ -97,6 +97,13 @@ public class CommentsController {
 			result = "false";
 		}
 		return result;
+	}
+	
+	@MemberLoginCheck
+	@PostMapping(value = "/postCommentsCount")
+	public String postCommentsCount(@RequestParam(value = "pNo") int pNo) throws Exception {
+		int postCommentsCount = commentsService.postCommentsCount(pNo);
+		return ""+postCommentsCount;
 	}
 	
 	public String commentsUpdate() throws Exception {
