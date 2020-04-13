@@ -152,7 +152,7 @@ $(function(){
 						var html="<span><i class='la la-plus unfollow' ></i></span>";
 						// $(e.target.parentNode).prev().children().show();
 						$('#follow_count_a').text(
-								parseInt($('#follow_count_a').text()) + 1);
+								parseInt($('#followings').text()) + 1);
 
 					}
 				});
@@ -186,7 +186,7 @@ $(function(){
 						$(e.target.parentNode).next().children().show();
 						// $(e.target.parentNode).prev().children().show();
 						$('#follow_count_a').text(
-								parseInt($('#follow_count_a').text()) - 1);
+								parseInt($('#followings').text()) - 1);
 
 					}
 				});
