@@ -29,7 +29,7 @@
 		<c:if test="${fn:startsWith(post.fileName, 'img')}">
 			<div class="image">
 				<a href="#"><img class="center-block" style="margin:10px 0px;"
-					src="contents/post_contents/${post.fileName}" alt="여기에이미지들어옴"
+					src="contents/post_contents/${post.fileName}" alt="<s:message code='post.image'/>"
 					width="500" height="300" ></a>
 			</div>
 		</c:if>
@@ -61,7 +61,7 @@
 				    <i class="fas fa-comment-alt"></i> <s:message code="post.comment"/> </a>
 				</li>
 			</ul>
-			<a href="#"><i class="fas fa-eye"></i>Views ${post.pViewCount}</a>
+			<a href="#"><i class="fas fa-eye"></i><s:message code="post.views"/> ${post.pViewCount}</a>
 		</div>
 		
 		<!-- comment-section -->

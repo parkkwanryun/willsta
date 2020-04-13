@@ -7,7 +7,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>즐거움의 시작 윌스타그램</title>
+	<title><s:message code="menu.title"/></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -157,7 +157,7 @@
 												<c:if test="${fn:startsWith(post.fileName, 'img')}">
 													<div class="image">
 														<img class="center-block" style="margin:10px 0px;"
-															src="contents/post_image/${post.fileName}" alt="여기에이미지들어옴"
+															src="contents/post_image/${post.fileName}" alt="<s:message code='post.image'/>"
 															width="500" height="300" >
 													</div>
 												</c:if>
