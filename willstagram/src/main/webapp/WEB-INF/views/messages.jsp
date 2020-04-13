@@ -1,39 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<head>
-	<meta charset="UTF-8">
-	<title>WorkWise Html Template</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
-	<link rel="stylesheet" type="text/css" href="css/animate.css">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/line-awesome.css">
-	<link rel="stylesheet" type="text/css" href="css/line-awesome-font-awesome.min.css">
-	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.min.css">
-	<link rel="stylesheet" type="text/css" href="lib/slick/slick.css">
-	<link rel="stylesheet" type="text/css" href="lib/slick/slick-theme.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/responsive.css">
-</head>
-<body>
+    pageEncoding="UTF-8"%>	
+<jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<style>
 div.messages-list>ul>li:hover {
 	background-color: mistyrose;
 }
 </style>
-	<body>	
-	<div class="wrapper">	
-	<!-- common_top_menu start -->
+<body>	
+	<div class="wrapper">		
+
 		<header>
-			<!-- Menubar Starts -->
 			<jsp:include page="../common_top_menu.jsp"/>
-			<!-- Menubar End -->
-		</header>
-<!-- common_top_menu end -->
+		</header><!--header end-->	
+
+
+
 		<section class="messages-page">
 			<div class="container">
 				<div class="messages-sec">
@@ -47,9 +29,9 @@ div.messages-list>ul>li:hover {
 										<li><a href="#" title=""><i class="fa fa-ellipsis-v"></i></a></li>
 									</ul>
 								</div><!--msg-title end-->
-								<div class="messages-list">
+								<div class="messages-list"  style="overflow:auto">
 									<ul>
-									<!---------------------------채팅 리스트 시작------------------------------->
+										<!---------------------------채팅 리스트 시작------------------------------->
 										<c:forEach var="dm" items="${dmList}">
 											<!-- 유저 리스트 li가 하나의 박스 -->
 											<li>
@@ -59,12 +41,11 @@ div.messages-list>ul>li:hover {
 														<span class="msg-status"></span>
 													</div>
 													<div class="usr-mg-info">
-														<h4 style='display: none'>${dm.mId}</h4>
 														<h3>${dm.mId}</h3>
 													</div>
 													<!--usr-mg-info end-->
-													<span class="posted_time">${dm.dmDate}</span> <span
-														class="msg-notifc" style='display: none' id='dmNo'>${dm.dmNo}</span>
+													<span class="posted_time">${dm.dmDate}</span> 
+													<span class="msg-notifc" style='display: none' id='dmNo'>${dm.dmNo}</span>
 												</div>
 												<!--usr-msg-details end-->
 											</li>
@@ -74,11 +55,25 @@ div.messages-list>ul>li:hover {
 								</div><!--messages-list end-->
 							</div><!--msgs-list end-->
 						</div>
-						<!---------------------------메시지창 시작------------------------------->
 						<div class="col-lg-8 col-md-12 pd-right-none pd-left-none">
 							<div class="main-conversation-box">
-								<div class="messages-line">
-								<!-- 메세지 컨텐츠 들어갈자리 -->
+							<!-- 
+								<div class="message-bar-head">
+									<div class="usr-msg-details">
+										<div class="usr-ms-img">
+											<img src="images/resources/m-img1.png" alt="">
+										</div>
+										<div class="usr-mg-info">
+											<h3>John Doe</h3>
+											<p>Online</p>
+										</div>
+									</div>
+									<a href="#" title=""><i class="fa fa-ellipsis-v"></i></a>
+								</div>
+								 -->
+								<!-- 채팅 리스트 뿌리는곳 -->
+								<div class="messages-line" style="overflow:auto">
+									
 								</div><!--messages-line end-->
 								<div class="message-send-area">
 									<form>
@@ -95,14 +90,24 @@ div.messages-list>ul>li:hover {
 								</div><!--message-send-area end-->
 							</div><!--main-conversation-box end-->
 						</div>
-						<!---------------------------메시지창 끝------------------------------->
 					</div>
 				</div><!--messages-sec end-->
 			</div>
 		</section><!--messages-page end-->
+
+
+	<jsp:include page="../commons/include_footy_js.jsp"/>
 	</div><!--theme-layout end-->
 
-	<!--theme-layout end-->
-	<jsp:include page="/WEB-INF/commons/include_footer_js.jsp" />
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/popper.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.mCustomScrollbar.js"></script>
+<script type="text/javascript" src="lib/slick/slick.min.js"></script>
+<script type="text/javascript" src="js/scrollbar.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+
 </body>
 </html>
