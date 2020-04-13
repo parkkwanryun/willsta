@@ -47,13 +47,6 @@ public class CommentsController {
 			sb.append("<div class='comment-sec' style='display:none' comments_no='"+comments.getcNo()+"'>");
 			sb.append("<ul>");
 			sb.append("	<li>");
-			sb.append("<div class='ed-opts' style='display:block'>");
-			sb.append("		<a href='#' title='' class='ed-opts-open'><i class='la la-ellipsis-v'></i></a>");
-			sb.append("		<ul class='ed-options ed-options-comments'>");
-			sb.append("			<li><a class='updatePost' href='#' title=''>Edit</a></li><br>");
-			sb.append("			<li><a class='deletePost' href='#' title=''>Unsaved</a></li></a></li>");
-			sb.append("		</ul>");
-			sb.append("</div>");
 			sb.append("		<div class='comment-list'>");
 			if(comments.getRecNo() > 0) {
 				sb.append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
