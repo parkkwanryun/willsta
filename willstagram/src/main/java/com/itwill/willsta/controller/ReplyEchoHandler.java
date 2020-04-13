@@ -17,7 +17,6 @@ import com.itwill.willsta.repository.DmContentsDao;
 import com.itwill.willsta.service.DmService;
 
 public class ReplyEchoHandler extends TextWebSocketHandler {
-	List<WebSocketSession> sessions = new ArrayList<>();
 	Map<String, WebSocketSession> userSessions = new HashMap<>();
 	
 	
@@ -25,7 +24,6 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		System.out.println("afterConnectionEstablished :" + session);
-		sessions.add(session);
 		String mId = getId(session);
 		userSessions.put(mId, session);
 	}
@@ -37,12 +35,13 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
 		String msg = message.getPayload();
 		if(!StringUtils.isEmpty(msg)) {
 			String[] strs = msg.split(",");
-			if(strs != null && strs.length == 5) {
+			if(strs != null && strs.length == 6) {
 				String mId = strs[0];
 				String mIdYou = strs[1];
 				String contents = strs[2];
 				String msgDate = strs[3];
 				String dmNo	= strs[4];
+				String dmContentsImage	= strs[5];
 				WebSocketSession mIdYouSession = userSessions.get(mIdYou);
 				if(mIdYouSession != null) {
 					TextMessage tmpMsg = new TextMessage(mId+","+mIdYou+","+contents+","+msgDate+","+dmNo);
@@ -50,24 +49,14 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
 				}
 			}
 		}
-		// protocol: mId, mIdYou, contents, 
-
-		/*
-		if(!StringUtils.isEmpty(msg)) {
-			String[] strs = msg.split(","); 
-			if(strs != null && strs.length == 3) {
-				String mId = strs[0];
-				String mIdYou = strs[1];
-				String contents = strs[2];
-			*/	
-		
-			}
+	}
 	// 세션 커넥션 종료시 데이터
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		System.out.println("afterConnectionClosed :" + session + "by~");
+		String mId = getId(session);
+		System.out.println("afterConnectionClosed :" + mId + "by~");
+		
 	}
-
 	private String getId(WebSocketSession session) {
 		Map<String, Object> httpSession = session.getAttributes();
 		String loginId = (String) httpSession.get("mId");
