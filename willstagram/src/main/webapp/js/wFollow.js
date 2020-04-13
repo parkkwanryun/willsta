@@ -112,7 +112,7 @@ $(function(){
 										+ "</div>"
 										+ "<span><i mid='"
 										+ mId
-										+ "' class='la la-plus' ></i></span>"
+										+ "' class='la la-minus' ></i></span>"
 										+ "</div>";
 								}
 							 	html+="</div>";
