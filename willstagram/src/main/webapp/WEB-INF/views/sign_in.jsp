@@ -160,7 +160,7 @@ label.error {
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="text" id="mImage" name="mImage"
+														<input type="file" id="mImage" name="mImage"
 															class="required" placeholder="<s:message code='join.image'/>">
 														<i class="la la-user"></i>
 													</div>
