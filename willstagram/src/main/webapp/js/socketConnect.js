@@ -24,6 +24,8 @@ function getLoginId(){
 	});
 }
 
+
+
 // 메시지 채팅창 출력 콜백함수
 function message_send_form(){
 	var htmlData = "";
@@ -82,12 +84,12 @@ function message_rightInsert_html(jsonData){
 	htmlData +=	"<div class='main-message-box'>";
 	htmlData +=      "<div class='ta-right'>";
 	htmlData +=				"<div class='message-inner-dt'>";
-	htmlData +=					"<p style='width:300px'>"+jsonData.msg+"</p>";
+	htmlData +=					"<p style='width:auto'>"+jsonData.msg+"</p>";
 	htmlData +=				"</div>";
-	htmlData +=				"<span>"+jsonData.msgDate+"분</span>";
-	htmlData +=			"</div>";
+	htmlData +=					"<p style='float:right;'>"+jsonData.msgDate+"분</p>";
+	htmlData +=				"</div>";
 	htmlData +=		"<div class='messg-usr-img'>";
-	htmlData +=			"<img src='contents/member_image/"+jsonData.dmContentsImage+"' alt=''>";
+	htmlData +=			"<img src='contents/member_image/"+jsonData.dmContentsImage+"' style='float:right;' alt=''>";
 	htmlData +=		"</div>";
 	htmlData +=	"</div>";
 	$('.messages-line').append(htmlData);
@@ -133,7 +135,7 @@ function message_send_insert_function(jsonData){
 
 //메세지 유저 클릭 시 작동하는 콜백함수
 function message_detail_function(e){
-	var dmNo = $(e.target).find('#dmNo').text();
+	var dmNo = $(e.target).attr('dmNo');
 	console.log("dmNo:"+dmNo);
 	var params = "dmNo=" + dmNo;
 	
@@ -155,7 +157,9 @@ function message_list_function(jsonArrayData){
 		jsonData.msg = jsonArrayData[i].dmContentsMessage;
 		jsonData.msgDate = jsonArrayData[i].dmContentsDate;
 		jsonData.dmContentsImage = jsonArrayData[i].dmContentsImage;
-		if(jsonArrayData[i].dmSenderId == jsonData.mId){
+		var dmSenderId = jsonArrayData[i].dmSenderId;
+		
+		if(loginId == dmSenderId){
 			message_leftInsert_html(jsonData);
 			console.log("왼쪽");
 		} else {
@@ -188,14 +192,13 @@ function message_profile_create_function(e){
 	
 // 채팅 수신 시 작동되는 콜백함수
 function message_receive(event){
+	var d = new Date();
 	var msgArray = (event.data).split(",");
-	var mIdYou = msgArray[0];	// 보낸사람 (너)
-	var mId = msgArray[1];		// 받는사람 (나)
-	var contents = msgArray[2];	// 내용
-	var msgDate = msgArray[3]; // 시간
-	jsonData.msg = contents;
-	jsonData.msgDate = msgDate;
-	if(contents != null || contents != ""){
+	jsonData.mIdYou = msgArray[0];	// 보낸사람 (너)
+	jsonData.mId = msgArray[1];		// 받는사람 (나)
+	jsonData.msg = msgArray[2];	// 내용
+	jsonData.msgDate = d.getHours() + "시" + d.getMinutes(); // 시간
+	if(jsonData.msg != null || jsonData.msg != ""){
 		message_rightInsert_html(jsonData);
 		}
 	}
@@ -206,12 +209,15 @@ $(document).ready(function(){
 	
 	//채팅방 오픈
 	$(function() {
-		$(document).find('.messages-list .usr-msg-details ').on('click', function(e) {
+		$(document).find('.messages-list').on('click', function(e) {
 			e.preventDefault();
+			
+			
 			$('.main-conversation-box').html("");
 			message_send_form();
 			message_detail_function(e);
 			message_send_function(e);
+			
 		});
 	});
 	
@@ -219,7 +225,6 @@ $(document).ready(function(){
 	$(document).find('.message-us').on('click',function(e){
 		e.preventDefault();
 		message_profile_create_function(e);
-		location.href = "http://localhost/willstagram/messages";
 	});
 });	
 
