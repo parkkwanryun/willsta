@@ -62,7 +62,7 @@ $(function(){
 													+ "</div>"
 													+ "<span><i midyou='"
 													+ mId
-													+ "' class='la la-plus follow' ></i></span>"
+													+ "' class='la la-plus' ></i></span>"
 													+ "</div>";	
 											}
 										 	html+="</div>";
