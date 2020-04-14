@@ -55,7 +55,6 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		String mId = getId(session);
 		System.out.println("afterConnectionClosed :" + mId + "by~");
-		
 	}
 	private String getId(WebSocketSession session) {
 		Map<String, Object> httpSession = session.getAttributes();
