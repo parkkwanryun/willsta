@@ -108,6 +108,7 @@ public class PostController {
 
 		return mv;
 	}
+	
 	@ResponseBody
 	@MemberLoginCheck
 	@RequestMapping(value="/delete_post", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")

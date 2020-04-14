@@ -138,6 +138,8 @@ function account_setting() {
 	});
 }
 
+
+
 /*
  * &&DOM Tree 로딩 후 이벤트 처리&&
  */
@@ -145,7 +147,7 @@ $(function() {
 	$('#msg1').hide();
 	$('#msg2').hide();
 
-	// 로그인 유효성 검증
+// 로그인 유효성 검증
 	$('#member_login_action').validate({
 		rules : {
 			mId : {
