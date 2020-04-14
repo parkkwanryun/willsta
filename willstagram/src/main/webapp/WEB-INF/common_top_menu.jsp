@@ -11,7 +11,7 @@
 					</div><!--logo end-->
 					<div class="search-bar">
 						<form class="userSearch">
-							<input type="text" name="search" placeholder="Search...">
+							<input type="text" name="search" placeholder="<s:message code="menu.search"/>">
 							<button type="submit"><i class="la la-search"></i></button>
 						</form>
 					</div><!--search-bar end-->
