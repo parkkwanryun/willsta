@@ -187,7 +187,7 @@ function message_list_function(jsonArrayData){
 	});	
 	
 	function connectWS() {
-		var ws = new WebSocket("ws://localhost/willstagram/replyEcho");
+		var ws = new WebSocket("ws://3.34.52.29:8080/willstagram/replyEcho");
 		socket = ws;
 		ws.onopen = function() { // connection이 open 되었을때 실행
 			console.log('Info : connection opened.');
