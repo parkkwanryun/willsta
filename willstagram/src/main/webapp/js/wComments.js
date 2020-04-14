@@ -1,9 +1,9 @@
 //포스트-댓글 전체 보이기 ajax요청
 function postCommentsListFunction(e){
 	var $postComments = $(e.target).parents(".post-bar").find(".comment-section");
-	console.log($postComments);
+	//console.log($postComments);
 	var params = "pNo="+$postComments.attr("post_no");
-	console.log(params);
+	//console.log(params);
 	if($postComments.children().length > 1){
 		$postComments.children().fadeToggle(500);
 	}else {
@@ -11,22 +11,64 @@ function postCommentsListFunction(e){
 			url : "postCommentsList",
 			data : params,
 			method : "POST",
-			dataType : "html",
+			dataType : "text",
 			success : function(htmlData){
-				console.log(htmlData);
+				//console.log(htmlData);
+				postCommentsCount(e);
 				$postComments.append(htmlData);
 				$postComments.children().fadeToggle(500);
 			}
 		});
 	}
-};
+}
+
+
+//포스트-댓글 수 ajax 요청
+function postCommentsCount(e){
+	var $postComments = $(e.target).parents(".post-bar").find(".comment-section");
+	//console.log($postComments);
+	var params = "pNo="+$postComments.attr("post_no");
+	//console.log(params);
+	$.ajax({
+		url : "postCommentsCount",
+		data : params,
+		method : "POST",
+		dataType : "text",
+		success : function(count){
+			//console.log(count);
+			$(e).html("<i class='fas fa-comment-alt'></i> Comments &nbsp;"+count);
+		}
+	});
+}
+
+
+//DOM tree 생성 후 포스트-댓글 수 ajax 요청
+function postCommentsCount2($aNodeList){
+	for (var i = 0; i < $aNodeList.length; i++) {
+		var $postComments = $($aNodeList.get(i)).parents(".post-bar").find(".comment-section");
+		//console.log($postComments);
+		var params = "pNo="+$postComments.attr("post_no");
+		//console.log(params);
+		$.ajax({
+			async : false,
+			url : "postCommentsCount",
+			data : params,
+			method : "POST",
+			dataType : "text",
+			success : function(count){
+				console.log(count);
+				$($aNodeList.get(i)).html("<i class='fas fa-comment-alt'></i> Comments &nbsp;"+count);
+			}
+		});
+	}
+}
 
 
 //댓글 작성 ajax 요청
 function commentsInsertActionFunction(e){
 	//console.log($(e.target).parents(".post-bar"));
 	var $comments = $(e.target).parents(".post-bar").find(".comments_insert_form");
-	//console.log($comments);
+	console.log($comments);
 	var pNo = $(e.target).parents(".comment-section").attr("post_no");
 	console.log(pNo);
 	var params = $comments.serialize();
@@ -42,11 +84,13 @@ function commentsInsertActionFunction(e){
 					window.location.reload();
 				}, 500);
 			}else if(result.trim() == "false"){
-				alert("댓글쓰기 실패");
+				alert("댓글쓰기를 실패했습니다.");
+				$comments.find(".cContents").select();
 			}
 		}
 	});
 }
+
 
 //대댓글 작성 form 보여주기
 function reCommentsInsertFormShowFunction(e){
@@ -75,7 +119,7 @@ function reCommentsInsertFormShowFunction(e){
 }
 
 
-//대댓글 쓰기
+//대댓글 쓰기 ajax요청
 function reCommentsInsertActionFunction(e){
 	console.log($(e.target).parents(".comment-section"));
 	console.log($(e.target).parents(".comment-section").find(".recomments_insert_form"));
@@ -93,43 +137,121 @@ function reCommentsInsertActionFunction(e){
 					window.location.reload();
 				}, 500);
 			}else if(result.trim() == "false"){
-				alert("대댓글쓰기 실패");
+				alert("대댓글쓰기를 실패했습니다.");
+				$reComments.find(".cContents").select();
 			}
 		} 
 	});
 }
 
+//댓글 수정 div 보이기
+function commentsUpdateFormShowFunction(e){
+	alert("수정 하면 되나");
+}
+
+//댓글 수정
+function commentsUpdateActionFunction(e){
+	console.log($(e.target).parents(".comment-sec"));
+	var cNo = $(e.target).parents(".comment-sec").attr("comments_no");
+	var params = "cNo="+cNo; 
+	console.log(cNo);
+	/*
+	$.ajax({
+		url : "/commentsUpdate",
+		data : params,
+		method : "POST",
+		dataType : "json",
+		success : function(jsonObject){
+			
+		}
+	});
+	*/
+}
+
+
+//댓글 삭제 ajax 요청
+function removeCommentsActionFunction(e){
+	var cNo = $(e.target).parents(".comment-sec").attr("comments_no");
+	var params = "cNo="+cNo;
+	console.log(params);
+	$.ajax({
+		url : "removeComments",
+		data : params,
+		method : "POST",
+		dataType : "text",
+		success : function(result){
+			if(result.trim() == "success"){
+				setTimeout(function() {
+					window.location.reload();
+				}, 500);
+			}else if(result.trim() == "fail"){
+				alert("댓글 삭제를 실패했습니다.")
+			}else if(result.trim() == "multiResult"){
+				alert("대댓글이 있는 댓글은 삭제할 수 없습니다.");
+			}
+		}
+	});
+}
 
 
 //document ready
 $(function() {
-	// 포스트-댓글 전체 보이기
+	//포스트-댓글 전체 보이기
 	$(document).on("click", ".comment_list_click", function(e){
 		//console.log(e.target);
 		postCommentsListFunction(e);
 		e.preventDefault();
 	});
 	
-	// 댓글 쓰기
+	//댓글 쓰기
 	$(document).on("click", ".comments_insert_button", function(e){
 		//console.log(e.target);
 		commentsInsertActionFunction(e);
 		e.preventDefault();
 	});
 	
-	//대댓글 쓰기 폼 보이기
+	//대댓글 쓰기 form 보이기
 	$(document).on("click", ".active-reply", function(e){
-		console.log(e.target);
+		//console.log(e.target);
 		reCommentsInsertFormShowFunction(e);
 		e.preventDefault();
 	});
 	
 	//대댓글 쓰기
 	$(document).on("click", ".recomments_insert_button", function(e){
-		console.log(e.target);
+		//console.log(e.target);
 		reCommentsInsertActionFunction(e);
 		e.preventDefault();
 		e.stopPropagation();
 	});
+	
+	//댓글 수정 div 보이기
+	$(document).on("click", ".active-edit", function(e){
+		commentsUpdateFormShowFunction(e);
+		e.preventDefault();
+	})
+	
+	
+	//댓글 수정
+	/*
+	$(document).on("click", ".active-edit", function(e){
+		commentsUpdateActionFunction(e);
+		e.preventDefault();
+	});
+	*/
+	
+	//댓글 삭제
+	$(document).on("click", ".active-delete", function(e){
+		var text = window.confirm("댓글을 삭제하시겠습니까?");
+		if(text == true){
+			removeCommentsActionFunction(e);
+			e.preventDefault();
+		}else if(text == false){
+			e.preventDefault();
+		}
+	});
+	
+	//DOM tree 생성 후 포스트-댓글 수 나타내기
+	postCommentsCount2($('.comment_list_click'));
 });
 

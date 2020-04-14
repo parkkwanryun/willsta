@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
 
 <style type="text/css">
@@ -32,14 +33,14 @@ label.error {
 								    <a class="nav-item nav-link active" id="nav-acc-tab" data-toggle="tab" href="#nav-acc" role="tab" aria-controls="nav-acc" aria-selected="true"><i class="la la-cogs"></i>Account Setting</a>
 								    <a class="nav-item nav-link" id="nav-status-tab" data-toggle="tab" href="#nav-status" role="tab" aria-controls="nav-status" aria-selected="false"><i class="fa fa-line-chart"></i>Status</a>
 								    
-								    <a class="nav-item nav-link" id="nav-password-tab" data-toggle="tab" href="#nav-password" role="tab" aria-controls="nav-password" aria-selected="false"><i class="fa fa-lock"></i>Modify Information</a>
+								    <a class="nav-item nav-link" id="nav-password-tab" data-toggle="tab" href="#nav-password" role="tab" aria-controls="nav-password" aria-selected="false"><i class="fa fa-lock"></i><s:message code="modify.title"/></a>
 								    
 								    <a class="nav-item nav-link" id="nav-notification-tab" data-toggle="tab" href="#nav-notification" role="tab" aria-controls="nav-notification" aria-selected="false"><i class="fa fa-flash"></i>Notifications</a>
 								    <a class="nav-item nav-link" id="nav-privcy-tab" data-toggle="tab" href="#privcy" role="tab" aria-controls="privacy" aria-selected="false"><i class="fa fa-group"></i>Requests</a>
 								    <a class="nav-item nav-link" id="security" data-toggle="tab" href="#security-login" role="tab" aria-controls="security-login" aria-selected="false"><i class="fa fa-user-secret"></i>Security and Login</a>
 								    <a class="nav-item nav-link" id="nav-privacy-tab" data-toggle="tab" href="#privacy" role="tab" aria-controls="privacy" aria-selected="false"><i class="fa fa-paw"></i>Privacy</a>
 								    <a class="nav-item nav-link" id="nav-blockking-tab" data-toggle="tab" href="#blockking" role="tab" aria-controls="blockking" aria-selected="false"><i class="fa fa-cc-diners-club"></i>Blocking</a>
-								    <a class="nav-item nav-link" id="nav-deactivate-tab" data-toggle="tab" href="#nav-deactivate" role="tab" aria-controls="nav-deactivate" aria-selected="false"><i class="fa fa-random"></i>Deactivate Account</a>
+								    <a class="nav-item nav-link" id="nav-deactivate-tab" data-toggle="tab" href="#nav-deactivate" role="tab" aria-controls="nav-deactivate" aria-selected="false"><i class="fa fa-random"></i><s:message code="deactivate.title"/></a>
 								  </div>
 							</div><!--acc-leftbar end-->
 						</div>
@@ -153,12 +154,12 @@ label.error {
 							  	<!--  회원정보 변경 (mPass, mName, mEmail, mPhone, mImage 등 -->
 							  	<div class="tab-pane fade" id="nav-password" role="tabpanel" aria-labelledby="nav-password-tab">
 							  		<div class="acc-setting">
-										<h3>Account Setting</h3>
+										<h3><s:message code="modify.title"/></h3>
 										<form id = "member_modify_action" method="POST">
 													
 										<!-- 아이디 변경 불가(Hidden) 기존 값 전송 -->
 											<div class="cp-field">
-												<h5>Id</h5>
+												<h5><s:message code="sign.id"/></h5>
 												<div class="cpp-fiel">
 													<input type="text" name="mId" value="${sMemberId.mId}" readonly placeholder="Id can't be changed">
 													<i class="la la-user"></i>
@@ -167,7 +168,7 @@ label.error {
 											
 										<!-- 이름 변경 불가(Hidden) 기존 값 전송 -->
 											<div class="cp-field">
-												<h5>Name</h5>
+												<h5><s:message code="join.name"/></h5>
 												<div class="cpp-fiel">
 													<input type="text" name="mName" value="${sMemberId.mName}" readonly placeholder="Id can't be changed">
 													<i class="la la-user"></i>
@@ -176,46 +177,43 @@ label.error {
 																			
 										<!-- 비밀번호 변경 -->
 											<div class="cp-field">
-												<h5>New Password</h5>
+												<h5><s:message code="modify.password"/></h5>
 												<div class="cpp-fiel">
-													<input type="text" name="mPass" class="required" placeholder="New Password">
+													<input type="text" name="mPass" class="required" placeholder="<s:message code="modify.password"/>">
 													<i class="la la-lock"></i>
 												</div>
 											</div>
 											
 												<!-- 이메일 변경 -->
 											<div class="cp-field">
-												<h5>New Email</h5>
+												<h5><s:message code="modify.email"/></h5>
 												<div class="cpp-fiel">
-													<input type="text" name="mEmail" class="required" placeholder="New Email">
+													<input type="text" name="mEmail" class="required" placeholder="<s:message code="modify.email"/>">
 													<i class="la la-user"></i>
 												</div>
 											</div>
 											
 												<!-- 전화번호 변경 -->
 											<div class="cp-field">
-												<h5>New Phone</h5>
+												<h5><s:message code="modify.phone"/></h5>
 												<div class="cpp-fiel">
-													<input type="text" name="mPhone" class="required" placeholder="New Phone">
+													<input type="text" name="mPhone" class="required" placeholder="<s:message code="modify.phone"/>">
 													<i class="la la-user"></i>
 												</div>
 											</div>
 
 												<!-- 프로필 이미지 변경(이미지 업로드) -->
 											<div class="cp-field">
-												<h5>New Image</h5>
+												<h5><s:message code="modify.image"/></h5>
 												<div class="cpp-fiel">
 													<input type="file" name="mImage" class="required" placeholder="New Image">
 													<i class="la la-user"></i>
 												</div>
 											</div>
 											
-											<div class="cp-field">
-												<h5><a href="#" title="">Forgot Password?</a></h5>
-											</div>
 											<div class="save-stngs pd2">
 												<ul>
-													<li><button type="submit" value="submit">Save Setting</button></li>
+													<li><button type="submit" value="submit"><s:message code="modify.save"/></button></li>
 												</ul>
 											</div><!--save-stngs end-->
 										</form>
@@ -745,40 +743,30 @@ label.error {
 							  	</div>
 							  	<div class="tab-pane fade" id="nav-deactivate" role="tabpanel" aria-labelledby="nav-deactivate-tab">
 							  		<div class="acc-setting">
-										<h3>Deactivate Account</h3>
+										<h3><s:message code="deactivate.title"/></h3>
 										<form>
 											<div class="cp-field">
-												<h5>Email</h5>
+												<h5><s:message code="deactivate.email"/></h5>
 												<div class="cpp-fiel">
-													<input type="text" name="email" placeholder="Email">
+													<input type="text" name="email" placeholder="<s:message code="join.email"/>">
 													<i class="fa fa-envelope"></i>
 												</div>
 											</div>
 											<div class="cp-field">
-												<h5>Password</h5>
+												<h5><s:message code="sign.password"/></h5>
 												<div class="cpp-fiel">
-													<input type="password" name="password" placeholder="Password">
+													<input type="password" name="password" placeholder="<s:message code="sign.password"/>">
 													<i class="fa fa-lock"></i>
 												</div>
 											</div>
 											<div class="cp-field">
-												<h5>Please Explain Further</h5>
+												<h5><s:message code="deactivate.explain"/></h5>
 												<textarea></textarea>
-											</div>
-											<div class="cp-field">
-												<div class="fgt-sec">
-													<input type="checkbox" name="cc" id="c4">
-													<label for="c4">
-														<span></span>
-													</label>
-													<small>Email option out</small>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pretium nulla quis erat dapibus, varius hendrerit neque suscipit. Integer in ex euismod, posuere lectus id,</p>
 											</div>
 											<div class="save-stngs pd3">
 												<ul>
-													<li><button type="submit">Save Setting</button></li>
-													<li><button type="submit">Restore Setting</button></li>
+													<li><button type="submit"><s:message code="deactivate.save"/></button></li>
+													<li><button type="submit"><s:message code="deactivate.restore"/></button></li>
 												</ul>
 											</div><!--save-stngs end-->
 										</form>

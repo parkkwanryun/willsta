@@ -1,9 +1,14 @@
 package com.itwill.willsta.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.willsta.domain.Member;
@@ -85,10 +91,10 @@ public class MemberController {
 								@RequestParam("mEmail")String mEmail,
 								@RequestParam("mPhone")String mPhone,
 								@RequestParam("mImage")String mImage,
-								@RequestParam("mRetire")String mRetire) {
-		
-		
-		
+								@RequestParam("mRetire")String mRetire,
+								HttpServletRequest request){
+		String path="/var/lib/tomcat8/webapps/willstagram/contents";
+		//수정 중
 		boolean newMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire));
 			if(newMember) {
 				newMember= true;
@@ -96,7 +102,25 @@ public class MemberController {
 				newMember= false;
 			}
 		return newMember;
-}	
+		
+	}	
+	/*프로필 사진 업로드*/
+	@RequestMapping(value = "/upload")
+    public void upload(HttpServletResponse response, HttpServletRequest request, @RequestParam("Filedata") MultipartFile Filedata) {
+           SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+           String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
+          
+           File f = new File("/var/lib/tomcat8/webapps/willstagram/contents/member_image/" + newfilename);
+           try {
+               Filedata.transferTo(f);
+               response.getWriter().write(newfilename);
+           } catch (IllegalStateException | IOException e) {
+               e.printStackTrace();
+           }
+    }
+	
+	
+	
 	/*아이디 중복 체크*/
 	@ResponseBody
 	@RequestMapping(value="/duplicate_check", method= RequestMethod.GET, produces="text/plain; charset=UTF-8")

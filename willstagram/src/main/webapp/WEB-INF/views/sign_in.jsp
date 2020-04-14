@@ -121,7 +121,7 @@ label.error {
 
 									<div class="dff-tab current" id="tab-3">
 
-										<form id="member_register_action" method="POST">
+										<form id="member_register_action" method="POST" enctype = multipart/form-data>
 
 											<div class="row">
 												<div class="col-lg-12 no-pdd">

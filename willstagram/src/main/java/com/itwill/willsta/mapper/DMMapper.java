@@ -19,7 +19,7 @@ public interface DMMapper {
 			"            (SELECT d.mId FROM DM WHERE m.mId = d.mId))) as mImage " + 
 			"FROM dm d " + 
 			"WHERE d.mId != #{mId} AND d.dmNo IN(SELECT DMNO FROM DM WHERE mId = #{mId})")
-	public List<DM> dmRoomSelectAll(String mId);
+	public List<DM> dmRoomSelectAll(@Param("mId") String mId);
 	
 	//현재 생성된 마지막 방번호 조회
 	@Select("SELECT DM_NUMBER_SEQ.currval FROM dual")

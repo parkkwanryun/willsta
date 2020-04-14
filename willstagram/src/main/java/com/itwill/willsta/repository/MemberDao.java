@@ -3,12 +3,13 @@ package com.itwill.willsta.repository;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.willsta.domain.Member;
 
 public interface MemberDao {
 	
-	/*Create(회원가입)*/
+	/*Create(회원가입- 이미지 없음)*/
 	boolean insertMember(Member member);
 	
 	/*Read One(회원정보로딩)*/

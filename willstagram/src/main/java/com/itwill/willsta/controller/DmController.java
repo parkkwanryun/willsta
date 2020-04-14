@@ -103,13 +103,14 @@ public class DmController {
 		int rowCount = 0;
 		String strs[] = messages.split(",");
 		System.out.println(strs);
-		if(strs != null && strs.length == 5) {
+		if(strs != null && strs.length == 6) {
 		String mId = strs[0];
 		String mIdYou = strs[1];
 		String contents = strs[2];
 		String msgDate = strs[3];
 		String dmNo = strs[4];
-		rowCount = dmService.dmcInsert(new DmContents(Integer.parseInt(dmNo), -999, contents, "sysdate", mIdYou));
+		String dmContentsImage = strs[5];
+		rowCount = dmService.dmcInsert(new DmContents(Integer.parseInt(dmNo), -999, contents, "sysdate", mId));
 		System.out.println(rowCount);
 		}
 		return rowCount;

@@ -1,18 +1,17 @@
 package com.itwill.willsta.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.itwill.willsta.domain.Member;
-import com.itwill.willsta.exception.MemberNotFoundException;
 
 public interface MemberService {
-		
+	
 	boolean insertMember(Member member);
 	
 	Member selectById(String mId);
 	
 	Member selectByIdContainFollowInfo(String mId);
+	
 	
 	List<Member> selectByRandom(String mId);
 

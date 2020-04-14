@@ -19,9 +19,9 @@ public class CommentsController {
 	
 	@MemberLoginCheck
 	@PostMapping(value = "/commentsInsert", produces = "text/plain;charset=UTF-8")
-	public String commentsInsert(@RequestParam(value = "pNo", defaultValue = "15") int pNo,
-									   		 @RequestParam String cContents,
-									   		 HttpSession session) throws Exception {
+	public String commentsInsert(@RequestParam(value = "pNo") int pNo,
+								 @RequestParam String cContents,
+								 HttpSession session) throws Exception {
 		String result = "";
 		Comments comments = new Comments();
 		String mId = (String)session.getAttribute("mId");
@@ -38,26 +38,17 @@ public class CommentsController {
 	}
 	
 	@MemberLoginCheck
-	@PostMapping(value = "/postCommentsList", produces = "text/plain;charset=UTF-8")
+	@PostMapping(value = "/postCommentsList", produces = "text/html;charset=UTF-8")
 	public String postCommentsList(@RequestParam(value = "pNo") int pNo, HttpSession session) throws Exception {
-		String mId = (String)session.getAttribute("mId");
+		String sessionmId = (String)session.getAttribute("mId");
 		StringBuffer sb = new StringBuffer();
 		List<Comments> postCommentsList = commentsService.postCommentsList(pNo);
+		
 		for (int i = 0; i < postCommentsList.size(); i++) {
 			Comments comments = postCommentsList.get(i);
 			sb.append("<div class='comment-sec' style='display:none' comments_no='"+comments.getcNo()+"'>");
 			sb.append("<ul>");
 			sb.append("	<li>");
-			sb.append("<div class='ed-opts'>");
-			sb.append("<a href='#' title='' class='ed-opts-open'><i class='la la-ellipsis-v'></i></a>");
-			if(comments.getmId() == mId) {
-				sb.append("	<ul class='ed-options ed-options-comment'>");
-				sb.append("		<li><a class='updatePost updateComment' href='#' title=''>Edit</a></li>");
-				sb.append("		<li><a class='deletePost deleteComment' href='#' title=''>Unsaved</a></li>");
-				sb.append("		</a></li>");
-				sb.append("	</ul>");
-			}
-			sb.append("</div>");
 			sb.append("		<div class='comment-list'>");
 			if(comments.getRecNo() > 0) {
 				sb.append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
@@ -68,6 +59,13 @@ public class CommentsController {
 			sb.append("				<p>"+comments.getcContents()+"</p>");
 			sb.append("				<a href='#' class='active active-reply' comments_no='"+comments.getcNo()+"'>");
 			sb.append("					<i class='fa fa-reply-all'> Reply</i></a>");
+			//내글인 경우 수정 및 삭제 가능
+			if(comments.getmId().equals(sessionmId)) { 
+				sb.append("				<a href='#' class='active active-edit' comments_no='"+comments.getcNo()+"'>");
+				sb.append("					<i class='fa fa-cog'> Edit</i></a>");
+				sb.append("				<a href='#' class='active active-delete' comments_no='"+comments.getcNo()+"'>");
+				sb.append("					<i class='fa fa-remove'> Delete</i></a>");
+			}
 			sb.append("			</div>");
 			sb.append(" 	</div>");	
 			sb.append("	</li>");
@@ -99,13 +97,39 @@ public class CommentsController {
 		return result;
 	}
 	
-	public String commentsUpdate() throws Exception {
-		
-		return "";
+	@MemberLoginCheck
+	@PostMapping(value = "/postCommentsCount", produces = "text/plain;charset=UTF-8")
+	public String postCommentsCount(@RequestParam(value = "pNo") int pNo) throws Exception {
+		int postCommentsCount = commentsService.postCommentsCount(pNo);
+		return ""+postCommentsCount;
 	}
 	
-	public String commentsDelete() throws Exception {
+	/*
+	@MemberLoginCheck
+	@PostMapping(value = "/commentsUpdate", produces = "application/json;charset=UTF-8")
+	public Comments commentsUpdate(@RequestParam(value = "cNo") int cNo,
+								   @RequestParam String cContents, 
+								   HttpSession session) throws Exception {
 		
-		return "";
+		return null;
+	}
+	*/
+	
+	@MemberLoginCheck
+	@PostMapping(value = "/removeComments", produces = "text/plain;charset=UTF-8")
+	public String removeComments(@RequestParam(value = "cNo") int cNo) throws Exception {
+		String result = "";
+		int removeResultCheck = commentsService.removeCommentsCountCheck(cNo);
+		if(removeResultCheck == 1) {
+			int removeResult = commentsService.removeComments(cNo);
+			if(removeResult == 1) {
+				result = "success";
+			}else {
+				result = "fail";
+			}
+		} else if(removeResultCheck > 1) {
+			result = "multiResult";
+		}
+		return result;
 	}
 }

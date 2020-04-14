@@ -38,7 +38,7 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 		<multipart-config>
-			<location>C:\tempimage</location>
+			<location>/var/lib/tomcat8/webapps/willstagram/contents/</location>
 			<max-file-size>-1</max-file-size>
 			<max-request-size>-1</max-request-size>
 			<file-size-threshold>1024</file-size-threshold>

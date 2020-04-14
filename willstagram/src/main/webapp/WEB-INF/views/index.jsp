@@ -186,7 +186,7 @@
 														<a href="#" title="" class="ed-opts-open"><i
 															class="la la-ellipsis-v"></i></a>
 														<!-- 이 포스트가 내꺼인 경우에만 보여주는 메뉴 -->
-														<c:if test="${post.mId!=sessionScope.loginId}">
+														<c:if test="${post.mId==sessionScope.loginId}">
 															<ul class="ed-options">
 																<li><a class="updatePost" href="#" title="">Edit
 																		Post</a></li>
@@ -247,7 +247,7 @@
 												<!-- comment-section -->
 												<div class="comment-section" post_no="${post.pNo}">
 														<!-- comment-sec -->
-		
+														
 														<!-- post-comment -->
 														<div class="post-comment">
 															<div class="comment_box">

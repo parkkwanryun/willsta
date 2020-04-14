@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 		<div class="row">
 		<!-- loop start -->
 		<c:forEach var="member" items="${memberList}" varStatus="status">
@@ -24,22 +25,22 @@
 						<c:choose>
 							<c:when test="${member.mId!=sessionScope.mId}">
 								<ul>	
-									<li><a href="#" title="" class="unFollow">UnFollow</a></li><!-- follow중인 상태 -->
-									<li><a href="#" title="" class="follow">Follow</a></li>
+									<li><a href="#" title="" class="unFollow"><s:message code="profile.unfollow"/></a></li><!-- follow중인 상태 -->
+									<li><a href="#" title="" class="follow"><s:message code="profile.follow"/></a></li>
 									<li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
 								</ul>
 							</c:when>
 							<c:otherwise>
-								<b>My Profile</b>
+								<b><s:message code="profile.my"/></b>
 							</c:otherwise>
 						</c:choose>
 					</div>
 					<c:choose>
 						<c:when test="${member.mId==sessionScope.mId}">								
-							<a href="personal_info" title="" class="view-more-pro">View Profile</a>
+							<a href="personal_info" title="" class="view-more-pro"><s:message code="profile.view"/></a>
 						</c:when>
 						<c:otherwise>
-							<a href="" title="" class="view-more-pro">View Profile</a>
+							<a href="" title="" class="view-more-pro"><s:message code="profile.view"/></a>
 						</c:otherwise>
 					</c:choose>
 				</div><!--company_profile_info end-->

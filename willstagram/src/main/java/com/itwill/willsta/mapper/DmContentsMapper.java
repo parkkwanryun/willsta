@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -18,16 +19,18 @@ public interface DmContentsMapper {
 			"ORDER BY dmContentsDate ASC")
 	public List<DmContents> dmcSelectAll();
 	
-	@Select("SELECT dmNo, dmContentsNo, dmContentsMessage, to_char(dmContentsDate,'HH24:MI:SS') as dmContentsDate, dmSenderId, dmContentsImage " + 
-			"FROM dm_contents " + 
-			"WHERE dmNo = #{dmNo} " + 
-			"ORDER BY dmContentsDate ASC")
-	public List<DmContents> dmNoSelectAll(Integer dmNo);
+	@Select("SELECT d.dmNo, d.dmContentsNo, d.dmContentsMessage, d.dmContentsDate, d.dmSenderId, " + 
+			"  (SELECT m.mImage FROM member m WHERE m.mId IN( "+ 
+			"    (SELECT d.dmSenderId FROM DM_CONTENTS WHERE m.mId = d.dmSenderId))) as dmContentsImage " + 
+			"FROM dm_contents d " + 
+			"WHERE d.dmNo = #{dmNo} " + 
+			"ORDER BY d.dmContentsDate ASC")
+	public List<DmContents> dmNoSelectAll(@Param("dmNo") Integer dmNo);
 	
 	@Select("SELECT dmNo, dmContentsNo, dmContentsMessage, to_char(dmContentsDate,'HH24:MI:SS') as dmContentsDate " + 
 			"FROM dm_contents " + 
 			"WHERE dmContentsNo = #{dmContentsNo}")
-	public DmContents dmcSelectOne(int dmContentsNo);
+	public DmContents dmcSelectOne(@Param("dmContentsNo") int dmContentsNo);
 	
 	@Insert("INSERT INTO dm_contents(dmNo, dmContentsNo, dmContentsMessage, dmContentsDate, dmSenderId) " + 
 			"VALUES(#{dmNo}, dm_contents_number_seq.nextval, #{dmContentsMessage}, sysdate, #{dmSenderId})")
