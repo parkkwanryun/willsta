@@ -79,13 +79,13 @@ function message_leftInsert_html(jsonData){
 // 메시지 수신시 채팅창에 출력하는 콜백함수
 function message_rightInsert_html(jsonData){
 	var htmlData ="";
-	htmlData +=	"<div class='main-message-box ta-right'>";
-	htmlData +=		"<div class='message-dt'>";
-	htmlData +=			"<div class='message-inner-dt'>";
-	htmlData +=				"<p>"+jsonData.msg+"</p>";
+	htmlData +=	"<div class='main-message-box'>";
+	htmlData +=      "<div class='ta-right'>";
+	htmlData +=				"<div class='message-inner-dt'>";
+	htmlData +=					"<p style='width:300px'>"+jsonData.msg+"</p>";
+	htmlData +=				"</div>";
+	htmlData +=				"<span>"+jsonData.msgDate+"분</span>";
 	htmlData +=			"</div>";
-	htmlData +=			"<span>"+jsonData.msgDate+"분</span>";
-	htmlData +=		"</div>";
 	htmlData +=		"<div class='messg-usr-img'>";
 	htmlData +=			"<img src='contents/member_image/"+jsonData.dmContentsImage+"' alt=''>";
 	htmlData +=		"</div>";
@@ -193,8 +193,6 @@ function message_receive(event){
 	var mId = msgArray[1];		// 받는사람 (나)
 	var contents = msgArray[2];	// 내용
 	var msgDate = msgArray[3]; // 시간
-	var dmNo = msgArray[4]; // 방넘버
-	var dmContentsImage = msgArray[5]; // 이미지
 	jsonData.msg = contents;
 	jsonData.msgDate = msgDate;
 	if(contents != null || contents != ""){

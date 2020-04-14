@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -24,12 +25,12 @@ public interface DmContentsMapper {
 			"FROM dm_contents d " + 
 			"WHERE d.dmNo = #{dmNo} " + 
 			"ORDER BY d.dmContentsDate ASC")
-	public List<DmContents> dmNoSelectAll(Integer dmNo);
+	public List<DmContents> dmNoSelectAll(@Param("dmNo") Integer dmNo);
 	
 	@Select("SELECT dmNo, dmContentsNo, dmContentsMessage, to_char(dmContentsDate,'HH24:MI:SS') as dmContentsDate " + 
 			"FROM dm_contents " + 
 			"WHERE dmContentsNo = #{dmContentsNo}")
-	public DmContents dmcSelectOne(int dmContentsNo);
+	public DmContents dmcSelectOne(@Param("dmContentsNo") int dmContentsNo);
 	
 	@Insert("INSERT INTO dm_contents(dmNo, dmContentsNo, dmContentsMessage, dmContentsDate, dmSenderId) " + 
 			"VALUES(#{dmNo}, dm_contents_number_seq.nextval, #{dmContentsMessage}, sysdate, #{dmSenderId})")
