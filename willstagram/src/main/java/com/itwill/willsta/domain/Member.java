@@ -56,15 +56,6 @@ public class Member {
 		this.mRetire = mRetire;
 	}
 	
-
-	public MultipartFile getmUploadImage() {
-		return mUploadImage;
-	}
-
-	public void setmUploadImage(MultipartFile mUploadImage) {
-		this.mUploadImage = mUploadImage;
-	}
-
 	public String getmId() {
 		return mId;
 	}

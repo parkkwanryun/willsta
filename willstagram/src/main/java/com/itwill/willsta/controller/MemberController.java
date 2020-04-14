@@ -94,8 +94,8 @@ public class MemberController {
 								HttpServletRequest request,
 								MultipartFile mUploadImage){
 		String path="/var/lib/tomcat8/webapps/willstagram/contents";
-		
-		boolean newMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire), mUploadImage);
+
+    boolean newMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire), mUploadImage);
 			if(newMember) {
 				newMember= true;
 			}else {
