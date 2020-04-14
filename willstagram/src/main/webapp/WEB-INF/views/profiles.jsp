@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>	
 <jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <body>
 	<div class="wrapper">
 		<header>
@@ -15,7 +16,7 @@
 		<section class="companies-info">
 			<div class="container">
 				<div class="company-title">
-					<h3>All Profiles</h3>
+					<h3><s:message code="profile.all"/></h3>
 				</div><!--company-title end-->
 				<div class="companies-list">
 					
@@ -42,22 +43,22 @@
 										<c:choose>
 											<c:when test="${member.mId!=sessionScope.mId}">
 												<ul>	
-													<li><a href="#" title="" class="unFollow">UnFollow</a></li><!-- follow중인 상태 -->
-													<li><a href="#" title="" class="follow">Follow</a></li>
+													<li><a href="#" title="" class="unFollow"><s:message code="profile.unfollow"/></a></li><!-- follow중인 상태 -->
+													<li><a href="#" title="" class="follow"><s:message code="profile.follow"/></a></li>
 													<li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
 												</ul>
 											</c:when>
 											<c:otherwise>
-												<b>My Profile</b>
+												<b><s:message code="profile.my"/></b>
 											</c:otherwise>
 										</c:choose>
 									</div>
 									<c:choose>
 										<c:when test="${member.mId==sessionScope.mId}">								
-											<a href="personal_info" title="" class="view-more-pro">View Profile</a>
+											<a href="personal_info" title="" class="view-more-pro"><s:message code="profile.view"/></a>
 										</c:when>
 										<c:otherwise>
-											<a href="" title="" class="view-more-pro">View Profile</a>
+											<a href="" title="" class="view-more-pro"><s:message code="profile.view"/></a>
 										</c:otherwise>
 									</c:choose>
 								</div><!--company_profile_info end-->
