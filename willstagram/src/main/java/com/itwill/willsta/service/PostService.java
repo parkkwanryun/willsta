@@ -16,11 +16,11 @@ import com.itwill.willsta.domain.PostImage;
 				isolation=Isolation.READ_COMMITTED)
 public interface PostService {
 	
-	Post createPost(Post post, MultipartFile[] uploadFile, String path);
+	Post createPost(Post post, MultipartFile[] uploadFile);
 
-	Post modifyPost(Post post, MultipartFile[] uploadFile, String path);
+	Post modifyPost(Post post, MultipartFile[] uploadFile);
 
-	int removePost(Integer pNo, String path);
+	int removePost(Integer pNo);
 	
 	List<Post> selectMyList(Integer lastpNo, String userId, Integer queryGbn);
 	

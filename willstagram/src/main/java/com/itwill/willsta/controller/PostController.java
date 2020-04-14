@@ -96,9 +96,9 @@ public class PostController {
 		Post postOne =null;
 		//post번호가 있으면 update, 없으면 insert
 		if(post.getpNo()!=null && post.getpNo() > 0) {
-			postOne = postService.modifyPost(post, uploadFile, path);
+			postOne = postService.modifyPost(post, uploadFile);
 		} else {
-			postOne = postService.createPost(post, uploadFile, path);
+			postOne = postService.createPost(post, uploadFile);
 		}
 
 		List<Post> postList = new ArrayList<Post>();
@@ -115,7 +115,7 @@ public class PostController {
 		
 		String path = request.getSession().getServletContext().getRealPath("/")+"contents\\post_image\\";
 		try {
-			int rn = postService.removePost(pNo,path);
+			int rn = postService.removePost(pNo);
 			if(rn >0) {
 				return "success";
 			}
