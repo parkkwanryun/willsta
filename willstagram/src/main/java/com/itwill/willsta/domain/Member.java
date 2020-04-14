@@ -57,6 +57,14 @@ public class Member {
 	}
 	
 
+	public MultipartFile getmUploadImage() {
+		return mUploadImage;
+	}
+
+	public void setmUploadImage(MultipartFile mUploadImage) {
+		this.mUploadImage = mUploadImage;
+	}
+
 	public String getmId() {
 		return mId;
 	}
