@@ -80,6 +80,7 @@ public class MemberDaoImpl implements MemberDao{
 		return memberMapper.selectByRandom(mId);
 	}
 
+
 	
 	
 }

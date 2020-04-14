@@ -2,16 +2,17 @@ package com.itwill.willsta.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.itwill.willsta.domain.Member;
 
 public interface MemberService {
 	
-	boolean insertMember(Member member);
+	boolean insertMember(Member member, MultipartFile mUploadImg);
 	
 	Member selectById(String mId);
 	
 	Member selectByIdContainFollowInfo(String mId);
-	
 	
 	List<Member> selectByRandom(String mId);
 
