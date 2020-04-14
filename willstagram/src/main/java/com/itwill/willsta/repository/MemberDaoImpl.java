@@ -15,10 +15,10 @@ public class MemberDaoImpl implements MemberDao{
 	MemberMapper memberMapper;
 	
 	@Override
-	public boolean insertMember(Member member, MultipartFile mUploadImage) {
-		return memberMapper.insertMember(member, mUploadImage);
+	public boolean insertMember(Member member) {
+		return memberMapper.insertMember(member);
 	}//
-	
+		
 	@Override
 	public Member selectById(String mId) {
 		return memberMapper.selectById(mId);
@@ -79,6 +79,7 @@ public class MemberDaoImpl implements MemberDao{
 	public List<Member> selectByRandom(String mId) {
 		return memberMapper.selectByRandom(mId);
 	}
+
 	
 	
 }

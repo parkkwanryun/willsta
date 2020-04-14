@@ -15,13 +15,12 @@ import com.itwill.willsta.repository.MemberDao;
 public class MemberServiceImpl implements MemberService{
 	@Autowired
 	MemberDao memberDao;
-	
-	
-	String uploadFolder = "/var/lib/tomcat8/webapps/willstagram/contents/member_image/";
+
+	//String uploadFolder = "/var/lib/tomcat8/webapps/willstagram/contents/member_image/";
 	
 	@Override
-	public boolean insertMember(Member member, MultipartFile mUploadImage) {
-		return memberDao.insertMember(member, mUploadImage);
+	public boolean insertMember(Member member) {
+		return memberDao.insertMember(member);
 	}
 
 	@Override
