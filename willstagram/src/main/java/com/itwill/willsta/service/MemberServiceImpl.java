@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.willsta.domain.Member;
 import com.itwill.willsta.exception.MemberNotFoundException;
@@ -16,9 +17,11 @@ public class MemberServiceImpl implements MemberService{
 	MemberDao memberDao;
 	
 	
+	String uploadFolder = "/var/lib/tomcat8/webapps/willstagram/contents/member_image/";
+	
 	@Override
-	public boolean insertMember(Member member) {
-		return memberDao.insertMember(member);
+	public boolean insertMember(Member member, MultipartFile mUploadImage) {
+		return memberDao.insertMember(member, mUploadImage);
 	}
 
 	@Override

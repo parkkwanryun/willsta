@@ -10,7 +10,7 @@ import com.itwill.willsta.exception.MemberNotFoundException;
 
 public interface MemberService {
 		
-	boolean insertMember(Member member);
+	boolean insertMember(Member member, MultipartFile uploadFile);
 	
 	Member selectById(String mId);
 	
