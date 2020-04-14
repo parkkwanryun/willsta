@@ -19,8 +19,8 @@ public interface FollowMapper {
 	public int follow(Follow follow);
 	
 	/*UnFollow 언팔하기*/
-	@Delete("delete from follow where mIdYou =#{mIdYou} and mId =#{mId}")
-	public int unFollow(@Param("mIdYou") String mIdYou, @Param("mId") String mId);
+	@Delete("delete from follow where mId =#{mId} and mIdYou =#{mIdYou}")
+	public int unFollow(@Param("mId") String mId,@Param("mIdYou") String mIdYou );
 	
 	
 	/*Following List 내가 팔로우하고있는사람들 보기*/

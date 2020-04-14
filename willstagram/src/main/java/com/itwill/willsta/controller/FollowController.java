@@ -91,7 +91,6 @@ public class FollowController {
 			Member youMmeber = memberService.selectById(follow.getmIdYou());
 			youMemberList.add(youMmeber);
 		}
-		
 		return youMemberList;
 
 	}
@@ -186,15 +185,15 @@ public class FollowController {
 	
 
 	  @ResponseBody
-	  @RequestMapping(value = "/unFollow") public ModelAndView
-	  unFollow(@RequestParam(value = "mIdYou") String mIdYou,HttpSession session) {
-	  ModelAndView mv=new ModelAndView(); 
+	  @RequestMapping(value = "/unFollow") 
+	  public String unFollow(@RequestParam String mIdYou,HttpSession session) {
+	  System.out.println("### unfollow 컨트롤러 테스트");
 	  String mId=(String)session.getAttribute("mId"); 
-	  int unFollow=followService.unfollow(mIdYou, mId);
-	  mv.addObject("unFollow", unFollow); 
-	  mv.setViewName("profiles"); return mv; }
+	  int unfollow=followService.unfollow(mId, mIdYou);
+	  System.out.println("unfollow."+unfollow);
+	 return unfollow+"";
 	 
-	
+	  }
 
 }
 
