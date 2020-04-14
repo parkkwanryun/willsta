@@ -61,7 +61,8 @@ public class CommentsController {
 			sb.append("					<i class='fa fa-reply-all'> Reply</i></a>");
 			//내글인 경우 수정 및 삭제 가능
 			if(comments.getmId().equals(sessionmId)) { 
-				sb.append("				<a href='#' class='active active-edit' comments_no='"+comments.getcNo()+"'>");
+				sb.append("				<a href='#' class='active active-edit' "); 
+				sb.append("					data-toggle='modal' data-target='#updateCommentsModal' comments_no='"+comments.getcNo()+"'>");
 				sb.append("					<i class='fa fa-cog'> Edit</i></a>");
 				sb.append("				<a href='#' class='active active-delete' comments_no='"+comments.getcNo()+"'>");
 				sb.append("					<i class='fa fa-remove'> Delete</i></a>");
@@ -104,16 +105,18 @@ public class CommentsController {
 		return ""+postCommentsCount;
 	}
 	
-	/*
 	@MemberLoginCheck
-	@PostMapping(value = "/commentsUpdate", produces = "application/json;charset=UTF-8")
-	public Comments commentsUpdate(@RequestParam(value = "cNo") int cNo,
-								   @RequestParam String cContents, 
-								   HttpSession session) throws Exception {
-		
-		return null;
+	@PostMapping(value = "/commentsUpdate",  produces = "text/plain;charset=UTF-8")
+	public String commentsUpdate(Comments comments) throws Exception {
+		String result = "";
+		int updateResult = commentsService.updateComments(comments);
+		if(updateResult == 1) {
+			result = "true";
+		}else {
+			result = "false";
+		}
+		return result;
 	}
-	*/
 	
 	@MemberLoginCheck
 	@PostMapping(value = "/removeComments", produces = "text/plain;charset=UTF-8")

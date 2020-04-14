@@ -23,7 +23,27 @@
 <link rel="stylesheet" type="text/css" href="lib/slick/slick.css">
 <link rel="stylesheet" type="text/css" href="lib/slick/slick-theme.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<style>
+ div.modal-content { position:fixed; top:20%; left:calc(50% - 210px); width:400px; height:200px; padding:20px 10px; background:#fff; border:2px solid #666; }
+ div.modal-body textarea { font-size:16px; font-family:'맑은 고딕', verdana; padding:10px; width:375px; height:100px; }
+</style>
 <link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+<!--comment-update modal-->
+<div class="modal fade" id="updateCommentsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+       	<textarea id="modal_cContents" class="modal_cContents" name="modal_cContents"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="updateCommentsBtn" class="btn btn-primary">Edit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--comment-update modal end-->
 <body>
 
 	<div class="wrapper">
@@ -247,7 +267,7 @@
 												<!-- comment-section -->
 												<div class="comment-section" post_no="${post.pNo}">
 														<!-- comment-sec -->
-														
+																												
 														<!-- post-comment -->
 														<div class="post-comment">
 															<div class="comment_box">
@@ -269,6 +289,8 @@
 										</c:forEach>
 									</div>
 									<!--posty end-->
+									
+									
 
 									<div class="process-comm">
 										<div class="spinner">
