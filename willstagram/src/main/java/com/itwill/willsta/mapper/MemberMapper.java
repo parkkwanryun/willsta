@@ -16,7 +16,11 @@ public interface MemberMapper {
 	
 	/*회원 가입*/
 	@Insert("INSERT INTO MEMBER VALUES (#{mId},#{mPass},#{mName},#{mEmail},#{mPhone},#{mImage},#{mRetire})")
-	public boolean insertMember(Member member, MultipartFile mUploadImage);
+	public boolean insertMember(Member member);
+	
+	/*프로필 이미지 넣기*/
+	@Insert("INSERT INTO MEMBER VALUES(#{mId},#{mImage})")
+	public int insertProfImg(Member mImage);
 	
 	/*회원정보 로딩*/
 	@Select("SELECT m.mId, m.mPass, m.mName, m.mEmail, m.mPhone, m.mImage, "

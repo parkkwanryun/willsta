@@ -2,10 +2,13 @@ package com.itwill.willsta.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -26,8 +29,6 @@ import com.itwill.willsta.service.MemberService;
 
 @Controller
 public class MemberController {
-	MultipartFile multipartFile;
-	
 	@Autowired
 	MemberService memberService;
 	
@@ -91,18 +92,35 @@ public class MemberController {
 								@RequestParam("mPhone")String mPhone,
 								@RequestParam("mImage")String mImage,
 								@RequestParam("mRetire")String mRetire,
-								HttpServletRequest request,
-								MultipartFile mUploadImage){
+								HttpServletRequest request){
 		String path="/var/lib/tomcat8/webapps/willstagram/contents";
 		//수정 중
-		boolean newMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire), mUploadImage);
+		boolean newMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire));
 			if(newMember) {
 				newMember= true;
 			}else {
 				newMember= false;
 			}
 		return newMember;
+		
 	}	
+	/*프로필 사진 업로드*/
+	@RequestMapping(value = "/upload")
+    public void upload(HttpServletResponse response, HttpServletRequest request, @RequestParam("Filedata") MultipartFile Filedata) {
+           SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+           String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
+          
+           File f = new File("/var/lib/tomcat8/webapps/willstagram/contents/member_image/" + newfilename);
+           try {
+               Filedata.transferTo(f);
+               response.getWriter().write(newfilename);
+           } catch (IllegalStateException | IOException e) {
+               e.printStackTrace();
+           }
+    }
+	
+	
+	
 	/*아이디 중복 체크*/
 	@ResponseBody
 	@RequestMapping(value="/duplicate_check", method= RequestMethod.GET, produces="text/plain; charset=UTF-8")
