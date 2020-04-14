@@ -78,9 +78,6 @@
 				</div><!--process-comm end-->
 			</div>
 		</section><!--companies-info end-->
-		<!-- footer Starts -->
-		<jsp:include page="../commons/include_footy_js.jsp"/>
-		<!-- footer End -->
 	</div><!--theme-layout end-->
 
 
