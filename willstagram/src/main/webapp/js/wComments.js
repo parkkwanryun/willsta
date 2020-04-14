@@ -36,7 +36,6 @@ function postCommentsCount(e){
 		dataType : "text",
 		success : function(count){
 			//console.log(count);
-			//어딘가에.append("<div>"+count+"</div>");
 			$(e).html("<i class='fas fa-comment-alt'></i> Comments &nbsp;"+count);
 		}
 	});
@@ -149,6 +148,7 @@ function commentsUpdateActionFunction(e){
 	var cNo = $(e.target).parents(".comment-sec").attr("comments_no");
 	var params = "cNo="+cNo; 
 	console.log(cNo);
+	/*
 	$.ajax({
 		url : "/commentsUpdate",
 		data : params,
@@ -158,8 +158,32 @@ function commentsUpdateActionFunction(e){
 			
 		}
 	});
+	*/
 }
 
+
+//댓글 삭제
+function removeCommentsActionFunction(e){
+	var cNo = $(e.target).parents(".comment-sec").attr("comments_no");
+	var params = "cNo="+cNo;
+	console.log(params);
+	$.ajax({
+		url : "removeComments",
+		data : params,
+		method : "POST",
+		dataType : "text",
+		success : function(result){
+			if(result.trim() == "true"){
+				setTimeout(function() {
+					window.location.reload();
+				}, 500);
+			}else if(result.trim() == "false"){
+				alert("댓글삭제 실패");
+			}
+		}
+	
+	});
+}
 
 
 //document ready
@@ -180,27 +204,37 @@ $(function() {
 	
 	//대댓글 쓰기 폼 보이기
 	$(document).on("click", ".active-reply", function(e){
-		console.log(e.target);
+		//console.log(e.target);
 		reCommentsInsertFormShowFunction(e);
 		e.preventDefault();
 	});
 	
 	//대댓글 쓰기
 	$(document).on("click", ".recomments_insert_button", function(e){
-		console.log(e.target);
+		//console.log(e.target);
 		reCommentsInsertActionFunction(e);
 		e.preventDefault();
 		e.stopPropagation();
 	});
 	
 	//댓글 수정
+	/*
 	$(document).on("click", ".updateComment", function(e){
 		commentsUpdateActionFunction(e);
 		e.preventDefault();
 	});
+	*/
 	
 	//댓글 삭제
-	
+	$(document).on("click", ".active-delete", function(e){
+		var text = window.confirm("댓글을 삭제하시겠습니까?");
+		if(text == true){
+			removeCommentsActionFunction(e);
+			e.preventDefault();
+		}else if(text == false){
+			e.preventDefault();
+		}
+	});
 	
 	//DOM tree 생성 후 포스트-댓글 수 나타내기
 	postCommentsCount2($('.comment_list_click'));
