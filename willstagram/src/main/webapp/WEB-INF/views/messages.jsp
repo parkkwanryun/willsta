@@ -96,7 +96,6 @@ div.messages-list>ul>li:hover {
 		</section><!--messages-page end-->
 
 
-	<jsp:include page="../commons/include_footy_js.jsp"/>
 	</div><!--theme-layout end-->
 
 
