@@ -13,6 +13,7 @@ import com.itwill.willsta.domain.Likes;
 import com.itwill.willsta.domain.Member;
 import com.itwill.willsta.domain.Post;
 import com.itwill.willsta.domain.PostImage;
+import com.itwill.willsta.domain.StaticProperties;
 import com.itwill.willsta.repository.PostDao;
 @Service
 public class PostServiceImpl implements PostService {
@@ -22,7 +23,8 @@ public class PostServiceImpl implements PostService {
 	@Autowired
 	MemberService memberService;
 	
-	String uploadFolder = "/var/lib/tomcat8/webapps/willstagram/contents/post_image/";
+	String uploadFolder = StaticProperties.getPostRealPath();
+	//String uploadFolder = "/var/lib/tomcat8/webapps/willstagram/contents/post_image/";
 	//String uploadFolder = "/contents/post_image";
 	@Override
 	public Post createPost(Post post, MultipartFile[] uploadFile) {

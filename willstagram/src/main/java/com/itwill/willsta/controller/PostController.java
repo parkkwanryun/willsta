@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itwill.willsta.domain.Likes;
 import com.itwill.willsta.domain.Post;
 import com.itwill.willsta.domain.PostImage;
+import com.itwill.willsta.domain.StaticProperties;
 import com.itwill.willsta.service.PostService;
 
 @RestController
@@ -90,6 +91,9 @@ public class PostController {
 	@RequestMapping(value="/write_post", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
 	public ModelAndView write(Post post, MultipartFile[] uploadFile, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
+		String path = request.getSession().getServletContext().getRealPath("/");
+		StaticProperties.setPostRealPath(path+"contents/post_image/");
+		System.out.println("레알패스"+StaticProperties.getPostRealPath());
 		post.setmId((String)request.getSession().getAttribute("mId"));
 		Post postOne =null;
 		//post번호가 있으면 update, 없으면 insert
@@ -98,9 +102,7 @@ public class PostController {
 		} else {
 			postOne = postService.createPost(post, uploadFile);
 		}
-		
-	    String path = request.getSession().getServletContext().getRealPath("/");
-		
+
 		List<Post> postList = new ArrayList<Post>();
 		postList.add(postOne);
 		mv.addObject("postList", postList);
