@@ -59,8 +59,10 @@ public class CommentsController {
 			sb.append("				<p>"+comments.getcContents()+"</p>");
 			sb.append("				<a href='#' class='active active-reply' comments_no='"+comments.getcNo()+"'>");
 			sb.append("					<i class='fa fa-reply-all'> Reply</i></a>");
-			//내글인 경우 삭제 가능
+			//내글인 경우 수정 및 삭제 가능
 			if(comments.getmId().equals(sessionmId)) { 
+				sb.append("				<a href='#' class='active active-edit' comments_no='"+comments.getcNo()+"'>");
+				sb.append("					<i class='fa fa-cog'> Edit</i></a>");
 				sb.append("				<a href='#' class='active active-delete' comments_no='"+comments.getcNo()+"'>");
 				sb.append("					<i class='fa fa-remove'> Delete</i></a>");
 			}
