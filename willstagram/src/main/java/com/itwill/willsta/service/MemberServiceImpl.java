@@ -1,10 +1,17 @@
 package com.itwill.willsta.service;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.willsta.domain.Member;
 import com.itwill.willsta.exception.MemberNotFoundException;
@@ -15,10 +22,12 @@ public class MemberServiceImpl implements MemberService{
 	@Autowired
 	MemberDao memberDao;
 
-	//String uploadFolder = "/var/lib/tomcat8/webapps/willstagram/contents/member_image/";
+	//String uploadFolder = "/var/lib/tomcat8/webapps/willstagram/contents/member_image";
 	
 	@Override
-	public boolean insertMember(Member member) {
+	public boolean insertMember(Member member, MultipartFile mUploadImg) {
+		// 서비스 구현 (dao)
+		
 		return memberDao.insertMember(member);
 	}
 
@@ -94,6 +103,10 @@ public class MemberServiceImpl implements MemberService{
 	public List<Member> selectByRandom(String mId) {
 		return memberDao.selectByRandom(mId);
 	}
+
+
+
+	
 
 	
 

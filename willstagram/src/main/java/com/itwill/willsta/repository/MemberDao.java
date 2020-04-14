@@ -14,7 +14,7 @@ public interface MemberDao {
 	
 	/*Read One(회원정보로딩)*/
 	Member selectByIdContainFollowInfo(String mId);
-	
+
 	/*친구추천 - 랜덤로딩 5건*/
 	public List<Member> selectByRandom(@Param("mId") String mId);
 	

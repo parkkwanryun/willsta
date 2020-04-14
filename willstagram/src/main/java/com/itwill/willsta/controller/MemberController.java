@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -92,17 +93,38 @@ public class MemberController {
 								@RequestParam("mPhone")String mPhone,
 								@RequestParam("mImage")String mImage,
 								@RequestParam("mRetire")String mRetire,
-								@RequestParam("mImage")MultipartFile mUploadImg){
-		 
+								@RequestParam("mUploadImg")MultipartFile mUploadImg,
+								HttpServletRequest request) throws IllegalStateException, IOException, Exception{
+		String filePath = "";
+		filePath  = request.getSession().getServletContext().getRealPath("/") + "contents\\member_image\\";
+		//파일명
+        String originalFile = mUploadImg.getOriginalFilename();
+        //파일명 중 확장자만 추출
+        //lastIndexOf(".") - 뒤에 있는 . 의 index번호
+        String originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
+        //fileuploadtest.doc
+        //lastIndexOf(".") = 14(index는 0번부터)
+        //substring(14) = .doc
+        //파일업로드시 파일명은 ASCII코드로 저장되므로, 한글명으로 저장 필요
+        //UUID클래스 - (특수문자를 포함한)문자를 랜덤으로 생성
+        //"-"라면 생략으로 대체
+        String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+        //파일을 저장하기 위한 파일 객체 생성
+        File file = new File(filePath + storedFileName);
+        //파일 저장
+        mUploadImg.transferTo(file);
+		
 		//수정 중
-		boolean newMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire));
+        /*
+		boolean newMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire), mUploadImg);
 			if(newMember) {
 				newMember= true;
 			}else {
 				newMember= false;
 			}
 		return newMember;
-		
+         */
+        return true;
 	}	
 	
 	/*아이디 중복 체크*/

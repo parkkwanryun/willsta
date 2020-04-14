@@ -29,14 +29,15 @@
 		<c:if test="${fn:startsWith(post.fileName, 'img')}">
 			<div class="image">
 				<a href="#"><img class="center-block" style="margin:10px 0px;"
-					src="contents/post_contents/${post.fileName}" alt="<s:message code='post.image'/>"
+					src="contents/post_image/${post.fileName}" alt="<s:message code='post.image'/>"
 					width="500" height="300" ></a>
 			</div>
 		</c:if>
 		<c:if test="${fn:startsWith(post.fileName, 'mov')}">
 			<div class="embed-responsive embed-responsive-4by3" style="margin-bottom:10px;" >
 			  <iframe class="embed-responsive-item" style="padding-top:10px;"
-			  			src="contents/post_contents/${post.fileName}"></iframe>
+			  			src="contents/post_image/${post.fileName}"></iframe>
+			  			
 			</div>
 		</c:if>
 		<div class="job_descp">
