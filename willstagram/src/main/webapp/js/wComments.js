@@ -68,7 +68,7 @@ function postCommentsCount2($aNodeList){
 function commentsInsertActionFunction(e){
 	//console.log($(e.target).parents(".post-bar"));
 	var $comments = $(e.target).parents(".post-bar").find(".comments_insert_form");
-	//console.log($comments);
+	console.log($comments);
 	var pNo = $(e.target).parents(".comment-section").attr("post_no");
 	console.log(pNo);
 	var params = $comments.serialize();
@@ -84,7 +84,8 @@ function commentsInsertActionFunction(e){
 					window.location.reload();
 				}, 500);
 			}else if(result.trim() == "false"){
-				alert("댓글쓰기 실패");
+				alert("댓글쓰기를 실패했습니다.");
+				$comments.find(".cContents").select();
 			}
 		}
 	});
@@ -135,7 +136,8 @@ function reCommentsInsertActionFunction(e){
 					window.location.reload();
 				}, 500);
 			}else if(result.trim() == "false"){
-				alert("대댓글쓰기 실패");
+				alert("대댓글쓰기를 실패했습니다.");
+				$reComments.find(".cContents").select();
 			}
 		} 
 	});
@@ -173,15 +175,16 @@ function removeCommentsActionFunction(e){
 		method : "POST",
 		dataType : "text",
 		success : function(result){
-			if(result.trim() == "true"){
+			if(result.trim() == "success"){
 				setTimeout(function() {
 					window.location.reload();
 				}, 500);
-			}else if(result.trim() == "false"){
-				alert("댓글삭제 실패");
+			}else if(result.trim() == "fail"){
+				alert("댓글 삭제를 실패했습니다.")
+			}else if(result.trim() == "multiResult"){
+				alert("대댓글이 있는 댓글은 삭제할 수 없습니다.");
 			}
 		}
-	
 	});
 }
 
