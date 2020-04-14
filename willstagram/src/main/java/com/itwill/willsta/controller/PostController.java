@@ -98,6 +98,9 @@ public class PostController {
 		} else {
 			postOne = postService.createPost(post, uploadFile);
 		}
+		
+	    String path = request.getSession().getServletContext().getRealPath("/");
+		
 		List<Post> postList = new ArrayList<Post>();
 		postList.add(postOne);
 		mv.addObject("postList", postList);
