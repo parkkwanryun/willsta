@@ -91,6 +91,7 @@ function commentsInsertActionFunction(e){
 	});
 }
 
+
 //대댓글 작성 form 보여주기
 function reCommentsInsertFormShowFunction(e){
 	//console.log($(e.target).parents(".comment-sec"));
@@ -118,7 +119,7 @@ function reCommentsInsertFormShowFunction(e){
 }
 
 
-//대댓글 쓰기
+//대댓글 쓰기 ajax요청
 function reCommentsInsertActionFunction(e){
 	console.log($(e.target).parents(".comment-section"));
 	console.log($(e.target).parents(".comment-section").find(".recomments_insert_form"));
@@ -143,6 +144,10 @@ function reCommentsInsertActionFunction(e){
 	});
 }
 
+//댓글 수정 div 보이기
+function commentsUpdateFormShowFunction(e){
+	alert("수정 하면 되나");
+}
 
 //댓글 수정
 function commentsUpdateActionFunction(e){
@@ -164,7 +169,7 @@ function commentsUpdateActionFunction(e){
 }
 
 
-//댓글 삭제
+//댓글 삭제 ajax 요청
 function removeCommentsActionFunction(e){
 	var cNo = $(e.target).parents(".comment-sec").attr("comments_no");
 	var params = "cNo="+cNo;
@@ -205,7 +210,7 @@ $(function() {
 		e.preventDefault();
 	});
 	
-	//대댓글 쓰기 폼 보이기
+	//대댓글 쓰기 form 보이기
 	$(document).on("click", ".active-reply", function(e){
 		//console.log(e.target);
 		reCommentsInsertFormShowFunction(e);
@@ -220,9 +225,16 @@ $(function() {
 		e.stopPropagation();
 	});
 	
+	//댓글 수정 div 보이기
+	$(document).on("click", ".active-edit", function(e){
+		commentsUpdateFormShowFunction(e);
+		e.preventDefault();
+	})
+	
+	
 	//댓글 수정
 	/*
-	$(document).on("click", ".updateComment", function(e){
+	$(document).on("click", ".active-edit", function(e){
 		commentsUpdateActionFunction(e);
 		e.preventDefault();
 	});
