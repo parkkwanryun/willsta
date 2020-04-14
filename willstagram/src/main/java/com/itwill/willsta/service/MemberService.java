@@ -3,6 +3,8 @@ package com.itwill.willsta.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.itwill.willsta.domain.Member;
 import com.itwill.willsta.exception.MemberNotFoundException;
 
@@ -13,6 +15,7 @@ public interface MemberService {
 	Member selectById(String mId);
 	
 	Member selectByIdContainFollowInfo(String mId);
+	
 	
 	List<Member> selectByRandom(String mId);
 
