@@ -16,6 +16,7 @@ public interface MemberService {
 	
 	Member selectByIdContainFollowInfo(String mId);
 	
+	
 	List<Member> selectByRandom(String mId);
 
 	boolean updateMember(Member member);
