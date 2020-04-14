@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -103,24 +102,31 @@ public class CommentsController {
 		return ""+postCommentsCount;
 	}
 	
+	/*
 	@MemberLoginCheck
 	@PostMapping(value = "/commentsUpdate", produces = "application/json;charset=UTF-8")
 	public Comments commentsUpdate(@RequestParam(value = "cNo") int cNo,
-								   @RequestParam Comments comments, 
+								   @RequestParam String cContents, 
 								   HttpSession session) throws Exception {
 		
-		return comments;
+		return null;
 	}
+	*/
 	
 	@MemberLoginCheck
 	@PostMapping(value = "/removeComments", produces = "text/plain;charset=UTF-8")
 	public String removeComments(@RequestParam(value = "cNo") int cNo) throws Exception {
 		String result = "";
-		int removeResult = commentsService.removeComments(cNo);
-		if(removeResult == 1) {
-			result = "true";
-		}else {
-			result = "false";
+		int removeResultCheck = commentsService.removeCommentsCountCheck(cNo);
+		if(removeResultCheck == 1) {
+			int removeResult = commentsService.removeComments(cNo);
+			if(removeResult == 1) {
+				result = "success";
+			}else {
+				result = "fail";
+			}
+		} else if(removeResultCheck > 1) {
+			result = "multiResult";
 		}
 		return result;
 	}
