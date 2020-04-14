@@ -57,7 +57,7 @@ div.messages-list>ul>li:hover {
 						</div>
 						<div class="col-lg-8 col-md-12 pd-right-none pd-left-none">
 							<div class="main-conversation-box">
-							<!-- 
+								<!-- 
 								<div class="message-bar-head">
 									<div class="usr-msg-details">
 										<div class="usr-ms-img">
@@ -70,11 +70,10 @@ div.messages-list>ul>li:hover {
 									</div>
 									<a href="#" title=""><i class="fa fa-ellipsis-v"></i></a>
 								</div>
-								 -->
-								<!-- 채팅 리스트 뿌리는곳 -->
-								<div class="messages-line" style="overflow:auto">
+								
+								<div class="messages-line" id = 'messageContents' style="overflow:auto">
 									
-								</div><!--messages-line end-->
+								</div>
 								<div class="message-send-area">
 									<form>
 										<div class="mf-field">
@@ -87,8 +86,9 @@ div.messages-list>ul>li:hover {
 											<li><a href="#" title=""><i class="fa fa-paperclip"></i></a></li>
 										</ul>
 									</form>
-								</div><!--message-send-area end-->
-							</div><!--main-conversation-box end-->
+								</div>
+							</div>
+							 -->
 						</div>
 					</div>
 				</div><!--messages-sec end-->
