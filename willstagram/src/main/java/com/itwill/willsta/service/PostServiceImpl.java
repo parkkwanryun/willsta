@@ -22,7 +22,7 @@ public class PostServiceImpl implements PostService {
 	@Autowired
 	MemberService memberService;
 	
-	String uploadFolder = "\\\\192.168.15.22\\contents\\post_image";
+	String uploadFolder = "/var/lib/tomcat8/webapps/willstagram/contents/post_image/";
 	//String uploadFolder = "/contents/post_image";
 	@Override
 	public Post createPost(Post post, MultipartFile[] uploadFile) {
