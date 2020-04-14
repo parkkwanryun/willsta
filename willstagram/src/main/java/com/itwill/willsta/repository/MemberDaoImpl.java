@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.willsta.domain.Member;
 import com.itwill.willsta.mapper.MemberMapper;
@@ -14,8 +15,8 @@ public class MemberDaoImpl implements MemberDao{
 	MemberMapper memberMapper;
 	
 	@Override
-	public boolean insertMember(Member member) {
-		return memberMapper.insertMember(member);
+	public boolean insertMember(Member member, MultipartFile mUploadImage) {
+		return memberMapper.insertMember(member, mUploadImage);
 	}//
 	
 	@Override
@@ -78,7 +79,6 @@ public class MemberDaoImpl implements MemberDao{
 	public List<Member> selectByRandom(String mId) {
 		return memberMapper.selectByRandom(mId);
 	}
-
 	
 	
 }

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.willsta.domain.Member;
 
@@ -15,7 +16,7 @@ public interface MemberMapper {
 	
 	/*회원 가입*/
 	@Insert("INSERT INTO MEMBER VALUES (#{mId},#{mPass},#{mName},#{mEmail},#{mPhone},#{mImage},#{mRetire})")
-	public boolean insertMember(Member member);
+	public boolean insertMember(Member member, MultipartFile mUploadImage);
 	
 	/*회원정보 로딩*/
 	@Select("SELECT m.mId, m.mPass, m.mName, m.mEmail, m.mPhone, m.mImage, "

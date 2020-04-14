@@ -1,5 +1,7 @@
 package com.itwill.willsta.domain;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Member {
 	private String mId;
 	private String mPass;
@@ -7,6 +9,7 @@ public class Member {
 	private String mEmail;
 	private String mPhone;
 	private String mImage;
+	private MultipartFile mUploadImage;
 	private String mRetire;
 	
 	private Integer followerCount;
@@ -41,6 +44,18 @@ public class Member {
 		this.mImage = mImage;
 		this.mRetire = mRetire;
 	}
+	
+	public Member(String mId, String mPass, String mName, String mEmail, String mPhone, MultipartFile mUploadImage, String mRetire) {
+		super();
+		this.mId = mId;
+		this.mPass = mPass;
+		this.mName = mName;
+		this.mEmail = mEmail;
+		this.mPhone = mPhone;
+		this.mUploadImage = mUploadImage;
+		this.mRetire = mRetire;
+	}
+	
 
 	public String getmId() {
 		return mId;
