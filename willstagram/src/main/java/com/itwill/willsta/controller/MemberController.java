@@ -93,7 +93,7 @@ public class MemberController {
 								@RequestParam("mRetire")String mRetire,
 								HttpServletRequest request,
 								MultipartFile uploadFile){
-		String path="/var/lib/tomcat8/webapps/upload_mImage/";
+		String path="/var/lib/tomcat8/webapps/willstagram/contents";
 		
 		boolean newMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire));
 			if(newMember) {
