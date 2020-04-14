@@ -56,7 +56,6 @@ public class Member {
 		this.mRetire = mRetire;
 	}
 	
-
 	public String getmId() {
 		return mId;
 	}
