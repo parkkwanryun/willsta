@@ -780,6 +780,7 @@ label.error {
 		</section>
 	</div><!--theme-layout end-->
 
+ <jsp:include page="/WEB-INF/commons/include_footer_js.jsp"/>
  <script type="text/javascript" src="js/jquery.validate.min.js"></script>
  <script type="text/javascript" src="js/wMember.js"></script>
 </body>
