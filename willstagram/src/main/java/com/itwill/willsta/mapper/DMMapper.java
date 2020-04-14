@@ -43,7 +43,7 @@ public interface DMMapper {
 	
 	//첫 채팅방 생성
 	@Insert("INSERT INTO dm(dmNo, mId, dmDate) VALUES(dm_number_seq.nextval, #{mId}, sysdate)")
-	public int dmFirstInsert(String mId);
+	public int dmFirstInsert(@Param("mId") String mId);
 	
 	//채팅방 삭제
 	@Delete("DELETE FROM dm " + 

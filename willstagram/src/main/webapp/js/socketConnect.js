@@ -27,16 +27,16 @@ function getLoginId(){
 
 
 // 메시지 채팅창 출력 콜백함수
-function message_send_form(){
+function message_send_form(target){
+	mIdYou = target.find('h3').text();
 	var htmlData = "";
-	
 	htmlData +="<div class='message-bar-head'>";
 	htmlData +="	<div class='usr-msg-details'>";
 	htmlData +=			"<div class='usr-ms-img'>";
 	htmlData +=				"<img src='' alt=''>";
 	htmlData +=			"</div>";
 	htmlData +=		"<div class='usr-mg-info'>";
-	htmlData +=			"<h3></h3>";
+	htmlData +=			"<h3>"+mIdYou+"</h3>";
 	htmlData +=			"<p>Online</p>";
 	htmlData +=		"</div>";
 	htmlData +=	"</div>";
@@ -96,17 +96,17 @@ function message_rightInsert_html(jsonData){
 	$('#messageContents').scrollTop($('#messageContents').prop('scrollHeight'));
 }
 
-//메시지 전송 버튼 클릭 시 작동하는 콜백함수
-function message_send_function(e){
+// 메시지 전송 버튼 클릭 시 작동하는 콜백함수
+function message_send_function(target){
 	$('#btnSend').on('click', function(event) {
 		event.preventDefault();
 		var d = new Date();
 		//jsonData 만들어지는 시점
 		jsonData.mId = loginId;												//보낸사람
-		jsonData.mIdYou = $(e.target).find('.usr-mg-info h3').text();		//받는사람
+		jsonData.mIdYou = $(target).find('.usr-mg-info h3').text();			//받는사람
 		jsonData.msg = $('#msg').val();										//내용
 		jsonData.msgDate = d.getHours() + "시" + d.getMinutes();			//보낸시간
-		jsonData.dmNo = $(e.target).find('#dmNo').text();					//방번호
+		jsonData.dmNo = $(target).attr('dmno');								//방번호
 		console.log(jsonData);
 		
 		if(jsonData.msg != null && jsonData.msg != "" && jsonData.msg != '&nbsp'){
@@ -126,7 +126,7 @@ function message_send_insert_function(jsonData){
 		url : 'messages_insert',
 		method : 'POST',
 		data : params,
-		dataType : 'json',
+		dataType : 'text',
 		success : function(rowCount) {
 			console.log(rowCount);
 		}
@@ -134,9 +134,9 @@ function message_send_insert_function(jsonData){
 }
 
 //메세지 유저 클릭 시 작동하는 콜백함수
-function message_detail_function(e){
-	var dmNo = $(e.target).attr('dmNo');
-	console.log("dmNo:"+dmNo);
+function message_detail_function(target){
+	console.log(target);
+	var dmNo = $(target).attr('dmno');
 	var params = "dmNo=" + dmNo;
 	
 	$.ajax({
@@ -198,34 +198,77 @@ function message_receive(event){
 	jsonData.mId = msgArray[1];		// 받는사람 (나)
 	jsonData.msg = msgArray[2];	// 내용
 	jsonData.msgDate = d.getHours() + "시" + d.getMinutes(); // 시간
+	console.log(jsonData);
 	if(jsonData.msg != null || jsonData.msg != ""){
 		message_rightInsert_html(jsonData);
 		}
 	}
-
+function message_receive_noty(event){
+	var msgArray = (event.data).split(",");
+	var d = new Date();
+	jsonData.mIdYou = msgArray[0];	// 보낸사람 (너)
+	jsonData.mId = msgArray[1];		// 받는사람 (나)
+	jsonData.msg = msgArray[2];	// 내용
+	jsonData.msgDate = d.getHours() + "시" + d.getMinutes(); // 시간
+	jsonData.dmContentsImage = msgArray[5];
+	var htmlData = "";
+	htmlData +="<div class='notfication-details'>";
+	htmlData +=		"<div class='noty-user-img'>";
+	htmlData +=			"<img src='contents/member_image/"+jsonData.dmContentsImage+"' alt=''>";
+	htmlData +=		"</div>";
+	htmlData +=		"<div class='notification-info'>";
+	htmlData +=			"<h3><a href='messages' title=''>"+jsonData.mId+"</a> </h3>";
+	htmlData +=			"<p>"+jsonData.msg+"</p>";
+	htmlData +=			"<span>"+jsonData.msgDate+"</span>";
+	htmlData +=		"</div>";
+	htmlData +="</div>";
+	$('.nott-list').append(htmlData);
+}
 $(document).ready(function(){
-	connectWS();
-	getLoginId();
+		connectWS();
+		getLoginId();
 	
-	//채팅방 오픈
-	$(function() {
+		//채팅방 오픈
+	
+		/*
 		$(document).find('.messages-list').on('click', function(e) {
 			e.preventDefault();
-			
-			
 			$('.main-conversation-box').html("");
 			message_send_form();
 			message_detail_function(e);
 			message_send_function(e);
-			
 		});
-	});
-	
-	//profile 탭에서 유저의 메세지 버튼 클릭시 방 생성
-	$(document).find('.message-us').on('click',function(e){
-		e.preventDefault();
-		message_profile_create_function(e);
-	});
+		*/
+		$(document).find('div.messages-list > ul > li').on('click', function(e) {
+			//console.log();
+			var nodeName = e.target.nodeName;
+			var target=null;
+			if(nodeName=='H3'){
+				console.log("H3");
+				target = $(e.target).parents('.usr-msg-details');
+			}else if(nodeName=='SPAN'){
+				console.log("SPAN");
+				target = $(e.target).parents('.usr-msg-details');
+		    }else if(nodeName=='LI'){
+		    	console.log("LI");
+		    	target = $(e.target).find('.usr-msg-details');
+		    }else if(nodeName=='DIV'){
+		    	console.log("DIV");
+		    	target = $(e.target);
+		    } else if(nodeName =='IMG'){
+		    	console.log('image');
+		    	target = $(e.target).parents('.usr-msg-details');
+		    }
+			$('.main-conversation-box').html("");
+			message_send_form(target);
+			message_detail_function(target);
+			message_send_function(target);
+		});
+		//profile 탭에서 유저의 메세지 버튼 클릭시 방 생성
+		$(document).find('.message-us').on('click',function(e){
+			e.preventDefault();
+			message_profile_create_function(e);
+		});
 });	
 
 function connectWS() {
@@ -245,10 +288,9 @@ function connectWS() {
 				console.log('Info: connection closed.');
 		};
 		ws.onmessage = function(event) { // socket.send() 후 ReplyEchoHandler가 handleTextMessage메소드로부터 메시지를 받아옴											
-			event.preventDefault();
-			jsonData.mId = event.data.split(",")[1]
-			jsonData.mIdYou = event.data.split(",")[4];
+			//[0]ljs, [1]hjs, [2]1324, [3]18시4, [4]6, [5]aasds
 			message_receive(event);
+			message_receive_noty(event);
 		};
 	};	
 }

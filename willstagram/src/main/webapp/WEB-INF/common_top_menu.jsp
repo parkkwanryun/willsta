@@ -52,6 +52,7 @@
 										<a href="#" title=""><s:message code="menu.clear"/></a>
 									</div>
 									<div class="nott-list">
+									<!-- 
 										<div class="notfication-details">
 							  				<div class="noty-user-img">
 							  					<img src="images/resources/ny-img1.png" alt="">
@@ -60,28 +61,9 @@
 							  					<h3><a href="messages" title="">Jassica William</a> </h3>
 							  					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.</p>
 							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img2.png" alt="">
 							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="messages" title="">Jassica William</a></h3>
-							  					<p>Lorem ipsum dolor sit amet.</p>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
 						  				</div>
-						  				<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img3.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="messages" title="">Jassica William</a></h3>
-							  					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut labore et dolore magna aliqua.</p>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
+						  			-->
 						  				<div class="view-all-nots">
 						  					<a href="messages" title=""><s:message code="menu.allMessage"/></a>
 						  				</div>
