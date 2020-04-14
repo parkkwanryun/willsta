@@ -24,12 +24,12 @@ public interface FollowMapper {
 	
 	
 	/*Following List 내가 팔로우하고있는사람들 보기*/
-	@Select("select f.mid, f.midyou, m.mname, m.memail, m.mphone, m.mimage from follow f inner join member m on f.midyou = m.mid where f.mid =#{mId}")
+	@Select("select f.mid, f.midyou, m.mname, m.memail, m.mphone, m.mimage from follow f inner join member m on f.mid = m.mid where f.mid =#{mId}")
 	public List<Follow> followingList(String mId);
 	
 	
 	/*Follower List 나를 팔로하고있는 사람들 */
-	@Select("select f.midyou, f.mid, m.mname, m.memail, m.mphone, m.mimage from follow f inner join member m on f.mid = m.mid where f.midyou =#{mId}")
+	@Select("select f.mid,f.midyou, m.mname, m.memail, m.mphone, m.mimage from follow f inner join member m on f.midYou = m.mid where f.midyou =#{mId}")
 	public List<Follow> followerList(String mId);
 	
 	/*Following Count 내가 팔로하고있는 사람들 수  */

@@ -65,14 +65,14 @@ public class FollowController {
 		return mv;
 	}
 
-	@ResponseBody // 애는팔로워 팔로잉 바뀌면서 발류랑 펑션이랑다르지만 값잘나오니까 냅둬.
+	@ResponseBody 
 	@RequestMapping(value = "/followerList", method = RequestMethod.POST)
 	public List<Member> followerList(@RequestParam(value = "mId", required = true) String mId) {
 		ModelAndView mv = new ModelAndView();
-		List<Follow> following = followService.followerList(mId);
+		List<Follow> follower = followService.followerList(mId);
 		List<Member> youMemberList=new ArrayList<Member>();
-		for (Follow follow : following) {
-			Member youMmeber = memberService.selectById(follow.getmIdYou());
+		for (Follow follow : follower) {
+			Member youMmeber = memberService.selectById(follow.getmId());
 			youMemberList.add(youMmeber);
 		}
 		
@@ -81,7 +81,7 @@ public class FollowController {
 	}
 	
 	
-	@ResponseBody // 애는팔로워 팔로잉 바뀌면서 발류랑 펑션이랑다르지만 값잘나오니까 냅둬.
+	@ResponseBody 
 	@RequestMapping(value = "/followingList", method = RequestMethod.POST)
 	public List<Member> followingList(@RequestParam(value = "mId", required = true) String mId) {
 		ModelAndView mv = new ModelAndView();

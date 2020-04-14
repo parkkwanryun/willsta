@@ -62,7 +62,7 @@ $(function(){
 													+ "</div>"
 													+ "<span><i midyou='"
 													+ mId
-													+ "' class='la la-plus follow' ></i></span>"
+													+ "' class='la la-plus' ></i></span>"
 													+ "</div>";	
 											}
 										 	html+="</div>";
@@ -163,7 +163,7 @@ $(function(){
 			});
 	
 
-	
+	// 이벤트 처리안에 중복 이벤트 처리위해서는 도큐맨트를 적어줘야함 .
 	$(document).on('click','.unfollow',
 			function(e) {
 				var $mIdYou = $(e.target);
