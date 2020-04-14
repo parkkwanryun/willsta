@@ -13,7 +13,6 @@ import com.itwill.willsta.domain.Likes;
 import com.itwill.willsta.domain.Member;
 import com.itwill.willsta.domain.Post;
 import com.itwill.willsta.domain.PostImage;
-import com.itwill.willsta.domain.StaticProperties;
 import com.itwill.willsta.repository.PostDao;
 @Service
 public class PostServiceImpl implements PostService {
@@ -23,11 +22,12 @@ public class PostServiceImpl implements PostService {
 	@Autowired
 	MemberService memberService;
 	
-	String uploadFolder = StaticProperties.getPostRealPath();
+	
+	//String uploadFolder = StaticProperties.postRealPath;
 	//String uploadFolder = "/var/lib/tomcat8/webapps/willstagram/contents/post_image/";
 	//String uploadFolder = "/contents/post_image";
 	@Override
-	public Post createPost(Post post, MultipartFile[] uploadFile) {
+	public Post createPost(Post post, MultipartFile[] uploadFile, String path) {
 		/*
 		 * 1. 포스트 생성
 		 * 2. 생성된 번호로 파일이름 설정
@@ -59,11 +59,11 @@ public class PostServiceImpl implements PostService {
 					
 					filterFileName+=post.getpNo()+"_"+maxContentNo.trim()+sepString;	
 					
-						System.out.println("$$$$$$$$$$$$$$"+filterFileName);
+						System.out.println("$$$$$$$$$$$$$$"+path+filterFileName);
 					if (!(filename == null || filename.equals(""))) {
 						pi = new PostImage(post.getpNo(), filterFileName);	
 						postDao.insertImg(pi);
-						File saveFile = new File(uploadFolder, filterFileName);
+						File saveFile = new File(path, filterFileName);
 						try {
 							multipartFile.transferTo(saveFile);
 						} catch (Exception e) {
@@ -83,7 +83,7 @@ public class PostServiceImpl implements PostService {
 	
 
 	@Override
-	public Post modifyPost(Post post, MultipartFile[] uploadFile) {
+	public Post modifyPost(Post post, MultipartFile[] uploadFile, String path) {
 		/*
 		 * 1.내용수정
 		 * 2.파일삭제
@@ -97,7 +97,7 @@ public class PostServiceImpl implements PostService {
 			File removeFile;
 			List<PostImage> postImageList = postDao.selectContents(post.getpNo());
 			for (PostImage postImage : postImageList) {
-				removeFile= new File(uploadFolder, postImage.getFileName());
+				removeFile= new File(path, postImage.getFileName());
 				removeFile.delete();
 			}
 			postDao.delete_img(post.getpNo());
@@ -126,7 +126,7 @@ public class PostServiceImpl implements PostService {
 					if (!(filename == null || filename.equals(""))) {
 						pi = new PostImage(post.getpNo(), filterFileName);	
 						postDao.insertImg(pi);
-						File saveFile = new File(uploadFolder, filterFileName);
+						File saveFile = new File(path, filterFileName);
 						try {
 							multipartFile.transferTo(saveFile);
 						} catch (Exception e) {
@@ -146,7 +146,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public int removePost(Integer pNo) {
+	public int removePost(Integer pNo, String path) {
 		/*
 		 * 1. 컨텐츠 리스트 조회
 		 * 2. 파일삭제
@@ -155,7 +155,7 @@ public class PostServiceImpl implements PostService {
 		File removeFile;
 		List<PostImage> postImageList = postDao.selectContents(pNo);
 		for (PostImage postImage : postImageList) {
-			removeFile= new File(uploadFolder, postImage.getFileName());
+			removeFile= new File(path, postImage.getFileName());
 			removeFile.delete();
 		}
 		postDao.delete_img(pNo);
