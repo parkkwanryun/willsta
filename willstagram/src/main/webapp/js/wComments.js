@@ -84,7 +84,7 @@ function commentsInsertActionFunction(e){
 					window.location.reload();
 				}, 500);
 			}else if(result.trim() == "false"){
-				alert("댓글쓰기 실패");
+				alert("댓글쓰기를 실패했습니다.");
 				$comments.find(".cContents").select();
 			}
 		}
@@ -136,7 +136,7 @@ function reCommentsInsertActionFunction(e){
 					window.location.reload();
 				}, 500);
 			}else if(result.trim() == "false"){
-				alert("대댓글쓰기 실패");
+				alert("대댓글쓰기를 실패했습니다.");
 				$reComments.find(".cContents").select();
 			}
 		} 
