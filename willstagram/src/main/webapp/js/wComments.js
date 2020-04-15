@@ -2,7 +2,7 @@
 function postCommentsListFunction(e){
 	var $postComments = $(e.target).parents(".post-bar").find(".comment-section");
 	//console.log($postComments);
-	var params = "pNo="+$postComments.attr("post_no");
+	var params = "pNo="+$(e.target).parents(".post-bar").attr("post_no");
 	//console.log(params);
 	if($postComments.children().length > 1){
 		$postComments.children().fadeToggle(500);

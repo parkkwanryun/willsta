@@ -227,7 +227,7 @@
 											</div>
 												
 											<!-- comment-section -->
-											<div class="comment-section" post_no="${post.pNo}" ">
+											<div class="comment-section">
 													<!-- comment-sec -->
 		
 													<!-- post-comment -->
