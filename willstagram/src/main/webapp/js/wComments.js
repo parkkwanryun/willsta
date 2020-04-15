@@ -2,7 +2,7 @@
 function postCommentsListFunction(e){
 	var $postComments = $(e.target).parents(".post-bar").find(".comment-section");
 	//console.log($postComments);
-	var params = "pNo="+$postComments.attr("post_no");
+	var params = "pNo="+$(e.target).parents(".post-bar").attr("post_no");
 	//console.log(params);
 	if($postComments.children().length > 1){
 		$postComments.children().fadeToggle(500);
@@ -25,9 +25,7 @@ function postCommentsListFunction(e){
 
 //포스트-댓글 수 ajax 요청
 function postCommentsCount(e){
-	var $postComments = $(e.target).parents(".post-bar").find(".comment-section");
-	//console.log($postComments);
-	var params = "pNo="+$postComments.attr("post_no");
+	var params = "pNo="+$(e.target).parents(".post-bar").attr("post_no");
 	//console.log(params);
 	$.ajax({
 		url : "postCommentsCount",
@@ -45,9 +43,7 @@ function postCommentsCount(e){
 //DOM tree 생성 후 포스트-댓글 수 ajax 요청
 function postCommentsCount2($aNodeList){
 	for (var i = 0; i < $aNodeList.length; i++) {
-		var $postComments = $($aNodeList.get(i)).parents(".post-bar").find(".comment-section");
-		//console.log($postComments);
-		var params = "pNo="+$postComments.attr("post_no");
+		var params = "pNo="+$($aNodeList.get(i)).parents(".post-bar").attr("post_no");
 		//console.log(params);
 		$.ajax({
 			async : false,
@@ -68,8 +64,8 @@ function postCommentsCount2($aNodeList){
 function commentsInsertActionFunction(e){
 	//console.log($(e.target).parents(".post-bar"));
 	var $comments = $(e.target).parents(".post-bar").find(".comments_insert_form");
-	console.log($comments);
-	var pNo = $(e.target).parents(".comment-section").attr("post_no");
+	//console.log($comments);
+	var pNo = $(e.target).parents('.post-bar').attr("post_no");
 	console.log(pNo);
 	var params = $comments.serialize();
 	//console.log(params);
@@ -84,7 +80,7 @@ function commentsInsertActionFunction(e){
 					window.location.reload();
 				}, 500);
 			}else if(result.trim() == "false"){
-				alert("댓글쓰기를 실패했습니다.");
+				alert("댓글 쓰기를 실패했습니다.");
 				$comments.find(".cContents").select();
 			}
 		}
@@ -98,7 +94,7 @@ function reCommentsInsertFormShowFunction(e){
 	var $reCommentsForm =  $(e.target).parents(".comment-sec").find(".active-reply");
 	//console.log($reCommentsForm);
 	var cNo = $(e.target).parents(".comment-sec").attr("comments_no");
-	var pNo = $(e.target).parents(".comment-section").attr("post_no");
+	var pNo = $(e.target).parents(".post-bar").attr("post_no");
 	//console.log(cNo);
 	var html = "";
 	html += "<div class='post-comment' style='display:none'>" +
@@ -121,11 +117,10 @@ function reCommentsInsertFormShowFunction(e){
 
 //대댓글 쓰기 ajax요청
 function reCommentsInsertActionFunction(e){
-	console.log($(e.target).parents(".comment-section"));
-	console.log($(e.target).parents(".comment-section").find(".recomments_insert_form"));
+	//console.log($(e.target).parents(".comment-section"));
 	var $reComments = $(e.target).parents(".comment-section").find(".recomments_insert_form");
 	var params = $reComments.serialize();
-	console.log(params);
+	//console.log(params);
 	$.ajax({
 		url : "reCommentsInsert",
 		data : params,
@@ -137,7 +132,7 @@ function reCommentsInsertActionFunction(e){
 					window.location.reload();
 				}, 500);
 			}else if(result.trim() == "false"){
-				alert("대댓글쓰기를 실패했습니다.");
+				alert("대댓글 쓰기를 실패했습니다.");
 				$reComments.find(".cContents").select();
 			}
 		} 
@@ -145,30 +140,9 @@ function reCommentsInsertActionFunction(e){
 }
 
 
-//댓글 수정
-function commentsUpdateActionFunction(e){
-	console.log($(e.target).parents(".comment-sec"));
-	var cNo = $(e.target).parents(".comment-sec").attr("comments_no");
-	var params = "cNo="+cNo; 
-	console.log(cNo);
-	/*
-	$.ajax({
-		url : "/commentsUpdate",
-		data : params,
-		method : "POST",
-		dataType : "json",
-		success : function(jsonObject){
-			
-		}
-	});
-	*/
-}
-
-
 //댓글 삭제 ajax 요청
 function removeCommentsActionFunction(e){
-	var cNo = $(e.target).parents(".comment-sec").attr("comments_no");
-	var params = "cNo="+cNo;
+	var params = "cNo="+$(e.target).parents(".comment-sec").attr("comments_no");
 	console.log(params);
 	$.ajax({
 		url : "removeComments",
@@ -186,6 +160,30 @@ function removeCommentsActionFunction(e){
 				alert("대댓글이 있는 댓글은 삭제할 수 없습니다.");
 			}
 		}
+	});
+}
+
+
+//댓글 수정 ajax 요청
+function commentsUpdateActionFunction(e){
+	var params = {
+			cNo : $(e.target).attr("comments_no"),
+			cContents : $("#modal_cContents").val()
+		};
+	console.log(params);
+	$.ajax({
+		url : "commentsUpdate",
+		data : params,
+		method : "POST",
+		success : function(result){
+			if(result.trim() == "true"){
+				setTimeout(function() {
+					window.location.reload();
+				}, 500);
+			}else if(result.trim() == "false"){
+				alert("댓글 수정을 실패했습니다.")
+			}
+		} 
 	});
 }
 
@@ -235,34 +233,17 @@ $(function() {
 	//댓글 수정 Modal 보이기
 	$(document).on("click", ".active-edit", function(){
 		var cNo = $(this).attr("comments_no");
-		console.log(cNo);
+		//console.log(cNo);
 		var cContents = $(this).parent().children("p").text();
-		console.log(cContents);
+		//console.log(cContents);
 		$("#modal_cContents").val(cContents);
 		$("#updateCommentsBtn").attr("comments_no", cNo);
 	})
 	
 	//댓글 수정
 	$(document).on("click", "#updateCommentsBtn", function(e){
-		var params = {
-			cNo : $(e.target).attr("comments_no"),
-			cContents : $("#modal_cContents").val()
-		};
-		console.log(params);
-		$.ajax({
-			url : "commentsUpdate",
-			data : params,
-			method : "POST",
-			success : function(result){
-				if(result.trim() == "true"){
-					setTimeout(function() {
-						window.location.reload();
-					}, 500);
-				}else if(result.trim() == "false"){
-					alert("댓글 수정을 실패했습니다.")
-				}
-			} 
-		});
+		commentsUpdateActionFunction(e);
+		e.preventDefault();
 	})
 	
 	
