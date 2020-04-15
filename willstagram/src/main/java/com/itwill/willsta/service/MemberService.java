@@ -1,6 +1,9 @@
 package com.itwill.willsta.service;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -8,7 +11,7 @@ import com.itwill.willsta.domain.Member;
 
 public interface MemberService {
 	
-	boolean insertMember(Member member, MultipartFile mUploadImg);
+	boolean insertMember(Member member, MultipartFile mUploadImg) throws IllegalStateException, IOException;
 	
 	Member selectById(String mId);
 	

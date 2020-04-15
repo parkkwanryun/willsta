@@ -17,8 +17,8 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public boolean insertMember(Member member) {
 		return memberMapper.insertMember(member);
-	}//
-		
+	}
+	
 	@Override
 	public Member selectById(String mId) {
 		return memberMapper.selectById(mId);

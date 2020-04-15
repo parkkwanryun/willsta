@@ -11,7 +11,7 @@ public interface MemberDao {
 	
 	/*Create(회원가입- 이미지 없음)*/
 	boolean insertMember(Member member);
-	
+
 	/*Read One(회원정보로딩)*/
 	Member selectByIdContainFollowInfo(String mId);
 

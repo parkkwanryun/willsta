@@ -44,13 +44,13 @@ public class MemberUnitTestMain {
 	}
 		
 	@Test //회원가입
-	@Ignore
+
 	public void insertMember() {
 		Member newMember = new Member("das", "12345", "윌스타그램", "bluepk2034@naver.com","0133755555", "","F");
 		boolean member = memberDao.insertMember(newMember);
 		System.out.println("## 회원가입(멤버 추가) :"+member);
 	}
-	
+
 	@Test //회원탈퇴
 	@Ignore
 	public void delelteMember() {
