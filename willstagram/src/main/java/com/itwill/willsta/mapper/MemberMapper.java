@@ -18,6 +18,11 @@ public interface MemberMapper {
 	@Insert("INSERT INTO MEMBER VALUES (#{mId},#{mPass},#{mName},#{mEmail},#{mPhone},#{mImage},#{mRetire})")
 	public boolean insertMember(Member member);
 	
+	//이미지 넣을 INSERT 쿼리 1개 
+	
+	
+	
+	
 	/*회원정보 로딩*/
 	@Select("SELECT m.mId, m.mPass, m.mName, m.mEmail, m.mPhone, m.mImage, "
 			+ " (select count(*) from follow x where x.midyou = m.mId) as followerCount,"
