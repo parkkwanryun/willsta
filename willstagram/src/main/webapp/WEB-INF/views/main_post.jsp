@@ -22,7 +22,41 @@
 	<link rel="stylesheet" type="text/css" href="lib/slick/slick-theme.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/responsive.css">
+	<style>
+ 	.modal-content { 
+ 	position : fixed; 
+ 	top : 15%; 
+ 	left : calc(50% - 220px); 
+ 	width : 420px; 
+ 	height : 190px; 
+ 	padding : 20px 10px; 
+ 	background : #fff; 
+ 	border : 2px solid #666; 
+	 }
+	 #modal_cContents { 
+	 	font-size : 15px; 
+	 	font-family : '맑은 고딕', verdana; 
+	 	padding : 10px; 
+	 	width : 395px; 
+	 	height : 90px; 
+	 }
+	</style>
 	
+<!--comment-update modal-->
+<div class="modal fade" id="updateCommentsModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+       	<textarea id="modal_cContents" class="modal_cContents"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="updateCommentsBtn" class="btn btn-default">Edit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--comment-update modal end-->
 
 <body>	
 
