@@ -86,8 +86,10 @@ public class MemberController {
 	/*회원가입*/
 	@ResponseBody
 	@RequestMapping(value="/sign_up_action",method = RequestMethod.POST, produces="text/plain; charset=UTF-8")
-	public boolean sign_up_action(Member member, @RequestParam("mUploadImg")MultipartFile mUploadImg,
+	public boolean sign_up_action(Member member, MultipartFile mUploadImg,
 								HttpServletRequest request) throws IllegalStateException, IOException, Exception{
+		String path = request.getSession().getServletContext().getRealPath("/")+"contents\\member_image\\";
+		System.out.println("## 이미지 저장경로:"+path);
 		//수정 중
 		boolean newMember = 
 				memberService.insertMember(new Member(
