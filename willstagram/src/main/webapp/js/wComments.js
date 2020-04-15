@@ -84,7 +84,7 @@ function commentsInsertActionFunction(e){
 					window.location.reload();
 				}, 500);
 			}else if(result.trim() == "false"){
-				alert("댓글쓰기를 실패했습니다.");
+				alert("댓글 쓰기를 실패했습니다.");
 				$comments.find(".cContents").select();
 			}
 		}
@@ -121,11 +121,11 @@ function reCommentsInsertFormShowFunction(e){
 
 //대댓글 쓰기 ajax요청
 function reCommentsInsertActionFunction(e){
-	console.log($(e.target).parents(".comment-section"));
-	console.log($(e.target).parents(".comment-section").find(".recomments_insert_form"));
+	//console.log($(e.target).parents(".comment-section"));
+	//console.log($(e.target).parents(".comment-section").find(".recomments_insert_form"));
 	var $reComments = $(e.target).parents(".comment-section").find(".recomments_insert_form");
 	var params = $reComments.serialize();
-	console.log(params);
+	//console.log(params);
 	$.ajax({
 		url : "reCommentsInsert",
 		data : params,
@@ -137,31 +137,11 @@ function reCommentsInsertActionFunction(e){
 					window.location.reload();
 				}, 500);
 			}else if(result.trim() == "false"){
-				alert("대댓글쓰기를 실패했습니다.");
+				alert("대댓글 쓰기를 실패했습니다.");
 				$reComments.find(".cContents").select();
 			}
 		} 
 	});
-}
-
-
-//댓글 수정
-function commentsUpdateActionFunction(e){
-	console.log($(e.target).parents(".comment-sec"));
-	var cNo = $(e.target).parents(".comment-sec").attr("comments_no");
-	var params = "cNo="+cNo; 
-	console.log(cNo);
-	/*
-	$.ajax({
-		url : "/commentsUpdate",
-		data : params,
-		method : "POST",
-		dataType : "json",
-		success : function(jsonObject){
-			
-		}
-	});
-	*/
 }
 
 
@@ -187,6 +167,30 @@ function removeCommentsActionFunction(e){
 			}
 		}
 	});
+}
+
+
+//댓글 수정 ajax 요청
+function commentsUpdateActionFunction(e){
+	var params = {
+			cNo : $(e.target).attr("comments_no"),
+			cContents : $("#modal_cContents").val()
+		};
+		console.log(params);
+		$.ajax({
+			url : "commentsUpdate",
+			data : params,
+			method : "POST",
+			success : function(result){
+				if(result.trim() == "true"){
+					setTimeout(function() {
+						window.location.reload();
+					}, 500);
+				}else if(result.trim() == "false"){
+					alert("댓글 수정을 실패했습니다.")
+				}
+			} 
+		});
 }
 
 
@@ -235,34 +239,17 @@ $(function() {
 	//댓글 수정 Modal 보이기
 	$(document).on("click", ".active-edit", function(){
 		var cNo = $(this).attr("comments_no");
-		console.log(cNo);
+		//console.log(cNo);
 		var cContents = $(this).parent().children("p").text();
-		console.log(cContents);
+		//console.log(cContents);
 		$("#modal_cContents").val(cContents);
-		$("#updateCommentsBtn").attr("comments_no", cNo);
+		$("#updateCommentsBtn").attr("comments_no");
 	})
 	
 	//댓글 수정
 	$(document).on("click", "#updateCommentsBtn", function(e){
-		var params = {
-			cNo : $(e.target).attr("comments_no"),
-			cContents : $("#modal_cContents").val()
-		};
-		console.log(params);
-		$.ajax({
-			url : "commentsUpdate",
-			data : params,
-			method : "POST",
-			success : function(result){
-				if(result.trim() == "true"){
-					setTimeout(function() {
-						window.location.reload();
-					}, 500);
-				}else if(result.trim() == "false"){
-					alert("댓글 수정을 실패했습니다.")
-				}
-			} 
-		});
+		commentsUpdateActionFunction(e);
+		e.preventDefault();
 	})
 	
 	
