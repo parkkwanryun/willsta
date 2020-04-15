@@ -24,14 +24,14 @@
 	<link rel="stylesheet" type="text/css" href="css/responsive.css">
 	<style>
  	.modal-content { 
- 	position : fixed; 
- 	top : 15%; 
- 	left : calc(50% - 220px); 
- 	width : 420px; 
- 	height : 190px; 
- 	padding : 20px 10px; 
- 	background : #fff; 
- 	border : 2px solid #666; 
+	 	position : fixed; 
+	 	top : 15%; 
+	 	left : calc(50% - 220px); 
+	 	width : 420px; 
+	 	height : 190px; 
+	 	padding : 20px 10px; 
+	 	background : #fff; 
+	 	border : 2px solid #666; 
 	 }
 	 #modal_cContents { 
 	 	font-size : 15px; 
