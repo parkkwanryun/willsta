@@ -27,9 +27,7 @@ public class MemberServiceImpl implements MemberService {
 	String uploadFolder ="/var/lib/tomcat8/webapps/willstagram/contents/member_image/";
 	@Override
 	public boolean insertMember(Member member, MultipartFile mUploadImg) throws IllegalStateException, IOException {
-		// boolean ok = memberDao.insertMember(member);
-
-		// String filePath = request.getSession().getServletContext().getRealPath("/") + "contents\\member_image\\";
+		
 		String originalFile = mUploadImg.getOriginalFilename();
 		// 파일명 중 확장자만 추출
 		// lastIndexOf(".") - 뒤에 있는 . 의 index번호
@@ -45,7 +43,7 @@ public class MemberServiceImpl implements MemberService {
 		boolean insertOk = memberDao.insertMember(member);
 		// 파일을 저장하기 위한 파일 객체 생성
 		if (insertOk) {
-			File file = new File(uploadFolder + storedFileName);
+			File file = new File(uploadFolder, storedFileName);
 			// 파일을 contents/member_image 폴더에 저장
 			mUploadImg.transferTo(file);
 		}
