@@ -31,8 +31,8 @@ public interface CommentsMapper {
 	@Select("SELECT	count(*) " +
 			"FROM (SELECT  cno " +
 			"	   FROM    comments " +
-			"		START WITH cNo = #{cNo}" +
-			"		CONNECT BY PRIOR  cNo = recNo)")
+			"	   START WITH cNo = #{cNo} " +
+			"	   CONNECT BY PRIOR cNo = recNo)")
 	public Integer removeCommentsCountCheck(@Param("cNo") int cNo);
 	
 	//댓글 삭제

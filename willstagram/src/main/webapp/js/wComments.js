@@ -37,6 +37,7 @@ function postCommentsListFunction(e){
 							"				<p>"+cContents+"</p>"+
 							"				<a href='#' class='active active-reply' comments_no='"+cNo+"'>"+
 							"					<i class='fa fa-reply-all'> "+msg.Reply+"</i></a>";
+					
 					if(mId == loginId) { 
 						html += "				<a href='#' class='active active-edit' "+
 								"					data-toggle='modal' data-target='#updateCommentsModal' comments_no='"+cNo+"'>"+
@@ -89,7 +90,7 @@ function postCommentsCount2($aNodeList){
 			method : "POST",
 			dataType : "text",
 			success : function(count){
-				console.log(count);
+				//console.log(count);
 				$($aNodeList.get(i)).html("<i class='fas fa-comment-alt'></i>"+msg.Comments+"&nbsp;"+count);
 			}
 		});
@@ -103,7 +104,7 @@ function commentsInsertActionFunction(e){
 	var $comments = $(e.target).parents(".post-bar").find(".comments_insert_form");
 	//console.log($comments);
 	var pNo = $(e.target).parents('.post-bar').attr("post_no");
-	console.log(pNo);
+	//console.log(pNo);
 	var params = $comments.serialize();
 	//console.log(params);
 	$.ajax({
@@ -180,7 +181,7 @@ function reCommentsInsertActionFunction(e){
 //댓글 삭제 ajax 요청
 function removeCommentsActionFunction(e){
 	var params = "cNo="+$(e.target).parents(".comment-sec").attr("comments_no");
-	console.log(params);
+	//console.log(params);
 	$.ajax({
 		url : "removeComments",
 		data : params,
@@ -207,7 +208,7 @@ function commentsUpdateActionFunction(e){
 			cNo : $(e.target).attr("comments_no"),
 			cContents : $("#modal_cContents").val()
 		};
-	console.log(params);
+	//console.log(params);
 	$.ajax({
 		url : "commentsUpdate",
 		data : params,
