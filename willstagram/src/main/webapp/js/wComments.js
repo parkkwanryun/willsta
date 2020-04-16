@@ -37,6 +37,7 @@ function postCommentsListFunction(e){
 							"				<p>"+cContents+"</p>"+
 							"				<a href='#' class='active active-reply' comments_no='"+cNo+"'>"+
 							"					<i class='fa fa-reply-all'> "+msg.Reply+"</i></a>";
+					
 					if(mId == loginId) { 
 						html += "				<a href='#' class='active active-edit' "+
 								"					data-toggle='modal' data-target='#updateCommentsModal' comments_no='"+cNo+"'>"+
