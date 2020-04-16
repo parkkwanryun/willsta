@@ -3,7 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
-
+<style>
+	.user-profile-main {
+		float: left;
+    	width: 100%;
+    	padding: 200px 0;
+	}
+</style>
 <body>
 	<div class="wrapper">
 		<header>
@@ -11,14 +17,7 @@
 			<jsp:include page="../common_top_menu.jsp"/>
 			<!-- Menubar End -->
 		</header>	
-
-
-		<section class="cover-sec">
-			<img src="images/resources/cover-img.jpg" alt="">
-		</section>
-
-
-		<main>
+		<main class="user-profile-main">
 			<div class="main-section">
 				<div class="container">
 					<div class="main-section-data">
@@ -40,6 +39,7 @@
 											<ul class="flw-hr">
 												<li><a href="#" title="" class="follow">Follow</a></li>
 												<li><a href="#" title="" class="unFollow">unFollow</a></li>
+												<li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i>Message</a></li>
 											</ul>
 											<ul class="flw-status">
 												<li>
@@ -473,31 +473,19 @@
 							</div>
 							<div class="col-lg-3">
 								<div class="right-sidebar">
-									<div class="message-btn">
-										<a href="#" title=""><i class="fa fa-envelope"></i> Message</a>
-									</div>
-									<div class="widget widget-portfolio">
-										<div class="wd-heady">
-											<h3>Portfolio</h3>
-											<img src="images/photo-icon.png" alt="">
+									<div class="widget widget-about">
+										<img src="images/wd-logo.png" alt="">
+										<h3>WillStarGram</h3>
+										<span>Itwill Class5 Team2 Project</span>
+									</div><!--widget-about end-->
+									<div class="widget widget-ad">
+										<div class="sign_link" style="padding:10px">
+											<h3><a href="http://ec2-54-180-83-67.ap-northeast-2.compute.amazonaws.com:8080/myshop/product/list" title="">
+												<img src="images/dapara.png" alt="">
+												</a>
+											</h3>
 										</div>
-										<div class="pf-gallery">
-											<ul>
-												<li><a href="#" title=""><img src="images/resources/pf-gallery1.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="images/resources/pf-gallery2.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="images/resources/pf-gallery3.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="images/resources/pf-gallery4.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="images/resources/pf-gallery5.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="images/resources/pf-gallery6.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="images/resources/pf-gallery7.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="images/resources/pf-gallery8.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="images/resources/pf-gallery9.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="images/resources/pf-gallery10.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="images/resources/pf-gallery11.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="images/resources/pf-gallery12.png" alt=""></a></li>
-											</ul>
-										</div><!--pf-gallery end-->
-									</div><!--widget-portfolio end-->
+									</div>
 								</div><!--right-sidebar end-->
 							</div>
 						</div>
