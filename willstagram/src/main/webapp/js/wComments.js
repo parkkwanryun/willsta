@@ -34,7 +34,9 @@ function postCommentsCount(e){
 		dataType : "text",
 		success : function(count){
 			//console.log(count);
-			$(e).html("<i class='fas fa-comment-alt'></i> Comments &nbsp;"+count);
+			//$(e).html("<i class='fas fa-comment-alt'></i> Comments &nbsp;"+count);
+			$(e).children().text(" "+count+" ");
+			//$(e).parent().html("<a href='#' class='com comment_list_click'>"+ count+"</a>");
 		}
 	});
 }
@@ -53,7 +55,9 @@ function postCommentsCount2($aNodeList){
 			dataType : "text",
 			success : function(count){
 				console.log(count);
-				$($aNodeList.get(i)).html("<i class='fas fa-comment-alt'></i> Comments &nbsp;"+count);
+				//$($aNodeList.get(i)).html("<i class='fas fa-comment-alt'></i> Comments &nbsp;"+count);
+				$($aNodeList.get(i)).children().text(" "+count+" ");
+				//$($aNodeList.get(i)).html("<a href='#' class='com comment_list_click'>"+ count+"</a>");
 			}
 		});
 	}
