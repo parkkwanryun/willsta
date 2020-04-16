@@ -23,20 +23,7 @@ import com.itwill.willsta.service.PostService;
 public class PostController {
 	@Autowired
 	PostService postService;
-	//예준이꺼 댓글기능 main_post.jsp로 합치면서 삭제
-	@MemberLoginCheck
-	@RequestMapping(value="/index")
-	public ModelAndView selectMyList(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView();
-		String mId = (String)request.getSession().getAttribute("mId");
-		List<Post> postList = postService.selectMyList(0,mId,1);
-		for (Post post : postList) {
-			post.setTagArray(post.getHasTag().split(" "));
-		}
-		mv.addObject("postList", postList);
-		mv.setViewName("index");
-		return mv;
-	}
+
 	@MemberLoginCheck
 	@RequestMapping(value="/main_post")
 	public ModelAndView selectMainList(HttpServletRequest request) {
