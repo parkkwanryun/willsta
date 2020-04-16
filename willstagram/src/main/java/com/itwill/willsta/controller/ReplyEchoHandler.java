@@ -44,7 +44,7 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
 				String dmContentsImage	= strs[5];
 				WebSocketSession mIdYouSession = userSessions.get(mIdYou);
 				if(mIdYouSession != null) {
-					TextMessage tmpMsg = new TextMessage(mId+","+mIdYou+","+contents+","+msgDate+","+dmNo);
+					TextMessage tmpMsg = new TextMessage(mId+","+mIdYou+","+contents+","+msgDate+","+dmNo+","+dmContentsImage);
 					mIdYouSession.sendMessage(tmpMsg);
 				}
 			}

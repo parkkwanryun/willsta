@@ -5,8 +5,11 @@ import java.util.Map;
 
 import com.itwill.willsta.domain.DM;
 import com.itwill.willsta.domain.DmContents;
+import com.itwill.willsta.domain.Member;
 
 public interface DmService {
+	// 로그인한 유저의 정보얻기
+	public Map<String, Member> getMemberInfo(String mId);
 	// 첫 채팅방 생성
 	public int dmFirstInsert(String mId);
 	

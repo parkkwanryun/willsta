@@ -30,7 +30,9 @@ public class DmController {
 	@RequestMapping(value = "/sessionCheck", method = RequestMethod.POST)
 	public String returnSessionCheck(HttpSession httpSession) {
 		String mId = (String)httpSession.getAttribute("mId");
-		return mId;
+		Map<String, Member> memberInfo = dmService.getMemberInfo(mId);		 
+		String mImage = memberInfo.get("member").getmImage();
+		return mId+","+mImage;
 	}
 	@ResponseBody
 	@RequestMapping(value = "/messages_room_create")
