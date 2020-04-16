@@ -1,5 +1,6 @@
 package com.itwill.willsta.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +19,8 @@ public class DmServiceImpl implements DmService {
 	private DmDao dmDao;
 	@Autowired
 	private DmContentsDao dmContentsDao;
+	@Autowired
+	private MemberService memberService;
 	
 	//첫 채팅방 생성
 	@Override
@@ -84,6 +87,13 @@ public class DmServiceImpl implements DmService {
 	@Override
 	public String dmGetCurrentDmNo() {
 		return dmDao.dmGetCurrentDmNo();
+	}
+	@Override
+	public Map<String, Member> getMemberInfo(String mId) {
+		Map<String, Member> memberInfo = new HashMap<String, Member>();
+		Member member = memberService.selectById(mId);
+		memberInfo.put("member", member);
+		return memberInfo;
 	}
 
 

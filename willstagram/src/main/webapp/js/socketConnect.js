@@ -4,6 +4,7 @@
 // DOM TREE 생성 후 connetWS 실행
 var socket = null;
 var loginId = null;
+var mImage = null;
 var contextPath = getContextPath();
 var jsonData = {
 		mId : null,
@@ -25,8 +26,9 @@ function getLoginId(){
 		url:'sessionCheck',
 		method:'POST',
 		dataType: 'text',
-		success:function(mId){
-			loginId = mId; 
+		success:function(memberInfo){
+			loginId = memberInfo.split(",")[0];
+			mImage = memberInfo.split(",")[1];
 		}
 	});
 }
@@ -92,10 +94,11 @@ function message_rightInsert_html(jsonData){
 	htmlData +=				"</div>";
 	htmlData +=				"<p style='float:right;'>"+jsonData.msgDate+"분</p>";
 	htmlData +=			"</div>";
-	htmlData +=		"<div class='messg-usr-img' >";
-	htmlData +=			"<img src='contents/member_image/"+jsonData.dmContentsImage+"' alt=''>";
-	htmlData +=		"</div>";
+	htmlData +=			"<div class='messg-usr-img' style='left:400px'>";
+	htmlData +=				"<img src='contents/member_image/"+jsonData.dmContentsImage+"' alt=''>";
+	htmlData +=			"</div>";
 	htmlData +=	"</div>";
+	
 	$('.messages-line').append(htmlData);
 	$('#messageContents').scrollTop($('#messageContents').prop('scrollHeight'));
 }
@@ -110,7 +113,8 @@ function message_send_function(target){
 		jsonData.mIdYou = $(target).find('.usr-mg-info h3').text();			//받는사람
 		jsonData.msg = $('#msg').val();										//내용
 		jsonData.msgDate = d.getHours() + "시" + d.getMinutes();			//보낸시간
-		jsonData.dmNo = $(target).attr('dmno');								//방번호 
+		jsonData.dmNo = $(target).attr('dmno');								//방번호
+		jsonData.dmContentsImage = mImage;									//보낸사람 프로필 이미지
 		console.log(jsonData);
 		
 		if(jsonData.msg != null && jsonData.msg != "" && jsonData.msg != '&nbsp'){
@@ -205,6 +209,7 @@ function message_receive(event){
 	jsonData.mId = msgArray[1];		// 받는사람 (나)
 	jsonData.msg = msgArray[2];	// 내용
 	jsonData.msgDate = d.getHours() + "시" + d.getMinutes(); // 시간
+	jsonData.dmContentsImage = msgArray[5];	// 보낸사람 프로필 이미지
 	console.log(jsonData);
 	if(jsonData.msg != null || jsonData.msg != ""){
 		message_rightInsert_html(jsonData);
