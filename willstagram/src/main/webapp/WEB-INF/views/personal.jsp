@@ -231,7 +231,7 @@
 											</div>
 											<div class="job-status-bar">
 												<ul class="like-com">
-													<li><a href="#" class="like"><i class="fas fa-heart"></i> Like</a>
+													<li><a href="#" class="like"><i class="fas fa-heart"></i> <s:message code="post.like"/></a>
 														<img src="images/liked-img.png" alt=""> <span class='likeCount'>${post.likeCount}</span>
 													</li>
 													<li>
@@ -239,7 +239,7 @@
 														<i class="fas fa-comment-alt"></i> <s:message code="post.comment"/> </a>
 													</li>
 												</ul>
-												<a href="#"><i class="fas fa-eye"></i></i><s:message code="post.views"/>
+												<a href="#"><i class="fas fa-eye"></i><s:message code="post.views"/>
 														${post.pViewCount}</a>
 											</div>
 											
