@@ -61,18 +61,16 @@
 										<div class="suggestions-list">
 											<c:forEach var="mList" items="${memberList}">
 											
-												<div class="suggestion-usd">
 												<c:if test="${mList.mId!=sessionScope.mId }">
-													<img src="contents/member_image/${mList.mImage}" alt="" width="40px">
-													<div class="sgt-text">
-														<h4>${mList.mName}</h4>
-														<span>${mList.mEmail}</span>
+													<div class="suggestion-usd">
+														<img src="contents/member_image/${mList.mImage}" alt="" width="40px">
+														<div class="sgt-text">
+															<h4>${mList.mName}</h4>
+															<span>${mList.mEmail}</span>
+														</div>
+														<span><i mid='${mList.mId}' class="la la-plus sFollow" ></i></span> 
 													</div>
-													<span><i mid='${mList.mId}' class="la la-plus follow" ></i></span> 
-										
-													</c:if>
-					
-												</div>
+												</c:if>
 											
 											</c:forEach>
 											<div class="view-more">
@@ -351,6 +349,13 @@
 
 
  <jsp:include page="/WEB-INF/commons/include_footer_js.jsp"/>
- <script type="text/javascript" src="js/wUser-profile.js"></script>
+ 
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/popper.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/flatpickr.min.js"></script>
+<script type="text/javascript" src="lib/slick/slick.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/wUser-profile.js"></script>
 </body>
 </html>

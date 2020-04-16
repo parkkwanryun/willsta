@@ -79,6 +79,7 @@ public class PostController {
 		ModelAndView mv = new ModelAndView();
 		String path = request.getSession().getServletContext().getRealPath("/")+"contents\\post_image\\";
 		System.out.println("**************레알패스"+path);
+		//레알패스 C:\JAVA_SPRING\Program\sts-bundle\pivotal-tc-server\instances\base-instance\wtpwebapps\willstagram\contents\post_image\
 		post.setmId((String)request.getSession().getAttribute("mId"));
 		Post postOne =null;
 		//post번호가 있으면 update, 없으면 insert

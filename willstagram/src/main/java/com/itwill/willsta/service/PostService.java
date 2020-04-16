@@ -33,6 +33,8 @@ public interface PostService {
 	int status_change(Integer pNo, String status);
 
 	ModelAndView main_page(String mId);
+	
+	ModelAndView you_main_page(String mId,String mIdYou);
 
 	ModelAndView personal_main_page(String mId);
 

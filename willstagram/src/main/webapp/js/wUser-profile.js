@@ -74,7 +74,7 @@ $(function(){
 	});
 	
 	// 친구추천 리스트 팔로우
-	$('.follow').on('click',function(e) {
+	$('.sFollow').on('click',function(e) {
 			var $mIdYou = $(e.target);
 			var param = "mIdYou=" + $mIdYou.attr("mid");
 			$.ajax({
