@@ -11,11 +11,48 @@ function postCommentsListFunction(e){
 			url : "postCommentsList",
 			data : params,
 			method : "POST",
-			dataType : "text",
-			success : function(htmlData){
-				//console.log(htmlData);
+			dataType : "json",
+			success : function(jsonArray){
+				var html = "";
+				$.each(jsonArray, function(i, jsonObject){
+					jsonObject = jsonArray[i];
+					var cNo = jsonObject.cNo;
+					var cTime = jsonObject.cTime;
+					var cContents = jsonObject.cContents;
+					var recNo = jsonObject.recNo;
+					var mId = jsonObject.mId;
+					
+					html += "<div class='comment-sec' style='display:none' comments_no='"+cNo+"'>"+
+							"<ul>"+
+							"	<li>"+
+							"		<div class='comment-list'>";
+					
+					if(recNo > 0){
+						html += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+					}
+					
+					html += "			<div class='comment'>"+
+							"				<h3>"+mId+"</h3>"+
+							"				<span><img src='images/clock.png' alt=''>"+cTime+"</span>"+
+							"				<p>"+cContents+"</p>"+
+							"				<a href='#' class='active active-reply' comments_no='"+cNo+"'>"+
+							"					<i class='fa fa-reply-all'> "+msg.Reply+"</i></a>";
+					if(mId == loginId) { 
+						html += "				<a href='#' class='active active-edit' "+
+								"					data-toggle='modal' data-target='#updateCommentsModal' comments_no='"+cNo+"'>"+
+								"					<i class='fa fa-cog'> "+msg.Edit+"</i></a>"+
+								"				<a href='#' class='active active-delete' comments_no='"+cNo+"'>"+
+								"					<i class='fa fa-remove'> "+msg.Delete+"</i></a>";
+					}
+							
+					html +=	"			</div>"+
+							" 		</div>"+
+							"	</li>"+
+							"</ul>"+
+							"</div>";
+				});
 				postCommentsCount(e);
-				$postComments.append(htmlData);
+				$postComments.append(html);
 				$postComments.children().fadeToggle(500);
 			}
 		});
@@ -34,8 +71,7 @@ function postCommentsCount(e){
 		dataType : "text",
 		success : function(count){
 			//console.log(count);
-			$(e).html("<i class='fas fa-comment-alt'></i>"+msg.Comments+count);
-			//$(e).children().text(" "+count+" ");
+			$(e).html("<i class='fas fa-comment-alt'></i>"+msg.Comments+"&nbsp;"+count);
 		}
 	});
 }
@@ -54,8 +90,7 @@ function postCommentsCount2($aNodeList){
 			dataType : "text",
 			success : function(count){
 				console.log(count);
-				$($aNodeList.get(i)).html("<i class='fas fa-comment-alt'></i>"+msg.Comments+count);
-				//$($aNodeList.get(i)).children().text(" "+count+" ");
+				$($aNodeList.get(i)).html("<i class='fas fa-comment-alt'></i>"+msg.Comments+"&nbsp;"+count);
 			}
 		});
 	}
@@ -254,5 +289,3 @@ $(function() {
 		e.preventDefault();
 	})
 });
-
-
