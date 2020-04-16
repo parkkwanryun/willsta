@@ -81,6 +81,7 @@ public class PostServiceImpl implements PostService {
 		return postOne;
 	}
 	
+	
 
 	@Override
 	public Post modifyPost(Post post, MultipartFile[] uploadFile) {
