@@ -232,7 +232,7 @@ public class PostServiceImpl implements PostService {
 		mv.addObject("member", member);
 		mv.addObject("memberList", memberList);
 		mv.addObject("postRankList", postRankList);
-		List<Post> postList = selectMyList(0, mIdYou, 1);
+		List<Post> postList = selectMyList(0, mIdYou, 0);
 		for (Post post : postList) {
 			post.setTagArray(post.getHasTag().split(" "));
 		}
