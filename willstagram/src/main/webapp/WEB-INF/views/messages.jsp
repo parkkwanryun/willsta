@@ -2,20 +2,12 @@
     pageEncoding="UTF-8"%>	
 <jsp:include page="/WEB-INF/commons/include_header_css.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<style>
-div.messages-list>ul>li:hover {
-	background-color: mistyrose;
-}
-</style>
 <body>	
 	<div class="wrapper">		
 
 		<header>
 			<jsp:include page="../common_top_menu.jsp"/>
 		</header><!--header end-->	
-
-
-
 		<section class="messages-page">
 			<div class="container">
 				<div class="messages-sec">
@@ -56,37 +48,6 @@ div.messages-list>ul>li:hover {
 						</div>
 						<div class="col-lg-8 col-md-12 pd-right-none pd-left-none">
 							<div class="main-conversation-box">
-								<!-- 
-								<div class="message-bar-head">
-									<div class="usr-msg-details">
-										<div class="usr-ms-img">
-											<img src="images/resources/m-img1.png" alt="">
-										</div>
-										<div class="usr-mg-info">
-											<h3>John Doe</h3>
-											<p>Online</p>
-										</div>
-									</div>
-									<a href="#" title=""><i class="fa fa-ellipsis-v"></i></a>
-								</div>
-								
-								<div class="messages-line" id = 'messageContents' style="overflow:auto">
-									
-								</div>
-								<div class="message-send-area">
-									<form>
-										<div class="mf-field">
-											<input type="text" id="msg" placeholder="Type a message here">
-											<button type="submit" id="btnSend">Send</button>
-										</div>
-										<ul>
-											<li><a href="#" title=""><i class="fa fa-smile-o"></i></a></li>
-											<li><a href="#" title=""><i class="fa fa-camera"></i></a></li>
-											<li><a href="#" title=""><i class="fa fa-paperclip"></i></a></li>
-										</ul>
-									</form>
-								</div>
-								-->
 							</div>
 						</div>
 					</div>

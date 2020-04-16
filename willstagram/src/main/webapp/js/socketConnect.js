@@ -86,12 +86,12 @@ function message_leftInsert_html(jsonData){
 function message_rightInsert_html(jsonData){
 	var htmlData ="";
 	htmlData +=	"<div class='main-message-box'>";
-	htmlData +=      "<div class='ta-right'>";
+	htmlData +=     	"<div class='ta-right'>";
 	htmlData +=				"<div class='message-inner-dt'>";
 	htmlData +=					"<p style='width:auto'>"+jsonData.msg+"</p>";
 	htmlData +=				"</div>";
-	htmlData +=					"<p style='float:right;'>"+jsonData.msgDate+"분</p>";
-	htmlData +=				"</div>";
+	htmlData +=				"<p style='float:right;'>"+jsonData.msgDate+"분</p>";
+	htmlData +=			"</div>";
 	htmlData +=		"<div class='messg-usr-img' >";
 	htmlData +=			"<img src='contents/member_image/"+jsonData.dmContentsImage+"' alt=''>";
 	htmlData +=		"</div>";
@@ -158,8 +158,10 @@ function message_detail_function(target){
 function message_list_function(jsonArrayData){
 	console.log(jsonArrayData);
 	for (var i = 0; i < jsonArrayData.length; i++) {
+		var date = jsonArrayData[i].dmContentsDate.split('/');
+		console.log(date);
 		jsonData.msg = jsonArrayData[i].dmContentsMessage;
-		jsonData.msgDate = jsonArrayData[i].dmContentsDate;
+		jsonData.msgDate = date[0]+'일'+date[1]+'시'+date[2];
 		jsonData.dmContentsImage = jsonArrayData[i].dmContentsImage;
 		var dmSenderId = jsonArrayData[i].dmSenderId;
 		
@@ -229,27 +231,32 @@ function message_receive_noty(event){
 	htmlData +="</div>";
 	$('.nott-list').append(htmlData);
 }
+
 $(document).ready(function(){
 		connectWS();
 		getLoginId();
-	
 		//채팅방 오픈
 		$(document).find('div.messages-list > ul > li').on('click', function(e) {
-			//console.log();
 			var nodeName = e.target.nodeName;
 			var target=null;
+			
+			$('div.messages-list > ul > li.active').removeClass('active');
 			if(nodeName=='H3'){
 				console.log("H3");
 				target = $(e.target).parents('.usr-msg-details');
+				$(target).parent().addClass('active');
 			}else if(nodeName=='SPAN'){
 				console.log("SPAN");
 				target = $(e.target).parents('.usr-msg-details');
+				$(target).parent().addClass('active');
 		    }else if(nodeName=='LI'){
 		    	console.log("LI");
 		    	target = $(e.target).find('.usr-msg-details');
+		    	$(e.target).addClass('active');
 		    }else if(nodeName=='DIV'){
 		    	console.log("DIV");
 		    	target = $(e.target);
+		    	$(target).parent().addClass('active');
 		    } else if(nodeName =='IMG'){
 		    	console.log('image');
 		    	target = $(e.target).parents('.usr-msg-details');
@@ -259,6 +266,8 @@ $(document).ready(function(){
 			message_detail_function(target);
 			message_send_function(target);
 		});
+		
+		
 		//profile 탭에서 유저의 메세지 버튼 클릭시 방 생성
 		$(document).find('.message-us').on('click',function(e){
 			e.preventDefault();
