@@ -78,9 +78,7 @@ public class PostController {
 	public ModelAndView write(Post post, MultipartFile[] uploadFile, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		String path = request.getSession().getServletContext().getRealPath("/")+"contents\\post_image\\";
-		//String path = request.getSession().getServletContext().getRealPath("contents\\post_image\\");
-		
-		//System.out.println("**************레알패스"+path);
+		System.out.println("**************레알패스"+path);
 		post.setmId((String)request.getSession().getAttribute("mId"));
 		Post postOne =null;
 		//post번호가 있으면 update, 없으면 insert
