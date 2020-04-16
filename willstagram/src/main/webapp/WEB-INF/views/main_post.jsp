@@ -66,9 +66,7 @@
 <!-- common_top_menu start -->
 		<header>
 			<!-- Menubar Starts -->
-			<%-- 
 			<jsp:include page="../common_top_menu.jsp"/>
-			--%>
 			<!-- Menubar End -->
 		</header>
 <!-- common_top_menu end -->
