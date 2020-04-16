@@ -58,14 +58,14 @@ public class CommentsController {
 			sb.append("				<span><img src='images/clock.png' alt=''>"+comments.getcTime()+"</span>");
 			sb.append("				<p>"+comments.getcContents()+"</p>");
 			sb.append("				<a href='#' class='active active-reply' comments_no='"+comments.getcNo()+"'>");
-			sb.append("					<i class='fa fa-reply-all'> Reply</i></a>");
+			sb.append("					<i class='fa fa-reply-all'> msg.Reply</i></a>");
 			//내글인 경우 수정 및 삭제 가능
 			if(comments.getmId().equals(sessionmId)) { 
 				sb.append("				<a href='#' class='active active-edit' "); 
 				sb.append("					data-toggle='modal' data-target='#updateCommentsModal' comments_no='"+comments.getcNo()+"'>");
-				sb.append("					<i class='fa fa-cog'> Edit</i></a>");
+				sb.append("					<i class='fa fa-cog'> msg.Edit</i></a>");
 				sb.append("				<a href='#' class='active active-delete' comments_no='"+comments.getcNo()+"'>");
-				sb.append("					<i class='fa fa-remove'> Delete</i></a>");
+				sb.append("					<i class='fa fa-remove'> msg.Delete</i></a>");
 			}
 			sb.append("			</div>");
 			sb.append(" 	</div>");	
@@ -102,7 +102,7 @@ public class CommentsController {
 	@PostMapping(value = "/postCommentsCount", produces = "text/plain;charset=UTF-8")
 	public String postCommentsCount(@RequestParam(value = "pNo") int pNo) throws Exception {
 		int postCommentsCount = commentsService.postCommentsCount(pNo);
-		return ""+postCommentsCount;
+		return "&nbsp;"+postCommentsCount;
 	}
 	
 	@MemberLoginCheck

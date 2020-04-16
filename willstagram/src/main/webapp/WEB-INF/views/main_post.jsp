@@ -41,7 +41,9 @@
 	 	height : 90px; 
 	 }
 	</style>
-	
+</head>	
+
+
 <!--comment-update modal-->
 <div class="modal fade" id="updateCommentsModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
@@ -64,7 +66,9 @@
 <!-- common_top_menu start -->
 		<header>
 			<!-- Menubar Starts -->
+			<%-- 
 			<jsp:include page="../common_top_menu.jsp"/>
+			--%>
 			<!-- Menubar End -->
 		</header>
 <!-- common_top_menu end -->
@@ -347,6 +351,9 @@
 
 	</div><!--theme-layout end-->
 
+
+
+
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/popper.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -358,8 +365,6 @@
 <script type="text/javascript" src="js/messages_ko.js"></script>
 <script type="text/javascript" src="js/wPost.js"></script>
 <script type="text/javascript" src="js/wComments.js"></script>
-
-</head>
 </body>
 </html>
 
