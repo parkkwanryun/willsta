@@ -95,11 +95,11 @@ function member_register_action_function() {
 	*/
 	var form = $('#member_register_action').serializeArray();
 	var formData = new FormData(form);
-	/*
+
 	for(var i= 0; i < mrafArray.length; i++){
 		formData.append(mrafArray[i].name, mrafArray[i].value); // key value 형태
 	}
-	*/
+
 	/*
 	var inputFile = $("input[name='mUploadImg']");
 	var files = inputFile[0].files;
@@ -162,7 +162,7 @@ function account_setting() {
 				member_modify_action.mPhone.value = textData.mPhone;
 				member_modify_action.mImage.value = textData.mImage;
 				
-				location.href = '/willstagram/index';
+				location.href = '/willstagram/main_post';
 			} else {
 				alert('회원수정 실패2');
 			}
