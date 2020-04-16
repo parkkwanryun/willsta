@@ -52,8 +52,8 @@
        	<textarea id="modal_cContents" class="modal_cContents"></textarea>
       </div>
       <div class="modal-footer">
-        <button type="button" id="updateCommentsBtn" class="btn btn-default">Edit</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" id="updateCommentsBtn" class="btn btn-default"><s:message code="comments.Edit"/></button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><s:message code="comments.Close"/></button>
       </div>
     </div>
   </div>
