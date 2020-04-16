@@ -29,6 +29,7 @@ public class MemberServiceImpl implements MemberService {
 	public boolean insertMember(Member member, MultipartFile mUploadImg) throws IllegalStateException, IOException {
 		
 		String originalFile = mUploadImg.getOriginalFilename();
+		System.out.println(originalFile);
 		// 파일명 중 확장자만 추출
 		// lastIndexOf(".") - 뒤에 있는 . 의 index번호
 		String originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
