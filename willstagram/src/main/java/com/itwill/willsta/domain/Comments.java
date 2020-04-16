@@ -1,13 +1,11 @@
 package com.itwill.willsta.domain;
 
-import java.util.Date;
-
 public class Comments {
 	private Integer cNo;
 	private Integer pNo;
 	private String mId;
 	private String cContents;
-	private String cTime; //Default: SYSDATE
+	private String cTime;
 	private Integer recNo;
 	
 	public Comments() {
