@@ -34,7 +34,7 @@ function postCommentsCount(e){
 		dataType : "text",
 		success : function(count){
 			//console.log(count);
-			$(e).html("<i class='fas fa-comment-alt'></i> Comments &nbsp;"+count);
+			$(e).html("<i class='fas fa-comment-alt'></i> comments &nbsp;"+count);
 		}
 	});
 }
@@ -53,7 +53,7 @@ function postCommentsCount2($aNodeList){
 			dataType : "text",
 			success : function(count){
 				console.log(count);
-				$($aNodeList.get(i)).html("<i class='fas fa-comment-alt'></i> Comments &nbsp;"+count);
+				$($aNodeList.get(i)).html("<i class='fas fa-comment-alt'></i> comments &nbsp;"+count);
 			}
 		});
 	}

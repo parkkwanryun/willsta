@@ -22,11 +22,56 @@
 	<link rel="stylesheet" type="text/css" href="lib/slick/slick-theme.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/responsive.css">
-	<title>Button Test</title> <style> 
-	#test_btn1{ border-radius: 5px; margin-right:-4px; } 
+	<title>Button Test</title> 
+	<style> 
+	#test_btn1 { 
+		border-radius : 5px; 
+		margin-right:-4px; 
+	} 
+	#btn_group button { 
+		border : 1px solid skyblue; 
+		background-color : rgba(0,0,0,0); 
+		color : skyblue; 
+		padding : 5px; 
+	}
+	#btn_group button:hover { 
+		color : white; 
+		background-color : skyblue; 
+	} 
+ 	.modal-content { 
+	 	position : fixed; 
+	 	top : 15%; 
+	 	left : calc(50% - 220px); 
+	 	width : 420px; 
+	 	height : 190px; 
+	 	padding : 20px 10px; 
+	 	background : #fff; 
+	 	border : 2px solid #666; 
+	 }
+	 #modal_cContents { 
+	 	font-size : 15px; 
+	 	font-family : '맑은 고딕', verdana; 
+	 	padding : 10px; 
+	 	width : 395px; 
+	 	height : 90px; 
+	 }
+	</style>
 	
-	 #btn_group button{ border: 1px solid skyblue; background-color: rgba(0,0,0,0); color: skyblue; padding: 5px; }
-	  #btn_group button:hover{ color:white; background-color: skyblue; } </style>
+<!--comment-update modal-->
+<div class="modal fade" id="updateCommentsModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+       	<textarea id="modal_cContents" class="modal_cContents"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="updateCommentsBtn" class="btn btn-default">Edit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--comment-update modal end-->
 
 
 <body>	
@@ -185,37 +230,44 @@
 												</ul>
 											</div>
 											<div class="job-status-bar">
-													<ul class="like-com">
-														<li><a href="#" class="like"><i class="fas fa-heart"></i> Like</a>
-															<img src="images/liked-img.png" alt=""> <span class='likeCount'>${post.likeCount}</span>
-														</li>
-														<!-- a: 누를 시 comment-section toggle-->
-														<li><a href="#" class="com"> <i class="fas fa-comment-alt"></i> Comment 15</a></li>
-													</ul>
-													<a href="#"><i class="fas fa-eye"></i>Views
+												<ul class="like-com">
+													<li><a href="#" class="like"><i class="fas fa-heart"></i> Like</a>
+														<img src="images/liked-img.png" alt=""> <span class='likeCount'>${post.likeCount}</span>
+													</li>
+													<li>
+														<a href="#"  class="com comment_list_click" >
+														<i class="fas fa-comment-alt"></i> <s:message code="post.comment"/> </a>
+													</li>
+												</ul>
+												<a href="#"><i class="fas fa-eye"></i></i><s:message code="post.views"/>
 														${post.pViewCount}</a>
-													<!-- comment-section-->
-													<div class="comment-section"></div>
-													<!--comment-section end-->
-												</div>
-												<!-- post-comment -->
-												<div class="post-comment">
-													<div class="cm_img">
-														<img src="images/resources/bg-img4.png" alt="">
+											</div>
+											
+											<!-- comment-section -->
+											<div class="comment-section">
+													<!-- comment-sec -->
+		
+													<!-- post-comment -->
+													<div class="post-comment">
+														<div class="comment_box">
+															<form class="comments_insert_form">
+																<!-- 댓글 내용 쓰는 곳 -->
+																<input type="text" placeholder="<s:message code='post.postComment'/>"
+																	name="cContents" class="cContents">
+																<input type="hidden" name="pNo" value="${post.pNo}" >
+																<button type="button" class="comments_insert_button"><s:message code="post.commentSend"/></button>
+															</form>
+														</div>
 													</div>
-													<div class="comment_box">
-														<form id="comment-insert-form">
-															<!-- 댓글 내용 쓰는 곳 -->
-															<input type="text" placeholder="Post a comment"
-																id="comment-cContent" name="comment-cContent">
-															<button type="button" id="comment-insert-button">Send</button>
-														</form>
-													</div>
-												</div>
-												<!--post-comment end-->
-										</div><!--post-bar end-->
-								</c:forEach>	
-								    </div><!--posty end-->
+													<!--post-comment end-->
+													<!--comment-sec end-->
+											</div>
+											<!--comment-section end-->
+										</div>
+										<!--post-bar end-->
+									</c:forEach>	
+								</div>
+								<!--posty end-->
 										<div class="process-comm">
 											<div class="spinner"">
 												<div class="bounce1"></div>
