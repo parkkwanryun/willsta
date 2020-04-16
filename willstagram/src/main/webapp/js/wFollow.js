@@ -63,6 +63,9 @@ $(function(){
 													+ "<span><i mid='"
 													+ mId
 													+ "' class='la la-minus unfollow' ></i></span>"
+													+ "<span><i mid='"
+													+ mId
+													+ "' class='la la-plus' id='follow' ></i></span>"
 													+ "</div>";	
 											}
 										 	html+="</div>";
@@ -130,7 +133,7 @@ $(function(){
 
 
 	
-	// 팔로우 친구추천리스트에서 버튼 클릭했을때 팔로가능하게하기.
+	// 친구추천 리스트에 있는 팔로우버튼 (class로 검색)
 	$('.follow').on(
 			'click',
 			function(e) {
@@ -162,6 +165,36 @@ $(function(){
 
 			});
 	
+	/////////////////////////////////////////이거는 Followers 리스트안에있는 팔로우 버튼 (ID로검색)
+	$(document).on('click','#follow',
+			function(e) {
+				var $mIdYou = $(e.target);
+				console.log('--------------->' + e.target);
+				 console.log('--------------->' + $mIdYou);
+				 console.log('--------------->' + $mIdYou.attr("mid"));
+				/*
+				 */
+				var param = "mIdYou=" + $mIdYou.attr("mid");
+				$.ajax({
+					url : "follow",
+					method : "POST",
+					data : param,
+					dataType : "text",
+					success : function(data) {
+						// location.href='personal_info'; get방식이였다면.
+						$(e.target).hide();
+						$(e.target.parentNode).next().children().show();
+						var html="<span><i class='la la-plus unfollow' ></i></span>";
+						// $(e.target.parentNode).prev().children().show();
+						$('#followings').text(
+								parseInt($('#followings').text()) + 1);
+
+					}
+				});
+				e.preventDefault();
+				e.stopPropagation();
+
+			});
 
 	// 이벤트 처리안에 중복 이벤트 처리위해서는 도큐맨트를 적어줘야함 .
 	$(document).on('click','.unfollow',
