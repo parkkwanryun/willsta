@@ -185,7 +185,8 @@
 													</li>
 													<li>
 														<a href="#"  class="com comment_list_click" >
-														<i class="fas fa-comment-alt"></i> <s:message code="post.comment"/></a>
+															<i class="fas fa-comment-alt"></i> <s:message code="post.comment"/>
+														</a>
 													</li>
 												</ul>
 												<a href="#"><i class="fas fa-eye"></i><s:message code="post.views"/>
@@ -193,7 +194,7 @@
 											</div>
 												
 											<!-- comment-section -->
-											<div class="comment-section" post_no="${post.pNo}" ">
+											<div class="comment-section">
 													<!-- comment-sec -->
 		
 													<!-- post-comment -->
