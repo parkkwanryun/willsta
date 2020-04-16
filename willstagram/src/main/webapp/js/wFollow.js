@@ -121,6 +121,7 @@ $(function(){
 							 	html+="</div>";
 							 
 							 	$('div.suggestions').html(html);
+						
 							}
 						});
 				e.preventDefault();
