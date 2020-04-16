@@ -36,8 +36,7 @@
 		<c:if test="${fn:startsWith(post.fileName, 'mov')}">
 			<div class="embed-responsive embed-responsive-4by3" style="margin-bottom:10px;" >
 			  <iframe class="embed-responsive-item" style="padding-top:10px;"
-			  			src="contents/post_image/${post.fileName}"></iframe>
-			  			
+			  			src="contents/post_contents/${post.fileName}"></iframe>
 			</div>
 		</c:if>
 		<div class="job_descp">
