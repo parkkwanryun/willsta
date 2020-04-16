@@ -202,10 +202,11 @@ public class MemberController {
 	/*상대방페이지*/
 	@MemberLoginCheck
 	@RequestMapping(value = "/user-profile")
-	public ModelAndView userProfile(@Param("youId")String youId) {
+	public ModelAndView userProfile(@Param("youId")String youId, HttpSession session) {
+		String mId=(String)session.getAttribute("mId");
 		ModelAndView mv=new ModelAndView();
 		Member youProfile=memberService.selectById(youId);
-		mv=postService.main_page(youId);
+		mv=postService.you_main_page(mId, youId);
 		mv.addObject("profile",youProfile);
 		mv.setViewName("user-profile");
 		return mv;
