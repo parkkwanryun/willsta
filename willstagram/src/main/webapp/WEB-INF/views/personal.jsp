@@ -56,6 +56,7 @@
 	 	height : 90px; 
 	 }
 	</style>
+</head>
 	
 <!--comment-update modal-->
 <div class="modal fade" id="updateCommentsModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -506,7 +507,6 @@
 <script type="text/javascript" src="js/wComments.js"></script>
 <script type="text/javascript" src="js/wFollow.js"></script>
 <script type="text/javascript" src="js/wSearch.js"></script>
-</head>
 </body>
 </html>
 

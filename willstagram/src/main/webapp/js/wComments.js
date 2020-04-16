@@ -34,7 +34,7 @@ function postCommentsCount(e){
 		dataType : "text",
 		success : function(count){
 			//console.log(count);
-			$(e).html("<i class='fas fa-comment-alt'></i> Comments &nbsp;"+count);
+			$(e).html("<i class='fas fa-comment-alt'></i>"+msg.Comments+count);
 			//$(e).children().text(" "+count+" ");
 		}
 	});
@@ -54,7 +54,7 @@ function postCommentsCount2($aNodeList){
 			dataType : "text",
 			success : function(count){
 				console.log(count);
-				$($aNodeList.get(i)).html("<i class='fas fa-comment-alt'></i> Comments &nbsp;"+count);
+				$($aNodeList.get(i)).html("<i class='fas fa-comment-alt'></i>"+msg.Comments+count);
 				//$($aNodeList.get(i)).children().text(" "+count+" ");
 			}
 		});
@@ -102,11 +102,11 @@ function reCommentsInsertFormShowFunction(e){
 	html += "<div class='post-comment' style='display:none'>" +
 			"	<div class='comment_box_inner'>" +
 			"		<form class='recomments_insert_form'>" +
-			"			<input type='text' placeholder='Comment a ReComment'" +
+			"			<input type='text' placeholder='"+msg.ReComments+"'" +
 			"				name='cContents' class='cContents'>" +
 			"			<input type='hidden' name='cNo' value='"+cNo+"' >" +
 			"			<input type='hidden' name='pNo' value='"+pNo+"' >" +
-			"			<button type='button' class='recomments_insert_button'>Send</button></div>" +
+			"			<button type='button' class='recomments_insert_button'>"+msg.Send+"</button></div>" +
 			"		</form>" +
 			"	</div>" +
 			"</div>";
@@ -192,6 +192,12 @@ function commentsUpdateActionFunction(e){
 
 //document ready
 $(function() {
+	//Comments 관련 i18n js
+	$.getScript("js/wComments_messages_"+navigator.language+".js", function(){
+		//DOM tree 생성 후 포스트-댓글 수 나타내기
+		postCommentsCount2($('.comment_list_click'));
+	});
+	
 	//포스트-댓글 전체 보이기
 	$(document).on("click", ".comment_list_click", function(e){
 		//console.log(e.target);
@@ -247,9 +253,6 @@ $(function() {
 		commentsUpdateActionFunction(e);
 		e.preventDefault();
 	})
-	
-	
-	//DOM tree 생성 후 포스트-댓글 수 나타내기
-	postCommentsCount2($('.comment_list_click'));
 });
+
 
