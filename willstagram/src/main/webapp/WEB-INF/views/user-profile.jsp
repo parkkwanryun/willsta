@@ -65,7 +65,7 @@
 													<div class="suggestion-usd">
 														<img src="contents/member_image/${mList.mImage}" alt="" width="40px">
 														<div class="sgt-text">
-															<h4>${mList.mName}</h4>
+															<h4><a href="user-profile?youId=${mList.mId}">${mList.mName}</a></h4>
 															<span>${mList.mEmail}</span>
 														</div>
 														<span><i mid='${mList.mId}' class="la la-plus sFollow" ></i></span> 
