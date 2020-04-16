@@ -66,7 +66,7 @@
        	<textarea id="modal_cContents" class="modal_cContents"></textarea>
       </div>
       <div class="modal-footer">
-        <button type="button" id="updateCommentsBtn" class="btn btn-default">Edit</button>
+        <button type="button" id="updateCommentsBtn" class="btn btn-default"><s:message code="post.edit"/></button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -125,7 +125,7 @@
 									
 									<div class="suggestions full-width">
 										<div class="sd-title">
-											<h3>친구추천</h3>
+											<h3><s:message code="main.suggestion"/></h3>
 											<i class="la la-ellipsis-v"></i>
 										</div><!--sd-title end-->
 										<div class="suggestions-list">
@@ -194,10 +194,10 @@
 													<!-- 이 포스트가 내꺼인 경우에만 보여주는 메뉴 -->
 													<c:if test="${post.mId!=sessionScope.loginId}">
 														<ul class="ed-options">
-															<li><a class="updatePost" href="#" title="">Edit Post</a></li>
-															<li><a class="deletePost" href="#" title="">Delete Post</a></li>
+															<li><a class="updatePost" href="#" title=""><s:message code="post.edit"/></a></li>
+															<li><a class="deletePost" href="#" title=""><s:message code="post.delete"/></a></li>
 															<li><a class="hiddenPost" href="#" title="">
-															<c:if test="${post.status=='A'}">Hide</c:if>
+															<c:if test="${post.status=='A'}"><s:message code="post.hide"/></c:if>
 															<c:if test="${post.status=='H'}">Show</c:if>
 															</a></li>
 														</ul>
@@ -222,7 +222,7 @@
 											</div>
 											<div class="job_descp">
 												<h3>${post.pTitle}</h3>
-												<p>${post.pContents}<br><a href="#" title="">view more</a></p>
+												<p>${post.pContents}<br><a href="#" title=""><s:message code="post.view"/></a></p>
 												<ul class="skill-tags">
 													<c:forEach var='tag' items="${post.tagArray}">
 														<li><a href="#" title="">${tag}</a></li>
