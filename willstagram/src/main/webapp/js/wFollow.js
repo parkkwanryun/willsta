@@ -36,6 +36,7 @@ $(function(){
 						success : function(jsonArray) {
 										console.log(jsonArray);
 										var html="<div class='sd-title'>";
+										html+="<form id ='followcheck'>"
 										html+="<h3>팔로워리스트</h3>";
 										html+="<i class='la la-ellipsis-v'></i>";
 										html+="</div>";
@@ -62,12 +63,13 @@ $(function(){
 													+ "</div>"
 													+ "<span><i mid='"
 													+ mId
-													+ "' class='la la-minus unfollow' ></i></span>"
+													+ "' class='la la-minus' id='unfollow' ></i></span>"
 													+ "<span><i mid='"
 													+ mId
 													+ "' class='la la-plus' id='follow' ></i></span>"
 													+ "</div>";	
 											}
+											html+="</form>";
 										 	html+="</div>";
 										 
 										 	$('div.suggestions').html(html);
@@ -77,6 +79,29 @@ $(function(){
 					e.preventDefault();
 				});
 	
+		var mIdArray=$('#followcheck').serializeArray();
+		for (var i = 0; i < mIdArray.length; i++) {
+			var mId=mIdArray[i].value;
+			var param="mIdYou="+mId;
+			$.ajax({
+				url:'follow_Check',
+				method:'POST',
+				data:param,
+				dataType:'text',
+				async: false,
+				success:function(resultText){
+					if (resultText.trim()=='true') {
+						//팔로우 버튼 숨김
+						$("h3:contains("+mId+")").next().next().children().eq(1).children().hide();
+					}else if (resultText.trim()=='false') {
+						//언팔로우 버튼 숨김
+						$("h3:contains("+mId+")").next().next().children().first().children().hide();
+					}
+				}
+			
+			});
+		}
+		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 	$('#followings').on('click', function(e) {
 			var $mIdYou = $(e.target);
@@ -115,7 +140,7 @@ $(function(){
 										+ "</div>"
 										+ "<span><i mid='"
 										+ mId
-										+ "' class='la la-minus unfollow' ></i></span>"
+										+ "' class='la la-minus' id='unfollow' ></i></span>"
 										+ "</div>";
 								}
 							 	html+="</div>";
@@ -198,7 +223,7 @@ $(function(){
 			});
 
 	// 이벤트 처리안에 중복 이벤트 처리위해서는 도큐맨트를 적어줘야함 .
-	$(document).on('click','.unfollow',
+	$(document).on('click','#unfollow',
 			function(e) {
 				var $mIdYou = $(e.target);
 				/*console.log('--------------->' + e.target);
@@ -226,8 +251,7 @@ $(function(){
 				e.stopPropagation();
 
 			});
-	
-	
+
 	
 	
 
