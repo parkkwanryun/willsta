@@ -32,7 +32,7 @@ public class Comments {
 		this.cContents = cContents;
 		this.recNo = recNo;
 	}
-
+	
 	public Integer getcNo() {
 		return cNo;
 	}

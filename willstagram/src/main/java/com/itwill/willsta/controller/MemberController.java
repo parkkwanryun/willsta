@@ -2,10 +2,14 @@ package com.itwill.willsta.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -26,8 +30,6 @@ import com.itwill.willsta.service.MemberService;
 
 @Controller
 public class MemberController {
-	MultipartFile multipartFile;
-	
 	@Autowired
 	MemberService memberService;
 	
@@ -84,18 +86,17 @@ public class MemberController {
 	/*회원가입*/
 	@ResponseBody
 	@RequestMapping(value="/sign_up_action",method = RequestMethod.POST, produces="text/plain; charset=UTF-8")
-	public boolean sign_up_action(@RequestParam("mId")String mId,
-								@RequestParam("mPass")String mPass,
-								@RequestParam("mName")String mName,
-								@RequestParam("mEmail")String mEmail,
-								@RequestParam("mPhone")String mPhone,
-								@RequestParam("mImage")String mImage,
-								@RequestParam("mRetire")String mRetire,
-								HttpServletRequest request,
-								MultipartFile uploadFile){
-		String path="/var/lib/tomcat8/webapps/willstagram/contents";
-		
-		boolean newMember = memberService.insertMember(new Member(mId,mPass,mName,mEmail,mPhone,mImage,mRetire));
+	public boolean sign_up_action(Member member, MultipartFile mUploadImg,
+								HttpServletRequest request) throws IllegalStateException, IOException, Exception{
+		String path = request.getSession().getServletContext().getRealPath("/")+"contents\\member_image\\";
+		System.out.println("## 이미지 저장경로:"+path);
+		//수정 중
+		boolean newMember = 
+				memberService.insertMember(new Member(
+						member.getmId(),member.getmPass(),
+						member.getmName(),member.getmEmail(),
+						member.getmPhone(),member.getmImage(),
+						member.getmRetire()), mUploadImg);
 			if(newMember) {
 				newMember= true;
 			}else {
@@ -103,6 +104,7 @@ public class MemberController {
 			}
 		return newMember;
 	}	
+	
 	/*아이디 중복 체크*/
 	@ResponseBody
 	@RequestMapping(value="/duplicate_check", method= RequestMethod.GET, produces="text/plain; charset=UTF-8")

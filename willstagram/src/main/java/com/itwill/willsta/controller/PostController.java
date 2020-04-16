@@ -85,11 +85,13 @@ public class PostController {
 		post.setTagArray(post.getHasTag().split(" "));
 		//List<PostImage> postImages = postService.selectContents(pNo);
 		return post;
-	}
+	} 
 	@MemberLoginCheck
 	@RequestMapping(value="/write_post", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
 	public ModelAndView write(Post post, MultipartFile[] uploadFile, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
+		String path = request.getSession().getServletContext().getRealPath("/")+"contents\\post_image\\";
+		System.out.println("**************레알패스"+path);
 		post.setmId((String)request.getSession().getAttribute("mId"));
 		Post postOne =null;
 		//post번호가 있으면 update, 없으면 insert
@@ -98,6 +100,7 @@ public class PostController {
 		} else {
 			postOne = postService.createPost(post, uploadFile);
 		}
+
 		List<Post> postList = new ArrayList<Post>();
 		postList.add(postOne);
 		mv.addObject("postList", postList);
@@ -105,12 +108,13 @@ public class PostController {
 
 		return mv;
 	}
+	
 	@ResponseBody
 	@MemberLoginCheck
 	@RequestMapping(value="/delete_post", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
-	public String delete(@RequestParam(value="pNo", required = true) int pNo) {
+	public String delete(@RequestParam(value="pNo", required = true) int pNo, HttpServletRequest request) {
 		
-		
+		String path = request.getSession().getServletContext().getRealPath("/")+"contents\\post_image\\";
 		try {
 			int rn = postService.removePost(pNo);
 			if(rn >0) {

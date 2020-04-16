@@ -51,7 +51,7 @@ function member_login_action_function() {
 		dataType : 'text',
 		success : function(textData) {
 			if (textData.trim() == "true") {
-				location.href = '/willstagram/index';
+				location.href = '/willstagram/main_post';
 			} else if (textData.trim() == "false1") {
 				id_check();
 			} else if (textData.trim() == "false2") {
@@ -84,28 +84,60 @@ function password_check() {
 }
 /*
  * 3) 회원가입
+ - enctype: multipart로 지정해주지 않으면 controller로 파일을 보낼 수 없음
+ - contentType : false 로 선언 시 content-type 헤더가 multipart/form-data로 전송되게 함
+ - processData : false로 선언 시 formData를 string으로 변환하지 않음
+ - formData : 해당 폼의 모든 값들(file포함)을 해당 객체에 한번에 담아 보내기 위해 사용
  */
 function member_register_action_function() {
+	/*
 	var mrafArray = $('#member_register_action').serializeArray();
+	*/
+	var form = $('#member_register_action').serializeArray();
+	var formData = new FormData(form);
+	/*
+	for(var i= 0; i < mrafArray.length; i++){
+		formData.append(mrafArray[i].name, mrafArray[i].value); // key value 형태
+	}
+	*/
+	/*
+	var inputFile = $("input[name='mUploadImg']");
+	var files = inputFile[0].files;
+	for(var i = 0; i < files.length; i++){
+		formData.append("mUploadImg",files[i]);
+	}
+	*/
+	
 	$.ajax({
-		url : 'sign_up_action',
-		data : mrafArray,
 		method : 'POST',
+		enctype: 'multipart/form-data',
+		data : formData,
+		url : 'sign_up_action',
+		processData: false,
+        contentType: false,
+        cache: false,
 		dataType : 'text',
 		success : function(textData) {
+			alert("complete");
 			if (textData.trim() == "true") {
+				/*
 				member_register_action.mId.value = textData.mId;
 				member_register_action.mPass.value = textData.mPass;
 				member_register_action.mName.value = textData.mName;
 				member_register_action.mEmail.value = textData.mEmail;
 				member_register_action.mPhone.value = textData.mPhone;
-				member_register_action.mImage.value = textData.mImage;
+				member_register_action.mUploadImg.value = textData.mUploadImg;
 				member_register_action.mRetire.value = textData.mRetire;
-
+				*/
 				location.href = '/willstagram/sign_in';
 
 			} else if (textData.trim() == "false") {
 			}
+		},
+		error : function(e){
+			console.log("ERROR :", e);
+			$('#submit').prop("disabled",false);
+			alert('fail');
 		}
 	});
 	e.preventDefault();
@@ -138,6 +170,8 @@ function account_setting() {
 	});
 }
 
+
+
 /*
  * &&DOM Tree 로딩 후 이벤트 처리&&
  */
@@ -145,7 +179,7 @@ $(function() {
 	$('#msg1').hide();
 	$('#msg2').hide();
 
-	// 로그인 유효성 검증
+// 로그인 유효성 검증
 	$('#member_login_action').validate({
 		rules : {
 			mId : {
@@ -215,7 +249,7 @@ $(function() {
 				minlength : 9,
 				digits : true
 			},
-			mImage : {
+			mUploadImg : {
 				required : true
 			}
 		},
@@ -243,7 +277,7 @@ $(function() {
 				digits : "-을 제외한 숫자만 입력해주세요",
 				minlength : "전화번호는 최소 9자리 이상입니다."
 			},
-			mImage : {
+			mUploadImg : {
 				required : "프로필 이미지를 업로드해주세요",
 			},
 			mRetire : {

@@ -31,6 +31,12 @@ public class CommentsServiceImpl implements CommentsService {
 		return commentsDao.updateComments(comments);
 	}
 	
+	//댓글 삭제 전 삭제될 결과의 수 확인
+	@Override
+	public int removeCommentsCountCheck(int cNo) throws Exception {
+		return commentsDao.removeCommentsCountCheck(cNo);
+	}
+	
 	//댓글 삭제
 	@Override
 	public int removeComments(int cNo) throws Exception {

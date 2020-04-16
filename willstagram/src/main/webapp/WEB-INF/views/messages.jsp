@@ -35,7 +35,7 @@ div.messages-list>ul>li:hover {
 										<c:forEach var="dm" items="${dmList}">
 											<!-- 유저 리스트 li가 하나의 박스 -->
 											<li>
-												<div class="usr-msg-details">
+												<div class="usr-msg-details"  dmNo='${dm.dmNo}'>
 													<div class="usr-ms-img">
 														<img src="contents/member_image/${dm.mImage}" alt="">
 														<span class="msg-status"></span>
@@ -45,7 +45,6 @@ div.messages-list>ul>li:hover {
 													</div>
 													<!--usr-mg-info end-->
 													<span class="posted_time">${dm.dmDate}</span> 
-													<span class="msg-notifc" style='display: none' id='dmNo'>${dm.dmNo}</span>
 												</div>
 												<!--usr-msg-details end-->
 											</li>
@@ -87,8 +86,8 @@ div.messages-list>ul>li:hover {
 										</ul>
 									</form>
 								</div>
+								-->
 							</div>
-							 -->
 						</div>
 					</div>
 				</div><!--messages-sec end-->

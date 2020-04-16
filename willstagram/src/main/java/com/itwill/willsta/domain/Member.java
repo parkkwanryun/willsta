@@ -1,5 +1,6 @@
 package com.itwill.willsta.domain;
 
+
 public class Member {
 	private String mId;
 	private String mPass;
@@ -41,7 +42,7 @@ public class Member {
 		this.mImage = mImage;
 		this.mRetire = mRetire;
 	}
-
+	
 	public String getmId() {
 		return mId;
 	}

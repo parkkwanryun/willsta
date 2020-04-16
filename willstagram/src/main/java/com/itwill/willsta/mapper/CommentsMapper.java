@@ -27,6 +27,14 @@ public interface CommentsMapper {
 	@Update("UPDATE comments SET cContents = #{cContents} WHERE cNo = #{cNo}")
 	public Integer updateComments(Comments comments);
 	
+	//댓글 삭제 전 삭제될 결과의 수 확인
+	@Select("SELECT	count(*) " +
+			"FROM (SELECT  cno " +
+			"	   FROM    comments " +
+			"		START WITH cNo = #{cNo}" +
+			"		CONNECT BY PRIOR  cNo = recNo)")
+	public Integer removeCommentsCountCheck(@Param("cNo") int cNo);
+	
 	//댓글 삭제
 	@Delete("DELETE FROM comments WHERE cNo = #{cNo}")
 	public Integer removeComments(@Param("cNo") int cNo);
@@ -51,7 +59,7 @@ public interface CommentsMapper {
 	//하나의 포스트에 달린 댓글 전체 조회
 	@Select("SELECT  mId, cTime, cNo, recNo, cContents, pNo " + 
 			"FROM    comments " + 
-			"WHERE   recNo <= cNo AND pNo = #{pNo} " + 
+			"WHERE   pNo = #{pNo} " + 
 			"START WITH  recNo = 0 " + 
 			"CONNECT BY PRIOR cNo = recNo")
 	public List<Comments> postCommentsList(@Param("pNo") int pNo);

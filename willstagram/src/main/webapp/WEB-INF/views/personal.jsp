@@ -51,8 +51,9 @@
 								<div class="main-left-sidebar" style="margin-top:130px;">
 									<div class="user_profile">
 										<div class="user-pro-img">
-											<img src="contents/member_image/${member.mImage}" width="200px" alt="">
-												
+											<!--  <img src="contents/member_image/${member.mImage}" width="200px" alt="">
+												-->
+												<img src="images/ginbeenmin.jpg" alt>
 															<h3>${member.mName}</h3>
 															
 											<div class="add-dp" id="OpenImgUpload">
@@ -99,7 +100,7 @@
 											
 											</c:forEach>
 											<div class="view-more">
-												<a href="#" title="">View More</a>
+												<!-- <a href="#" title="">View More</a> -->
 											</div>
 										</div><!--suggestions-list end-->
 										

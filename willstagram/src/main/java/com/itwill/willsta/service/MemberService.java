@@ -1,21 +1,21 @@
 package com.itwill.willsta.service;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.willsta.domain.Member;
-import com.itwill.willsta.exception.MemberNotFoundException;
 
 public interface MemberService {
-		
-	boolean insertMember(Member member);
+	
+	boolean insertMember(Member member, MultipartFile mUploadImg) throws IllegalStateException, IOException;
 	
 	Member selectById(String mId);
 	
 	Member selectByIdContainFollowInfo(String mId);
-	
 	
 	List<Member> selectByRandom(String mId);
 

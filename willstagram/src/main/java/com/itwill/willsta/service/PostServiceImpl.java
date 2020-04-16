@@ -22,6 +22,8 @@ public class PostServiceImpl implements PostService {
 	@Autowired
 	MemberService memberService;
 	
+	
+	//String uploadFolder = StaticProperties.postRealPath;
 	String uploadFolder = "/var/lib/tomcat8/webapps/willstagram/contents/post_image/";
 	//String uploadFolder = "/contents/post_image";
 	@Override
@@ -57,7 +59,7 @@ public class PostServiceImpl implements PostService {
 					
 					filterFileName+=post.getpNo()+"_"+maxContentNo.trim()+sepString;	
 					
-						System.out.println("$$$$$$$$$$$$$$"+filterFileName);
+						System.out.println("$$$$$$$$$$$$$$"+uploadFolder+filterFileName);
 					if (!(filename == null || filename.equals(""))) {
 						pi = new PostImage(post.getpNo(), filterFileName);	
 						postDao.insertImg(pi);

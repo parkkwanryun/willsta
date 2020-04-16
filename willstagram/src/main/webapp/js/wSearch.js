@@ -13,8 +13,10 @@ $(function(){
 			async: false,
 			success:function(resultText){
 				if (resultText.trim()=='true') {
+					//팔로우 버튼 숨김
 					$("h3:contains("+mId+")").next().next().children().eq(1).children().hide();
 				}else if (resultText.trim()=='false') {
+					//언팔로우 버튼 숨김
 					$("h3:contains("+mId+")").next().next().children().first().children().hide();
 				}
 			}
@@ -22,7 +24,6 @@ $(function(){
 		});
 	}
 	
-	//검색 두번했을때 버튼 다시 보임..
 	//사용자 검색
 	$('.userSearch').submit(function(e) {
 		
@@ -37,7 +38,7 @@ $(function(){
 			dataType:'text',
 			success:function(resultText){
 				//console.log(resultText);
-				$('div.wrapper').html(resultText);
+				$('body').html(resultText);
 				$('div.company-title').children().text("Search Profile");
 			}
 		});
