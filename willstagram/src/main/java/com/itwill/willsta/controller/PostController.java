@@ -23,7 +23,7 @@ import com.itwill.willsta.service.PostService;
 public class PostController {
 	@Autowired
 	PostService postService;
-
+	
 	@MemberLoginCheck
 	@RequestMapping(value="/main_post")
 	public ModelAndView selectMainList(HttpServletRequest request) {

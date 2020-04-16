@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,21 +26,23 @@ public class PostServiceImpl implements PostService {
 	
 	
 	//String uploadFolder = StaticProperties.postRealPath;
+	//임시 경로를 만들어 저장(aws서버) -web.xml 설정 포함
 	String uploadFolder = "/var/lib/tomcat8/webapps/willstagram/contents/post_image/";
-	//String uploadFolder = "/contents/post_image";
+	//임시 경로를 만들어 저장(로컬) -web.xml 설정 포함
+	//String uploadFolder = "C:\\JAVA_SPRING\\Program\\sts-bundle\\pivotal-tc-server\\instances\\base-instance\\wtpwebapps\\willstagram\\contents\\post_image";
+	//String uploadFolder = "contents/post_image";
 	@Override
-	public Post createPost(Post post, MultipartFile[] uploadFile) {
+	public Post createPost(Post post, MultipartFile[] uploadFile){
 		/*
 		 * 1. 포스트 생성
 		 * 2. 생성된 번호로 파일이름 설정
 		 * 3. 컨텐츠정보생성
 		 * 4. 파일저장
 		 */
-		
 		Post postOne=null;
 		int rn = postDao.insert(post);
 		if(rn >0) {
-			//2.파일처리(파일네임은DB에 저장 하고 파일은 image폴더에 저장)
+			//2.파일처리(파일네임은DB에 저장 하고 파일은 image폴더에 임시저장)
 			String filename="";
 			String filterFileName="";
 			PostImage pi;

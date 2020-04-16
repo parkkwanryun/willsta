@@ -39,7 +39,9 @@
 		<load-on-startup>1</load-on-startup>
 		<multipart-config>
 			<!--파일 업로드 시 임시로 저장하는 절대 경로이다-->
+			<!-- 
 			<location>/var/lib/tomcat8/webapps/willstagram/contents/</location>
+			-->
 			<max-file-size>-1</max-file-size>
 			<max-request-size>-1</max-request-size>
 			<file-size-threshold>1024</file-size-threshold>
