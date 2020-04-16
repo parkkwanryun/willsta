@@ -1,6 +1,8 @@
 package com.itwill.willsta.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -25,10 +27,10 @@ public class DmController {
 	private DmService dmService;
 	
 	@ResponseBody
-	@RequestMapping(value = "/sessionCheck")
+	@RequestMapping(value = "/sessionCheck", method = RequestMethod.POST)
 	public String returnSessionCheck(HttpSession httpSession) {
-		String loginId = (String)httpSession.getAttribute("mId");
-		return loginId;
+		String mId = (String)httpSession.getAttribute("mId");
+		return mId;
 	}
 	@ResponseBody
 	@RequestMapping(value = "/messages_room_create")
@@ -50,32 +52,6 @@ public class DmController {
 		}
 		return isSuccess;
 	}
-	/*
-	@ResponseBody
-	@RequestMapping(value = "/messages_Childroom_create")
-	public String messageRoomInsert(@RequestParam("mId") String mId,
-									@RequestParam("dmNo") int dmNo) {
-		System.out.println("@@@@@@@@@@@@@@@@"+mId);
-		System.out.println("@@@@@@@@@@@@@@@@"+dmNo);
-		String isSuccess = "success";
-		if(dmNo == 0) {
-			dmService.dmFirstInsert(mId);
-		} else {
-			List<DM> dmList = dmService.dmRoomSelectAll(mId);
-			for (DM dm : dmList) {
-				if(dm.getmId().equalsIgnoreCase(mId)) {
-					isSuccess = "faild";
-					break;
-				}
-			}
-			if(isSuccess == "success") {
-				dmService.dmLastInsert(dmNo, mId);
-			} 
-		}
-		return isSuccess;
-	}
-	*/
-	
 	
 	@RequestMapping(value = "/messages")
 	public String messageForm(HttpSession httpSession) {
@@ -96,7 +72,6 @@ public class DmController {
 		}
 		return dmcList; 
 	}
-	
 	@ResponseBody
 	@RequestMapping(value = "/messages_insert", method = RequestMethod.POST)
 	public int messagesInsert(@RequestParam("messages") String messages) {

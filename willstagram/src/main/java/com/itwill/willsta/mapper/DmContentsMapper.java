@@ -32,8 +32,8 @@ public interface DmContentsMapper {
 			"WHERE dmContentsNo = #{dmContentsNo}")
 	public DmContents dmcSelectOne(@Param("dmContentsNo") int dmContentsNo);
 	
-	@Insert("INSERT INTO dm_contents(dmNo, dmContentsNo, dmContentsMessage, dmContentsDate, dmSenderId) " + 
-			"VALUES(#{dmNo}, dm_contents_number_seq.nextval, #{dmContentsMessage}, sysdate, #{dmSenderId})")
+	@Insert("INSERT INTO dm_contents(dmNo, dmContentsNo, dmContentsMessage, dmContentsDate, dmSenderId, dmContentsImage) " + 
+			"VALUES(#{dmNo}, dm_contents_number_seq.nextval, #{dmContentsMessage}, sysdate, #{dmSenderId}, (SELECT m.mImage FROM member m WHERE m.mId =#{dmSenderId}))")
 	public int dmcInsert(DmContents dmContents);
 	
 	@Update("UPDATE dm_contents " + 

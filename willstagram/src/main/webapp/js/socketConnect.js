@@ -4,6 +4,7 @@
 // DOM TREE 생성 후 connetWS 실행
 var socket = null;
 var loginId = null;
+var contextPath = getContextPath();
 var jsonData = {
 		mId : null,
 		mIdYou : null,
@@ -12,20 +13,23 @@ var jsonData = {
 		dmNo : null,
 		dmContentsImage : null
 };
+
+function getContextPath(){
+	var lastIndexCount = location.href.lastIndexOf('/');
+	var ctx = location.href.substr(0,lastIndexCount).replace('http', 'ws');
+	return ctx;
+}
 // 접속중인 본인 아이디 얻기
 function getLoginId(){
 	$.ajax({
 		url:'sessionCheck',
-		method:'GET',
+		method:'POST',
 		dataType: 'text',
-		success:function(sessionId){
-			loginId = sessionId;
+		success:function(mId){
+			loginId = mId; 
 		}
 	});
 }
-
-
-
 // 메시지 채팅창 출력 콜백함수
 function message_send_form(target){
 	mIdYou = target.find('h3').text();
@@ -88,8 +92,8 @@ function message_rightInsert_html(jsonData){
 	htmlData +=				"</div>";
 	htmlData +=					"<p style='float:right;'>"+jsonData.msgDate+"분</p>";
 	htmlData +=				"</div>";
-	htmlData +=		"<div class='messg-usr-img'>";
-	htmlData +=			"<img src='contents/member_image/"+jsonData.dmContentsImage+"' style='float:right;' alt=''>";
+	htmlData +=		"<div class='messg-usr-img' >";
+	htmlData +=			"<img src='contents/member_image/"+jsonData.dmContentsImage+"' alt=''>";
 	htmlData +=		"</div>";
 	htmlData +=	"</div>";
 	$('.messages-line').append(htmlData);
@@ -106,7 +110,7 @@ function message_send_function(target){
 		jsonData.mIdYou = $(target).find('.usr-mg-info h3').text();			//받는사람
 		jsonData.msg = $('#msg').val();										//내용
 		jsonData.msgDate = d.getHours() + "시" + d.getMinutes();			//보낸시간
-		jsonData.dmNo = $(target).attr('dmno');								//방번호
+		jsonData.dmNo = $(target).attr('dmno');								//방번호 
 		console.log(jsonData);
 		
 		if(jsonData.msg != null && jsonData.msg != "" && jsonData.msg != '&nbsp'){
@@ -175,7 +179,8 @@ function message_list_function(jsonArrayData){
 //  채팅방 생성 콜백함수
 function message_profile_create_function(e){
 	var mIdYou = $(e.target).parents('.company-up-info').attr('mIdYou');
-	console.log(loginId);
+	console.log("mIdYou : "+mIdYou);
+	console.log("loginId : "+loginId);
  		if(loginId != null && mIdYou != null){
  			var params="mId="+loginId+"&"+"mIdYou="+mIdYou;
  				$.ajax({
@@ -184,7 +189,7 @@ function message_profile_create_function(e){
  					data : params,
  					dataType:'text',
  					success:function(isSuccess){
- 						console.log(isSuccess);
+ 						location.href = contextPath.replace('ws','http')+'/messages';
  					}
  			});
  		}
@@ -229,16 +234,6 @@ $(document).ready(function(){
 		getLoginId();
 	
 		//채팅방 오픈
-	
-		/*
-		$(document).find('.messages-list').on('click', function(e) {
-			e.preventDefault();
-			$('.main-conversation-box').html("");
-			message_send_form();
-			message_detail_function(e);
-			message_send_function(e);
-		});
-		*/
 		$(document).find('div.messages-list > ul > li').on('click', function(e) {
 			//console.log();
 			var nodeName = e.target.nodeName;
@@ -272,7 +267,7 @@ $(document).ready(function(){
 });	
 
 function connectWS() {
-	var ws = new WebSocket("ws://localhost/willstagram/replyEcho");
+	var ws = new WebSocket(contextPath+"/replyEcho");
 	socket = ws;
 	ws.onopen = function() { // connection이 open 되었을때 실행
 		console.log('Info : connection opened.');
@@ -288,9 +283,14 @@ function connectWS() {
 				console.log('Info: connection closed.');
 		};
 		ws.onmessage = function(event) { // socket.send() 후 ReplyEchoHandler가 handleTextMessage메소드로부터 메시지를 받아옴											
-			//[0]ljs, [1]hjs, [2]1324, [3]18시4, [4]6, [5]aasds
 			message_receive(event);
 			message_receive_noty(event);
+			let socketAlert = $('a#socketAlert');
+			socketAlert.text(jsonData.mIdYou+"님이 메세지를 보냈습니다.");
+			socketAlert.css('display', 'block');
+			setTimeout( function() {
+				socketAlert.css('display', 'none');
+			},3000);
 		};
 	};	
 }

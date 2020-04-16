@@ -18,6 +18,9 @@
 					<nav>
 						<ul>
 							<li>
+								<a id="socketAlert" href="messages"  title="" ></a>
+							</li>
+							<li>
 								<a href="main_post" title="">
 									<span><img src="images/icon1.png" alt=""></span>
 									<s:message code="menu.home"/>
@@ -100,7 +103,4 @@
 						</div><!--user-account-settingss end-->
 					</div>
 				</div><!--header-data end-->
-
 			</div>			
-
-
