@@ -266,8 +266,6 @@ $(document).ready(function(){
 			message_detail_function(target);
 			message_send_function(target);
 		});
-		
-		
 		//profile 탭에서 유저의 메세지 버튼 클릭시 방 생성
 		$(document).find('.message-us').on('click',function(e){
 			e.preventDefault();
