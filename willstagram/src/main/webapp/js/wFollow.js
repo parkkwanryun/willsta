@@ -22,7 +22,7 @@
 $(function(){
 	
 
-// 팔로우 리스트  # 팔로우 카운트 된숫자를 클릭했을때 내가 팔로우하고있는 리스트 뽑고 팔로잉 카운트 늘어나게.ㅠㅠ 
+// 팔로우 리스트  # 팔로우 카운트 된숫자를 클릭했을때 내가 팔로우하고있는 리스트 뽑고 팔로잉 카운트 늘어나게
 	// 그리고 뽑았으면 언팔로우도 가능하게 해야됨 .근데 화면에 없느거라서 오또케하냐 
 		$('#followers').on('click',	function(e) {
 				var $mIdYou = $(e.target);
@@ -60,9 +60,9 @@ $(function(){
 													+ mEmail
 													+ "</span>"
 													+ "</div>"
-													+ "<span><i midyou='"
+													+ "<span><i mid='"
 													+ mId
-													+ "' class='la la-plus' ></i></span>"
+													+ "' class='la la-minus unfollow' ></i></span>"
 													+ "</div>";	
 											}
 										 	html+="</div>";
