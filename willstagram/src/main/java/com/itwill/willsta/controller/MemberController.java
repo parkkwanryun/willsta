@@ -27,12 +27,14 @@ import com.itwill.willsta.domain.Member;
 import com.itwill.willsta.exception.MemberNotFoundException;
 import com.itwill.willsta.exception.PasswordMismatchException;
 import com.itwill.willsta.service.MemberService;
+import com.itwill.willsta.service.PostService;
 
 @Controller
 public class MemberController {
 	@Autowired
 	MemberService memberService;
-	
+	@Autowired
+	PostService postService;
 	
 	@RequestMapping(value="/")
 	public String index() {
@@ -163,7 +165,7 @@ public class MemberController {
 		mv.setViewName("my-profile-feed");
 		return mv;
 	}
-	
+	/*유저목록*/
 	@MemberLoginCheck
 	@RequestMapping(value = "/profiles")
 	public ModelAndView memberList() {
@@ -173,7 +175,7 @@ public class MemberController {
 		mv.setViewName("profiles");
 		return mv;
 	}
-	
+	/*유저목록 스크롤*/
 	@MemberLoginCheck
 	@ResponseBody
 	@RequestMapping(value = "/add_profile", produces = "text/html;charset=utf-8")
@@ -186,7 +188,7 @@ public class MemberController {
 		return mv;
 		
 	}
-	
+	/*유저검색*/
 	@MemberLoginCheck
 	@ResponseBody
 	@RequestMapping(value = "/search_member", method = RequestMethod.POST)
@@ -197,19 +199,17 @@ public class MemberController {
 		mv.setViewName("profiles");
 		return mv;
 	}
-	
-	
+	/*상대방페이지*/
 	@MemberLoginCheck
 	@RequestMapping(value = "/user-profile")
 	public ModelAndView userProfile(@Param("youId")String youId) {
 		ModelAndView mv=new ModelAndView();
 		Member youProfile=memberService.selectById(youId);
+		mv=postService.main_page(youId);
 		mv.addObject("profile",youProfile);
 		mv.setViewName("user-profile");
 		return mv;
 	}
-	
-	
 	
 	
 }
