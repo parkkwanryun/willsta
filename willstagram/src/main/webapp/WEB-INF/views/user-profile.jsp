@@ -25,7 +25,7 @@
 						<div class="row">
 							<div class="col-lg-3">
 								<div class="main-left-sidebar">
-									<div class="user_profile">
+									<div class="user_profile" mIdYou="${profile.mId}">
 										<div class="user-pro-img">
 										<c:choose>
 											<c:when test="${profile.mImage==null}">
@@ -38,8 +38,8 @@
 										</div><!--user-pro-img end-->
 										<div class="user_pro_status">
 											<ul class="flw-hr">
-												<li><a href="#" title="" class="flww"><i class="la la-plus"></i> Follow</a></li>
-												<li><a href="#" title="" class="hre">Hire</a></li>
+												<li><a href="#" title="" class="follow">Follow</a></li>
+												<li><a href="#" title="" class="unFollow">unFollow</a></li>
 											</ul>
 											<ul class="flw-status">
 												<li>
@@ -537,5 +537,6 @@
 
 
  <jsp:include page="/WEB-INF/commons/include_footer_js.jsp"/>
+ <script type="text/javascript" src="js/wUser-profile.js"></script>
 </body>
 </html>
