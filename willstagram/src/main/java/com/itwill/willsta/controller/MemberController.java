@@ -198,4 +198,18 @@ public class MemberController {
 		return mv;
 	}
 	
+	
+	@MemberLoginCheck
+	@RequestMapping(value = "/user-profile")
+	public ModelAndView userProfile(@Param("youId")String youId) {
+		ModelAndView mv=new ModelAndView();
+		Member youProfile=memberService.selectById(youId);
+		mv.addObject("profile",youProfile);
+		mv.setViewName("user-profile");
+		return mv;
+	}
+	
+	
+	
+	
 }
