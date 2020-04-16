@@ -236,7 +236,7 @@
 													</li>
 													<li>
 														<a href="#"  class="com comment_list_click" >
-															<i class="fas fa-comment-alt"></i><s:message code="post.comment"/>
+															<i class="fas fa-comment-alt"></i> <s:message code="post.comment"/>
 														</a>
 													</li>
 												</ul>
