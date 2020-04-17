@@ -137,7 +137,10 @@
 														<h4>${mList.mName}</h4>
 														<span>${mList.mEmail}</span>
 													</div>
-													<span><i mid='${mList.mId}' class="la la-plus"></i></span> 
+
+													<span><i mid='${mList.mId}' class="la la-plus follow_add" ></i></span> 
+
+
 										
 													</c:if>
 					
