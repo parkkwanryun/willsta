@@ -90,49 +90,68 @@ function password_check() {
  - formData : 해당 폼의 모든 값들(file포함)을 해당 객체에 한번에 담아 보내기 위해 사용
  */
 function member_register_action_function() {
+	alert('회원가입');
 	/*
 	var mrafArray = $('#member_register_action').serializeArray();
-	*/
-	var form = $('#member_register_action').serializeArray();
-	var formData = new FormData(form);
-
-	for(var i= 0; i < mrafArray.length; i++){
+	var formData = new FormData(mrafArray);
+	
+	for(var i = 0; i < mrafArray.length; i++){
 		formData.append(mrafArray[i].name, mrafArray[i].value); // key value 형태
 	}
+	 */
+
+	var formData = new FormData();
+	formData.append('mId',$('#mId').val());
+	formData.append('mPass',$('#mPass').val());
+	formData.append('mName',$('#mName').val());
+	formData.append('mEmail',$('#mEmail').val());
+	formData.append('mPhone',$('#mPhone').val());
+	formData.append('mRetire',$('#mRetire').val());
 
 	/*
-	var inputFile = $("input[name='mUploadImg']");
+	alert(mrafArray[0].name,mrafArray[0].value);
+	alert(mrafArray[1].name,mrafArray[1].value);
+	alert(mrafArray[2].name,mrafArray[2].value);
+	alert(mrafArray[3].name,mrafArray[3].value);
+	alert(mrafArray[4].name,mrafArray[4].value);
+	alert(mrafArray[5].name,mrafArray[5].value);
+	alert(mrafArray[6].name,mrafArray[6].value); 
+	*/
+	// mImage 제외 모든 value 값들 받음 체크.
+	
+	var inputFile = $("input[name='mImage']");
 	var files = inputFile[0].files;
 	for(var i = 0; i < files.length; i++){
-		formData.append("mUploadImg",files[i]);
+		formData.append("mUploadImg",mImage[i]);
 	}
-	*/
+	console.log(formData);
 	
 	$.ajax({
-		method : 'POST',
-		enctype: 'multipart/form-data',
-		data : formData,
 		url : 'sign_up_action',
 		processData: false,
         contentType: false,
+        data : formData,
         cache: false,
-		dataType : 'text',
-		success : function(textData) {
+        method: 'POST',
+		dataType : 'json',
+		success : function(jsonData) {
 			alert("complete");
-			if (textData.trim() == "true") {
-				/*
-				member_register_action.mId.value = textData.mId;
-				member_register_action.mPass.value = textData.mPass;
-				member_register_action.mName.value = textData.mName;
-				member_register_action.mEmail.value = textData.mEmail;
-				member_register_action.mPhone.value = textData.mPhone;
-				member_register_action.mUploadImg.value = textData.mUploadImg;
-				member_register_action.mRetire.value = textData.mRetire;
-				*/
+			//console.log(jsonData);
+
+			if (jsonData.trim() == "true") {
+				member_register_action.mId.value = jsonData.mId;
+				member_register_action.mPass.value = jsonData.mPass;
+				member_register_action.mName.value = jsonData.mName;
+				member_register_action.mEmail.value = jsonData.mEmail;
+				member_register_action.mPhone.value = jsonData.mPhone;
+				member_register_action.mUploadImg.value = jsonData.mUploadImg;
+				member_register_action.mRetire.value = jsonData.mRetire;
+
 				location.href = '/willstagram/sign_in';
 
-			} else if (textData.trim() == "false") {
+			} else if (jsonData.trim() == "false") {
 			}
+
 		},
 		error : function(e){
 			console.log("ERROR :", e);
@@ -140,7 +159,7 @@ function member_register_action_function() {
 			alert('fail');
 		}
 	});
-	e.preventDefault();
+
 }
 /*
  * 4) 회원정보 수정 함수
