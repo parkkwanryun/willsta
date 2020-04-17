@@ -87,24 +87,20 @@ public class MemberController {
 	
 	/*회원가입*/
 	@ResponseBody
-	@RequestMapping(value="/sign_up_action",method = RequestMethod.POST, produces="text/plain; charset=UTF-8")
-	public boolean sign_up_action(Member member, MultipartFile mUploadImg,
+	@RequestMapping(value="/sign_up_action",method = RequestMethod.POST, produces="application/json; charset=UTF-8")
+	public String sign_up_action(Member member, @RequestParam("mUploadImg")MultipartFile mUploadImg,
 								HttpServletRequest request) throws IllegalStateException, IOException, Exception{
 		String path = request.getSession().getServletContext().getRealPath("/")+"contents\\member_image\\";
 		System.out.println("## 이미지 저장경로:"+path);
 		//수정 중
-		boolean newMember = 
-				memberService.insertMember(new Member(
-						member.getmId(),member.getmPass(),
-						member.getmName(),member.getmEmail(),
-						member.getmPhone(),member.getmImage(),
-						member.getmRetire()), mUploadImg);
+		boolean newMember = memberService.insertMember(member,mUploadImg);
 			if(newMember) {
 				newMember= true;
+				System.out.println("프로필이미지 포함 회원 가입 성공");
 			}else {
 				newMember= false;
 			}
-		return newMember;
+		return newMember+"";
 	}	
 	
 	/*아이디 중복 체크*/
