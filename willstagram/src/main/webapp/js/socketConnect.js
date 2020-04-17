@@ -99,7 +99,7 @@ function message_rightInsert_html(jsonData){
 	htmlData +=				"<p style='float:right;'>"+jsonData.msgDate+"분</p>";
 	htmlData +=			"</div>";
 	htmlData +=			"<div class='messg-usr-img' style='auto'>";
-	htmlData +=				"<img src='contents/member_image/"+jsonData.dmContentsImage+"' alt=''>";
+	htmlData +=				"<img src='' alt=''>";
 	htmlData +=			"</div>";
 	htmlData +=	"</div>";
 	
@@ -124,7 +124,7 @@ function message_send_function(target){
 		if(jsonData.msg != null && jsonData.msg != "" && jsonData.msg != '&nbsp'){
 				socket.send(jsonData.mId+","+jsonData.mIdYou+","+jsonData.msg+","+jsonData.msgDate+","+jsonData.dmNo+","+jsonData.dmContentsImage);
 				$("#msg").val("");
-				message_leftInsert_html(jsonData);
+				message_rightInsert_html(jsonData);
 				message_send_insert_function(jsonData);
 		}
 	});
@@ -174,11 +174,11 @@ function message_list_function(jsonArrayData){
 		var dmSenderId = jsonArrayData[i].dmSenderId;
 		
 		if(loginId == dmSenderId){
-			message_leftInsert_html(jsonData);
-			console.log("왼쪽");
-		} else {
 			message_rightInsert_html(jsonData);
 			console.log("오른쪽");
+		} else {
+			message_leftInsert_html(jsonData);
+			console.log("왼쪽");
 		}
 	}
 		/* jsonData.msg, jsonData.msgDate, dmSenderId */
@@ -216,7 +216,7 @@ function message_receive(event){
 	jsonData.dmContentsImage = msgArray[5];	// 보낸사람 프로필 이미지
 	console.log(jsonData);
 	if(jsonData.msg != null || jsonData.msg != ""){
-		message_rightInsert_html(jsonData);
+		message_leftInsert_html(jsonData);
 		}
 	}
 function message_receive_noty(event){
