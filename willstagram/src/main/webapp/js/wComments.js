@@ -98,7 +98,7 @@ function postCommentsCount2($aNodeList){
 }
 
 function sendMessage(pNo){
-	var almsg = "pNo:"+pNo;
+	var almsg = "pNo:"+pNo+"mId:"+loginId;
 	socket.send(almsg);
 }
 
@@ -162,9 +162,12 @@ function reCommentsInsertFormShowFunction(e){
 //대댓글 쓰기 ajax요청
 function reCommentsInsertActionFunction(e){
 	//console.log($(e.target).parents(".comment-section"));
+	var pNo = $(e.target).parents('.post-bar').attr("post_no");
 	var $reComments = $(e.target).parents(".comment-section").find(".recomments_insert_form");
 	var params = $reComments.serialize();
 	//console.log(params);
+	//console.log(pNo);
+	
 	$.ajax({
 		url : "reCommentsInsert",
 		data : params,
@@ -172,6 +175,7 @@ function reCommentsInsertActionFunction(e){
 		dataType : "text",
 		success : function(result){
 			if(result.trim() == "true"){
+				sendMessage(pNo);
 				setTimeout(function() {
 					window.location.reload();
 				}, 500);
