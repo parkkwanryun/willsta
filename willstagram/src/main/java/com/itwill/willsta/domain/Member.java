@@ -13,6 +13,14 @@ public class Member {
 	private Integer followerCount;
 	private Integer followingCount;
 	
+	private char followCheck;
+	
+	
+	
+	
+
+	
+
 	public Member() {
 		// TODO Auto-generated constructor stub
 	}
@@ -30,7 +38,8 @@ public class Member {
 		this.followerCount = followerCount;
 		this.followingCount = followingCount;
 	}
-
+	
+	
 
 	public Member(String mId, String mPass, String mName, String mEmail, String mPhone, String mImage, String mRetire) {
 		super();
@@ -142,6 +151,14 @@ public class Member {
 		this.followingCount = followingCount;
 	}
 
+	public char getFollowCheck() {
+		return followCheck;
+	}
+
+	public void setFollowCheck(char followCheck) {
+		this.followCheck = followCheck;
+	}
+	
 
 	public boolean isMatchPassword(String mPass){
 		boolean isMatch=false;
@@ -151,11 +168,13 @@ public class Member {
 		return isMatch;
 	}
 
+	
 
 	@Override
 	public String toString() {
 		return "Member [mId=" + mId + ", mPass=" + mPass + ", mName=" + mName + ", mEmail=" + mEmail + ", mPhone="
-				+ mPhone + ", mImage=" + mImage + ", mRetire=" + mRetire+"]";
+				+ mPhone + ", mImage=" + mImage + ", mRetire=" + mRetire + ", followerCount=" + followerCount
+				+ ", followingCount=" + followingCount +  "]";
 	}
 
 	

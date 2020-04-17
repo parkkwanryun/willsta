@@ -36,7 +36,7 @@ $(function(){
 						success : function(jsonArray) {
 										console.log(jsonArray);
 										var html="<div class='sd-title'>";
-										html+="<form id ='followcheck'>"
+										//html+="<form id ='followcheck'>"
 										html+="<h3>팔로워리스트</h3>";
 										html+="<i class='la la-ellipsis-v'></i>";
 										html+="</div>";
@@ -48,7 +48,14 @@ $(function(){
 											var mImage = jsonArrayObject.mImage;
 											var mName = jsonArrayObject.mName;
 											var mEmail = jsonArrayObject.mEmail;
-										
+										    var followCheck=jsonArrayObject.followCheck;
+											var sss="";
+										    if(followCheck=='1'){
+												sss = "<span><i mid='"+mId+"' class='la la-minus' id='unfollow' ></i></span>";
+											}else if(followCheck=='0'){
+												sss = "<span><i mid='"+mId+"' class='la la-plus' id='follow' ></i></span>";
+											}
+											
 												html += "<div class='suggestion-usd'>";
 												html += "<img src='contents/member_image/"
 													+ mImage
@@ -61,15 +68,10 @@ $(function(){
 													+ mEmail
 													+ "</span>"
 													+ "</div>"
-													+ "<span><i mid='"
-													+ mId
-													+ "' class='la la-minus' id='unfollow' ></i></span>"
-													+ "<span><i mid='"
-													+ mId
-													+ "' class='la la-plus' id='follow' ></i></span>"
+													+sss
 													+ "</div>";	
 											}
-											html+="</form>";
+											//html+="</form>";
 										 	html+="</div>";
 										 
 										 	$('div.suggestions').html(html);
@@ -79,7 +81,7 @@ $(function(){
 					e.preventDefault();
 				});
 	
-		var mIdArray=$('#followcheck').serializeArray();
+	/*	var mIdArray=$('#followcheck').serializeArray();
 		for (var i = 0; i < mIdArray.length; i++) {
 			var mId=mIdArray[i].value;
 			var param="mIdYou="+mId;
@@ -92,16 +94,16 @@ $(function(){
 				success:function(resultText){
 					if (resultText.trim()=='true') {
 						//팔로우 버튼 숨김
-						$("h3:contains("+mId+")").next().next().children().eq(1).children().hide();
+					
 					}else if (resultText.trim()=='false') {
 						//언팔로우 버튼 숨김
-						$("h3:contains("+mId+")").next().next().children().first().children().hide();
+						//$("h3:contains("+mId+")").next().next().children().first().children().hide();
 					}
 				}
 			
 			});
 		}
-		
+		*/
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 	$('#followings').on('click', function(e) {
 			var $mIdYou = $(e.target);
@@ -195,6 +197,7 @@ $(function(){
 	$(document).on('click','#follow',
 			function(e) {
 				var $mIdYou = $(e.target);
+				console.log("없애야되는 버튼"+e.target);
 				console.log('--------------->' + e.target);
 				 console.log('--------------->' + $mIdYou);
 				 console.log('--------------->' + $mIdYou.attr("mid"));
