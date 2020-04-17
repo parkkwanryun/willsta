@@ -4,6 +4,7 @@
 // DOM TREE 생성 후 connetWS 실행
 var socket = null;
 var loginId = null;
+var loginName = null;
 var mImage = null;
 var contextPath = getContextPath();
 var jsonData = {
@@ -29,9 +30,11 @@ function getLoginId(){
 		success:function(memberInfo){
 			loginId = memberInfo.split(",")[0];
 			mImage = memberInfo.split(",")[1];
+			loginName= memberInfo.split(",")[2];
 		}
 	});
 }
+
 // 메시지 채팅창 출력 콜백함수
 function message_send_form(target){
 	mIdYou = target.find('h3').text();

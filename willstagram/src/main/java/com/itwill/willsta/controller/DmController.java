@@ -27,12 +27,13 @@ public class DmController {
 	private DmService dmService;
 	
 	@ResponseBody
-	@RequestMapping(value = "/sessionCheck", method = RequestMethod.POST)
+	@RequestMapping(value = "/sessionCheck", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public String returnSessionCheck(HttpSession httpSession) {
 		String mId = (String)httpSession.getAttribute("mId");
 		Map<String, Member> memberInfo = dmService.getMemberInfo(mId);		 
 		String mImage = memberInfo.get("member").getmImage();
-		return mId+","+mImage;
+		String mName = memberInfo.get("member").getmName();
+		return mId+","+mImage+","+mName;
 	}
 	@ResponseBody
 	@RequestMapping(value = "/messages_room_create")
