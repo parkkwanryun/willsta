@@ -359,7 +359,7 @@ header {
 }
 .search-bar {
 	float: left;
-	width: 280px;
+	width: 222px;
 	margin-top: 9px;
 }
 .search-bar form {
@@ -393,10 +393,11 @@ header {
 
 nav {
 	float: left;
-	width: 60%;
+	width: 52%;
 	text-align: right;
 	padding-right: 13px;
 }
+
 nav ul li {
 	display: inline-block;
 	text-align: center;
@@ -537,7 +538,7 @@ nav > ul > li > a:hover {
 
 .user-account {
 	float: right;
-	width: 110px;
+	width: 193px;
 	border-left: 1px solid #4169e1;
 	border-right: 1px solid #4169e1;
 	box-sizing: border-box;

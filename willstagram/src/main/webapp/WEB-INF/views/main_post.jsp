@@ -119,9 +119,6 @@
 													<span><i class="la la-plus"></i></span>
 												</div>
 											</c:forEach>
-											<div class="view-more">
-												<a href="#" title="">View More</a>
-											</div>
 										</div><!--suggestions-list end-->
 									</div><!--suggestions end-->
 									<div class="tags-sec full-width">

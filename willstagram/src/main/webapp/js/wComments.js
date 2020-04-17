@@ -72,7 +72,7 @@ function postCommentsCount(e){
 		dataType : "text",
 		success : function(count){
 			//console.log(count);
-			$(e).html("<i class='fas fa-comment-alt'></i>"+msg.Comments+"&nbsp;"+count);
+			$(e).html("<i class='fas fa-comment-alt'></i>"+"&nbsp;"+msg.Comments+"&nbsp;"+count);
 		}
 	});
 }
@@ -91,10 +91,15 @@ function postCommentsCount2($aNodeList){
 			dataType : "text",
 			success : function(count){
 				//console.log(count);
-				$($aNodeList.get(i)).html("<i class='fas fa-comment-alt'></i>"+msg.Comments+"&nbsp;"+count);
+				$($aNodeList.get(i)).html("<i class='fas fa-comment-alt'></i>"+"&nbsp;"+msg.Comments+"&nbsp;"+count);
 			}
 		});
 	}
+}
+
+function sendMessage(pNo){
+	var almsg = pNo+":"+loginId;
+	socket.send(almsg);
 }
 
 
@@ -114,6 +119,7 @@ function commentsInsertActionFunction(e){
 		dataType : "text",
 		success : function(result) {
 			if(result.trim() == "true"){
+				sendMessage(pNo);
 				setTimeout(function() {
 					window.location.reload();
 				}, 500);
@@ -156,9 +162,12 @@ function reCommentsInsertFormShowFunction(e){
 //대댓글 쓰기 ajax요청
 function reCommentsInsertActionFunction(e){
 	//console.log($(e.target).parents(".comment-section"));
+	var pNo = $(e.target).parents('.post-bar').attr("post_no");
 	var $reComments = $(e.target).parents(".comment-section").find(".recomments_insert_form");
 	var params = $reComments.serialize();
 	//console.log(params);
+	//console.log(pNo);
+	
 	$.ajax({
 		url : "reCommentsInsert",
 		data : params,
@@ -166,6 +175,7 @@ function reCommentsInsertActionFunction(e){
 		dataType : "text",
 		success : function(result){
 			if(result.trim() == "true"){
+				sendMessage(pNo);
 				setTimeout(function() {
 					window.location.reload();
 				}, 500);
@@ -231,6 +241,12 @@ $(function() {
 	//Comments 관련 i18n js
 	$.getScript("js/wComments_messages_"+navigator.language+".js", function(){
 		//DOM tree 생성 후 포스트-댓글 수 나타내기
+		postCommentsCount2($('.comment_list_click'));
+	});
+	
+	//무한스크롤 관련 이벤트
+	$(document).scroll(function(){
+		//포스트-댓글 수 나타내기
 		postCommentsCount2($('.comment_list_click'));
 	});
 	

@@ -30,7 +30,7 @@ $(window).on("load", function() {
     });
 
     //  ============= SIGNIN TAB FUNCTIONALITY =========
-
+    
     $('.signup-tab ul li').on("click", function(){
         var tab_id = $(this).attr('data-tab');
         $('.signup-tab ul li').removeClass('current');
@@ -39,9 +39,10 @@ $(window).on("load", function() {
         $("#"+tab_id).addClass('current animated fadeIn');
         return false;
     });
+    
 
     //  ============= SIGNIN SWITCH TAB FUNCTIONALITY =========
-
+    
     $('.tab-feed ul li').on("click", function(){
         var tab_id = $(this).attr('data-tab');
         $('.tab-feed ul li').removeClass('active');
@@ -50,7 +51,7 @@ $(window).on("load", function() {
         $("#"+tab_id).addClass('current animated fadeIn');
         return false;
     });
-
+	
     //  ============= COVER GAP FUNCTION =========
 
     var gap = $(".container").offset().left;
