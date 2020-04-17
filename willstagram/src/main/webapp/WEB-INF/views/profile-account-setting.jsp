@@ -88,7 +88,14 @@ label.error {
 													<i class="la la-user"></i>
 												</div>
 											</div>
-
+											
+											<div class="save-stngs pd2">
+												<ul>
+													<li><button type="submit" value="submit"><s:message code="modify.save"/></button></li>
+												</ul>
+											</div>
+											</form>
+											<form id = "member_img_modify_action" method="POST">
 												<!-- 프로필 이미지 변경(이미지 업로드) -->
 											<div class="cp-field">
 												<h5><s:message code="modify.image"/></h5>

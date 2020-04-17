@@ -11,7 +11,7 @@ public interface MemberDao {
 	
 	/*Create(회원가입- 이미지 없음)*/
 	boolean insertMember(Member member);
-
+	
 	/*Read One(회원정보로딩)*/
 	Member selectByIdContainFollowInfo(String mId);
 
@@ -23,6 +23,9 @@ public interface MemberDao {
 	
 	/*Update One(회원정보 수정)*/
 	boolean updateMember(Member memeber);
+	
+	/*Update One(회원 이미지 업로드)*/
+	boolean updateMemberImg(String mId, String mImage);
 	
 	/*Delete One(회원탈퇴)(mRetire F --> T)(followerCount, followingCount --> 0)*/
 	boolean deleteMember(String mId);
