@@ -276,7 +276,7 @@
 												<c:forEach var="postRank" items="${postRankList}">
 													<div class="job-info" post_no="${postRank.PNO}">
 														<div class="job-details">
-															<h3>${postRank.MNAME}</h3>
+															<h3><a href="user-profile?youId=${postRank.MID}">${postRank.MNAME}</a></h3>
 															<p><a href="#" title="" class="top-views">${postRank.PTITLE}</a></p>
 														</div>
 														<div class="hr-rate">
