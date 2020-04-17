@@ -135,7 +135,7 @@
 															<h4><a href="user-profile?youId=${mList.mId}">${mList.mName}</a></h4>
 															<span>${mList.mEmail}</span>
 														</div>
-														<span><i mid='${mList.mId}' class="la la-plus follow" ></i></span> 
+														<span><i mid='${mList.mId}' class="la la-plus follow_add" ></i></span> 
 													</div>
 												</c:if>
 											</c:forEach>
