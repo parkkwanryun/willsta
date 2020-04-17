@@ -110,18 +110,17 @@
 										</div><!--sd-title end-->
 										<div class="suggestions-list">
 											<c:forEach var="mList" items="${memberList}">
-												<div class="suggestion-usd">
-													<img src="contents/member_image/${mList.mImage}" alt="" width="40px">
-													<div class="sgt-text">
-														<h4>${mList.mName}</h4>
-														<span>${mList.mEmail}</span>
+												<c:if test="${mList.mId!=sessionScope.mId }">
+													<div class="suggestion-usd">
+															<img src="contents/member_image/${mList.mImage}" alt="" width="40px">
+															<div class="sgt-text">
+																<h4><a href="user-profile?youId=${mList.mId}">${mList.mName}</a></h4>
+																<span>${mList.mEmail}</span>
+															</div>
+															<span><i class="la la-plus"></i></span>
 													</div>
-													<span><i class="la la-plus"></i></span>
-												</div>
+												</c:if>
 											</c:forEach>
-											<div class="view-more">
-												<a href="#" title="">View More</a>
-											</div>
 										</div><!--suggestions-list end-->
 									</div><!--suggestions end-->
 									<div class="tags-sec full-width">
@@ -279,7 +278,14 @@
 											<c:forEach var="postRank" items="${postRankList}">
 												<div class="job-info" post_no="${postRank.PNO}">
 													<div class="job-details">
-														<h3>${postRank.MNAME}</h3>
+														<c:choose>
+															<c:when test="${postRank.MID==sessionScope.mId}">
+																<h3><a href="personal_info">${postRank.MNAME}</a></h3>
+															</c:when>
+															<c:otherwise>
+																<h3><a href="user-profile?youId=${postRank.MID}">${postRank.MNAME}</a></h3>
+															</c:otherwise>
+														</c:choose>
 														<p><a href="#" title="" class="top-views">${postRank.PTITLE}</a></p>
 													</div>
 													<div class="hr-rate">
