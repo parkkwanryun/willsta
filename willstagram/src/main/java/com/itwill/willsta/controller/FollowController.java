@@ -67,19 +67,45 @@ public class FollowController {
 
 	@ResponseBody 
 	@RequestMapping(value = "/followerList", method = RequestMethod.POST)
-	public List<Member> followerList(@RequestParam(value = "mId", required = true) String mId) {
-		ModelAndView mv = new ModelAndView();
+	public List<Member> followerList(@RequestParam(name = "mId") String mId) {
+		//ModelAndView mv = new ModelAndView();
 		List<Follow> follower = followService.followerList(mId);
 		List<Member> youMemberList=new ArrayList<Member>();
+		
 		for (Follow follow : follower) {
 			Member youMmeber = memberService.selectById(follow.getmId());
+			int followCheck=followService.followCheck(mId,youMmeber.getmId());
+			if(followCheck==1) {
+				youMmeber.setFollowCheck('1');
+			}else {
+				youMmeber.setFollowCheck('0');
+			}
+			System.out.println("-------->"+youMmeber);
+			
+			
 			youMemberList.add(youMmeber);
 		}
 		
 		return youMemberList;
 
 	}
-	
+	@ResponseBody
+	@RequestMapping(value = "/follow_Check", method = RequestMethod.POST)
+	   public String followCheck(@RequestParam(value = "mIdYou") String mIdYou,HttpSession session, Model model) {
+	      String mId=(String) session.getAttribute("mId");
+	      System.out.println(mIdYou);
+	      //mIdYou="ss501";
+	      String check="";
+	      int followCheck=followService.followCheck(mId, mIdYou);
+	      if (followCheck > 0 ) {
+			System.out.println("### follow상태");
+			check="true";
+	      }else {
+			System.out.println("### follow 아닌 상태");
+			check="false";
+	      }
+	      return check;
+	   }
 	
 	@ResponseBody 
 	@RequestMapping(value = "/followingList", method = RequestMethod.POST)
@@ -156,23 +182,7 @@ public class FollowController {
 		mv.setViewName("myPage");
 		return mv;
 	}
-	@ResponseBody
-	@RequestMapping(value = "/follow_Check", method = RequestMethod.POST)
-	   public String followCheck(@RequestParam(value = "mIdYou") String mIdYou,HttpSession session, Model model) {
-	      String mId=(String) session.getAttribute("mId");
-	      System.out.println(mIdYou);
-	      //mIdYou="ss501";
-	      String check="";
-	      int followCheck=followService.followCheck(mId, mIdYou);
-	      if (followCheck > 0 ) {
-			System.out.println("### follow상태");
-			check="true";
-	      }else {
-			System.out.println("### follow 아닌 상태");
-			check="false";
-	      }
-	      return check;
-	   }
+	
 
 	@ResponseBody
 	@RequestMapping(value = "/follow")
