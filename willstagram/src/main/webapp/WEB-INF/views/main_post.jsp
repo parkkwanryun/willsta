@@ -106,7 +106,6 @@
 									<div class="suggestions full-width">
 										<div class="sd-title">
 											<h3><s:message code="main.suggestion"/></h3>
-											<i class="la la-ellipsis-v"></i>
 										</div><!--sd-title end-->
 										<div class="suggestions-list">
 											<c:forEach var="mList" items="${memberList}">
@@ -270,7 +269,6 @@
 									<div class="widget widget-jobs">
 										<div class="sd-title">
 											<h3><s:message code="post.topView"/></h3>
-											<i class="la la-ellipsis-v"></i>
 										</div>
 										<div class="jobs-list">
 											<c:forEach var="postRank" items="${postRankList}">
