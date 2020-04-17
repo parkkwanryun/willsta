@@ -226,10 +226,12 @@ public class PostServiceImpl implements PostService {
 	public ModelAndView you_main_page(String mId,String mIdYou) {
 		ModelAndView mv = new ModelAndView();
 		
-		Member member = memberService.selectByIdContainFollowInfo(mId);
+		Member member = memberService.selectById(mId);
+		Member memberYou = memberService.selectByIdContainFollowInfo(mIdYou);
 		List<Member> memberList = memberService.selectByRandom(mId);
 		List<Map> postRankList = postDao.selectPostRanking();
 		mv.addObject("member", member);
+		mv.addObject("memberYou", memberYou);
 		mv.addObject("memberList", memberList);
 		mv.addObject("postRankList", postRankList);
 		List<Post> postList = selectMyList(0, mIdYou, 0);

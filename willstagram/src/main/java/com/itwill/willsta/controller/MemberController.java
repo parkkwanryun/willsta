@@ -205,9 +205,7 @@ public class MemberController {
 	public ModelAndView userProfile(@Param("youId")String youId, HttpSession session) {
 		String mId=(String)session.getAttribute("mId");
 		ModelAndView mv=new ModelAndView();
-		Member youProfile=memberService.selectById(youId);
 		mv=postService.you_main_page(mId, youId);
-		mv.addObject("profile",youProfile);
 		mv.setViewName("user-profile");
 		return mv;
 	}
