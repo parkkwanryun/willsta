@@ -97,6 +97,11 @@ function postCommentsCount2($aNodeList){
 	}
 }
 
+function sendMessage(pNo){
+	var almsg = "pNo:"+pNo;
+	socket.send(almsg);
+}
+
 
 //댓글 작성 ajax 요청
 function commentsInsertActionFunction(e){
@@ -114,6 +119,7 @@ function commentsInsertActionFunction(e){
 		dataType : "text",
 		success : function(result) {
 			if(result.trim() == "true"){
+				sendMessage(pNo);
 				setTimeout(function() {
 					window.location.reload();
 				}, 500);
