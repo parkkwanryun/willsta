@@ -84,86 +84,41 @@ function password_check() {
 }
 /*
  * 3) 회원가입
- - enctype: multipart로 지정해주지 않으면 controller로 파일을 보낼 수 없음
+ */
+	function member_register_action_function(){
+		var mrafArray = $('#member_register_action').serializeArray();
+
+		$.ajax({
+			url : 'sign_up_action',
+			data : mrafArray,
+			method : 'POST',
+			dataType : 'text',
+			success : function(textData) {
+				if (textData.trim() == "true") {
+					member_register_action.mId.value = textData.mId;
+					member_register_action.mPass.value = textData.mPass;
+					member_register_action.mName.value = textData.mName;
+					member_register_action.mEmail.value = textData.mEmail;
+					member_register_action.mPhone.value = textData.mPhone;
+					member_register_action.mImage.value = textData.mImage;
+					member_register_action.mRetire.value = textData.mRetire;
+
+					location.href = '/willstagram/sign_in';
+				}else if(textData.trim() == "false"){
+
+				}
+
+			} 
+	});
+		e.preventDefault();
+	}
+/*
+ * 4) 회원정보 수정 함수
+  - enctype: multipart로 지정해주지 않으면 controller로 파일을 보낼 수 없음
  - contentType : false 로 선언 시 content-type 헤더가 multipart/form-data로 전송되게 함
  - processData : false로 선언 시 formData를 string으로 변환하지 않음
  - formData : 해당 폼의 모든 값들(file포함)을 해당 객체에 한번에 담아 보내기 위해 사용
- */
-function member_register_action_function() {
-	alert('회원가입');
-	/*
-	var mrafArray = $('#member_register_action').serializeArray();
-	var formData = new FormData(mrafArray);
-	
-	for(var i = 0; i < mrafArray.length; i++){
-		formData.append(mrafArray[i].name, mrafArray[i].value); // key value 형태
-	}
-	 */
-
-	var formData = new FormData();
-	formData.append('mId',$('#mId').val());
-	formData.append('mPass',$('#mPass').val());
-	formData.append('mName',$('#mName').val());
-	formData.append('mEmail',$('#mEmail').val());
-	formData.append('mPhone',$('#mPhone').val());
-	formData.append('mRetire',$('#mRetire').val());
-
-	/*
-	alert(mrafArray[0].name,mrafArray[0].value);
-	alert(mrafArray[1].name,mrafArray[1].value);
-	alert(mrafArray[2].name,mrafArray[2].value);
-	alert(mrafArray[3].name,mrafArray[3].value);
-	alert(mrafArray[4].name,mrafArray[4].value);
-	alert(mrafArray[5].name,mrafArray[5].value);
-	alert(mrafArray[6].name,mrafArray[6].value); 
-	*/
-	// mImage 제외 모든 value 값들 받음 체크.
-	
-	var inputFile = $("input[name='mImage']");
-	var files = inputFile[0].files;
-	for(var i = 0; i < files.length; i++){
-		formData.append("mUploadImg",mImage[i]);
-	}
-	console.log(formData);
-	
-	$.ajax({
-		url : 'sign_up_action',
-		processData: false,
-        contentType: false,
-        data : formData,
-        cache: false,
-        method: 'POST',
-		dataType : 'json',
-		success : function(jsonData) {
-			alert("complete");
-			//console.log(jsonData);
-
-			if (jsonData.trim() == "true") {
-				member_register_action.mId.value = jsonData.mId;
-				member_register_action.mPass.value = jsonData.mPass;
-				member_register_action.mName.value = jsonData.mName;
-				member_register_action.mEmail.value = jsonData.mEmail;
-				member_register_action.mPhone.value = jsonData.mPhone;
-				member_register_action.mUploadImg.value = jsonData.mUploadImg;
-				member_register_action.mRetire.value = jsonData.mRetire;
-
-				location.href = '/willstagram/sign_in';
-
-			} else if (jsonData.trim() == "false") {
-			}
-
-		},
-		error : function(e){
-			console.log("ERROR :", e);
-			$('#submit').prop("disabled",false);
-			alert('fail');
-		}
-	});
-
-}
-/*
- * 4) 회원정보 수정 함수
- * 
+ 
  */
 function account_setting() {
 	var asArray = $('#member_modify_action').serializeArray();
@@ -183,7 +138,7 @@ function account_setting() {
 				
 				location.href = '/willstagram/main_post';
 			} else {
-				alert('회원수정 실패2');
+
 			}
 		}
 	});
@@ -267,9 +222,6 @@ $(function() {
 				required : true,
 				minlength : 9,
 				digits : true
-			},
-			mUploadImg : {
-				required : true
 			}
 		},
 		messages : {
@@ -295,9 +247,6 @@ $(function() {
 				required : "휴대폰 번호를 입력해주세요",
 				digits : "-을 제외한 숫자만 입력해주세요",
 				minlength : "전화번호는 최소 9자리 이상입니다."
-			},
-			mUploadImg : {
-				required : "프로필 이미지를 업로드해주세요",
 			},
 			mRetire : {
 				required : "약관에 동의해주세요",

@@ -90,20 +90,17 @@ public class MemberController {
 	
 	/*회원가입*/
 	@ResponseBody
-	@RequestMapping(value="/sign_up_action",method = RequestMethod.POST, produces="application/json; charset=UTF-8")
-	public String sign_up_action(Member member, @RequestParam("mUploadImg")MultipartFile mUploadImg,
-								HttpServletRequest request) throws IllegalStateException, IOException, Exception{
-		String path = request.getSession().getServletContext().getRealPath("/")+"contents\\member_image\\";
-		System.out.println("## 이미지 저장경로:"+path);
+	@RequestMapping(value="/sign_up_action",method = RequestMethod.POST, produces="text/plain; charset=UTF-8")
+	public String sign_up_action(Member member){
 		//수정 중
-		boolean newMember = memberService.insertMember(member,mUploadImg);
+		boolean newMember = memberService.insertMember(member);
 			if(newMember) {
 				newMember= true;
-				System.out.println("프로필이미지 포함 회원 가입 성공");
-			}else {
+			}else{
 				newMember= false;
-			}
+				}
 		return newMember+"";
+		
 	}	
 	
 	/*아이디 중복 체크*/
@@ -135,8 +132,12 @@ public class MemberController {
 								@RequestParam("mName")String mName,
 								@RequestParam("mEmail")String mEmail,
 								@RequestParam("mPhone")String mPhone,
-								@RequestParam("mImage")String mImage) {
-		boolean updateMember = memberService.updateMember(new Member(mId, mPass, mName, mEmail, mPhone, mImage, "off"));
+								@RequestParam("mImage")String mImage,
+								HttpServletRequest request) {
+		String path = request.getSession().getServletContext().getRealPath("/")+"contents\\member_image\\";
+		System.out.println("## 이미지 저장경로:"+path);
+		
+		boolean updateMember = memberService.updateMember(new Member(mId, mPass, mName, mEmail, mPhone, mImage, "off"), null );
 		System.out.println(updateMember);
 		if(updateMember) {
 			System.out.println("회원 정보 수정 성공");

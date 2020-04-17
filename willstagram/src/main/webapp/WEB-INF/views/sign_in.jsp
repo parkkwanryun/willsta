@@ -121,7 +121,7 @@ label.error {
 
 									<div class="dff-tab current" id="tab-3">
 
-										<form id="member_register_action" method="POST" enctype = multipart/form-data>
+										<form id="member_register_action" method="POST">
 
 											<div class="row">
 												<div class="col-lg-12 no-pdd">
@@ -160,8 +160,8 @@ label.error {
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="file" id="mImage1" name="mImage"
-															class="required" placeholder="<s:message code='join.image'/>">
+														<input type="text" id="mImage" name="mImage"
+														readonly placeholder="회원수정 탭에서 프로필 이미지 등록">
 														<i class="la la-user"></i>
 													</div>
 												</div>
@@ -180,7 +180,6 @@ label.error {
 												</div>
 											</div>
 										</form>
-
 
 									</div>
 									<!--dff-tab end-->

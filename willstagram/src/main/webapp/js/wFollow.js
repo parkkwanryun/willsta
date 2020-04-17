@@ -162,7 +162,7 @@ $(function(){
 
 	
 	// 친구추천 리스트에 있는 팔로우버튼 (class로 검색)
-	$('.follow').on(
+	$('.follow_add').on(
 			'click',
 			function(e) {
 				var $mIdYou = $(e.target);
