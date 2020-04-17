@@ -90,17 +90,17 @@
 										</div><!--user-pro-img end-->
 										<div class="user_pro_status">
 											<ul class="flw-hr">
-												<li><a href="#" title="" class="follow">Follow</a></li>
-												<li><a href="#" title="" class="unFollow">unFollow</a></li>
-												<li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i>Message</a></li>
+												<li><a href="#" title="" class="follow"><s:message code="profile.follow"/></a></li>
+												<li><a href="#" title="" class="unFollow"><s:message code="profile.unfollow"/></a></li>
+												<li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i><s:message code="menu.message"/></a></li>
 											</ul>
 											<ul class="flw-status">
 												<li>
-													<span>Following</span>
+													<span><s:message code="main.follow"/></span>
 													<b class="followings">${memberYou.followingCount}</b>
 												</li>
 												<li>
-													<span>Followers</span>
+													<span><s:message code="main.follower"/></span>
 													<b class="followers">${memberYou.followerCount}</b>
 												</li>
 											</ul>
@@ -108,7 +108,7 @@
 									</div><!--user_profile end-->
 									<div class="suggestions full-width">
 										<div class="sd-title">
-											<h3>친구추천</h3>
+											<h3><s:message code="main.suggestion"/></h3>
 										</div><!--sd-title end-->
 										<div class="suggestions-list">
 											<c:forEach var="mList" items="${memberList}">
@@ -276,7 +276,14 @@
 												<c:forEach var="postRank" items="${postRankList}">
 													<div class="job-info" post_no="${postRank.PNO}">
 														<div class="job-details">
-															<h3><a href="user-profile?youId=${postRank.MID}">${postRank.MNAME}</a></h3>
+															<c:choose>
+																<c:when test="${postRank.MID==sessionScope.mId}">
+																	<h3><a href="personal_info">${postRank.MNAME}</a></h3>
+																</c:when>
+																<c:otherwise>
+																	<h3><a href="user-profile?youId=${postRank.MID}">${postRank.MNAME}</a></h3>
+																</c:otherwise>
+															</c:choose>
 															<p><a href="#" title="" class="top-views">${postRank.PTITLE}</a></p>
 														</div>
 														<div class="hr-rate">
