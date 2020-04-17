@@ -128,23 +128,16 @@
 										</div><!--sd-title end-->
 										<div class="suggestions-list">
 											<c:forEach var="mList" items="${memberList}">
-											
-												<div class="suggestion-usd">
 												<c:if test="${mList.mId!=sessionScope.mId }">
-													<img src="contents/member_image/${mList.mImage}" alt="" width="40px">
-													<div class="sgt-text">
-														<h4>${mList.mName}</h4>
-														<span>${mList.mEmail}</span>
+													<div class="suggestion-usd">
+														<img src="contents/member_image/${mList.mImage}" alt="" width="40px">
+														<div class="sgt-text">
+															<h4><a href="user-profile?youId=${mList.mId}">${mList.mName}</a></h4>
+															<span>${mList.mEmail}</span>
+														</div>
+														<span><i mid='${mList.mId}' class="la la-plus follow" ></i></span> 
 													</div>
-
-													<span><i mid='${mList.mId}' class="la la-plus follow_add" ></i></span> 
-
-
-										
-													</c:if>
-					
-												</div>
-											
+												</c:if>
 											</c:forEach>
 										</div><!--suggestions-list end-->
 									</div><!--suggestions end-->
