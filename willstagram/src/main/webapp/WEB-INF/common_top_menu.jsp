@@ -91,13 +91,9 @@
 							<a href="#" title="">${sessionScope.mName}</a>
 						</div>
 						<div class="user-account-settingss" id="users">
-							
 							<h3><s:message code="menu.setting"/></h3>
 							<ul class="us-links">
-								<li><a href="profile-account-setting" title=""><s:message code="menu.accountSetting"/></a></li>
-								<li><a href="#" title="">Privacy</a></li>
-								<li><a href="#" title="">Faqs</a></li>
-								<li><a href="#" title="">Terms & Conditions</a></li>
+								<li><a href="profile-account-setting" title="" ><s:message code="menu.accountSetting"/></a></li>
 							</ul>
 							<c:if test="${!empty(sMemberId)}">
 							<h3 class="tc" id="inner_sign_out">
