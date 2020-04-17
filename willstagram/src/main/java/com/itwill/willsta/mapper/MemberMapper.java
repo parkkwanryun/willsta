@@ -19,7 +19,7 @@ public interface MemberMapper {
 
 	// 이미지 넣을 INSERT 쿼리 1개 - 파일 이름으로 넣기 (회원가입 후에 최종단계에 수행 될 쿼리문)
 	@Insert("INSERT INTO MEMBER VALUES(#{mId},#{mImage})")
-	public int insertImg(@Param("mId")String mId, @Param("mImage")String mImage);
+	public boolean insertImg(Member mImage);
 
 	/* 회원정보 로딩 */
 	@Select("SELECT m.mId, m.mPass, m.mName, m.mEmail, m.mPhone, m.mImage, "

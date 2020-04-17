@@ -10,7 +10,9 @@ public interface MemberService {
 	
 	boolean insertMember(Member member);
 	
-	boolean updateMember(Member member, MultipartFile mUploadImg);
+	boolean updateMemberImg(String mId, MultipartFile mImage);
+	
+	boolean updateMember(Member member);
 
 	Member selectById(String mId);
 	

@@ -161,7 +161,7 @@ label.error {
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
 														<input type="text" id="mImage" name="mImage"
-														readonly placeholder="회원수정 탭에서 프로필 이미지 등록">
+														readonly placeholder="회원수정 ->이미지 등록">
 														<i class="la la-user"></i>
 													</div>
 												</div>

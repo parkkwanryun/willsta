@@ -123,7 +123,7 @@ public class MemberController {
 	public String AccountSettingAccess() {
 		return "profile-account-setting";
 	}
-	/*회원 정보 수정*/
+	/*회원 정보 수정(이미지 제외)*/
 	@MemberLoginCheck
 	@ResponseBody
 	@RequestMapping(value="/account-setting", method=RequestMethod.POST, produces="text/plain; charset=UTF-8")
@@ -137,7 +137,7 @@ public class MemberController {
 		String path = request.getSession().getServletContext().getRealPath("/")+"contents\\member_image\\";
 		System.out.println("## 이미지 저장경로:"+path);
 		
-		boolean updateMember = memberService.updateMember(new Member(mId, mPass, mName, mEmail, mPhone, mImage, "off"), null );
+		boolean updateMember = memberService.updateMember(new Member(mId, mPass, mName, mEmail, mPhone, mImage, "off"));
 		System.out.println(updateMember);
 		if(updateMember) {
 			System.out.println("회원 정보 수정 성공");
@@ -148,6 +148,29 @@ public class MemberController {
 		}
 	return updateMember+"";
 	}
+	
+	/*회원정보 수정(이미지)*/
+	@MemberLoginCheck
+	@ResponseBody
+	@RequestMapping(value="/account_img_setting", method=RequestMethod.POST, produces="text/plain; charset=UTF-8")
+	public String AccountSetting(@RequestParam("mId")String mId,
+								@RequestParam("mUploadImg")MultipartFile mImage,
+								HttpServletRequest request) {
+		String path = request.getSession().getServletContext().getRealPath("/")+"contents\\member_image\\";
+		System.out.println("## 이미지 저장경로:"+path);
+		
+		boolean updateMemberImg = memberService.updateMemberImg(mId, mImage);
+		System.out.println(updateMemberImg);
+		if(updateMemberImg) {
+			System.out.println("회원 이미지 수정 성공");
+			updateMemberImg= true;
+		}else {
+			System.out.println("회원 이미지 수정 실패");
+			updateMemberImg= false;
+		}
+	return updateMemberImg+"";
+	}
+	
 	
 	/*회원탈퇴*/
 	

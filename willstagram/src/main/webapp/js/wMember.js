@@ -144,6 +144,25 @@ function account_setting() {
 	});
 }
 
+function account_img_setting(){
+	var aisArray = $('#member_img_modify_action').serializeArray();
+	$.ajax({
+		url : 'account_img_setting',
+		method : 'POST',
+		data : aisArray,
+		dataType : 'text',
+		success : function(textData) {
+			if (textData.trim() == "true") {
+				member_modify_action.mImage.value = textData.mImage;
+				
+				location.href = '/willstagram/profile-account-setting';
+			} else {
+
+			}
+		}
+	});
+}
+
 
 
 /*
@@ -259,7 +278,7 @@ $(function() {
 		validClass : "valid"
 	});
 
-	// 회원 정보 수정 시 유효성 검증
+	// 회원 정보 수정(이미지 제외) 유효성 검증
 	$('#member_modify_action').validate({
 		rules : {
 			mPass : {
@@ -300,6 +319,25 @@ $(function() {
 		},
 		submitHandler : function() {
 			account_setting();
+		},
+		errorClass : "error",
+		validClass : "valid"
+	});
+	
+	// 회원 이미지 수정 시 유효성 검증
+	$('#member_img_modify_action').validate({
+		rules : {
+			mImage : {
+				required : true
+			}
+		},
+		messages : {
+			mImage : {
+				required : "프로필 이미지를 업로드해주세요",
+			}
+		},
+		submitHandler : function() {
+			account_img_setting();
 		},
 		errorClass : "error",
 		validClass : "valid"

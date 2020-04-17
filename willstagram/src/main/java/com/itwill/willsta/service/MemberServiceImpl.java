@@ -34,10 +34,17 @@ public class MemberServiceImpl implements MemberService {
 	public Member selectById(String mId) {
 		return memberDao.selectById(mId);
 	}
+	
 
 	@Override
-	public boolean updateMember(Member member, MultipartFile mUploadImg){
-		String originalFile = mUploadImg.getOriginalFilename();
+	public boolean updateMember(Member member) {
+		// TODO Auto-generated method stub
+		return false;
+	}	
+	
+	@Override
+	public boolean updateMemberImg(String mId, MultipartFile mImage){
+		String originalFile = mImage.getOriginalFilename();
 		System.out.println(originalFile);
 		// 파일명 중 확장자만 추출
 		// lastIndexOf(".") - 뒤에 있는 . 의 index번호
@@ -48,21 +55,23 @@ public class MemberServiceImpl implements MemberService {
 		String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
 
 		// 파일이름을 mImage로 회원정보 전체를 db에 넣어줌
+		/*
 		member = new Member(member.getmId(), member.getmPass(), member.getmName(), member.getmEmail(),
 				member.getmPhone(), storedFileName, member.getmRetire());
-		boolean insertOk = memberDao.insertMember(member);
+				*/
+		boolean insertOk = memberDao.updateMemberImg(mId,mImage);
 		// 파일을 저장하기 위한 파일 객체 생성
 		if (insertOk) {
 			File file = new File(uploadFolder, storedFileName);
 			// 파일을 contents/member_image 폴더에 저장
 			try {
-				mUploadImg.transferTo(file);
+				mImage.transferTo(file);
 			} catch (IllegalStateException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		return memberDao.updateMember(member);
+		return memberDao.updateMemberImg(mId,mImage);
 	}
 		
 

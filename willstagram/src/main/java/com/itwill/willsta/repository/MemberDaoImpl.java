@@ -28,7 +28,12 @@ public class MemberDaoImpl implements MemberDao{
 	public boolean updateMember(Member memeber) {
 		return memberMapper.updateMember(memeber);
 	}//
-
+	
+	@Override
+	public boolean updateMemberImg(String mId, String mImage) {
+		return memberMapper.insertImg(mId, mImage);
+	}
+	
 	@Override
 	public boolean deleteMember(String mId) {
 		return memberMapper.deleteMember(mId);
@@ -79,6 +84,7 @@ public class MemberDaoImpl implements MemberDao{
 	public List<Member> selectByRandom(String mId) {
 		return memberMapper.selectByRandom(mId);
 	}
+
 
 
 	
