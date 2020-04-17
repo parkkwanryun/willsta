@@ -98,7 +98,7 @@ function postCommentsCount2($aNodeList){
 }
 
 function sendMessage(pNo){
-	var almsg = "pNo:"+pNo+"mId:"+loginId;
+	var almsg = pNo+":"+loginId;
 	socket.send(almsg);
 }
 
