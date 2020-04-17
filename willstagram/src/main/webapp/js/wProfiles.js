@@ -29,7 +29,7 @@ $(function(){
 		
 		//키워드 값 변수에 저장
 		userKeyword="findId="+$('input[name=search]').val();
-		//console.log(userKeyword);
+		console.log(userKeyword);
 		
 		$.ajax({
 			url:'search_member',
@@ -44,7 +44,7 @@ $(function(){
 		});
 		e.preventDefault();
 	});
-	
+	 
 	//팔로우
 	$(document).on('click','.follow',function(e){
 		var $mIdYou=$(e.target).parents("div.company-up-info");
