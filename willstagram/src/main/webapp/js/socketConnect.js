@@ -46,7 +46,8 @@ function message_send_form(target){
 	htmlData +=			"<p>Online</p>";
 	htmlData +=		"</div>";
 	htmlData +=	"</div>";
-	htmlData +=	"<a href='#' title=''><i class='fa fa-ellipsis-v'></i></a>";
+	htmlData +=	" <a href ='#' span class ='glyphicon glyphicon-remove'>x</span></a>";
+	htmlData += "";
 	htmlData +=	"</div>";
 	htmlData +=	"<div class='messages-line' id = 'messageContents' style='overflow:auto'>";
 	htmlData +=	"</div>";
@@ -94,7 +95,7 @@ function message_rightInsert_html(jsonData){
 	htmlData +=				"</div>";
 	htmlData +=				"<p style='float:right;'>"+jsonData.msgDate+"분</p>";
 	htmlData +=			"</div>";
-	htmlData +=			"<div class='messg-usr-img' style='left:400px'>";
+	htmlData +=			"<div class='messg-usr-img' style='auto'>";
 	htmlData +=				"<img src='contents/member_image/"+jsonData.dmContentsImage+"' alt=''>";
 	htmlData +=			"</div>";
 	htmlData +=	"</div>";
@@ -265,7 +266,16 @@ $(document).ready(function(){
 			message_send_form(target);
 			message_detail_function(target);
 			message_send_function(target);
+			
+			$('.message-bar-head').find('.glyphicon').on('click', function(e){
+				var messagebar = $('.message-bar-head');
+				messagebar.css('display', 'none');
+				e.preventDefault();
+			});
 		});
+		// 채팅방 오픈 후 상대 유저 정보창 제거 이벤트
+
+		
 		//profile 탭에서 유저의 메세지 버튼 클릭시 방 생성
 		$(document).find('.message-us').on('click',function(e){
 			e.preventDefault();
@@ -294,7 +304,7 @@ function connectWS() {
 			let socketAlert = $('a#socketAlert');
 			socketAlert.text(jsonData.mIdYou+"님이 메세지를 보냈습니다.");
 			socketAlert.css('display', 'block');
-			setTimeout( function() {
+			setTimeout(function() {
 				socketAlert.css('display', 'none');
 			},3000);
 		};
