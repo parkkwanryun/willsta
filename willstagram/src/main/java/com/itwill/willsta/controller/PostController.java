@@ -49,6 +49,19 @@ public class PostController {
 		return mv;
 	}
 	
+	@MemberLoginCheck
+	@RequestMapping(value="/you_add_post" , produces = "text/html;charset=utf-8")
+	public ModelAndView youSelectAddPost(@RequestParam(value="lastpNo", required = true) Integer lastpNo,
+										 @RequestParam(value="mIdYou", required = true) String mIdYou) {
+		ModelAndView mv = new ModelAndView();
+		List<Post> postList = postService.selectMyList(lastpNo, mIdYou,0);
+		for (Post post : postList) {
+			post.setTagArray(post.getHasTag().split(" "));
+		}
+		mv.addObject("postList", postList);
+		mv.setViewName("post");
+		return mv;
+	}
 	
 	@MemberLoginCheck
 	@RequestMapping(value="/get_post" , produces = "text/html;charset=utf-8")
