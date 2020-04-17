@@ -78,7 +78,7 @@ $(function(){
 	});
 	
 	// Top Views를 통해 컨텐츠 보기 detail
-	$(document).on('click', '.job-info a', function(e) {
+	$(document).on('click', '.top-views', function(e) {
 		var $post = $(e.target).parents('.job-info');
 		var params = "pNo=" + $post.attr('post_no');
 		$.ajax({
