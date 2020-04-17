@@ -11,16 +11,16 @@ import com.itwill.willsta.domain.Member;
 
 public interface MemberService {
 	
-	boolean insertMember(Member member, MultipartFile mUploadImg) throws IllegalStateException, IOException;
+	boolean insertMember(Member member);
 	
+	boolean updateMember(Member member, MultipartFile mUploadImg);
+
 	Member selectById(String mId);
 	
 	Member selectByIdContainFollowInfo(String mId);
 	
 	List<Member> selectByRandom(String mId);
 
-	boolean updateMember(Member member);
-	
 	boolean deleteMember(String mId);
 	
 	boolean existedMember(String mId);
@@ -38,6 +38,5 @@ public interface MemberService {
 	List<Member> addMemberList(String lastId);
 	
 	List<Member> findMemberList(String findId);
-
 
 }

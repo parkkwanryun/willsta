@@ -4,7 +4,7 @@ function post_write() {
 	var formData = new FormData();
 
 	var paramArray = $('#postWrite').serializeArray();
-
+	
 	for (var i = 0; i < paramArray.length; i++) {
 		if (paramArray[i].name == 'pNo' && paramArray[i].value > 0) {
 			postno = paramArray[i].value;

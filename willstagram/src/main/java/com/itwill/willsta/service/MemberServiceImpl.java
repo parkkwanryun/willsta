@@ -26,8 +26,17 @@ public class MemberServiceImpl implements MemberService {
 	
 	String uploadFolder ="/var/lib/tomcat8/webapps/willstagram/contents/member_image/";
 	@Override
-	public boolean insertMember(Member member, MultipartFile mUploadImg) throws IllegalStateException, IOException {
-		
+	public boolean insertMember(Member member) {
+		return memberDao.insertMember(member);
+	}
+
+	@Override
+	public Member selectById(String mId) {
+		return memberDao.selectById(mId);
+	}
+
+	@Override
+	public boolean updateMember(Member member, MultipartFile mUploadImg){
 		String originalFile = mUploadImg.getOriginalFilename();
 		System.out.println(originalFile);
 		// 파일명 중 확장자만 추출
@@ -46,21 +55,16 @@ public class MemberServiceImpl implements MemberService {
 		if (insertOk) {
 			File file = new File(uploadFolder, storedFileName);
 			// 파일을 contents/member_image 폴더에 저장
-			mUploadImg.transferTo(file);
+			try {
+				mUploadImg.transferTo(file);
+			} catch (IllegalStateException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		return memberDao.insertMember(member);
-	}
-	
-
-	@Override
-	public Member selectById(String mId) {
-		return memberDao.selectById(mId);
-	}
-
-	@Override
-	public boolean updateMember(Member member) {
 		return memberDao.updateMember(member);
 	}
+		
 
 	@Override
 	public boolean deleteMember(String mId) {
@@ -125,5 +129,6 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> selectByRandom(String mId) {
 		return memberDao.selectByRandom(mId);
 	}
+
 
 }
