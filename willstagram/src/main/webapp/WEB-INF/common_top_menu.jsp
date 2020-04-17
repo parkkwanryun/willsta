@@ -81,14 +81,14 @@
 					<div class="user-account">
 						<div class="user-info">
 							<c:choose>
-								<c:when test="${member.mImage==null}">
+								<c:when test="${sessionScope.mImage==null}">
 									<img src="contents/member_image/default.png" width="35px" height="35px">
 								</c:when>
 								<c:otherwise>
-									<img src="contents/member_image/${member.mImage}" width="35px" height="35px">
+									<img src="contents/member_image/${sessionScope.mImage}" width="35px" height="35px">
 								</c:otherwise>
 							</c:choose>
-							<a href="#" title="">${member.mName}</a>
+							<a href="#" title="">${sessionScope.mName}</a>
 						</div>
 						<div class="user-account-settingss" id="users">
 							
