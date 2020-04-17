@@ -247,23 +247,18 @@ $(document).ready(function(){
 			
 			$('div.messages-list > ul > li.active').removeClass('active');
 			if(nodeName=='H3'){
-				console.log("H3");
 				target = $(e.target).parents('.usr-msg-details');
 				$(target).parent().addClass('active');
 			}else if(nodeName=='SPAN'){
-				console.log("SPAN");
 				target = $(e.target).parents('.usr-msg-details');
 				$(target).parent().addClass('active');
 		    }else if(nodeName=='LI'){
-		    	console.log("LI");
 		    	target = $(e.target).find('.usr-msg-details');
 		    	$(e.target).addClass('active');
 		    }else if(nodeName=='DIV'){
-		    	console.log("DIV");
 		    	target = $(e.target);
 		    	$(target).parent().addClass('active');
 		    } else if(nodeName =='IMG'){
-		    	console.log('image');
 		    	target = $(e.target).parents('.usr-msg-details');
 		    }
 			$('.main-conversation-box').html("");
@@ -277,7 +272,6 @@ $(document).ready(function(){
 			message_profile_create_function(e);
 		});
 });	
-
 function connectWS() {
 	var ws = new WebSocket(contextPath+"/replyEcho");
 	socket = ws;
