@@ -92,7 +92,7 @@
 											<ul class="flw-hr">
 												<li><a href="#" title="" class="follow"><s:message code="profile.follow"/></a></li>
 												<li><a href="#" title="" class="unFollow"><s:message code="profile.unfollow"/></a></li>
-												<li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i><s:message code="menu.message"/></a></li>
+												<li><a href="" title="" class="message-us"><i class="fa fa-envelope"></i><s:message code="menu.message"/></a></li>
 											</ul>
 											<ul class="flw-status">
 												<li>
