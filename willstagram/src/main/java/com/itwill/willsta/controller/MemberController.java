@@ -100,6 +100,7 @@ public class MemberController {
 				newMember= false;
 				}
 		return newMember+"";
+		
 	}	
 	
 	/*아이디 중복 체크*/
