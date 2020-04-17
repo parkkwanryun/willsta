@@ -56,11 +56,14 @@ public class MemberController {
 		System.out.println("로그인 컨트롤러 테스트"+"mId:"+mId+" mPass:"+mPass);
 		String forwardPath = "";
 		//String a= request.getSession().getServletContext().getRealPath("/");
-
+		Member member = memberService.selectById(mId);
+		
 		//logger.info("프로젝트 경로 찾기" + a);
 		try {
 			Member signInMember = memberService.signIn(mId, mPass);
 			session.setAttribute("mId", mId);
+			session.setAttribute("mName", member.getmName());
+			session.setAttribute("mImage", member.getmImage());
 			session.setAttribute("sMemberId", signInMember);
 			forwardPath="true";
 		} catch (MemberNotFoundException e) {
@@ -190,9 +193,8 @@ public class MemberController {
 	}
 	/*유저검색*/
 	@MemberLoginCheck
-	@ResponseBody
-	@RequestMapping(value = "/search_member", method = RequestMethod.POST)
-	public ModelAndView findMemberList(@RequestParam(value = "findId") String findId) {
+	@RequestMapping(value = "/search_member")
+	public ModelAndView findMemberList(@Param("search") String findId) {
 		ModelAndView mv=new ModelAndView();
 		List<Member> findMemberList=memberService.findMemberList(findId);
 		mv.addObject("memberList",findMemberList);
