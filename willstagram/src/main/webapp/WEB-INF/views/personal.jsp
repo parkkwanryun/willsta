@@ -125,7 +125,6 @@
 									<div class="suggestions full-width">
 										<div class="sd-title">
 											<h3><s:message code="main.suggestion"/></h3>
-											<i class="la la-ellipsis-v"></i>
 										</div><!--sd-title end-->
 										<div class="suggestions-list">
 											<c:forEach var="mList" items="${memberList}">
