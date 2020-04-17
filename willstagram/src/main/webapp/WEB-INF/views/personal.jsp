@@ -144,13 +144,7 @@
 												</div>
 											
 											</c:forEach>
-											<div class="view-more">
-												<!-- <a href="#" title="">View More</a> -->
-											</div>
 										</div><!--suggestions-list end-->
-										
-										
-										
 									</div><!--suggestions end-->
 									<div class="tags-sec full-width">
 										<div class="cp-sec">
@@ -505,7 +499,6 @@
 <script type="text/javascript" src="js/wPost.js"></script>
 <script type="text/javascript" src="js/wComments.js"></script>
 <script type="text/javascript" src="js/wFollow.js"></script>
-<script type="text/javascript" src="js/wSearch.js"></script>
 </body>
 </html>
 
