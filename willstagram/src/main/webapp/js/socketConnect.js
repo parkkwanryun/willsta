@@ -98,9 +98,6 @@ function message_rightInsert_html(jsonData){
 	htmlData +=				"</div>";
 	htmlData +=				"<p style='float:right;'>"+jsonData.msgDate+"분</p>";
 	htmlData +=			"</div>";
-	htmlData +=			"<div class='messg-usr-img' style='auto'>";
-	htmlData +=				"<img src='' alt=''>";
-	htmlData +=			"</div>";
 	htmlData +=	"</div>";
 	
 	$('.messages-line').append(htmlData);
@@ -187,8 +184,7 @@ function message_list_function(jsonArrayData){
 	
 
 //  채팅방 생성 콜백함수
-function message_profile_create_function(e){
-	var mIdYou = $(e.target).parents('.company-up-info').attr('mIdYou');
+function message_profile_create_function(mIdYou){
 	console.log("mIdYou : "+mIdYou);
 	console.log("loginId : "+loginId);
  		if(loginId != null && mIdYou != null){
@@ -276,13 +272,21 @@ $(document).ready(function(){
 				e.preventDefault();
 			});
 		});
-		// 채팅방 오픈 후 상대 유저 정보창 제거 이벤트
-
+//		body > div.wrapper > main > div > div > div > div > div:nth-child(1) >
+//		div > div.user_profile > div.user_pro_status > ul.flw-hr > li:nth-child(3) > a
+		$('.user_pro_status').find('.message-us').on('click',function(e){
+			var url = decodeURIComponent(location.href);
+			url = decodeURIComponent(url);
+			var mIdYou = url.substring( url.indexOf('=')+1, url.length );
+			message_profile_create_function(mIdYou);
+		});
+			
 		
 		//profile 탭에서 유저의 메세지 버튼 클릭시 방 생성
 		$(document).find('.message-us').on('click',function(e){
 			e.preventDefault();
-			message_profile_create_function(e);
+			var mIdYou = $(e.target).parents('.company-up-info').attr('mIdYou');
+			message_profile_create_function(mIdYou);
 		});
 });	
 function connectWS() {
