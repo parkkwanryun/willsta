@@ -43,8 +43,10 @@ public class MemberServiceImpl implements MemberService {
 	}	
 	
 	@Override
-	public boolean updateMemberImg(String mId, MultipartFile mImage){
-		String originalFile = mImage.getOriginalFilename();
+	public boolean updateMemberImg(String mId, MultipartFile uploadImg){
+		String mImage;
+		
+		String originalFile = uploadImg.getOriginalFilename();
 		System.out.println(originalFile);
 		// 파일명 중 확장자만 추출
 		// lastIndexOf(".") - 뒤에 있는 . 의 index번호
@@ -59,13 +61,14 @@ public class MemberServiceImpl implements MemberService {
 		member = new Member(member.getmId(), member.getmPass(), member.getmName(), member.getmEmail(),
 				member.getmPhone(), storedFileName, member.getmRetire());
 				*/
+		mImage = storedFileName;
 		boolean insertOk = memberDao.updateMemberImg(mId,mImage);
 		// 파일을 저장하기 위한 파일 객체 생성
 		if (insertOk) {
 			File file = new File(uploadFolder, storedFileName);
 			// 파일을 contents/member_image 폴더에 저장
 			try {
-				mImage.transferTo(file);
+				uploadImg.transferTo(file);
 			} catch (IllegalStateException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

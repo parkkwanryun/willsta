@@ -157,7 +157,7 @@ function account_img_setting(){
 				
 				location.href = '/willstagram/profile-account-setting';
 			} else {
-
+				alert('이미지 삽입 실패');
 			}
 		}
 	});
