@@ -56,11 +56,7 @@ public class MemberServiceImpl implements MemberService {
 		 */
 		String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
 
-		// 파일이름을 mImage로 회원정보 전체를 db에 넣어줌
-		/*
-		member = new Member(member.getmId(), member.getmPass(), member.getmName(), member.getmEmail(),
-				member.getmPhone(), storedFileName, member.getmRetire());
-				*/
+		// 파일이름을 mImage에 넣어줌
 		mImage = storedFileName;
 		boolean insertOk = memberDao.updateMemberImg(mId,mImage);
 		// 파일을 저장하기 위한 파일 객체 생성

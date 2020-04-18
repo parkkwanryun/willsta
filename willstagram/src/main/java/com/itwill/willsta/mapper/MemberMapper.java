@@ -17,9 +17,9 @@ public interface MemberMapper {
 	@Insert("INSERT INTO MEMBER VALUES (#{mId},#{mPass},#{mName},#{mEmail},#{mPhone},#{mImage},#{mRetire})")
 	public boolean insertMember(Member member);
 
-	// 이미지 넣을 INSERT 쿼리 1개 - 파일 이름으로 넣기 (회원가입 후에 최종단계에 수행 될 쿼리문)
-	//@Insert("INSERT INTO MEMBER mId, mImage select #{mId}, #{mImage} from MEMBER");
-	@Insert("INSERT INTO MEMBER(mImage) VALUES(#{mId},#{mImage}) WHERE mId = #{mId}")
+	// 이미지 넣을 INSERT 쿼리 1개 - 파일 이름으로 넣기 (회원수정 시 수행 될 쿼리문)
+	// WHEN NOT MATCHED THEN INSERT (mImage) VALUES(null)
+	@Insert("MERGE INTO MEMBER USING DUAL ON (mId = #{mId}) WHEN MATCHED THEN UPDATE SET mImage = #{mImage}")
 	public boolean insertImg(@Param("mId")String mId,@Param("mImage")String mImage);
 
 	/* 회원정보 로딩 */
