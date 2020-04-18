@@ -46,14 +46,14 @@ public class MemberUnitTestMain {
 	@Test //회원가입
 	@Ignore
 	public void insertMember() {
-		Member newMember = new Member("das", "12345", "윌스타그램", "bluepk2034@naver.com","0133755555", "","F");
+		Member newMember = new Member("s1234", "12345", "윌스타그램", "bluepk2034@naver.com","0133755555", "","F");
 		boolean member = memberDao.insertMember(newMember);
 		System.out.println("## 회원가입(멤버 추가) :"+member);
 	}
 	@Test // 회원 수정 (이미지삽입)
 	public void updateMemberImg() {
-		boolean newMember = memberDao.updateMemberImg("아이디", "파일이름");
-		System.out.println(newMember);
+		boolean newMember = memberDao.updateMemberImg("das", "fileName");
+		System.out.println("### 이미지 삽입 성공 여부:"+newMember);
 	}
 	
 
