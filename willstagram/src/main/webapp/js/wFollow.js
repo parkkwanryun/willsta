@@ -62,7 +62,9 @@ $(function(){
 													+ "' alt='' width='40px'>"
 													+ "<div class='sgt-text'>"
 													+ "<h4>"
+													+ "<a href=user-profile?youId="+mId+">"
 													+ mName
+													+ "</a>"
 													+ "</h4>"
 													+ "<span>"
 													+ mEmail
@@ -134,7 +136,9 @@ $(function(){
 										+ "' alt='' width='40px'>"
 										+ "<div class='sgt-text'>"
 										+ "<h4>"
+										+ "<a href=user-profile?youId="+mId+">"
 										+ mName
+										+ "</a>"
 										+ "</h4>"
 										+ "<span>"
 										+ mEmail
