@@ -10,8 +10,8 @@
 						<a href="main_post" title=""><img src="images/logo.png" alt=""></a>
 					</div><!--logo end-->
 					<div class="search-bar">
-						<form class="userSearch">
-							<input type="text" name="search" placeholder="<s:message code="menu.search"/>">
+						<form class="userSearch" action="profiles">
+							<input type="text" name="search"  placeholder="<s:message code="menu.search"/>">
 							<button type="submit"><i class="la la-search"></i></button>
 						</form>
 					</div><!--search-bar end-->
