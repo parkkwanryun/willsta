@@ -188,16 +188,24 @@ public class MemberController {
 		mv.setViewName("my-profile-feed");
 		return mv;
 	}
-	/*유저목록*/
+	/*유저목록,검색목록*/
 	@MemberLoginCheck
 	@RequestMapping(value = "/profiles")
-	public ModelAndView memberList() {
+	public ModelAndView memberList(@Param(value = "search") String search) {
 		ModelAndView mv=new ModelAndView();
-		List<Member> memberList=memberService.memberList();
-		mv.addObject("memberList",memberList);
+		if (search==null) {
+			//유저목록
+			List<Member> memberList=memberService.memberList();
+			mv.addObject("memberList",memberList);
+		}else {
+			//검색목록
+			List<Member> findMemberList=memberService.findMemberList(search);
+			mv.addObject("memberList",findMemberList);
+		}
 		mv.setViewName("profiles");
 		return mv;
 	}
+	
 	/*유저목록 스크롤*/
 	@MemberLoginCheck
 	@ResponseBody
@@ -211,16 +219,7 @@ public class MemberController {
 		return mv;
 		
 	}
-	/*유저검색*/
-	@MemberLoginCheck
-	@RequestMapping(value = "/search_member")
-	public ModelAndView findMemberList(@Param("search") String findId) {
-		ModelAndView mv=new ModelAndView();
-		List<Member> findMemberList=memberService.findMemberList(findId);
-		mv.addObject("memberList",findMemberList);
-		mv.setViewName("profiles");
-		return mv;
-	}
+	
 	/*상대방페이지*/
 	@MemberLoginCheck
 	@RequestMapping(value = "/user-profile")
