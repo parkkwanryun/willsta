@@ -18,8 +18,9 @@ public interface MemberMapper {
 	public boolean insertMember(Member member);
 
 	// 이미지 넣을 INSERT 쿼리 1개 - 파일 이름으로 넣기 (회원가입 후에 최종단계에 수행 될 쿼리문)
-	@Insert("INSERT INTO MEMBER VALUES(#{mId},#{mImage})")
-	public boolean insertImg(Member mImage);
+	//@Insert("INSERT INTO MEMBER mId, mImage select #{mId}, #{mImage} from MEMBER");
+	@Insert("INSERT INTO MEMBER(mImage) VALUES(#{mId},#{mImage}) WHERE mId = #{mId}")
+	public boolean insertImg(@Param("mId")String mId,@Param("mImage")String mImage);
 
 	/* 회원정보 로딩 */
 	@Select("SELECT m.mId, m.mPass, m.mName, m.mEmail, m.mPhone, m.mImage, "
