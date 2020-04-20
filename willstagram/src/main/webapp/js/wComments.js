@@ -114,7 +114,6 @@ function commentsInsertActionFunction(e){
 		dataType : "text",
 		success : function(result) {
 			if(result.trim() == "true"){
-				sendMessage(pNo);
 				setTimeout(function() {
 					window.location.reload();
 				}, 500);
@@ -170,7 +169,6 @@ function reCommentsInsertActionFunction(e){
 		dataType : "text",
 		success : function(result){
 			if(result.trim() == "true"){
-				sendMessage(pNo);
 				setTimeout(function() {
 					window.location.reload();
 				}, 500);
