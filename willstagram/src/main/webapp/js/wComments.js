@@ -97,6 +97,7 @@ function postCommentsCount2($aNodeList){
 	}
 }
 
+//실시간 알림을 위한 Message
 function sendMessage(pNo){
 	var almsg = pNo+":"+loginId;
 	socket.send(almsg);
