@@ -116,7 +116,6 @@ function message_send_function(target){
 		jsonData.msgDate = d.getHours() + "시" + d.getMinutes();			//보낸시간
 		jsonData.dmNo = $(target).attr('dmno');								//방번호
 		jsonData.dmContentsImage = mImage;									//보낸사람 프로필 이미지
-		console.log(jsonData);
 		
 		if(jsonData.msg != null && jsonData.msg != "" && jsonData.msg != '&nbsp'){
 				socket.send(jsonData.mId+","+jsonData.mIdYou+","+jsonData.msg+","+jsonData.msgDate+","+jsonData.dmNo+","+jsonData.dmContentsImage);
@@ -137,14 +136,12 @@ function message_send_insert_function(jsonData){
 		data : params,
 		dataType : 'text',
 		success : function(rowCount) {
-			console.log(rowCount);
 		}
 	});
 }
 
 //메세지 유저 클릭 시 작동하는 콜백함수
 function message_detail_function(target){
-	console.log(target);
 	var dmNo = $(target).attr('dmno');
 	var params = "dmNo=" + dmNo;
 	
@@ -161,10 +158,8 @@ function message_detail_function(target){
 
 //유저 채팅리스트 출력 콜백함수
 function message_list_function(jsonArrayData){
-	console.log(jsonArrayData);
 	for (var i = 0; i < jsonArrayData.length; i++) {
 		var date = jsonArrayData[i].dmContentsDate.split('/');
-		console.log(date);
 		jsonData.msg = jsonArrayData[i].dmContentsMessage;
 		jsonData.msgDate = date[0]+'일'+date[1]+'시'+date[2];
 		jsonData.dmContentsImage = jsonArrayData[i].dmContentsImage;
@@ -172,10 +167,8 @@ function message_list_function(jsonArrayData){
 		
 		if(loginId == dmSenderId){
 			message_rightInsert_html(jsonData);
-			console.log("오른쪽");
 		} else {
 			message_leftInsert_html(jsonData);
-			console.log("왼쪽");
 		}
 	}
 		/* jsonData.msg, jsonData.msgDate, dmSenderId */
@@ -185,8 +178,6 @@ function message_list_function(jsonArrayData){
 
 //  채팅방 생성 콜백함수
 function message_profile_create_function(mIdYou){
-	console.log("mIdYou : "+mIdYou);
-	console.log("loginId : "+loginId);
  		if(loginId != null && mIdYou != null){
  			var params="mId="+loginId+"&"+"mIdYou="+mIdYou;
  				$.ajax({
@@ -210,7 +201,6 @@ function message_receive(event){
 	jsonData.msg = msgArray[2];	// 내용
 	jsonData.msgDate = d.getHours() + "시" + d.getMinutes(); // 시간
 	jsonData.dmContentsImage = msgArray[5];	// 보낸사람 프로필 이미지
-	console.log(jsonData);
 	if(jsonData.msg != null || jsonData.msg != ""){
 		message_leftInsert_html(jsonData);
 		}
@@ -293,17 +283,14 @@ function connectWS() {
 	var ws = new WebSocket(contextPath+"/replyEcho");
 	socket = ws;
 	ws.onopen = function() { // connection이 open 되었을때 실행
-		console.log('Info : connection opened.');
 		// connection 이 close 되었을때 실행
 		ws.onclose = function(event) { 
-			console.log('Info: connection closed.');
 		setTimeout(function() {
 					connectWS();
 			}, 1000);
 		};
 		// connection 이 error가 나왔을때
 	ws.onerror = function(event) { 
-				console.log('Info: connection closed.');
 		};
 		ws.onmessage = function(event) { // socket.send() 후 ReplyEchoHandler가 handleTextMessage메소드로부터 메시지를 받아옴											
 			message_receive(event);
