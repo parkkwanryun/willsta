@@ -129,32 +129,47 @@ function account_setting() {
 		dataType : 'text',
 		success : function(textData) {
 			if (textData.trim() == "true") {
+
 				member_modify_action.mId.value = textData.mId;
 				member_modify_action.mName.value = textData.mName;
 				member_modify_action.mPass.value = textData.mPass;
 				member_modify_action.mEmail.value = textData.mEmail;
 				member_modify_action.mPhone.value = textData.mPhone;
-				member_modify_action.mImage.value = textData.mImage;
-				
+
 				location.href = '/willstagram/main_post';
 			} else {
-
+				
 			}
 		}
 	});
 }
 
 function account_img_setting(){
+	alert('이미지수정');
+	var formData = new FormData();
+
 	var aisArray = $('#member_img_modify_action').serializeArray();
+	for (var i = 0; i < aisArray.length; i++) {
+		formData.append(aisArray[i].name, aisArray[i].value);
+	}
+	
+	var inputFile = $("input[name='uploadImg']");
+	var files = inputFile[0].files;
+	for (var i = 0; i < files.length; i++) {
+		formData.append("uploadImg", files[i]);
+	}
+
 	$.ajax({
 		url : 'account_img_setting',
 		method : 'POST',
-		data : aisArray,
-		dataType : 'text',
-		success : function(textData) {
-			if (textData.trim() == "true") {
-				member_modify_action.mImage.value = textData.mImage;
-				
+		data : formData,
+		processData: false, 
+		contentType: false,
+		dataType : 'json',
+		success : function(jsonData) {
+			if (jsonData.trim() == "true") {
+				member_img_modify_action.mId.value = jsonData.mId;
+				member_img_modify_action.uploadImg.value = jsonData.uploadImg;
 				location.href = '/willstagram/profile-account-setting';
 			} else {
 				alert('이미지 삽입 실패');
@@ -162,6 +177,10 @@ function account_img_setting(){
 		}
 	});
 }
+
+/*
+ 6) 회원 탈퇴 
+ */
 
 
 

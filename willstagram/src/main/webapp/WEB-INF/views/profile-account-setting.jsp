@@ -95,16 +95,26 @@ label.error {
 												</ul>
 											</div>
 											</form>
-											<form id = "member_img_modify_action" method="POST">
+											
+											
+											
+											<form id = "member_img_modify_action" method="POST" enctype="multipart/form-data">
+												<!-- Id 확인 -->
+												<div class="cp-field">
+												<h5><s:message code="sign.id"/></h5>
+												<div class="cpp-fiel">
+													<input type="text" name="mId" value="${sMemberId.mId}" readonly placeholder="Id can't be changed">
+													<i class="la la-user"></i>
+												</div>
+											</div>
 												<!-- 프로필 이미지 변경(이미지 업로드) -->
 											<div class="cp-field">
 												<h5><s:message code="modify.image"/></h5>
 												<div class="cpp-fiel">
-													<input type="file" name="mImage" class="required" placeholder="New Image">
+													<input type="file" name="uploadImg" class="required" placeholder="New Image">
 													<i class="la la-user"></i>
 												</div>
 											</div>
-											
 											<div class="save-stngs pd2">
 												<ul>
 													<li><button type="submit" value="submit"><s:message code="modify.save"/></button></li>
