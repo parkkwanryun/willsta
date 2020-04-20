@@ -132,12 +132,11 @@ public class MemberController {
 								@RequestParam("mName")String mName,
 								@RequestParam("mEmail")String mEmail,
 								@RequestParam("mPhone")String mPhone,
-								@RequestParam("mImage")String mImage,
 								HttpServletRequest request) {
 		String path = request.getSession().getServletContext().getRealPath("/")+"contents\\member_image\\";
 		System.out.println("## 이미지 저장경로:"+path);
 		
-		boolean updateMember = memberService.updateMember(new Member(mId, mPass, mName, mEmail, mPhone, mImage, "off"));
+		boolean updateMember = memberService.updateMember(new Member(mId, mPass, mName, mEmail, mPhone,",","off"));
 		System.out.println(updateMember);
 		if(updateMember) {
 			System.out.println("회원 정보 수정 성공");
@@ -152,9 +151,9 @@ public class MemberController {
 	/*회원정보 수정(이미지)*/
 	@MemberLoginCheck
 	@ResponseBody
-	@RequestMapping(value="/account_img_setting", method=RequestMethod.POST, produces="text/plain; charset=UTF-8")
+	@RequestMapping(value="/account_img_setting", method=RequestMethod.POST, produces="json/application; charset=UTF-8")
 	public String AccountSetting(@RequestParam("mId")String mId,
-								@RequestParam("mUploadImg")MultipartFile uploadImg,
+								@RequestParam("uploadImg")MultipartFile uploadImg,
 								HttpServletRequest request) {
 		String path = request.getSession().getServletContext().getRealPath("/")+"contents\\member_image\\";
 		System.out.println("## 이미지 저장경로:"+path);

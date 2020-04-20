@@ -39,7 +39,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public boolean updateMember(Member member) {
 		// TODO Auto-generated method stub
-		return false;
+		return memberDao.updateMember(member);
 	}	
 	
 	@Override

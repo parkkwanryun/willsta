@@ -51,6 +51,7 @@ public class MemberUnitTestMain {
 		System.out.println("## 회원가입(멤버 추가) :"+member);
 	}
 	@Test // 회원 수정 (이미지삽입)
+	@Ignore
 	public void updateMemberImg() {
 		boolean newMember = memberDao.updateMemberImg("das", "fileName");
 		System.out.println("### 이미지 삽입 성공 여부:"+newMember);
@@ -86,10 +87,9 @@ public class MemberUnitTestMain {
 	}
 	
 	@Test //회원정보 수정
-	@Ignore
 	public void updateMember() {
-		//boolean member = memberDao.updateMember(new Member("ksj","12345","소진","sj@naver.com","0100","",""));
-		//System.out.println("## 회원정보 수정 성공 여부:"+member);
+		boolean member = memberDao.updateMember(new Member("kiki","12345","소진","sj@naver.com","0100","",""));
+		System.out.println("## 회원정보 수정 성공 여부:"+member);
 	}
 	
 	@Test //임시비밀번호 발급

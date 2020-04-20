@@ -25,8 +25,8 @@ public class MemberDaoImpl implements MemberDao{
 	}//
 
 	@Override
-	public boolean updateMember(Member memeber) {
-		return memberMapper.updateMember(memeber);
+	public boolean updateMember(Member member) {
+		return memberMapper.updateMember(member);
 	}//
 	
 	@Override
