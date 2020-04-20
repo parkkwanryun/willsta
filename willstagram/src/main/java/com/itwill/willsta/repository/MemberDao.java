@@ -28,7 +28,7 @@ public interface MemberDao {
 	boolean updateMemberImg(String mId, String mImage);
 	
 	/*Delete One(회원탈퇴)(mRetire F --> T)(followerCount, followingCount --> 0)*/
-	boolean deleteMember(String mId);
+	boolean deleteMember(String mPass);
 	
 	/*아이디 중복체크*/
 	boolean existedMember(String mId);
@@ -37,7 +37,7 @@ public interface MemberDao {
 	Member findId(String mEmail, String mName);
 	
 	/*비밀번호 찾기*/
-	Member findPw(String mId, String mName);
+	Member findPw(String mId, String mEmail);
 	
 	/*임시비밀번호 발급*/
 	Member getTempPw(String mPass, String mId);

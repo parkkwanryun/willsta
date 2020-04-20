@@ -35,8 +35,8 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	
 	@Override
-	public boolean deleteMember(String mId) {
-		return memberMapper.deleteMember(mId);
+	public boolean deleteMember(String mPass) {
+		return memberMapper.deleteMember(mPass);
 	}//
 	
 	@Override
@@ -50,8 +50,8 @@ public class MemberDaoImpl implements MemberDao{
 	}//
 
 	@Override
-	public Member findPw(String mId, String mName) {
-		return memberMapper.findPw(mId, mName);
+	public Member findPw(String mId, String mEmail) {
+		return memberMapper.findPw(mId, mEmail);
 	}//
 
 	@Override

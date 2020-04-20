@@ -75,8 +75,8 @@ public class MemberServiceImpl implements MemberService {
 		
 
 	@Override
-	public boolean deleteMember(String mId) {
-		return memberDao.deleteMember(mId);
+	public boolean deleteMember(String mPass) {
+		return memberDao.deleteMember(mPass);
 	}
 
 	@Override
@@ -90,8 +90,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member findPw(String mId, String mName) {
-		return memberDao.findPw(mId, mName);
+	public Member findPw(String mId, String mEmail) {
+		return memberDao.findPw(mId, mEmail);
 	}
 
 	@Override

@@ -169,10 +169,7 @@ public class MemberController {
 		}
 	return updateMemberImg+"";
 	}
-	
-	
-	/*회원탈퇴*/
-	
+
 	/*비밀번호 찾기 - 페이지 이동*/ 
 	@RequestMapping(value="findPw", method= {RequestMethod.GET,RequestMethod.POST}, produces="text/plain; charset=UTF-8")
 	public String findPw() {
@@ -182,18 +179,30 @@ public class MemberController {
 	/*비밀번호 찾기 - mName , mEmail*/ 
 	@ResponseBody
 	@RequestMapping(value="findPw_action", method= RequestMethod.POST, produces="text/plain; charset=UTF-8")
-	public Model findPw(@RequestParam("mId")String mId,
+	public String findPw(@RequestParam("mId")String mId,
 						@RequestParam("mEmail")String mEmail, Model model) {
 		Member findPw = memberService.findPw(mId, mEmail);
 		
 		if(findPw!= null) {
 			System.out.println("## 회원의 비밀번호는:"+findPw.getmPass()+"입니다.");
+			String pw = findPw.getmPass();
+			return pw;
 		}
-		model.addAttribute("mPass", findPw.getmPass());
-
-		return model;
+		return "";
 	}
 	
+	/*회원탈퇴*/
+	@ResponseBody
+	@RequestMapping(value="", method= RequestMethod.POST, produces="text/plain; charset=UTF-8")
+	public String member_retire(@RequestParam("mId")String mPass) {
+		boolean retireOnMember = memberService.deleteMember(mPass);
+		if(retireOnMember) {
+			System.out.println("## 회원 탈퇴 성공:"+retireOnMember);
+		}else {
+			System.out.println("## 회원 탈퇴 실패:"+retireOnMember);
+		}
+		return retireOnMember+"";
+	}
 	
 	
 	@MemberLoginCheck
