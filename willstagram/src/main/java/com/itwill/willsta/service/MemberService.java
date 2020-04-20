@@ -20,7 +20,7 @@ public interface MemberService {
 	
 	List<Member> selectByRandom(String mId);
 
-	boolean deleteMember(String mPass);
+	boolean deleteMember(String mPass, String mEmail);
 	
 	boolean existedMember(String mId);
 	

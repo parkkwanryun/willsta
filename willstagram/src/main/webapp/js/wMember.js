@@ -27,7 +27,7 @@
  - 비밀번호 찾기 (Forgot Password?)(완료)
  (~4/20)
  2.DELETE 
- 회원 탈퇴 
+ 회원 탈퇴(완료)
 
 
 (회원 탈퇴) 
@@ -176,7 +176,27 @@ function account_img_setting(){
 		}
 	});
 }
-
+/*
+7) 회원 탈퇴
+*/
+function member_retire(){
+	var mrArray = $('#member_retire_action').serializeArray();
+	$.ajax({
+		url : 'member_retire',
+		method : 'POST',
+		data : mrArray,
+		dataType : 'text',
+		success : function(textData) {
+			if (textData.trim() == "true") {
+				alert('탈퇴하셨습니다. 안녕히 가세요');
+				location.href = '/willstagram/sign_in';
+			}else{
+				location.href ='/willstagram/profile-account-setting';
+			}
+		}
+	})
+	
+}
 
 
 /*
@@ -352,6 +372,30 @@ $(function() {
 		},
 		submitHandler : function() {
 			account_img_setting();
+		},
+		errorClass : "error",
+		validClass : "valid"
+	});
+	
+	$('#member_retire_action').validate({
+		rules : {
+			mEmail : {
+				required : true
+			},
+			mPass :{
+				required : true
+			}
+		},
+		messages : {
+			mEmail : {
+				required : "이메일을 입력해주세요",
+			},
+			mPass:{
+				required : "비밀번호를 입력해주세요"
+			}
+		},
+		submitHandler : function() {
+			member_retire();
 		},
 		errorClass : "error",
 		validClass : "valid"

@@ -180,7 +180,7 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value="findPw_action", method= RequestMethod.POST, produces="text/plain; charset=UTF-8")
 	public String findPw(@RequestParam("mId")String mId,
-						@RequestParam("mEmail")String mEmail, Model model) {
+						@RequestParam("mEmail")String mEmail) {
 		Member findPw = memberService.findPw(mId, mEmail);
 		
 		if(findPw!= null) {
@@ -193,9 +193,10 @@ public class MemberController {
 	
 	/*회원탈퇴*/
 	@ResponseBody
-	@RequestMapping(value="", method= RequestMethod.POST, produces="text/plain; charset=UTF-8")
-	public String member_retire(@RequestParam("mId")String mPass) {
-		boolean retireOnMember = memberService.deleteMember(mPass);
+	@RequestMapping(value="member_retire", method= RequestMethod.POST, produces="text/plain; charset=UTF-8")
+	public String member_retire(@RequestParam("mPass")String mPass,
+								@RequestParam("mEmail")String mEmail) {
+		boolean retireOnMember = memberService.deleteMember(mPass,mEmail);
 		if(retireOnMember) {
 			System.out.println("## 회원 탈퇴 성공:"+retireOnMember);
 		}else {
