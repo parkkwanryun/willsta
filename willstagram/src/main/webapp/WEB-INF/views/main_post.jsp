@@ -178,8 +178,8 @@
 															<li><a class="updatePost" href="#" title=""><s:message code="post.edit"/></a></li>
 															<li><a class="deletePost" href="#" title=""><s:message code="post.delete"/></a></li>
 															<li><a class="hiddenPost" href="#" title="">
-															<c:if test="${post.status=='A'}">Hide</c:if>
-															<c:if test="${post.status=='H'}">Show</c:if>
+															<c:if test="${post.status=='A'}"><s:message code="post.hide"/></c:if>
+															<c:if test="${post.status=='H'}"><s:message code="post.show"/></c:if>
 															</a></li>
 														</ul>
 													</c:if>

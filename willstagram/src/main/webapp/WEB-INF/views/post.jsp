@@ -11,7 +11,7 @@
 				<div class="usy-name">
 					<h3>${post.mName}</h3>
 					<span><img src="images/clock.png" alt="">
-						<c:if test="${post.aGo==null}">지금</c:if>
+						<c:if test="${post.aGo==null}"><s:message code="post.now"/></c:if>
 						<c:if test="${post.aGo!=null}">${post.aGo}</c:if>
 					</span>
 				</div>
