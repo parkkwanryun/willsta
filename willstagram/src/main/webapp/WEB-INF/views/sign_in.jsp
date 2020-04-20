@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <jsp:include page="/WEB-INF/commons/include_header_css.jsp" />
 
 <style type="text/css">
@@ -43,7 +43,9 @@ label.error {
 								<div class="cm-logo">
 									<img src="images/helloMain.PNG" alt="">
 									<!--  <img src="images/cm-logo.png" alt=""> -->
-									<p><s:message code="sign.introduction"/></p>
+									<p>
+										<s:message code="sign.introduction" />
+									</p>
 								</div>
 								<!--cm-logo end-->
 								<img src="images/gangsanim.PNG" alt="">
@@ -54,11 +56,15 @@ label.error {
 						<div class="col-lg-6">
 							<div class="login-sec">
 								<ul class="sign-control">
-									<li data-tab="tab-1" class="current"><a href="#" title=""><s:message code="sign.title"/></a></li>
-									<li data-tab="tab-2"><a href="#" title=""><s:message code="sign.join"/></a></li>
+									<li data-tab="tab-1" class="current"><a href="#" title=""><s:message
+												code="sign.title" /></a></li>
+									<li data-tab="tab-2"><a href="#" title=""><s:message
+												code="sign.join" /></a></li>
 								</ul>
 								<div class="sign_in_sec current" id="tab-1">
-									<h3><s:message code="sign.title"/></h3>
+									<h3>
+										<s:message code="sign.title" />
+									</h3>
 
 									<form id="member_login_action" method="POST">
 										<div class="row">
@@ -92,17 +98,20 @@ label.error {
 														</div>
 													 -->
 														<!--fgt-sec end-->
-														<a href="findPw" title=""><s:message code="sign.forgotPassword"/></a>
-														
+														<a href="findPw" title=""><s:message
+																code="sign.forgotPassword" /></a>
+
 													</div>
 												</div>
 											</div>
 											<div class="col-lg-12 no-pdd">
-												<button type="submit" value="submit"><s:message code="sign.title"/></button>
+												<button type="submit" value="submit">
+													<s:message code="sign.title" />
+												</button>
 											</div>
 										</div>
 									</form>
-									
+									<!-- 
 									<div class="login-resources">
 										<h4><s:message code="sign.social"/></h4>
 										<ul>
@@ -110,6 +119,7 @@ label.error {
 													class="fa fa-facebook"></i><s:message code="sign.naver"/></a></li>
 										</ul>
 									</div>
+									 -->
 									<!--login-resources end-->
 								</div>
 
@@ -128,42 +138,47 @@ label.error {
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
 														<input type="text" id="mId" name="mId" class="required"
-															placeholder="<s:message code='sign.id'/>"> <i class="la la-user"></i>
+															placeholder="<s:message code='sign.id'/>"> <i
+															class="la la-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
 														<input type="password" id="mPass" name="mPass"
-															class="required" placeholder="<s:message code='sign.password'/>"> <i
-															class="la la-lock"></i>
+															class="required"
+															placeholder="<s:message code='sign.password'/>">
+														<i class="la la-lock"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
 														<input type="text" id="mName" name="mName"
-															class="required" placeholder="<s:message code='join.name'/>"> <i
+															class="required"
+															placeholder="<s:message code='join.name'/>"> <i
 															class="la la-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
 														<input type="text" id="mEmail" name="mEmail"
-															class="required" placeholder="<s:message code='join.email'/>">
-														<i class="la la-user"></i>
-													</div>
-												</div>
-												<div class="col-lg-12 no-pdd">
-													<div class="sn-field">
-														<input type="text" id="mPhone" name="mPhone"
-															class="required" placeholder="<s:message code='join.phoneNumber'/>"> <i
+															class="required"
+															placeholder="<s:message code='join.email'/>"> <i
 															class="la la-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="text" id="mImage" name="mImage"
-														readonly placeholder="회원수정 ->이미지 등록">
+														<input type="text" id="mPhone" name="mPhone"
+															class="required"
+															placeholder="<s:message code='join.phoneNumber'/>">
 														<i class="la la-user"></i>
+													</div>
+												</div>
+												<div style="display: none;" class="col-lg-12 no-pdd">
+													<div class="sn-field">
+														<input type="text" id="mImage" name="mImage" readonly
+															placeholder="회원수정 ->이미지 등록"> <i
+															class="la la-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
@@ -171,17 +186,19 @@ label.error {
 														<div class="fgt-sec">
 															<input type="checkbox" name="mRetire" id="c2"> <label
 																for="c2"> <span></span>
-															</label> <small><s:message code="join.agree"/></small>
+															</label> <small><s:message code="join.agree" /></small>
 														</div>
 														<!--fgt-sec end-->
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
-													<button type="submit" value="submit"><s:message code="join.signUp"/></button>
+													<button type="submit" value="submit">
+														<s:message code="join.signUp" />
+													</button>
 												</div>
 											</div>
 										</form>
-										
+
 									</div>
 									<!--dff-tab end-->
 									<div class="dff-tab" id="tab-4">
@@ -236,7 +253,7 @@ label.error {
 	<jsp:include page="/WEB-INF/commons/include_footer_js.jsp" />
 	<script type="text/javascript" src="js/wMember.js"></script>
 	<script src="js/jquery.validate.min.js"></script>
-	
+
 
 </body>
 </html>

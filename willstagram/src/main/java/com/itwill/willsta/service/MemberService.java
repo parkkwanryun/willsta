@@ -20,13 +20,13 @@ public interface MemberService {
 	
 	List<Member> selectByRandom(String mId);
 
-	boolean deleteMember(String mId);
+	boolean deleteMember(String mPass);
 	
 	boolean existedMember(String mId);
 	
 	Member findId(String mEmail, String mName);
 	
-	Member findPw(String mId, String mName);
+	Member findPw(String mId, String mEmail);
 	
 	Member getTempPw(String mPass, String mId);
 	

@@ -36,7 +36,7 @@
 						</div>
 						<button type="submit" value="submit" class="btn btn-primary btn-block">Continue</button>
 					</fieldset>
-				</form>
+				</form> 
 			</div>
 		</div>
 	</div>
@@ -50,7 +50,6 @@ $('#findPw_action').submit(function(e){
 6) 비밀번호 찾기 
 */
 function findPw(){
-	alert('타나');
 	var fpwArray = $('#findPw_action').serializeArray();
 	$.ajax({
 		url : 'findPw_action',
@@ -58,9 +57,8 @@ function findPw(){
 		data : fpwArray,
 		dataType : 'text',
 		success : function(textData) {
-			if (textData.trim() == "model") {
-				alert(findPw_action.mId.value+"님의 비밀번호는");
-				alert();
+			if (textData.trim() !=null) {
+				alert(findPw_action.mId.value+"님의 비밀번호는 "+textData+"입니다.");
 				location.href = '/willstagram/sign_in';
 			}
 		}

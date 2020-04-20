@@ -133,7 +133,7 @@ label.error {
 											<div class="cp-field">
 												<h5><s:message code="deactivate.email"/></h5>
 												<div class="cpp-fiel">
-													<input type="text" name="email" placeholder="<s:message code="join.email"/>">
+													<input type="text" name="email" value="${sMemberId.mEmail}" readonly placeholder="<s:message code="join.email"/>">
 													<i class="fa fa-envelope"></i>
 												</div>
 											</div>
@@ -144,10 +144,12 @@ label.error {
 													<i class="fa fa-lock"></i>
 												</div>
 											</div>
+											<!-- 비활성화 이유
 											<div class="cp-field">
 												<h5><s:message code="deactivate.explain"/></h5>
 												<textarea></textarea>
 											</div>
+											 -->
 											<div class="save-stngs pd3">
 												<ul>
 													<li><button type="submit"><s:message code="deactivate.save"/></button></li>
