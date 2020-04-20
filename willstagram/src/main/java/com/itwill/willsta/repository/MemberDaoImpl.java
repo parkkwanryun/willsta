@@ -35,8 +35,8 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	
 	@Override
-	public boolean deleteMember(String mPass) {
-		return memberMapper.deleteMember(mPass);
+	public boolean deleteMember(String mPass, String mEmail) {
+		return memberMapper.deleteMember(mPass, mEmail);
 	}//
 	
 	@Override

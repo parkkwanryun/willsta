@@ -59,9 +59,9 @@ public class MemberUnitTestMain {
 	
 
 	@Test //회원탈퇴
-	@Ignore
+
 	public void delelteMember() {
-		boolean member = memberDao.deleteMember("corona");
+		boolean member = memberDao.deleteMember("sss4321","sss4321@naver.com");
 		System.out.println("## 회원탈퇴:"+member);
 	}
 	
@@ -87,8 +87,9 @@ public class MemberUnitTestMain {
 	}
 	
 	@Test //회원정보 수정
+	@Ignore
 	public void updateMember() {
-		boolean member = memberDao.updateMember(new Member("kiki","12345","소진","sj@naver.com","0100","",""));
+		boolean member = memberDao.updateMember(new Member("kiki","kiki","간지남","sj@naver.com","0100","f1019ffe917141a6ae9dfb7a3f97430a.jpg","off"));
 		System.out.println("## 회원정보 수정 성공 여부:"+member);
 	}
 	

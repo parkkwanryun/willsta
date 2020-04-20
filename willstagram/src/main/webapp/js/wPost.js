@@ -17,7 +17,7 @@ function post_write() {
 	for (var i = 0; i < files.length; i++) {
 		formData.append("uploadFile", files[i]);
 	}
-	alert('업로드 중');
+
 	$.ajax({
 		url : 'write_post',
 		processData : false, // k:v 방식으로 전달
@@ -26,7 +26,7 @@ function post_write() {
 		type : "POST",
 		dataType : 'html',
 		success : function(resultText) {
-			alert('업로드 완료');
+			alert('포스트, 성공적.');
 			if (postno > 0) {
 				$('div.post-bar[post_no="' + postno + '"]').remove();
 			}
