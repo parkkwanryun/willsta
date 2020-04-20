@@ -100,11 +100,6 @@
 												-->
 												<img src="contents/member_image/${member.mImage}" alt>
 															<h3>${member.mName}</h3>
-															
-											<div class="add-dp" id="OpenImgUpload">
-												<input type="file" id="file">
-												<label for="file"><i class="fas fa-camera"></i></label>												
-											</div>
 										</div><!--user-pro-img end-->
 										<div class="user_pro_status">
 											<ul class="flw-status">
