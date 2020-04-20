@@ -40,7 +40,7 @@
 							<a href="personal_info" title="" class="view-more-pro"><s:message code="profile.view"/></a>
 						</c:when>
 						<c:otherwise>
-							<a href="" title="" class="view-more-pro"><s:message code="profile.view"/></a>
+							<a href="user-profile?youId=${member.mId}" title="" class="view-more-pro"><s:message code="profile.view"/></a>
 						</c:otherwise>
 					</c:choose>
 				</div><!--company_profile_info end-->
