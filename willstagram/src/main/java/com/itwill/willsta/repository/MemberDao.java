@@ -28,7 +28,7 @@ public interface MemberDao {
 	boolean updateMemberImg(String mId, String mImage);
 	
 	/*Delete One(회원탈퇴)(mRetire F --> T)(followerCount, followingCount --> 0)*/
-	boolean deleteMember(String mPass);
+	boolean deleteMember(String mPass, String mEmail);
 	
 	/*아이디 중복체크*/
 	boolean existedMember(String mId);

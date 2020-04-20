@@ -75,8 +75,8 @@ public class MemberServiceImpl implements MemberService {
 		
 
 	@Override
-	public boolean deleteMember(String mPass) {
-		return memberDao.deleteMember(mPass);
+	public boolean deleteMember(String mPass, String mEmail) {
+		return memberDao.deleteMember(mPass, mEmail);
 	}
 
 	@Override

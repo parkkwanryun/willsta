@@ -48,7 +48,7 @@ label.error {
 									</p>
 								</div>
 								<!--cm-logo end-->
-								<img src="images/gangsanim.PNG" alt="">
+								<img src="images/sign_in.PNG" alt="">
 							</div>
 							<!--cmp-info end-->
 						</div>
