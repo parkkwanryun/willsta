@@ -98,7 +98,7 @@
 										<div class="user-pro-img">
 											<!--  <img src="contents/member_image/${member.mImage}" width="200px" alt="">
 												-->
-												<img src="images/ginbeenmin.jpg" alt>
+												<img src="contents/member_image/${member.mImage}" alt>
 															<h3>${member.mName}</h3>
 															
 											<div class="add-dp" id="OpenImgUpload">
