@@ -92,7 +92,8 @@ label.error {
 														</div>
 													 -->
 														<!--fgt-sec end-->
-														<a href="#" title=""><s:message code="sign.forgotPassword"/></a>
+														<a href="findPw" title=""><s:message code="sign.forgotPassword"/></a>
+														
 													</div>
 												</div>
 											</div>
@@ -101,7 +102,7 @@ label.error {
 											</div>
 										</div>
 									</form>
-
+									
 									<div class="login-resources">
 										<h4><s:message code="sign.social"/></h4>
 										<ul>
@@ -180,7 +181,7 @@ label.error {
 												</div>
 											</div>
 										</form>
-
+										
 									</div>
 									<!--dff-tab end-->
 									<div class="dff-tab" id="tab-4">
@@ -235,6 +236,7 @@ label.error {
 	<jsp:include page="/WEB-INF/commons/include_footer_js.jsp" />
 	<script type="text/javascript" src="js/wMember.js"></script>
 	<script src="js/jquery.validate.min.js"></script>
+	
 
 </body>
 </html>

@@ -66,7 +66,7 @@ label.error {
 											<div class="cp-field">
 												<h5><s:message code="modify.password"/></h5>
 												<div class="cpp-fiel">
-													<input type="text" name="mPass" class="required" placeholder="<s:message code="modify.password"/>">
+													<input type="password" name="mPass" class="required" placeholder="<s:message code="modify.password"/>">
 													<i class="la la-lock"></i>
 												</div>
 											</div>
