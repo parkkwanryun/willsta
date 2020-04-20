@@ -18,24 +18,23 @@
  (~4/14)
  1.회원가입 시, id와 password, email, name, phone 유효성 체크(validate) 
  - 유효성 체크 중, 아이디 중복 검사 (완료) : Talend ApI check 이용
- 2.회원가입 이미지 업로드 (4/14)
+ 2.회원가입 이미지 업로드 (4/20)(완료)
 
  <<회원정보수정&탈퇴>> 
  (~4/14)
  1.UPDATE 
  - 회원 정보 수정 시 유효성 체크(validate) (완료)
- - 비밀번호 찾기 (Forgot Password?)
+ - 비밀번호 찾기 (Forgot Password?)(완료)
+ (~4/20)
  2.DELETE 
- 회원 탈퇴
+ 회원 탈퇴 
 
 
 (회원 탈퇴/비밀번호 찾기/이미지 업로드) 
 
-
  <<추가 사항>>
  <<네이버 아이디 로그인>>
  <<관리자모드, 공지사항 게시판>>
- <<국제화>>
  */
 
 /*
@@ -113,12 +112,7 @@ function password_check() {
 		e.preventDefault();
 	}
 /*
- * 4) 회원정보 수정 함수
-  - enctype: multipart로 지정해주지 않으면 controller로 파일을 보낼 수 없음
- - contentType : false 로 선언 시 content-type 헤더가 multipart/form-data로 전송되게 함
- - processData : false로 선언 시 formData를 string으로 변환하지 않음
- - formData : 해당 폼의 모든 값들(file포함)을 해당 객체에 한번에 담아 보내기 위해 사용
- 
+ * 4) 회원정보 수정 함수(이미지x)
  */
 function account_setting() {
 	var asArray = $('#member_modify_action').serializeArray();
@@ -144,8 +138,14 @@ function account_setting() {
 	});
 }
 
+/*
+ 5) 회원 이미지 수정 함수
+ - enctype: multipart로 지정해주지 않으면 controller로 파일을 보낼 수 없음
+ - contentType : false 로 선언 시 content-type 헤더가 multipart/form-data로 전송되게 함
+ - processData : false로 선언 시 formData를 string으로 변환하지 않음
+ - formData : 해당 폼의 모든 값들(file포함)을 해당 객체에 한번에 담아 보내기 위해 사용
+ */
 function account_img_setting(){
-	alert('이미지수정');
 	var formData = new FormData();
 
 	var aisArray = $('#member_img_modify_action').serializeArray();
@@ -158,7 +158,6 @@ function account_img_setting(){
 	for (var i = 0; i < files.length; i++) {
 		formData.append("uploadImg", files[i]);
 	}
-
 	$.ajax({
 		url : 'account_img_setting',
 		method : 'POST',
@@ -177,10 +176,6 @@ function account_img_setting(){
 		}
 	});
 }
-
-/*
- 6) 회원 탈퇴 
- */
 
 
 
