@@ -162,9 +162,11 @@ $(function(){
 				dataType : "text",
 				success : function(data) {
 					$(e.target).hide();
-					$('#followings').text(
-							parseInt($('#followings').text()) + 1);
-
+					if ($mIdYou.attr("mid")==$(".user_profile").attr("mIdYou")) {
+						$('.followers').text(parseInt($('.followers').text()) + 1);
+						$('.follow').hide();
+						$('.unFollow').show();
+					}
 				}
 			});
 			e.preventDefault();

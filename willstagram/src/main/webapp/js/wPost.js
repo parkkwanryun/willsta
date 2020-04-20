@@ -248,7 +248,27 @@ $(function() {
 				});
 				e.preventDefault();
 			});
+	
+	// 친구추천 리스트 팔로우
+	$('.sFollow').on('click',function(e) {
+			var $mIdYou = $(e.target);
+			var param = "mIdYou=" + $mIdYou.attr("mid");
+			$.ajax({
+				url : "follow",
+				method : "POST",
+				data : param,
+				dataType : "text",
+				success : function(data) {
+					$(e.target).hide();
+					$('.followings').text(
+							parseInt($('.followings').text()) + 1);
+				}
+			});
+			e.preventDefault();
+			e.stopPropagation();
 
+	});
+	
 	var sel_files = [];
 	$(document).on(
 			'change',
