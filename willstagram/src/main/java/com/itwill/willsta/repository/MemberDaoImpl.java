@@ -35,15 +35,21 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	
 	@Override
-	public boolean deleteMember(String mPass, String mEmail) {
-		return memberMapper.deleteMember(mPass, mEmail);
+	public boolean deleteMember(String mPass, String mEmail, String mRetire) {
+		return memberMapper.deleteMember(mPass, mEmail, mRetire);
 	}//
 	
 	@Override
 	public boolean existedMember(String mId) {
 		return memberMapper.existedMember(mId);
 	}//
+	
 
+	@Override
+	public boolean existedPassword(String mPass) {
+		return memberMapper.existedPassword(mPass);
+	}
+	
 	@Override
 	public Member findId(String mEmail, String mName) {
 		return memberMapper.findId(mEmail, mName);
@@ -84,6 +90,7 @@ public class MemberDaoImpl implements MemberDao{
 	public List<Member> selectByRandom(String mId) {
 		return memberMapper.selectByRandom(mId);
 	}
+
 
 
 

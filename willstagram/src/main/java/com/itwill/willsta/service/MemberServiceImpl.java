@@ -75,15 +75,20 @@ public class MemberServiceImpl implements MemberService {
 		
 
 	@Override
-	public boolean deleteMember(String mPass, String mEmail) {
-		return memberDao.deleteMember(mPass, mEmail);
+	public boolean deleteMember(String mPass, String mEmail, String mRetire) {
+		return memberDao.deleteMember(mPass, mEmail, mRetire);
 	}
 
 	@Override
 	public boolean existedMember(String mId) {
 		return memberDao.existedMember(mId);
 	}
-
+	
+	@Override
+	public boolean existedPassword(String mPass) {
+		return memberDao.existedPassword(mPass);
+	}
+	
 	@Override
 	public Member findId(String mEmail, String mName) {
 		return memberDao.findId(mEmail, mName);
@@ -137,6 +142,7 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> selectByRandom(String mId) {
 		return memberDao.selectByRandom(mId);
 	}
+
 
 
 }

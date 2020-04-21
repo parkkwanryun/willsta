@@ -116,6 +116,20 @@ public class MemberController {
 		}
 		return newId+"";
 	}
+	/*비밀번호 일치 여부 체크*/
+	@MemberLoginCheck
+	@RequestMapping(value="/pw_Check",method= RequestMethod.GET, produces="text/plain; charset=UTF-8")
+	public String retirePwCheck(@RequestParam(name="mPass")String mPass) {
+		boolean truePw = memberService.existedPassword(mPass);
+		if(truePw) {
+			System.out.println("## 비밀번호 일치 여부:"+truePw);
+			truePw = true;
+		}else {
+			System.out.println("## 비밀번호 일치 여부:"+truePw);
+		}
+		return truePw+"";
+	}
+
 	
 	/*회원 관리 탭 이동*/
 	@MemberLoginCheck
@@ -195,12 +209,14 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value="member_retire", method= RequestMethod.POST, produces="text/plain; charset=UTF-8")
 	public String member_retire(@RequestParam("mPass")String mPass,
-								@RequestParam("mEmail")String mEmail) {
-		boolean retireOnMember = memberService.deleteMember(mPass,mEmail);
+								@RequestParam("mEmail")String mEmail,
+								@RequestParam("mRetire")String mRetire) {
+		mRetire = "off";
+		boolean retireOnMember = memberService.deleteMember(mPass,mEmail,mRetire);
 		if(retireOnMember) {
-			System.out.println("## 회원 탈퇴 성공:"+retireOnMember);
+			System.out.println("## 계정 비활성화 성공:"+retireOnMember);
 		}else {
-			System.out.println("## 회원 탈퇴 실패:"+retireOnMember);
+			System.out.println("## 계정 비활성화 실패:"+retireOnMember);
 		}
 		return retireOnMember+"";
 	}

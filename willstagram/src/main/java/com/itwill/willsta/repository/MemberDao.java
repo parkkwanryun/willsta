@@ -28,10 +28,13 @@ public interface MemberDao {
 	boolean updateMemberImg(String mId, String mImage);
 	
 	/*Delete One(회원탈퇴)(mRetire F --> T)(followerCount, followingCount --> 0)*/
-	boolean deleteMember(String mPass, String mEmail);
+	boolean deleteMember(String mPass, String mEmail, String mRetire);
 	
 	/*아이디 중복체크*/
 	boolean existedMember(String mId);
+	
+	/*비밀번호 일치여부 체크*/
+	boolean existedPassword(String mPass);
 	
 	/*아이디 찾기*/
 	Member findId(String mEmail, String mName);

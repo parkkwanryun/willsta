@@ -170,13 +170,14 @@ label.error {
 										<h3>
 											<s:message code="deactivate.title" />
 										</h3>
+										<!-- 계정 비활성화 -->
 										<form id = "member_retire_action">
 											<div class="cp-field">
 												<h5>
 													<s:message code="deactivate.email" />
 												</h5>
 												<div class="cpp-fiel">
-													<input type="text" name="mEmail" value="${sMemberId.mEmail}"
+													<input type="text" name="mEmail" class="required" value="${sMemberId.mEmail}"
 														readonly placeholder="<s:message code="join.email"/>">
 													<i class="fa fa-envelope"></i>
 												</div>
@@ -186,11 +187,21 @@ label.error {
 													<s:message code="sign.password" />
 												</h5>
 												<div class="cpp-fiel">
-													<input type="password" name="mPass"
-														placeholder="<s:message code="sign.password"/>"> <i
-														class="fa fa-lock"></i>
+													<input type="password" name="mPass" class="required" id="mPass"
+														placeholder="<s:message code="sign.password"/>"> 
+														<i class="fa fa-lock"></i>
 												</div>
 											</div>
+											<div class="col-lg-12 no-pdd">
+													<div class="checky-sec st2">
+														<div class="fgt-sec">
+															<input type="checkbox" name="mRetire" id="c2"> <label
+																for="c2"> <span></span>
+															</label> <small><s:message code="join.agree" /></small>
+														</div>
+														<!--fgt-sec end-->
+													</div>
+												</div>
 											<!-- 비활성화 이유
 											<div class="cp-field">
 												<h5><s:message code="deactivate.explain"/></h5>

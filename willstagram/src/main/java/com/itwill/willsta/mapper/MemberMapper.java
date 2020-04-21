@@ -46,13 +46,17 @@ public interface MemberMapper {
 	public boolean updateMember(Member memeber);
 
 	/* 회원 탈퇴 */
-	@Update("DELETE FROM MEMBER WHERE mPass = #{mPass} and mEmail = #{mEmail}")
-	public boolean deleteMember(@Param("mPass") String mPass, @Param("mEmail") String mEmail);
+	@Update("UPDATE MEMBER SET mRetire = #{mRetire} WHERE mPass = #{mPass} and mEmail = #{mEmail}")
+	public boolean deleteMember(@Param("mPass") String mPass, @Param("mEmail") String mEmail, @Param("mRetire")String mRetire);
 
 	/* 아이디 중복체크 */
 	@Select("SELECT count(*) cnt FROM MEMBER WHERE mId=#{mId}")
 	public boolean existedMember(@Param("mId") String mId);
-
+	
+	/* 비밀번호 일치 여부 */
+	@Select("SELECT count(*) cnt FROM MEMBER WHERE mPass=#{mPass}")
+	public boolean existedPassword(@Param("mPass")String mPass);
+	
 	/* 아이디 찾기 */
 	@Select("SELECT mId FROM MEMBER WHERE mEmail=#{mEmail} and mName=#{mName}")
 	public Member findId(@Param("mEmail") String mEmail, @Param("mName") String mName);
