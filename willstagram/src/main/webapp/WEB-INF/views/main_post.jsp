@@ -120,10 +120,10 @@
 													<div class="suggestion-usd">
 														<c:choose>
 															<c:when test="${mList.mImage != null}">
-																<img src="contents/member_image/${mList.mImage}" alt="" width="40px" height="40px">
+																<img src="contents/member_image/${mList.mImage}" alt="" width="35px" height="35px">
 															</c:when>
 															<c:otherwise>
-																<img src="contents/member_image/default.png" alt="" width="40px" height="40px">
+																<img src="contents/member_image/default.png" alt="" width="35px" height="35px">
 															</c:otherwise>
 														</c:choose>
 														<div class="sgt-text">
