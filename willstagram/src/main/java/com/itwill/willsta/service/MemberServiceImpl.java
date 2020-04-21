@@ -35,7 +35,6 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.selectById(mId);
 	}
 	
-
 	@Override
 	public boolean updateMember(Member member) {
 		// TODO Auto-generated method stub
@@ -72,11 +71,15 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return memberDao.updateMemberImg(mId,mImage);
 	}
-		
 
 	@Override
 	public boolean deleteMember(String mPass, String mEmail, String mRetire) {
 		return memberDao.deleteMember(mPass, mEmail, mRetire);
+	}
+
+	@Override
+	public boolean accountOn(String mRetire, String mEmail) {
+		return memberDao.accountOn(mRetire, mEmail);
 	}
 
 	@Override
@@ -142,7 +145,4 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> selectByRandom(String mId) {
 		return memberDao.selectByRandom(mId);
 	}
-
-
-
 }

@@ -38,12 +38,17 @@ public class MemberDaoImpl implements MemberDao{
 	public boolean deleteMember(String mPass, String mEmail, String mRetire) {
 		return memberMapper.deleteMember(mPass, mEmail, mRetire);
 	}//
-	
+
+	@Override
+	public boolean accountOn(String mRetire,String mEmail) {
+		return memberMapper.accountOn(mRetire, mEmail);
+	}
+
 	@Override
 	public boolean existedMember(String mId) {
 		return memberMapper.existedMember(mId);
 	}//
-	
+
 
 	@Override
 	public boolean existedPassword(String mPass) {

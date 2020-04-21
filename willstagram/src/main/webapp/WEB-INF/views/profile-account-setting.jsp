@@ -124,8 +124,6 @@ label.error {
 											</div>
 										</form>
 
-
-
 										<form id="member_img_modify_action" method="POST"
 											enctype="multipart/form-data">
 											<!-- Id 확인 -->

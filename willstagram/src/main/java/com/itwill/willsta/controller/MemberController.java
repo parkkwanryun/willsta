@@ -47,27 +47,31 @@ public class MemberController {
 	}
 	Logger logger;
 	
-	/*로그인*/
+	/* 로그인 */
 	@ResponseBody
-	@RequestMapping(value="/sign_in_action", method = RequestMethod.POST, produces="text/plain; charset=UTF-8")
-	public String sign_in_action_post(@RequestParam("mId")String mId, @RequestParam("mPass")String mPass, 
-										HttpSession session, Model model,
-										HttpServletRequest request) {
-		System.out.println("################로그인 컨트롤러 테스트"+"mId:"+mId+" mPass:"+mPass);
+	@RequestMapping(value = "/sign_in_action", method = RequestMethod.POST, produces = "text/plain; charset=UTF-8")
+	public String sign_in_action_post(@RequestParam("mId") String mId, @RequestParam("mPass") String mPass,
+			HttpSession session, Model model, HttpServletRequest request) {
+		System.out.println("################로그인 컨트롤러 테스트" + "mId:" + mId + " mPass:" + mPass);
 		String forwardPath = "";
-		//String a= request.getSession().getServletContext().getRealPath("/");
+		// String a= request.getSession().getServletContext().getRealPath("/");
 		Member member = memberService.selectById(mId);
-		//logger.info("프로젝트 경로 찾기" + a);
-		//System.out.println("############계정 활성화 여부:"+member.getmRetire());
+		// logger.info("프로젝트 경로 찾기" + a);
 		
-		try {		
-			System.out.println("############계정 활성화 여부:"+member.getmRetire());
+		try {
 			Member signInMember = memberService.signIn(mId, mPass);
+			System.out.println();
+			if (member.getmRetire().trim().equals("on")) {
+				System.out.println("############계정 활성화 여부:" + member.getmRetire());
 				session.setAttribute("mId", mId);
 				session.setAttribute("mName", member.getmName());
 				session.setAttribute("mImage", member.getmImage());
 				session.setAttribute("sMemberId", signInMember);
-				forwardPath="true";
+				forwardPath = "true";
+			} else {
+				System.out.println("### 계정 활성화 상태:" + member.getmRetire());
+				forwardPath = "false3";
+			}
 		} catch (MemberNotFoundException e) {
 			forwardPath = "false1";
 			e.printStackTrace();
@@ -79,10 +83,10 @@ public class MemberController {
 			forwardPath = "false";
 		}
 		/*
-		if(member.getmRetire()=="off"){
-			System.out.println("## 비활성화된 계정으로 로그인 할 수 없음");
-			//forwardPath = 계정 활성화 창으로 포워딩
-		}*/
+		 * if(member.getmRetire()=="off"){
+		 * System.out.println("## 비활성화된 계정으로 로그인 할 수 없음"); //forwardPath = 계정 활성화 창으로
+		 * 포워딩 }
+		 */
 		return forwardPath;
 	}
 	
@@ -143,7 +147,17 @@ public class MemberController {
 		return "account_on";
 	}
 	/*계정 활성화 컨트롤러 */
-	
+	@ResponseBody
+	@RequestMapping(value="/member_account_on_action",method= RequestMethod.POST, produces="text/plain; charset=UTF-8")
+	public String member_account_on_action(@RequestParam("mEmail")String mEmail, @RequestParam("mRetire")String mRetire) {
+		boolean onMember = memberService.accountOn(mRetire, mEmail);
+		if(onMember) {
+			System.out.println("## 계정이 활성화 되었습니다.");
+		}else {
+			System.out.println("## 계정이 활성화 되지 못했습니다.");
+		}
+		return onMember+"";
+	}
 
 	
 	/*회원 관리 탭 이동*/

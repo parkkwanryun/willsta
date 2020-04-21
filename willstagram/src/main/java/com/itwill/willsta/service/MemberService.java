@@ -22,6 +22,8 @@ public interface MemberService {
 
 	boolean deleteMember(String mPass, String mEmail, String mRetire);
 	
+	boolean accountOn(String mRetire, String mEmail);
+	
 	boolean existedMember(String mId);
 	
 	boolean existedPassword(String mPass);

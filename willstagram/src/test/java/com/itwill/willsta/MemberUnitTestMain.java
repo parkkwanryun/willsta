@@ -57,8 +57,14 @@ public class MemberUnitTestMain {
 		System.out.println("### 이미지 삽입 성공 여부:"+newMember);
 	}
 	
+	@Test // 계정 활성화
+	public void retired() {
+	boolean	newMember = memberDao.accountOn("on","pkr@google.com");
+		System.out.println("### 이미지 삽입 성공 여부:"+newMember);
+	}
 
 	@Test //회원탈퇴(계정 비활성화)
+	@Ignore
 	public void delelteMember() {
 		boolean member = memberDao.deleteMember("bubblepop","bubblepop@nate.com","off");
 		System.out.println("## 회원탈퇴:"+member);
@@ -79,7 +85,7 @@ public class MemberUnitTestMain {
 	}
 	
 	@Test//비밀번호 일치 여부 체크
-
+	@Ignore
 	public void existedPassword() {
 		boolean member = memberDao.existedPassword("bubblepop");
 		System.out.println("## 비밀번호 일치 여부:"+member);
