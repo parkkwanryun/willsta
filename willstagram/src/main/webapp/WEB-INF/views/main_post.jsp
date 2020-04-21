@@ -156,8 +156,8 @@
 											</ul>
 										</div><!--post-st end-->
 									</div><!--post-topbar end-->
-									<div class="posts-section posty">
 									
+									<div class="posts-section posty"> 
 									<!-- post-bar가 반복되면 됨 -->
 									<c:forEach var="post" items="${postList}">
 								
@@ -173,7 +173,7 @@
 												<div class="ed-opts">
 													<a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
 													<!-- 이 포스트가 내꺼인 경우에만 보여주는 메뉴 -->
-													<c:if test="${post.mId==sessionScope.mId}">
+													<c:if test="${post.mId!=sessionScope.loginId}">
 														<ul class="ed-options">
 															<li><a class="updatePost" href="#" title=""><s:message code="post.edit"/></a></li>
 															<li><a class="deletePost" href="#" title=""><s:message code="post.delete"/></a></li>
@@ -190,7 +190,7 @@
 												<c:if test="${fn:startsWith(post.fileName, 'img')}">
 													<div class="image">
 														<img class="center-block" style="margin:10px 0px;"
-															src="contents/post_image/${post.fileName}" alt="<s:message code='post.image'/>"
+															src="contents/post_image/${post.fileName}" alt="여기에이미지들어옴"
 															width="500" height="300" >
 													</div>
 												</c:if>
@@ -203,7 +203,7 @@
 											</div>
 											<div class="job_descp">
 												<h3>${post.pTitle}</h3>
-												<p>${fn:substring(post.pContents, 1, 30)}<br><a href="#" title=""><s:message code="post.view"/></a></p>
+												<p>${post.pContents}<br><a href="#" title=""><s:message code="post.view"/></a></p>
 												<ul class="skill-tags">
 													<c:forEach var='tag' items="${post.tagArray}">
 														<li><a href="#" title="">${tag}</a></li>
@@ -225,7 +225,7 @@
 												<a href="#"><i class="fas fa-eye"></i><s:message code="post.views"/>
 														${post.pViewCount}</a>
 											</div>
-												
+											
 											<!-- comment-section -->
 											<div class="comment-section">
 													<!-- comment-sec -->
@@ -248,8 +248,8 @@
 											<!--comment-section end-->
 										</div>
 										<!--post-bar end-->
-									</c:forEach>
-							    </div>
+									</c:forEach>	
+								</div>
 								<!--posty end-->
 								</div><!--main-ws-sec end-->
 							</div>

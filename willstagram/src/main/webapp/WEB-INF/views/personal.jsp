@@ -158,10 +158,10 @@
 											</ul>
 										</div>post-st end>
 									</div>post-topbar end> -->
-									<div class="posts-section"> 
 									
+									<div class="posts-section posty"> 
 									<!-- post-bar가 반복되면 됨 -->
-								<c:forEach var="post" items="${postList}">
+									<c:forEach var="post" items="${postList}">
 								
 										<div class="post-bar" post_no="${post.pNo}">
 											<div class="post_topbar">
@@ -181,7 +181,7 @@
 															<li><a class="deletePost" href="#" title=""><s:message code="post.delete"/></a></li>
 															<li><a class="hiddenPost" href="#" title="">
 															<c:if test="${post.status=='A'}"><s:message code="post.hide"/></c:if>
-															<c:if test="${post.status=='H'}">Show</c:if>
+															<c:if test="${post.status=='H'}"><s:message code="post.show"/></c:if>
 															</a></li>
 														</ul>
 													</c:if>
