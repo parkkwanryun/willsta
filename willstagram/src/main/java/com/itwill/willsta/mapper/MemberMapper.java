@@ -38,17 +38,22 @@ public interface MemberMapper {
 	public List<Member> selectByRandom(@Param("mId") String mId);
 
 	/* 팔로우 정보 없는 회원정보 로딩 */
-	@Select("SELECT mId, mPass, mName, mEmail, mPhone, mImage FROM MEMBER WHERE mId=#{mId} ")
+	@Select("SELECT mId, mPass, mName, mEmail, mPhone, mImage, mRetire FROM MEMBER WHERE mId=#{mId}")
 	public Member selectById(@Param("mId") String mId);
 
 	/* 회원정보 수정 */
 	@Update("UPDATE MEMBER SET mId=#{mId}, mPass=#{mPass}, mName=#{mName}, mEmail=#{mEmail}, mPhone=#{mPhone}, mImage=#{mImage}, mRetire=#{mRetire} WHERE mId=#{mId}")
 	public boolean updateMember(Member memeber);
 
-	/* 회원 탈퇴 */
+	/* 계정 비활성화*/
 	@Update("UPDATE MEMBER SET mRetire = #{mRetire} WHERE mPass = #{mPass} and mEmail = #{mEmail}")
 	public boolean deleteMember(@Param("mPass") String mPass, @Param("mEmail") String mEmail, @Param("mRetire")String mRetire);
-
+	
+	/* 계정 비활성화 여부 체크
+	@Select("SELECT mId FROM MEMBER WHERE mRetire=#{mRetire}")
+	public Member retired(@Param("mId")String mId, @Param("mRetire")String mRetire); 
+	*/
+	
 	/* 아이디 중복체크 */
 	@Select("SELECT count(*) cnt FROM MEMBER WHERE mId=#{mId}")
 	public boolean existedMember(@Param("mId") String mId);

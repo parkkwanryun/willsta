@@ -53,19 +53,21 @@ public class MemberController {
 	public String sign_in_action_post(@RequestParam("mId")String mId, @RequestParam("mPass")String mPass, 
 										HttpSession session, Model model,
 										HttpServletRequest request) {
-		System.out.println("로그인 컨트롤러 테스트"+"mId:"+mId+" mPass:"+mPass);
+		System.out.println("################로그인 컨트롤러 테스트"+"mId:"+mId+" mPass:"+mPass);
 		String forwardPath = "";
 		//String a= request.getSession().getServletContext().getRealPath("/");
 		Member member = memberService.selectById(mId);
-		
 		//logger.info("프로젝트 경로 찾기" + a);
-		try {
+		//System.out.println("############계정 활성화 여부:"+member.getmRetire());
+		
+		try {		
+			System.out.println("############계정 활성화 여부:"+member.getmRetire());
 			Member signInMember = memberService.signIn(mId, mPass);
-			session.setAttribute("mId", mId);
-			session.setAttribute("mName", member.getmName());
-			session.setAttribute("mImage", member.getmImage());
-			session.setAttribute("sMemberId", signInMember);
-			forwardPath="true";
+				session.setAttribute("mId", mId);
+				session.setAttribute("mName", member.getmName());
+				session.setAttribute("mImage", member.getmImage());
+				session.setAttribute("sMemberId", signInMember);
+				forwardPath="true";
 		} catch (MemberNotFoundException e) {
 			forwardPath = "false1";
 			e.printStackTrace();
@@ -76,6 +78,11 @@ public class MemberController {
 			e.printStackTrace();
 			forwardPath = "false";
 		}
+		/*
+		if(member.getmRetire()=="off"){
+			System.out.println("## 비활성화된 계정으로 로그인 할 수 없음");
+			//forwardPath = 계정 활성화 창으로 포워딩
+		}*/
 		return forwardPath;
 	}
 	
@@ -100,7 +107,6 @@ public class MemberController {
 				newMember= false;
 				}
 		return newMember+"";
-		
 	}	
 	
 	/*아이디 중복 체크*/
@@ -118,6 +124,7 @@ public class MemberController {
 	}
 	/*비밀번호 일치 여부 체크*/
 	@MemberLoginCheck
+	@ResponseBody
 	@RequestMapping(value="/pw_Check",method= RequestMethod.GET, produces="text/plain; charset=UTF-8")
 	public String retirePwCheck(@RequestParam(name="mPass")String mPass) {
 		boolean truePw = memberService.existedPassword(mPass);
@@ -129,19 +136,27 @@ public class MemberController {
 		}
 		return truePw+"";
 	}
+	
+	/*계정 활성화 창 이동*/
+	@RequestMapping(value="/account_on", method= {RequestMethod.GET,RequestMethod.POST}, produces="text/plain; charset=UTF-8")
+	public String accountOn() {
+		return "account_on";
+	}
+	/*계정 활성화 컨트롤러 */
+	
 
 	
 	/*회원 관리 탭 이동*/
 	@MemberLoginCheck
 	@RequestMapping(value="/profile-account-setting", method= {RequestMethod.GET,RequestMethod.POST}, produces="text/plain; charset=UTF-8")
-	public String AccountSettingAccess() {
+	public String accountSettingAccess() {
 		return "profile-account-setting";
 	}
 	/*회원 정보 수정(이미지 제외)*/
 	@MemberLoginCheck
 	@ResponseBody
 	@RequestMapping(value="/account-setting", method=RequestMethod.POST, produces="text/plain; charset=UTF-8")
-	public String AccountSetting(@RequestParam(name="mId")String mId,
+	public String accountSetting(@RequestParam(name="mId")String mId,
 								@RequestParam("mPass")String mPass,
 								@RequestParam("mName")String mName,
 								@RequestParam("mEmail")String mEmail,
@@ -166,7 +181,7 @@ public class MemberController {
 	@MemberLoginCheck
 	@ResponseBody
 	@RequestMapping(value="/account_img_setting", method=RequestMethod.POST, produces="json/application; charset=UTF-8")
-	public String AccountSetting(@RequestParam("mId")String mId,
+	public String accountSetting(@RequestParam("mId")String mId,
 								@RequestParam("uploadImg")MultipartFile uploadImg,
 								HttpServletRequest request) {
 		String path = request.getSession().getServletContext().getRealPath("/")+"contents\\member_image\\";

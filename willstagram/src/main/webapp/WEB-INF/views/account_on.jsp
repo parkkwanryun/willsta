@@ -17,12 +17,6 @@ label.error {
 </style>
 <body>
 	<div class="wrapper">
-		<header>
-			<!-- Menubar Starts -->
-			<jsp:include page="../common_top_menu.jsp" />
-			<!-- Menubar End -->
-		</header>
-
 		<section class="profile-account-setting">
 			<div class="container">
 				<div class="account-tabs-setting">
@@ -31,7 +25,7 @@ label.error {
 							<div class="acc-leftbar">
 								<div class="nav nav-tabs" id="nav-tab" role="tablist">
 									<a class="nav-item nav-link" id="nav-password-tab"
-										data-toggle="tab" href="#nav-password" role="tab"
+										data-toggle="tab" href="#" role="tab"
 										aria-controls="nav-password" aria-selected="false"><i
 										class="fa fa-lock"></i>
 									<s:message code="modify.title" /></a> <a class="nav-item nav-link"
@@ -39,7 +33,8 @@ label.error {
 										href="#nav-deactivate" role="tab"
 										aria-controls="nav-deactivate" aria-selected="false"><i
 										class="fa fa-random"></i>
-									<s:message code="deactivate.title" /></a>
+										계정 활성화
+									<!--<s:message code="deactivate.title" />--></a>
 								</div>
 							</div>
 							<!--acc-leftbar end-->
@@ -85,7 +80,7 @@ label.error {
 													<s:message code="modify.password" />
 												</h5>
 												<div class="cpp-fiel">
-													<input type="password" name="mPass" class="required" 
+													<input type="password" name="mPass" class="required"
 														placeholder="<s:message code="modify.password"/>">
 													<i class="la la-lock"></i>
 												</div>
@@ -168,9 +163,10 @@ label.error {
 									aria-labelledby="nav-deactivate-tab">
 									<div class="acc-setting">
 										<h3>
-											<s:message code="deactivate.title" />
+											계정 활성화
+											<!--<s:message code="deactivate.title" />-->
 										</h3>
-										<!-- 계정 비활성화 -->
+										<!-- 계정 활성화 -->
 										<form id = "member_retire_action">
 											<div class="cp-field">
 												<h5>
@@ -178,30 +174,10 @@ label.error {
 												</h5>
 												<div class="cpp-fiel">
 													<input type="text" name="mEmail" class="required" value="${sMemberId.mEmail}"
-														readonly placeholder="<s:message code="join.email"/>">
+														placeholder="<s:message code="join.email"/>">
 													<i class="fa fa-envelope"></i>
 												</div>
 											</div>
-											<div class="cp-field">
-												<h5>
-													<s:message code="sign.password" />
-												</h5>
-												<div class="cpp-fiel">
-													<input type="password" name="mPass" class="required" id="mPass"
-														placeholder="<s:message code="sign.password"/>"> 
-														<i class="fa fa-lock"></i>
-												</div>
-											</div>
-											<div class="col-lg-12 no-pdd">
-													<div class="checky-sec st2">
-														<div class="fgt-sec">
-															<input type="checkbox" name="mRetire" id="c2"> <label
-																class="required" for="c2"> <span></span>
-															</label> <small><s:message code="join.agree" /></small>
-														</div>
-														<!--fgt-sec end-->
-													</div>
-												</div>
 											<!-- 비활성화 이유
 											<div class="cp-field">
 												<h5><s:message code="deactivate.explain"/></h5>
