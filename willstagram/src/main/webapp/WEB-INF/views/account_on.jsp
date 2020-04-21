@@ -167,7 +167,7 @@ label.error {
 											<!--<s:message code="deactivate.title" />-->
 										</h3>
 										<!-- 계정 활성화 -->
-										<form id = "member_retire_action">
+										<form id = "member_account_on_action" method="POST">
 											<div class="cp-field">
 												<h5>
 													<s:message code="deactivate.email" />
@@ -178,6 +178,16 @@ label.error {
 													<i class="fa fa-envelope"></i>
 												</div>
 											</div>
+											<div class="col-lg-12 no-pdd">
+													<div class="checky-sec st2">
+														<div class="fgt-sec">
+															<input type="checkbox" name="mRetire" id="c2"> <label
+																class="required" for="c2"> <span></span>
+															</label> <small><s:message code="join.agree" /></small>
+														</div>
+														<!--fgt-sec end-->
+													</div>
+												</div>
 											<!-- 비활성화 이유
 											<div class="cp-field">
 												<h5><s:message code="deactivate.explain"/></h5>

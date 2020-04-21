@@ -26,11 +26,15 @@
  - 회원 정보 수정 시 유효성 체크(validate) (완료)
  - 비밀번호 찾기 (Forgot Password?)(완료)
  (~4/20)
- 2.DELETE 
- 회원 탈퇴 = 계정 비활성화 (완료)
+ 2.DELETE& UPDATE(mRetire=>off / mRetire=>on) 
+ 계정 비활성화 (완료)
+- 계정 비활성화 완료시키기(mRetire = off)(완료)
+- 계정 비활성화 : mRetire 체크(delete 매퍼의 컬럼 추가) (완료)
+- 활성화 창(view) 추가 (완료)
+- 비활성화 계정으로 로그인 시 계정활성화 창 띄워주기 (완료) 
+- 활성화 처리할 mapper, dao,서비스,컨트롤러 만들기(완료)
+- 활성화 후 로그인 창으로 이동시키기.(완료)
 
-
- (회원 탈퇴) 
 
  <<추가 사항>>
  <<네이버 아이디 로그인>>
@@ -55,6 +59,9 @@ function member_login_action_function() {
 				id_check();
 			} else if (textData.trim() == "false2") {
 				password_check();
+			} else if (textData.trim() == "false3"){
+				alert('비활성화된 계정입니다. 활성화 상태창으로 이동합니다.');
+				location.href='/willstagram/account_on';
 			}
 		}
 	})
@@ -196,6 +203,28 @@ function member_retire() {
 		}
 	})
 }
+/*
+ 8) 계정 활성화
+ */
+function member_account_on_action(){
+	var maArray = $('#member_account_on_action').serializeArray();
+	$.ajax({
+		url : 'member_account_on_action',
+		method : 'POST',
+		data : maArray,
+		dataType : 'text',
+		success : function(textData) {
+			if (textData.trim() == "true") {
+				alert('계정이 활성화 되었습니다. 로그인 하세요');
+				location.href = '/willstagram/sign_in';
+			} else if (textData.trim() == "false") {
+				alert('계정 활성화 실패');
+				location.href = '/willstagram/account_on';
+			}
+		}
+	})
+}
+
 
 /*
  * &&DOM Tree 로딩 후 이벤트 처리&&
@@ -415,6 +444,31 @@ $(function() {
 		},
 		submitHandler : function() {
 			member_retire();
+		},
+		errorClass : "error",
+		validClass : "valid"
+	});
+	
+	// 계정 활성화 시 유효성 검증
+	$('#member_account_on_action').validate({
+		rules : {
+			mEmail : {
+				required : true
+			},
+			mRetire : {
+				required : true
+			}
+		},
+		messages : {
+			mEmail : {
+				required : "이메일을 입력해주세요"
+			},
+			mRetire : {
+				required : "계정 활성화 약관에 동의하여 주십시오"
+			}
+		},
+		submitHandler : function() {
+			member_account_on_action();
 		},
 		errorClass : "error",
 		validClass : "valid"
