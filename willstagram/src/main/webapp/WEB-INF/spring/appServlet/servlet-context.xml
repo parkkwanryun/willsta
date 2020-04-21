@@ -64,10 +64,7 @@
 	
 	<!-- MessageSource  -->
 	<beans:bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-
-
         <beans:property name="basenames" value="/WEB-INF/messages/messages"/>
-
         <beans:property name="defaultEncoding" value="UTF-8"/>
     </beans:bean>
      
