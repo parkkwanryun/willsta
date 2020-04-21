@@ -26,7 +26,7 @@ function post_write() {
 		type : "POST",
 		dataType : 'html',
 		success : function(resultText) {
-			alert('포스트, 성공적.');
+			//alert('포스트카 성공적.');
 			if (postno > 0) {
 				$('div.post-bar[post_no="' + postno + '"]').remove();
 			}
@@ -37,7 +37,10 @@ function post_write() {
 
 	$(".post-popup.job_post").removeClass("active");
 	$(".wrapper").removeClass("overlay");
-
+	
+	setTimeout(function() {
+		window.location.reload();
+	}, 500);
 };
 
 // document ready
@@ -78,6 +81,11 @@ $(function() {
 			success : function(resultText) {
 				if (resultText.trim() == 'success') {
 					$post.remove();
+					/*
+					setTimeout(function() {
+						window.location.reload();
+					}, 500);
+					*/
 				} else {
 					alert('delete fail');
 				}
@@ -168,7 +176,9 @@ $(function() {
 							} else {
 								$(e.target).text('Hide');
 							}
-
+							setTimeout(function() {
+								window.location.reload();
+							}, 500);
 						} else {
 							alert('change fail');
 						}
