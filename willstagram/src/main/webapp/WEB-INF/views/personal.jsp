@@ -173,7 +173,14 @@
 										<div class="post-bar" post_no="${post.pNo}">
 											<div class="post_topbar">
 												<div class="usy-dt">
-													<img src="contents/member_image/${post.mImage}" width=40px height=40px>
+													<c:choose>
+														<c:when test="${post.mImage==null}">
+															<img src="contents/member_image/default.png" width=40px height=40px>
+														</c:when>
+														<c:otherwise>
+															<img src="contents/member_image/${post.mImage}" width=40px height=40px>
+														</c:otherwise>
+													</c:choose>
 													<div class="usy-name">
 														<h3>${post.mName}</h3>
 														<span><img src="images/clock.png" alt="">${post.aGo}</span>
