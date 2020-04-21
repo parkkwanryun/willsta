@@ -16,25 +16,25 @@
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<h4 style="border-bottom: 1px solid #c5c5c5;">
-				<i class="glyphicon glyphicon-user"> </i> Account Access
+				<i class="glyphicon glyphicon-user"> </i> <s:message code="pw.access"/>
 			</h4>
-				<h4 class="">Forgot your password?</h4>
+				<h4 class=""><s:message code="sign.forgotPassword"/></h4>
 				<form id="findPw_action" method="post">
 					<fieldset>
 						<span class="help-block"> 
-						Name and Email-address you use to find your password
+						<s:message code="pw.explain"/>
 						</span>
 						<div class="form-group input-group">
-							<span class="input-group-addon"> ID </span> <input
-								class="form-control" placeholder="ID" id="mId" name="mId"
+							<span class="input-group-addon"> <s:message code="sign.id"/> </span> <input
+								class="form-control" placeholder="<s:message code="sign.id"/>" id="mId" name="mId"
 								type="text" required>
 						</div>
 						<div class="form-group input-group">
-							<span class="input-group-addon"> email </span> <input
-								class="form-control" placeholder="Email" id="mEmail" name="mEmail"
+							<span class="input-group-addon"> <s:message code="deactivate.email"/> </span> <input
+								class="form-control" placeholder="<s:message code="deactivate.email"/>" id="mEmail" name="mEmail"
 								type="email" required>
 						</div>
-						<button type="submit" value="submit" class="btn btn-primary btn-block">Continue</button>
+						<button type="submit" value="submit" class="btn btn-primary btn-block"><s:message code="pw.continue"/></button>
 					</fieldset>
 				</form> 
 			</div>
