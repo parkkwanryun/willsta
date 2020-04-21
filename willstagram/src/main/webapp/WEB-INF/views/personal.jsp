@@ -106,7 +106,8 @@
 														<img src="contents/member_image/${member.mImage}" alt>
 													</c:otherwise>
 												</c:choose>
-												<h3>${member.mName}</h3>
+												<p style="font-size:30px; color:black; font-weight:bold">
+												${member.mName}</p> 
 										</div><!--user-pro-img end-->
 										<div class="user_pro_status">
 											<ul class="flw-status">
