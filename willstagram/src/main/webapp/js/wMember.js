@@ -27,10 +27,10 @@
  - 비밀번호 찾기 (Forgot Password?)(완료)
  (~4/20)
  2.DELETE 
- 회원 탈퇴(완료)
+ 회원 탈퇴 = 계정 비활성화 (완료)
 
 
-(회원 탈퇴) 
+ (회원 탈퇴) 
 
  <<추가 사항>>
  <<네이버 아이디 로그인>>
@@ -84,33 +84,33 @@ function password_check() {
 /*
  * 3) 회원가입
  */
-	function member_register_action_function(){
-		var mrafArray = $('#member_register_action').serializeArray();
+function member_register_action_function() {
+	var mrafArray = $('#member_register_action').serializeArray();
 
-		$.ajax({
-			url : 'sign_up_action',
-			data : mrafArray,
-			method : 'POST',
-			dataType : 'text',
-			success : function(textData) {
-				if (textData.trim() == "true") {
-					member_register_action.mId.value = textData.mId;
-					member_register_action.mPass.value = textData.mPass;
-					member_register_action.mName.value = textData.mName;
-					member_register_action.mEmail.value = textData.mEmail;
-					member_register_action.mPhone.value = textData.mPhone;
-					member_register_action.mImage.value = textData.mImage;
-					member_register_action.mRetire.value = textData.mRetire;
+	$.ajax({
+		url : 'sign_up_action',
+		data : mrafArray,
+		method : 'POST',
+		dataType : 'text',
+		success : function(textData) {
+			if (textData.trim() == "true") {
+				member_register_action.mId.value = textData.mId;
+				member_register_action.mPass.value = textData.mPass;
+				member_register_action.mName.value = textData.mName;
+				member_register_action.mEmail.value = textData.mEmail;
+				member_register_action.mPhone.value = textData.mPhone;
+				member_register_action.mImage.value = textData.mImage;
+				member_register_action.mRetire.value = textData.mRetire;
 
-					location.href = '/willstagram/sign_in';
-				}else if(textData.trim() == "false"){
+				location.href = '/willstagram/sign_in';
+			} else if (textData.trim() == "false") {
 
-				}
+			}
 
-			} 
+		}
 	});
-		e.preventDefault();
-	}
+	e.preventDefault();
+}
 /*
  * 4) 회원정보 수정 함수(이미지x)
  */
@@ -132,27 +132,26 @@ function account_setting() {
 
 				location.href = '/willstagram/main_post';
 			} else {
-				
+
 			}
 		}
 	});
 }
 
 /*
- 5) 회원 이미지 수정 함수
- - enctype: multipart로 지정해주지 않으면 controller로 파일을 보낼 수 없음
- - contentType : false 로 선언 시 content-type 헤더가 multipart/form-data로 전송되게 함
- - processData : false로 선언 시 formData를 string으로 변환하지 않음
- - formData : 해당 폼의 모든 값들(file포함)을 해당 객체에 한번에 담아 보내기 위해 사용
+ * 5) 회원 이미지 수정 함수 - enctype: multipart로 지정해주지 않으면 controller로 파일을 보낼 수 없음 -
+ * contentType : false 로 선언 시 content-type 헤더가 multipart/form-data로 전송되게 함 -
+ * processData : false로 선언 시 formData를 string으로 변환하지 않음 - formData : 해당 폼의 모든
+ * 값들(file포함)을 해당 객체에 한번에 담아 보내기 위해 사용
  */
-function account_img_setting(){
+function account_img_setting() {
 	var formData = new FormData();
 
 	var aisArray = $('#member_img_modify_action').serializeArray();
 	for (var i = 0; i < aisArray.length; i++) {
 		formData.append(aisArray[i].name, aisArray[i].value);
 	}
-	
+
 	var inputFile = $("input[name='uploadImg']");
 	var files = inputFile[0].files;
 	for (var i = 0; i < files.length; i++) {
@@ -162,8 +161,8 @@ function account_img_setting(){
 		url : 'account_img_setting',
 		method : 'POST',
 		data : formData,
-		processData: false, 
-		contentType: false,
+		processData : false,
+		contentType : false,
 		dataType : 'json',
 		success : function(jsonData) {
 			if (jsonData.trim() == "true") {
@@ -177,9 +176,9 @@ function account_img_setting(){
 	});
 }
 /*
-7) 회원 탈퇴
-*/
-function member_retire(){
+ * 7) 회원 탈퇴
+ */
+function member_retire() {
 	var mrArray = $('#member_retire_action').serializeArray();
 	$.ajax({
 		url : 'member_retire',
@@ -188,16 +187,15 @@ function member_retire(){
 		dataType : 'text',
 		success : function(textData) {
 			if (textData.trim() == "true") {
-				alert('탈퇴하셨습니다. 안녕히 가세요');
+				alert('계정을 비활성화 합니다. 활성화시키려면 다시 로그인 하세요');
 				location.href = '/willstagram/sign_in';
-			}else{
-				location.href ='/willstagram/profile-account-setting';
+			} else if (textData.trim() == "false") {
+				alert('계정 비활성화 실패');
+				location.href = '/willstagram/profile-account-setting';
 			}
 		}
 	})
-	
 }
-
 
 /*
  * &&DOM Tree 로딩 후 이벤트 처리&&
@@ -206,7 +204,7 @@ $(function() {
 	$('#msg1').hide();
 	$('#msg2').hide();
 
-// 로그인 유효성 검증
+	// 로그인 유효성 검증
 	$('#member_login_action').validate({
 		rules : {
 			mId : {
@@ -275,6 +273,9 @@ $(function() {
 				required : true,
 				minlength : 9,
 				digits : true
+			},
+			mRetire :{
+				required : true
 			}
 		},
 		messages : {
@@ -357,7 +358,7 @@ $(function() {
 		errorClass : "error",
 		validClass : "valid"
 	});
-	
+
 	// 회원 이미지 수정 시 유효성 검증
 	$('#member_img_modify_action').validate({
 		rules : {
@@ -377,21 +378,39 @@ $(function() {
 		validClass : "valid"
 	});
 	
+	// 계정 비활성화 시 유효성 검증
 	$('#member_retire_action').validate({
 		rules : {
 			mEmail : {
 				required : true
 			},
-			mPass :{
+			mPass : {
+				required : true,
+				remote : {
+					url : "pw_Check",
+					method : "GET",
+					type : "text",
+					data : {
+						mPass : function() {
+							return $('#mPass').val();
+						}
+					}
+				}
+			},
+			mRetire : {
 				required : true
 			}
 		},
 		messages : {
 			mEmail : {
-				required : "이메일을 입력해주세요",
+				required : "이메일을 입력해주세요"
 			},
-			mPass:{
-				required : "비밀번호를 입력해주세요"
+			mPass : {
+				required : "비밀번호를 입력해주세요",
+				remote : " 비밀번호가 일치하지 않습니다."
+			},
+			mRetire : {
+				required : "계정 비활성화 약관에 동의하여 주십시오"
 			}
 		},
 		submitHandler : function() {

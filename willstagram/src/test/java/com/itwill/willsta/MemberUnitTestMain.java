@@ -58,10 +58,9 @@ public class MemberUnitTestMain {
 	}
 	
 
-	@Test //회원탈퇴
-
+	@Test //회원탈퇴(계정 비활성화)
 	public void delelteMember() {
-		boolean member = memberDao.deleteMember("sss4321","sss4321@naver.com");
+		boolean member = memberDao.deleteMember("bubblepop","bubblepop@nate.com","off");
 		System.out.println("## 회원탈퇴:"+member);
 	}
 	
@@ -77,6 +76,13 @@ public class MemberUnitTestMain {
 	public void findId() {
 		Member member = memberDao.findId("bluepk2034@naver.com","륜관팍");
 		System.out.println("##아이디 찾기:"+member);
+	}
+	
+	@Test//비밀번호 일치 여부 체크
+
+	public void existedPassword() {
+		boolean member = memberDao.existedPassword("bubblepop");
+		System.out.println("## 비밀번호 일치 여부:"+member);
 	}
 	
 	@Test //비밀번호 찾기
