@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -131,8 +132,8 @@ public class PostController {
 	}
 	@MemberLoginCheck
 	@RequestMapping(value="/insert_like", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
-	public String insert_like(@RequestParam(value="pNo", required = true) int pNo) {
-		String mId = "hjs";
+	public String insert_like(@RequestParam(value="pNo", required = true) int pNo,HttpSession session) {
+		String mId = (String)session.getAttribute("mId");
 		Likes lk = new Likes(pNo, mId);
 		return postService.insert_like(lk);
 		
