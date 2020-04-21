@@ -3712,12 +3712,14 @@ a:hover {
 .company-up-info img {
 	float: none;
 	margin-bottom: 10px;
+	border: 5px solid #fff;
 	-webkit-border-radius: 100px;
 	-moz-border-radius: 100px;
 	-ms-border-radius: 100px;
 	-o-border-radius: 100px;
 	border-radius: 100px;
-	height: 90px;
+	width: 100px;
+	height: 100px;
 	object-fit: cover;
 }
 .company-up-info h3 {

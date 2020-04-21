@@ -116,14 +116,21 @@
 										</div><!--sd-title end-->
 										<div class="suggestions-list">
 											<c:forEach var="mList" items="${memberList}">
-												<c:if test="${mList.mId!=sessionScope.mId }">
+												<c:if test="${mList.mId!=sessionScope.mId}">
 													<div class="suggestion-usd">
-															<img src="contents/member_image/${mList.mImage}" alt="" width="40px">
-															<div class="sgt-text">
-																<h4><a href="user-profile?youId=${mList.mId}">${mList.mName}</a></h4>
-																<span>${mList.mEmail}</span>
-															</div>
-															<span><i mid='${mList.mId}' class="la la-plus sFollow"></i></span>
+														<c:choose>
+															<c:when test="${mList.mImage != null}">
+																<img src="contents/member_image/${mList.mImage}" alt="" width="40px" height="40px">
+															</c:when>
+															<c:otherwise>
+																<img src="contents/member_image/default.png" alt="" width="40px" height="40px">
+															</c:otherwise>
+														</c:choose>
+														<div class="sgt-text">
+															<h4><a href="user-profile?youId=${mList.mId}">${mList.mName}</a></h4>
+															<span>${mList.mEmail}</span>
+														</div>
+														<span><i mid='${mList.mId}' class="la la-plus sFollow"></i></span>
 													</div>
 												</c:if>
 											</c:forEach>
