@@ -107,7 +107,7 @@
 													</c:otherwise>
 												</c:choose>
 												<p style="font-size:30px; color:black; font-weight:bold">
-												${member.mName}</p>
+												${member.mName}</p> 
 										</div><!--user-pro-img end-->
 										<div class="user_pro_status">
 											<ul class="flw-status">
