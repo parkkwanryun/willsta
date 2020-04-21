@@ -256,6 +256,13 @@ $(function() {
 		commentsInsertActionFunction(e);
 		e.preventDefault();
 	});
+	$(document).on("keydown", ".cContents", function(e){
+		if(e.keyCode == 13){
+			commentsInsertActionFunction(e);
+			e.preventDefault();
+		}
+	});
+	
 	
 	//대댓글 쓰기 form 보이기
 	$(document).on("click", ".active-reply", function(e){
@@ -270,6 +277,13 @@ $(function() {
 		reCommentsInsertActionFunction(e);
 		e.preventDefault();
 		e.stopPropagation();
+	});
+	$(document).on("keydown", ".cContents", function(e){
+		if(e.keyCode == 13){
+			reCommentsInsertActionFunction(e);
+			e.preventDefault();
+			e.stopPropagation();
+		}
 	});
 	
 	//댓글 삭제
