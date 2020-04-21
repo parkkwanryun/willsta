@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.itwill.willsta.domain.DmContents;
+import com.itwill.willsta.domain.DmContentsCount;
 import com.itwill.willsta.mapper.DmContentsMapper;
 
 @Repository
@@ -46,6 +47,27 @@ public class DmContentsDaoImpl implements DmContentsDao {
 	@Override
 	public int dmcDelete(int dmContentsNo) {
 		return dmContentsMapper.dmcDelete(dmContentsNo);
+	}
+	// DM메시지 수신 시 플래그 변경
+	@Override
+	public int dmcReadChat(DmContents dmContents) {
+		return dmContentsMapper.dmcReadChat(dmContents);
+	}
+
+	// DM메시지 읽지 않은 메세지 갯수
+	@Override
+	public int dmNotReadCount(DmContents DmContents) {
+		return dmContentsMapper.dmNotReadCount(DmContents);
+	}
+
+	@Override
+	public List<DmContents> dmAllNotReadMessage(DmContents dmContents) {
+		return dmContentsMapper.dmAllNotReadMessage(dmContents);
+	}
+
+	@Override
+	public List<DmContentsCount> dmAllNotReadCount(String mId) {
+		return dmContentsMapper.dmAllNotReadCount(mId);
 	}
 
 }
