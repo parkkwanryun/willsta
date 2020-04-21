@@ -9,12 +9,10 @@ public class DmContents {
 	private String dmContentsDate;
 	private String dmSenderId;
 	private String dmContentsImage;
+	private Integer dmChatRead;
 	
-	public DmContents() {
-	}
-
 	public DmContents(Integer dmNo, Integer dmContentsNo, String dmContentsMessage, String dmContentsDate,
-			String dmSenderId, String dmContentsImage) {
+			String dmSenderId, String dmContentsImage, Integer dmChatRead) {
 		super();
 		this.dmNo = dmNo;
 		this.dmContentsNo = dmContentsNo;
@@ -22,15 +20,11 @@ public class DmContents {
 		this.dmContentsDate = dmContentsDate;
 		this.dmSenderId = dmSenderId;
 		this.dmContentsImage = dmContentsImage;
+		this.dmChatRead = dmChatRead;
 	}
-	
-	public DmContents(Integer dmNo, Integer dmContentsNo, String dmContentsMessage, String dmContentsDate,
-			String dmSenderId) {
-		this.dmNo = dmNo;
-		this.dmContentsNo = dmContentsNo;
-		this.dmContentsMessage = dmContentsMessage;
-		this.dmContentsDate = dmContentsDate;
-		this.dmSenderId = dmSenderId;
+
+	public DmContents() {
+		super();
 	}
 
 	public Integer getDmNo() {
@@ -81,11 +75,19 @@ public class DmContents {
 		this.dmContentsImage = dmContentsImage;
 	}
 
+	public Integer getDmChatRead() {
+		return dmChatRead;
+	}
+
+	public void setDmChatRead(Integer dmChatRead) {
+		this.dmChatRead = dmChatRead;
+	}
+
 	@Override
 	public String toString() {
 		return "DmContents [dmNo=" + dmNo + ", dmContentsNo=" + dmContentsNo + ", dmContentsMessage="
 				+ dmContentsMessage + ", dmContentsDate=" + dmContentsDate + ", dmSenderId=" + dmSenderId
-				+ ", dmContentsImage=" + dmContentsImage + "]";
+				+ ", dmContentsImage=" + dmContentsImage + ", dmChatRead=" + dmChatRead + "]\n";
 	}
 	
 	

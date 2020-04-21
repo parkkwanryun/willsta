@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.itwill.willsta.domain.DM;
 import com.itwill.willsta.domain.DmContents;
+import com.itwill.willsta.domain.DmContentsCount;
 import com.itwill.willsta.domain.Member;
 
 public interface DmService {
@@ -49,4 +50,15 @@ public interface DmService {
 	
 	//DM 메시지 삭제
 	int dmcDelete(int dmContentsNo);
+	
+	// DM메시지 수신여부 체크
+	public int dmcReadChat(DmContents dmContents);
+	
+	// DM메시지 읽지 않은 메세지 갯수
+	public int dmNotReadCount(DmContents DmContents);
+	
+	// DM메세지 전체 유저 읽지않은 메세지 갯수
+	public List<DmContents> dmAllNotReadMessage(DmContents dmContents);
+	
+	public List<DmContentsCount> dmAllNotReadCount(String mId);
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwill.willsta.domain.DM;
 import com.itwill.willsta.domain.DmContents;
+import com.itwill.willsta.domain.DmContentsCount;
 import com.itwill.willsta.domain.Member;
 import com.itwill.willsta.repository.DmContentsDao;
 import com.itwill.willsta.repository.DmDao;
@@ -95,6 +96,20 @@ public class DmServiceImpl implements DmService {
 		memberInfo.put("member", member);
 		return memberInfo;
 	}
-
-
+	@Override
+	public int dmcReadChat(DmContents dmContents) {
+		return dmContentsDao.dmcReadChat(dmContents);
+	}
+	@Override
+	public int dmNotReadCount(DmContents DmContents) {
+		return dmContentsDao.dmNotReadCount(DmContents);
+	}
+	@Override
+	public List<DmContents> dmAllNotReadMessage(DmContents dmContents) {
+		return null;
+	}
+	@Override
+	public List<DmContentsCount> dmAllNotReadCount(String mId) {
+		return dmContentsDao.dmAllNotReadCount(mId);
+	}
 }
