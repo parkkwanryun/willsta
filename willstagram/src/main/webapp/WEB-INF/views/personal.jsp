@@ -104,12 +104,12 @@
 										<div class="user_pro_status">
 											<ul class="flw-status">
 												<li>
-													<h4>Following</h4>
+													<h4><s:message code="main.follow"/></h4>
 													<span></span>
 													<b><a mid='${member.mId}' id="followings" href="#" title="">${member.followingCount}</a></b>
 												</li>
 												<li>
-													<h4>Followers</h4>
+													<h4><s:message code="main.follower"/></h4>
 													<span></span>
 													<b><a mid='${member.mId}' id="followers"  href="#" title="">${member.followerCount}</a></b>
 												</li>
