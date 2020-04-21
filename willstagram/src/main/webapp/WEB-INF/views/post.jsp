@@ -16,7 +16,14 @@
 					</c:otherwise>
 				</c:choose>
 				<div class="usy-name">
-					<h3>${post.mName}</h3>
+					<c:choose>
+						<c:when test="${post.mId==sessionScope.mId}">
+							<h3><a href="personal_info">${post.mName}</a></h3>
+						</c:when>
+						<c:otherwise>
+							<h3><a href="user-profile?youId=${post.mId}">${post.mName}</a></h3>
+						</c:otherwise>
+					</c:choose>
 					<span><img src="images/clock.png" alt="">
 						<c:if test="${post.aGo==null}"><s:message code="post.now"/></c:if>
 						<c:if test="${post.aGo!=null}">${post.aGo}</c:if>
