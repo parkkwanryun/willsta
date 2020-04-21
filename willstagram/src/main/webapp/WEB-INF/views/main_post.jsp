@@ -81,7 +81,14 @@
 										<div class="user-profile">
 											<div class="username-dt">
 												<div class="usr-pic">
-													<img src="contents/member_image/${member.mImage}" alt="">
+													<c:choose>
+														<c:when test="${member.mImage==null}">
+															<img src="contents/member_image/default.png" alt="">
+														</c:when>
+														<c:otherwise>
+															<img src="contents/member_image/${member.mImage}" alt="">
+														</c:otherwise>
+													</c:choose>
 												</div>
 											</div><!--username-dt end-->
 											<div class="user-specs">
