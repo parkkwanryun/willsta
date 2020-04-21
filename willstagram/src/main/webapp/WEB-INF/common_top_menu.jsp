@@ -7,7 +7,7 @@
 			<div class="container">
 				<div class="header-data">
 					<div class="logo">
-						<a href="main_post" title=""><img src="images/logo.png" alt=""></a>
+						<a href="main_post" title=""><img src="images/wd-logo.png" alt=""></a>
 					</div><!--logo end-->
 					<div class="search-bar">
 						<form class="userSearch" action="profiles">

@@ -154,7 +154,7 @@
 									<div class="tags-sec full-width">
 										<div class="cp-sec">
 											<p><s:eval expression="new java.util.Date().toLocaleString()"/></p>
-											<img src="images/logo.png" alt="">
+											<img src="images/wd-logo.png" alt="" width="40px" height="40px">
 											<p><img src="images/cp.png" alt="">Copyright 2020</p>
 										</div>
 									</div><!--tags-sec end-->
