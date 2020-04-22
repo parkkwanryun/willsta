@@ -190,7 +190,7 @@
 														</c:otherwise>
 													</c:choose>
 													<div class="usy-name">
-														<h3>${post.mName}</h3>
+														<h3><a href="personal_info">${post.mName}</a></h3>
 														<span><img src="images/clock.png" alt="">${post.aGo}</span>
 													</div>
 												</div>
