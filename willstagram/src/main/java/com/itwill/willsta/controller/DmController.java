@@ -60,10 +60,6 @@ public class DmController {
    @RequestMapping(value = "/messages", method = RequestMethod.GET)
    public String messageForm(HttpSession httpSession) {
       String mId = (String)httpSession.getAttribute("mId");
-      List<DmContentsCount> notReadCount = dmService.dmAllNotReadCount(mId);
-      for (DmContentsCount dmContentsCount : notReadCount) {
-         System.out.println("나오니"+dmContentsCount.getDmNo()+":"+dmContentsCount.getDmChatReadCount());
-      }
       List<DM> dmList = dmService.dmRoomSelectAll(mId); 
       System.out.println("@@@@@@@@mId:"+mId);
       httpSession.setAttribute("dmList", dmList);
@@ -119,7 +115,6 @@ public class DmController {
          }
       return rowCount;
    }
-   
    /*
    @ResponseBody
    @RequestMapping(value = "/messages_notReadCount", method = RequestMethod.POST)

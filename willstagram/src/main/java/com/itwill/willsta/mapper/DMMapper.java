@@ -15,8 +15,8 @@ import com.itwill.willsta.domain.DM;
 public interface DMMapper {
 	// 채팅방 채팅중인 목록 전체 출력
 	@Select("SELECT d.dmNo, d.mId, to_char(dmDate,'MM/DD') as dmDate, " + 
-			"        (SELECT m.mImage FROM member m WHERE m.mId IN( " + 
-			"            (SELECT d.mId FROM DM WHERE m.mId = d.mId))) as mImage " + 
+			"  (SELECT m.mImage FROM member m WHERE m.mId IN((SELECT d.mId FROM DM WHERE m.mId = d.mId))) as mImage, " + 
+			"  (SELECT count(dmChatRead) as dmChatReadCount FROM dm_contents dmc WHERE dmc.dmSenderId != #{mId} AND dmc.dmChatRead = 0 AND d.dmNo = dmc.dmNo) as dmChatReadCount " + 
 			"FROM dm d " + 
 			"WHERE d.mId != #{mId} AND d.dmNo IN(SELECT DMNO FROM DM WHERE mId = #{mId})")
 	public List<DM> dmRoomSelectAll(@Param("mId") String mId);
