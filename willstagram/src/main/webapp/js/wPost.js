@@ -81,11 +81,9 @@ $(function() {
 			success : function(resultText) {
 				if (resultText.trim() == 'success') {
 					$post.remove();
-					/*
 					setTimeout(function() {
 						window.location.reload();
 					}, 500);
-					*/
 				} else {
 					alert('delete fail');
 				}
