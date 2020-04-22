@@ -21,7 +21,7 @@
 										<li><a href="#" title=""><i class="fa fa-ellipsis-v"></i></a></li>
 									</ul>
 								</div><!--msg-title end-->
-								<div class="messages-list"  style="overflow:auto">
+								<div class="messages-list"  style="overflow:auto; height:650px;">
 									<ul>
 										<!---------------------------채팅 리스트 시작------------------------------->
 										<c:forEach var="dm" items="${dmList}">
