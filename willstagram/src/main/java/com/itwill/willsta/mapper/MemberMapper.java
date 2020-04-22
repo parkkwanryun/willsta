@@ -74,13 +74,16 @@ public interface MemberMapper {
 	/* 임시비밀번호 발급 */
 	@Update("UPDATE MEMBER SET mPass=#{mPass} WHERE mId=#{mId}")
 	public Member getTempPw(@Param("mId") String mPass, @Param("mEmail") String mId);
-
-	@Select("SELECT mid, mname, mimage FROM member WHERE rownum < 13 ORDER BY mid")
+	
+	/* 유저 프로필 목록 */
+	@Select("SELECT A.* FROM(SELECT mid, mname, mimage FROM member ORDER BY mid) A WHERE rownum < 13")
 	public List<Member> memberList();
 
+	/* 유저 프로필 스크롤 */
 	@Select("SELECT A.* FROM(SELECT rownum, mid, mname, mimage FROM member WHERE mid > #{lastId} ORDER BY mid)A WHERE rownum < 13")
 	public List<Member> addMemberList(@Param("lastId") String lastId);
-
+	
+	/* 유저 검색 */
 	@Select("SELECT mid, mname, mimage FROM member where mid like '%${findId}%' ")
 	public List<Member> findMemberList(@Param("findId") String findId);
 }

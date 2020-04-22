@@ -1,7 +1,7 @@
 package com.itwill.willsta;
 
 
-import static org.junit.Assert.assertNotNull;
+
 
 import java.util.List;
 
@@ -58,6 +58,7 @@ public class MemberUnitTestMain {
    }
    
    @Test // 계정 활성화
+   @Ignore
    public void retired() {
    boolean   newMember = memberDao.accountOn("on","pkr@google.com");
       System.out.println("### 이미지 삽입 성공 여부:"+newMember);
@@ -115,7 +116,7 @@ public class MemberUnitTestMain {
    @Test //회원 1명 조회 (팔로워,팔로우 불러오기 포함) 
    @Ignore
    public void selectById() {
-      Member member = memberDao.selectById("hjs");
+      Member member = memberDao.selectById("hjs1717");
       System.out.println("## 회원 1명 불러오기 :"+member);
    }
    

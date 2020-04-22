@@ -33,7 +33,7 @@ public class PostDaoImpl implements PostDao {
 	
 	@Override
 	public int status_update(Integer pNo, String status) {
-		return postMapper.status_update(pNo, status);
+		return postMapper.status_update(pNo,status);
 	}
 
 	@Override

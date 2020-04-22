@@ -32,16 +32,13 @@ public interface PostMapper {
 			"    	<if test='pContents != null'>pContents = #{pContents},</if> ", 
 			"    	<if test='hasTag != null'>hasTag = #{hasTag}, </if>", 
 			"    	pdate = sysdate", 
-			"	</set> ",  
+			"	</set> ",
 			"	WHERE pNo = #{pNo} ",
 			"</script>"})
+	
 	public int update(Post post);
-	
-	@Update("UPDATE POST "+
-		"	set status = #{status} " +
-		"	WHERE pNo = #{pNo} ")
+	@Update("UPDATE POST set status = #{status} WHERE pNo = #{pNo}")
 	public int status_update(@Param("pNo") Integer pNo, @Param("status") String status);
-	
 	
 	@Update("UPDATE POST SET PVIEWCOUNT = PVIEWCOUNT + 1 WHERE PNO = #{pNo}")
 	public int up_viewcount(Integer pNo);
