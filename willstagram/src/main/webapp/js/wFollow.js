@@ -208,7 +208,7 @@ $(function(){
 						$(e.target).hide();
 						$(e.target.parentNode).next().children().show();
 						var html="<span><i class='la la-plus unfollow' ></i></span>";
-						// $(e.target.parentNode).prev().children().show();
+						
 						$('#followings').text(
 								parseInt($('#followings').text()) + 1);
 
@@ -240,7 +240,7 @@ $(function(){
 						$(e.target).hide();
 						$(e.target.parentNode).next().children().show();
 						var html="<span><i class='la la-plus unfollow' ></i></span>";
-						// $(e.target.parentNode).prev().children().show();
+						
 						$('#followings').text(
 								parseInt($('#followings').text()) + 1);
 
@@ -270,7 +270,7 @@ $(function(){
 						// location.href='personal_info'; get방식이였다면.
 						$(e.target).hide();
 						$(e.target.parentNode).next().children().show();
-						// $(e.target.parentNode).prev().children().show();
+						
 						$('#followings').text(
 								parseInt($('#followings').text()) - 1);
 
