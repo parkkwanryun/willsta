@@ -98,7 +98,7 @@
 										</div><!--user-profile end-->
 										<ul class="user-fw-status">
 											<li>
-												<h4><s:message code="main.follow"/></h4>
+												<h4><s:message code="main.following"/></h4>
 												<span><b class="followings">${member.followingCount}</b></span>
 											</li>
 											<li>
