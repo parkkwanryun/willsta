@@ -54,7 +54,7 @@ public interface DmContentsMapper {
 	// DM메시지 특정 유저 읽지 않은 메세지 갯수
 	@Select("SELECT COUNT(dmChatRead) " + 
 			"FROM DM_CONTENTS " + 
-			"WHERE dmNo = #{dmNo} AND dmSenderId = #{dmSenderId} AND dmChatRead = #{dmChatRead}")
+			"WHERE dmNo = #{dmNo} AND dmSenderId != #{dmSenderId} AND dmChatRead = #{dmChatRead}")
 	public int dmNotReadCount(DmContents dmContents);
 
 	// DM 메세지 전체 유저 읽지않은 메세지 정보
