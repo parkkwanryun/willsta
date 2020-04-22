@@ -21,6 +21,28 @@
 
 $(function(){
 	
+	// 스크롤이벤트 : 문서의 끝 위치에 오면 post 추가 조회
+	$(window).on(
+			"scroll",
+			function(e) {
+				// 문서의높이에 윈도우높이를 제외한 값이 스크롤의 최대값이다
+				if (($(document).height() - $(window).height()) != $(document)
+						.scrollTop()) {
+					return;
+				}
+				var $post = $("div.post-bar").last();
+				var params = "lastpNo=" + $post.attr('post_no');
+				$.ajax({
+					url : 'my_add_post',
+					method : 'POST',
+					data : params,
+					dataType : 'html',
+					success : function(resultText) {
+						$('div.posts-section').append(resultText);
+					}
+				});
+				e.preventDefault();
+			});
 
 // 팔로우 리스트  # 팔로우 카운트 된숫자를 클릭했을때 내가 팔로우하고있는 리스트 뽑고 팔로잉 카운트 늘어나게
 	// 그리고 뽑았으면 언팔로우도 가능하게 해야됨 .

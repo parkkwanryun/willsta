@@ -246,7 +246,7 @@ public class PostServiceImpl implements PostService {
 	public ModelAndView personal_main_page(String mId) {
 		ModelAndView mv = new ModelAndView();
 		
-		Member member = memberService.selectById(mId);
+		Member member = memberService.selectByIdContainFollowInfo(mId);
 		List<Member> memberList = memberService.selectByRandom(mId);
 		mv.addObject("member", member);
 		mv.addObject("memberList", memberList);
