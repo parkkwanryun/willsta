@@ -106,7 +106,7 @@ public class DmServiceImpl implements DmService {
 	}
 	@Override
 	public List<DmContents> dmAllNotReadMessage(DmContents dmContents) {
-		return null;
+		return dmContentsDao.dmAllNotReadMessage(dmContents);
 	}
 	@Override
 	public List<DmContentsCount> dmAllNotReadCount(String mId) {

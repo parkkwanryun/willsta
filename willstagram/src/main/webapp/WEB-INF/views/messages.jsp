@@ -29,11 +29,12 @@
 											<li>
 												<div class="usr-msg-details"  dmNo='${dm.dmNo}'>
 													<div class="usr-ms-img">
-														<img src="contents/member_image/${dm.mImage}" alt="">
+														<img src="contents/member_image/${dm.mImage}" alt="" width="40px" height="40px">
 														<span class="msg-status"></span>
 													</div>
 													<div class="usr-mg-info">
 														<h3>${dm.mId}</h3>
+														<span class = 'msg-counts'>${dm.dmChatReadCount}</span>
 													</div>
 													<!--usr-mg-info end-->
 													<span class="posted_time">${dm.dmDate}</span> 

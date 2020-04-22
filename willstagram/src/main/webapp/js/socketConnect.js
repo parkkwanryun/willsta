@@ -155,15 +155,13 @@ function message_detail_function(target){
       success : function(jsonArrayData) {
          message_list_function(jsonArrayData);
          for (var i = 0; i < jsonArrayData.length; i++) {
-            if(!(jsonArrayData[i].dmSenderId != loginId && jsonArrayData[i].dmChatRead != 0)){
-               console.log('새로운 메세지가 없네요');
-            } else {
+            if(!(jsonArrayData[i].dmSenderId == loginId && jsonArrayData[i].dmChatRead == 1)){
                jsonData.mId = loginId;
                jsonData.dmNo = jsonArrayData[i].dmNo;
                jsonData.dmChatRead = 0;
                messages_readChat_function(jsonData);
                break;
-            }
+            } 
          }
       }
    });
@@ -180,7 +178,7 @@ function messages_readChat_function(jsonData){
       data : params,
       dataType : 'text',
       success : function(rowCount){
-         console.log("읽었을때 ChatRead 행수"+rowCount);
+         console.log("읽지않은 메세지수"+rowCount);
       }
    });
 }
