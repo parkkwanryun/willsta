@@ -55,7 +55,7 @@ public class PostController {
 	public ModelAndView youSelectAddPost(@RequestParam(value="lastpNo", required = true) Integer lastpNo,
 										 @RequestParam(value="mIdYou", required = true) String mIdYou) {
 		ModelAndView mv = new ModelAndView();
-		List<Post> postList = postService.selectMyList(lastpNo, mIdYou,0);
+		List<Post> postList = postService.selectMyList(lastpNo, mIdYou,1);
 		for (Post post : postList) {
 			post.setTagArray(post.getHasTag().split(" "));
 		}
