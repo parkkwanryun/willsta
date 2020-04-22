@@ -197,11 +197,12 @@ public class MemberController {
 	@RequestMapping(value="/account_img_setting", method=RequestMethod.POST, produces="json/application; charset=UTF-8")
 	public String accountSetting(@RequestParam("mId")String mId,
 								@RequestParam("uploadImg")MultipartFile uploadImg,
-								HttpServletRequest request) {
+								HttpServletRequest request,
+								HttpSession session) {
 		String path = request.getSession().getServletContext().getRealPath("/")+"contents\\member_image\\";
 		System.out.println("## 이미지 저장경로:"+path);
-		
 		boolean updateMemberImg = memberService.updateMemberImg(mId, uploadImg);
+		session.setAttribute("mImage", uploadImg);
 		System.out.println(updateMemberImg);
 		if(updateMemberImg) {
 			System.out.println("회원 이미지 수정 성공");
