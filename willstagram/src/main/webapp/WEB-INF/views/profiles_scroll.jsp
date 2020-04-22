@@ -47,6 +47,7 @@
 				</c:forEach>
 				<!-- loop end -->
 			</div>
+		</div>
 <script type="text/javascript">
 //팔로우 여부 체크
 	var mIdArray=$('#mId-List').serializeArray();
