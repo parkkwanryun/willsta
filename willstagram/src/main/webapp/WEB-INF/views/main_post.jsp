@@ -162,7 +162,7 @@
 									<!-- 최상단에 버튼이 필요한 경우 살려서 쓸것 -->
 									<div class="post-topbar">
 										<div class="user-picy">
-											<img src="images/resources/user-pic.png" alt="">
+											<img src="images/wd-logo.png" alt="">
 										</div>
 										<div class="post-st">
 											<ul>
