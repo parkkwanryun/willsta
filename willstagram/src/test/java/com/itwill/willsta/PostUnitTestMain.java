@@ -44,6 +44,7 @@ public class PostUnitTestMain {
 	}
 	
 	@Test 
+	@Ignore
 	public void test1() {
 		int i = postDao.delete(18);
 		System.out.println("#### 포스트 삭제 테스트"+i);
