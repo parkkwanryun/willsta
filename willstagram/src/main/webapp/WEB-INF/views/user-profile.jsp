@@ -179,17 +179,6 @@
 												</div>
 												<div class="ed-opts">
 													<a href="#" title="" class="ed-opts-open"></a>
-													<!-- 이 포스트가 내꺼인 경우에만 보여주는 메뉴 -->
-													<c:if test="${post.mId!=sessionScope.loginId}">
-														<ul class="ed-options">
-															<li><a class="updatePost" href="#" title=""><s:message code="post.edit"/></a></li>
-															<li><a class="deletePost" href="#" title=""><s:message code="post.delete"/></a></li>
-															<li><a class="hiddenPost" href="#" title="">
-															<c:if test="${post.status=='A'}"><s:message code="post.hide"/></c:if>
-															<c:if test="${post.status=='H'}">Show</c:if>
-															</a></li>
-														</ul>
-													</c:if>
 												</div>
 											</div>
 											<!-- 여기에 사진(컨텐츠)들어옴 -->
