@@ -41,15 +41,11 @@ public class DmController {
    public String messageRoomInsert(@RequestParam("mId") String mId,
                            @RequestParam("mIdYou") String mIdYou) {
       String isSuccess = "false";
-      System.out.println("@@@@@@@@@@@@@@@@@mId:"+mId);
-      System.out.println("@@@@@@@@@@@@@@@@@mIdYou:"+mIdYou);
-      System.out.println(dmService.dmRoomSelectAll(mId));
       if(dmService.duplicateCheck(mId, mIdYou) == true) {
          isSuccess = "false";
       } else {
          if(dmService.dmFirstInsert(mId) != 0) {
             int dmNo = Integer.parseInt(dmService.dmGetCurrentDmNo());
-            System.out.println("@@@@@@@@@@@@@@@@@@@@@@@dmNo:"+dmNo);
             dmService.dmLastInsert(dmNo, mIdYou);
             isSuccess = "true";
          }
@@ -71,9 +67,6 @@ public class DmController {
    @RequestMapping(value = "/messageRoom_detail", produces = "application/json;charset=UTF-8")
    public List<DmContents> messageDetail(@RequestParam("dmNo") int dmNo) {
       List<DmContents> dmcList = dmService.dmNoSelectAll(dmNo);
-      for (DmContents dmContents : dmcList) {
-         System.out.println(dmContents);
-      }
       return dmcList; 
    }
    @ResponseBody
@@ -81,7 +74,6 @@ public class DmController {
    public int messagesInsert(@RequestParam("messages") String messages) {
       int rowCount = 0;
       String strs[] = messages.split(",");
-      System.out.println(strs);
       if(strs != null && strs.length == 7) {
       String mId = strs[0];
       String mIdYou = strs[1];
@@ -99,7 +91,6 @@ public class DmController {
    @RequestMapping(value = "/messages_readChat", method = RequestMethod.POST)
    public int messageChatRead(@RequestParam("messages") String messages) {
       String strs[] = messages.split(",");
-      System.out.println("수신자 리스트 클릭시"+strs);
       int rowCount = 0;
       if(strs != null && strs.length == 7) {
          String mId = strs[0];
@@ -109,27 +100,8 @@ public class DmController {
          String dmNo = strs[4];
          String dmContentsImage = strs[5];
          Integer dmChatRead = Integer.parseInt(strs[6]);
-         System.out.println("mId:"+mId);
          rowCount = dmService.dmcReadChat(new DmContents(Integer.parseInt(dmNo), -999, null, null, mId, null, dmChatRead));
-         System.out.println(rowCount);
          }
       return rowCount;
    }
-   /*
-   @ResponseBody
-   @RequestMapping(value = "/messages_notReadCount", method = RequestMethod.POST)
-   public int messagesNotReadCount(@RequestParam("messages") String messages) {
-      String strs[] = messages.split(",");
-      int rowCount = 0;
-      if(strs != null && strs.length == 7) {
-         String mId = strs[0];
-         String dmNo = strs[4];
-         Integer dmChatRead = Integer.parseInt(strs[6]);
-         System.out.println("mId:"+mId);
-         rowCount = dmService.dmcReadChat(new DmContents(Integer.parseInt(dmNo), -999, null, null, mId, null, dmChatRead));
-         System.out.println(rowCount);
-         }
-      return rowCount;
-   }
-   */
 }

@@ -325,7 +325,7 @@ function connectWS() {
    ws.onerror = function(event) { 
       };
       ws.onmessage = function(event) { // socket.send() 후 ReplyEchoHandler가 handleTextMessage메소드로부터 메시지를 받아옴                                 
-         var dmNo = (event.data).split(",")[4];
+    	 var dmNo = (event.data).split(",")[4];
          message_receive(event);
          message_receive_noty(event);
          let socketAlert = $('a#socketAlert');
