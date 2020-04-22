@@ -141,21 +141,19 @@ public class PostController {
 	
 	@MemberLoginCheck
 	@RequestMapping(value="/status_change", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
-	public String status_change(@RequestParam(value="pNo", required = true) int pNo,
+	public String status_change(@RequestParam(value="pNo", required = true) Integer pNo,
 								@RequestParam(value="status", required = true) String status) {
-		if(status.equals("Hide")) {
+		if(status.trim().equals("Hide")) {
 			status = "H";
 		} else {
 			status = "A";
 		}
 		int rn = postService.status_change(pNo, status);
 		if(rn >0) {
+			System.out.println("### 포스트 숨기기 성공");
 			return "success";
 		}
+		System.out.println("### 포스트 숨기기 실패");
 		return "fail";
 	}
-	
-	
-	
-	
 }
