@@ -171,10 +171,10 @@ $(function() {
 					dataType : 'text',
 					success : function(resultText) {
 						if (resultText.trim() == 'success') {
-							if ($(e.target).text() == 'Hide') {
-								$(e.target).text('Show');
+							if ($(e.target).text() == '숨기기') {
+								$(e.target).text('보이기');
 							} else {
-								$(e.target).text('Hide');
+								$(e.target).text('숨기기');
 							}
 							setTimeout(function() {
 								window.location.reload();

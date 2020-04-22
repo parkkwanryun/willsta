@@ -143,7 +143,7 @@ public class PostController {
 	@RequestMapping(value="/status_change", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
 	public String status_change(@RequestParam(value="pNo", required = true) Integer pNo,
 								@RequestParam(value="status", required = true) String status) {
-		if(status.trim().equals("Hide")) {
+		if(status.trim().equals("숨기기")) {
 			status = "H";
 		} else {
 			status = "A";
