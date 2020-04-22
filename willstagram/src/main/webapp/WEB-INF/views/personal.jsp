@@ -353,7 +353,6 @@
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="js/messages_ko.js"></script>
-<script type="text/javascript" src="js/wPost.js"></script>
 <script type="text/javascript" src="js/wComments.js"></script>
 <script type="text/javascript" src="js/wFollow.js"></script>
 </body>

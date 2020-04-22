@@ -51,6 +51,20 @@ public class PostController {
 	}
 	
 	@MemberLoginCheck
+	@RequestMapping(value="/my_add_post" , produces = "text/html;charset=utf-8")
+	public ModelAndView mySelectAddPost(@RequestParam(value="lastpNo", required = true) Integer lastpNo, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		String mId = (String)request.getSession().getAttribute("mId");
+		List<Post> postList = postService.selectMyList(lastpNo, mId,0);
+		for (Post post : postList) {
+			post.setTagArray(post.getHasTag().split(" "));
+		}
+		mv.addObject("postList", postList);
+		mv.setViewName("post");
+		return mv;
+	}
+	
+	@MemberLoginCheck
 	@RequestMapping(value="/you_add_post" , produces = "text/html;charset=utf-8")
 	public ModelAndView youSelectAddPost(@RequestParam(value="lastpNo", required = true) Integer lastpNo,
 										 @RequestParam(value="mIdYou", required = true) String mIdYou) {
