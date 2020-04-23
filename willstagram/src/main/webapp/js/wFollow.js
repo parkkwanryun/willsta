@@ -62,7 +62,7 @@ $(function(){
 										html+="<h3>팔로워리스트</h3>";
 										html+="<i class='la la-ellipsis-v'></i>";
 										html+="</div>";
-										html+="<div class='suggestions-list'>";
+										html+="<div class='suggestions-list'  style='overflow:auto; height:450px;'>";
 														
 										for (var i = 0; i < jsonArray.length; i++) {
 											var jsonArrayObject = jsonArray[i];
@@ -121,7 +121,7 @@ $(function(){
 							html+="<h3>팔로잉리스트</h3>";
 							html+="<i class='la la-ellipsis-v'></i>";
 							html+="</div>";
-							html+="<div class='suggestions-list'>";
+							html+="<div class='suggestions-list' style='overflow:auto; height:450px;'>";
 												
 							for (var i = 0; i < jsonArray.length; i++) {
 								var jsonArrayObject = jsonArray[i];
