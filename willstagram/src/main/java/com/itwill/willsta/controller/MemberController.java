@@ -202,11 +202,12 @@ public class MemberController {
 		String path = request.getSession().getServletContext().getRealPath("/")+"contents\\member_image\\";
 		System.out.println("## 이미지 저장경로:"+path);
 		boolean updateMemberImg = memberService.updateMemberImg(mId, uploadImg);
-		session.setAttribute("mImage", uploadImg);
 		System.out.println(updateMemberImg);
 		if(updateMemberImg) {
 			System.out.println("회원 이미지 수정 성공");
 			updateMemberImg= true;
+			Member member=memberService.selectById(mId);
+			session.setAttribute("mImage", member.getmImage());
 		}else {
 			System.out.println("회원 이미지 수정 실패");
 			updateMemberImg= false;
