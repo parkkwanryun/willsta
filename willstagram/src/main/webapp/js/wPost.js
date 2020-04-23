@@ -56,7 +56,7 @@ $(function() {
 			},
 			pContents : {
 				required : true,
-				maxlength : 5000
+				maxlength : 2000
 			}
 		},
 		submitHandler : function() {
