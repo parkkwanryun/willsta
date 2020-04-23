@@ -214,6 +214,9 @@ $(function() {
 									Number(likeCount) - 1);
 							$(e.target).removeClass("active");
 						}
+						setTimeout(function() {
+							window.location.reload();
+						}, 500);
 					}
 
 				});
