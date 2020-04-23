@@ -1,5 +1,5 @@
-//포스트-댓글 전체 보이기 ajax요청
-function postCommentsListFunction(e){
+//ko 포스트-댓글 전체 보이기 ajax요청
+function ko_postCommentsListFunction(e){
 	var $postComments = $(e.target).parents(".post-bar").find(".comment-section");
 	//console.log($postComments);
 	var params = "pNo="+$(e.target).parents(".post-bar").attr("post_no");
@@ -11,6 +11,7 @@ function postCommentsListFunction(e){
 		}, 500);
 	}else {
 		$.ajax({
+			async: false,
 			url : "postCommentsList",
 			data : params,
 			method : "POST",
@@ -62,6 +63,71 @@ function postCommentsListFunction(e){
 		});
 	}
 }
+//en 포스트-댓글 전체 보이기 ajax요청
+function en_postCommentsListFunction(e){
+	var $postComments = $(e.target).parents(".post-bar").find(".comment-section");
+	//console.log($postComments);
+	var params = "pNo="+$(e.target).parents(".post-bar").attr("post_no");
+	//console.log(params);
+	if($postComments.children().length > 1){
+		$postComments.children().fadeToggle(500);
+		setTimeout(function() {
+			window.location.reload();
+		}, 500);
+	}else {
+		$.ajax({
+			async: false,
+			url : "postCommentsList",
+			data : params,
+			method : "POST",
+			dataType : "json",
+			success : function(jsonArray){
+				var html = "";
+				$.each(jsonArray, function(i, jsonObject){
+					jsonObject = jsonArray[i];
+					var cNo = jsonObject.cNo;
+					var cTime = jsonObject.cTime;
+					var cContents = jsonObject.cContents;
+					var recNo = jsonObject.recNo;
+					var mId = jsonObject.mId;
+					
+					html += "<div class='comment-sec' style='display:none' comments_no='"+cNo+"'>"+
+							"<ul>"+
+							"	<li>"+
+							"		<div class='comment-list'>";
+					
+					if(recNo > 0){
+						html += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+					}
+					
+					html += "			<div class='comment'>"+
+							"				<h3><a href='user-profile?youId="+mId+"'>"+mId+"</a></h3>"+
+							"				<span><img src='images/clock.png' alt=''>"+cTime+"</span>"+
+							"				<p>"+cContents+"</p>"+
+							"				<a href='#' class='active active-reply' comments_no='"+cNo+"'>"+
+							"					<i class='fa fa-reply-all'> Reply</i></a>";
+					
+					if(mId == loginId) { 
+						html += "				<a href='#' class='active active-edit' "+
+								"					data-toggle='modal' data-target='#updateCommentsModal' comments_no='"+cNo+"'>"+
+								"					<i class='fa fa-cog'> Edit</i></a>"+
+								"				<a href='#' class='active active-delete' comments_no='"+cNo+"'>"+
+								"					<i class='fa fa-remove'> Delete</i></a>";
+					}
+							
+					html +=	"			</div>"+
+							" 		</div>"+
+							"	</li>"+
+							"</ul>"+
+							"</div>";
+				});
+				postCommentsCount(e);
+				$postComments.append(html);
+				$postComments.children().fadeToggle(500);
+			}
+		});
+	}
+}
 
 
 //포스트-댓글 수 ajax 요청
@@ -75,7 +141,7 @@ function postCommentsCount(e){
 		dataType : "text",
 		success : function(count){
 			//console.log(count);
-			$(e).html("<i class='fas fa-comment-alt'></i>"+"&nbsp;댓글&nbsp;"+count);
+			$(e).children("i.fas1").html("&nbsp;"+count);
 		}
 	});
 }
@@ -94,7 +160,7 @@ function postCommentsCount2($aNodeList){
 			dataType : "text",
 			success : function(count){
 				//console.log(count);
-				$($aNodeList.get(i)).html("<i class='fas fa-comment-alt'></i>"+"&nbsp;댓글&nbsp;"+count);
+				$($aNodeList.get(i)).children("i.fas1").html("&nbsp;"+count);
 			}
 		});
 	}
@@ -132,8 +198,8 @@ function commentsInsertActionFunction(e){
 }
 
 
-//대댓글 작성 form 보여주기
-function reCommentsInsertFormShowFunction(e){
+//ko 대댓글 작성 form 보여주기
+function ko_reCommentsInsertFormShowFunction(e){
 	//console.log($(e.target).parents(".comment-sec"));
 	var $reCommentsForm =  $(e.target).parents(".comment-sec").find(".active-reply");
 	//console.log($reCommentsForm);
@@ -149,6 +215,31 @@ function reCommentsInsertFormShowFunction(e){
 			"			<input type='hidden' name='cNo' value='"+cNo+"' >" +
 			"			<input type='hidden' name='pNo' value='"+pNo+"' >" +
 			"			<button type='button' class='recomments_insert_button'>쓰기</button></div>" +
+			"		</form>" +
+			"	</div>" +
+			"</div>";
+	if($reCommentsForm.children().length == 1){
+		$reCommentsForm.prepend(html);
+		$reCommentsForm.children().fadeToggle(500);
+	}
+}
+//en 대댓글 작성 form 보여주기
+function en_reCommentsInsertFormShowFunction(e){
+	//console.log($(e.target).parents(".comment-sec"));
+	var $reCommentsForm =  $(e.target).parents(".comment-sec").find(".active-reply");
+	//console.log($reCommentsForm);
+	var cNo = $(e.target).parents(".comment-sec").attr("comments_no");
+	var pNo = $(e.target).parents(".post-bar").attr("post_no");
+	//console.log(cNo);
+	var html = "";
+	html += "<div class='post-comment' style='display:none'>" +
+			"	<div class='comment_box_inner'>" +
+			"		<form class='recomments_insert_form'>" +
+			"			<input type='text' placeholder='Comment a recomment'" +
+			"				name='cContents' class='cContents'>" +
+			"			<input type='hidden' name='cNo' value='"+cNo+"' >" +
+			"			<input type='hidden' name='pNo' value='"+pNo+"' >" +
+			"			<button type='button' class='recomments_insert_button'>Send</button></div>" +
 			"		</form>" +
 			"	</div>" +
 			"</div>";
@@ -253,8 +344,12 @@ $(function() {
 	//포스트-댓글 전체 보이기
 	$(document).on("click", ".comment_list_click", function(e){
 		//console.log(e.target);
-		if($(e.target).text().substr(length - 1) != 0){
-			postCommentsListFunction(e);
+		if($(e.target).find("i.fas1") != 0){
+			if(navigator.language == "ko"){
+				ko_postCommentsListFunction(e);
+			}else if(navigator.language == "en"){
+				en_postCommentsListFunction(e);
+			}
 		}
 		e.preventDefault();
 	});
@@ -276,7 +371,11 @@ $(function() {
 	//대댓글 쓰기 form 보이기
 	$(document).on("click", ".active-reply", function(e){
 		//console.log(e.target);
-		reCommentsInsertFormShowFunction(e);
+		if(navigator.language == "ko"){
+			ko_reCommentsInsertFormShowFunction(e);
+		}else if(navigator.language == "en"){
+			en_reCommentsInsertFormShowFunction(e);
+		}
 		e.preventDefault();
 	});
 	
