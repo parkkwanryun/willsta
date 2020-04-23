@@ -320,7 +320,7 @@ function connectWS() {
     	 }
     	 message_receive_noty(event);
          let socketAlert = $('a#socketAlert');
-         socketAlert.text(jsonData.mIdYou+"님이 메세지를 보냈습니다.");
+         socketAlert.text("메세지가 도착했습니다.");
          socketAlert.css('display', 'block');
          setTimeout(function() {
             socketAlert.css('display', 'none');
