@@ -7,9 +7,22 @@ public class Comments {
 	private String cContents;
 	private String cTime;
 	private Integer recNo;
+	private Integer pViewCount;
 	
 	public Comments() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public Comments(Integer cNo, Integer pNo, String mId, String cContents, String cTime, Integer recNo,
+			Integer pViewCount) {
+		super();
+		this.cNo = cNo;
+		this.pNo = pNo;
+		this.mId = mId;
+		this.cContents = cContents;
+		this.cTime = cTime;
+		this.recNo = recNo;
+		this.pViewCount = pViewCount;
 	}
 
 	public Comments(Integer cNo, Integer pNo, String mId, String cContents, String cTime, Integer recNo) {
@@ -30,7 +43,7 @@ public class Comments {
 		this.cContents = cContents;
 		this.recNo = recNo;
 	}
-	
+
 	public Integer getcNo() {
 		return cNo;
 	}
@@ -79,9 +92,19 @@ public class Comments {
 		this.recNo = recNo;
 	}
 
+	public Integer getpViewCount() {
+		return pViewCount;
+	}
+
+	public void setpViewCount(Integer pViewCount) {
+		this.pViewCount = pViewCount;
+	}
+
 	@Override
 	public String toString() {
 		return "Comments [cNo=" + cNo + ", pNo=" + pNo + ", mId=" + mId + ", cContents=" + cContents + ", cTime="
-				+ cTime + ", recNo=" + recNo + "]\n";
+				+ cTime + ", recNo=" + recNo + ", pViewCount=" + pViewCount + "]\n";
 	}
+	
+	
 }
