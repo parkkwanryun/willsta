@@ -11,7 +11,6 @@ function ko_postCommentsListFunction(e){
 		}, 500);
 	}else {
 		$.ajax({
-			async: false,
 			url : "postCommentsList",
 			data : params,
 			method : "POST",
@@ -76,7 +75,6 @@ function en_postCommentsListFunction(e){
 		}, 500);
 	}else {
 		$.ajax({
-			async: false,
 			url : "postCommentsList",
 			data : params,
 			method : "POST",
@@ -183,7 +181,11 @@ function commentsInsertActionFunction(e){
 		dataType : "text",
 		success : function(result) {
 			if(result.trim() == "true"){
-				postCommentsListFunction(e);
+				if(navigator.language == "ko"){
+					ko_postCommentsListFunction(e);
+				}else if(navigator.language == "en"){
+					en_postCommentsListFunction(e);
+				}
 				/*
 				setTimeout(function() {
 					window.location.reload();
