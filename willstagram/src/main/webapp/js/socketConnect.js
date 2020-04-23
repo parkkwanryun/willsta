@@ -137,7 +137,6 @@ function message_send_insert_function(jsonData){
       data : params,
       dataType : 'text',
       success : function(rowCount) {
-         console.log(rowCount);
       }
    });
 }
@@ -169,11 +168,8 @@ function message_detail_function(target){
 
 // 메세지 readCount 저장 
 function messages_readChat_function(jsonData){
-	console.log(jsonData);
    jsonData.dmChatRead = 1;
-   console.log("chatRead:"+jsonData.dmChatRead)
    var messages = jsonData.mId+","+jsonData.mIdYou+","+jsonData.msg+","+jsonData.msgDate+","+jsonData.dmNo+","+jsonData.dmContentsImage+","+jsonData.dmChatRead;
-   console.log(messages);
    var params = "messages="+messages;
    $.ajax({
       url:'messages_readChat',
@@ -181,7 +177,6 @@ function messages_readChat_function(jsonData){
       data : params,
       dataType : 'text',
       success : function(rowCount){
-         console.log("읽지않은 메세지수"+rowCount);
       }
    });
 }
@@ -309,10 +304,8 @@ function connectWS() {
    var ws = new WebSocket(contextPath+"/replyEcho");
    socket = ws;
    ws.onopen = function() { // connection이 open 되었을때 실행
-	   console.log('커넥션이 열렸습니다.')
       // connection 이 close 되었을때 실행
       ws.onclose = function(event) { 
-    	  console.log('커넥션이 끊어졌습니다.');
       setTimeout(function() {
                connectWS();
          }, 1000);
@@ -325,7 +318,6 @@ function connectWS() {
     	 var mIdYou = (event.data).split(",")[1];
     	 var dmNo = (event.data).split(",")[4];
     	 if($('.main-conversation-box h3').text() == senderId){
-    		 console.log("방번호:"+dmNo);
              message_receive(event);
 
     	 }
