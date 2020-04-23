@@ -58,7 +58,7 @@ label.error {
 											<!-- 아이디 변경 불가(Hidden) 기존 값 전송 -->
 											<div class="cp-field">
 												<h5>
-													<s:message code="sign.id" />
+													<s:message code="sign.id" />(수정 불가)
 												</h5>
 												<div class="cpp-fiel">
 													<input type="text" name="mId" value="${sMemberId.mId}"
@@ -70,7 +70,7 @@ label.error {
 											<!-- 이름 변경 불가(Hidden) 기존 값 전송 -->
 											<div class="cp-field">
 												<h5>
-													<s:message code="join.name" />
+													<s:message code="join.name" />(수정 불가)
 												</h5>
 												<div class="cpp-fiel">
 													<input type="text" name="mName" value="${sMemberId.mName}"
@@ -85,7 +85,7 @@ label.error {
 													<s:message code="modify.password" />
 												</h5>
 												<div class="cpp-fiel">
-													<input type="password" name="mPass" class="required" 
+													<input type="password" name="mPass" class="required" value="${sMemberId.mPass}"
 														placeholder="<s:message code="modify.password"/>">
 													<i class="la la-lock"></i>
 												</div>
@@ -94,10 +94,10 @@ label.error {
 											<!-- 이메일 변경 -->
 											<div class="cp-field">
 												<h5>
-													<s:message code="modify.email" />
+													<s:message code="modify.email" /><br> ex) willstagram@itwill.com
 												</h5>
 												<div class="cpp-fiel">
-													<input type="text" name="mEmail" class="required"
+													<input type="text" name="mEmail" class="required" value="${sMemberId.mEmail}"
 														placeholder="<s:message code="modify.email"/>"> <i
 														class="la la-user"></i>
 												</div>
@@ -109,7 +109,7 @@ label.error {
 													<s:message code="modify.phone" />
 												</h5>
 												<div class="cpp-fiel">
-													<input type="text" name="mPhone" class="required"
+													<input type="text" name="mPhone" class="required" value="${sMemberId.mPhone}"
 														placeholder="<s:message code="modify.phone"/>"> <i
 														class="la la-user"></i>
 												</div>
@@ -129,7 +129,7 @@ label.error {
 											<!-- Id 확인 -->
 											<div class="cp-field">
 												<h5>
-													<s:message code="sign.id" />
+													<s:message code="sign.id" />(수정 불가)
 												</h5>
 												<div class="cpp-fiel">
 													<input type="text" name="mId" value="${sMemberId.mId}"
@@ -143,7 +143,7 @@ label.error {
 													<s:message code="modify.image" />
 												</h5>
 												<div class="cpp-fiel">
-													<input type="file" name="uploadImg" class="required"
+													<input type="file" name="uploadImg" class="required" value="${sMemberId.mImage}"
 														placeholder="New Image"> <i class="la la-user"></i>
 												</div>
 											</div>
@@ -232,7 +232,7 @@ label.error {
 	<!--theme-layout end-->
 
 	<jsp:include page="/WEB-INF/commons/include_footer_js.jsp" />
-	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
 	<script type="text/javascript" src="js/wMember.js"></script>
+	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
 </body>
 </html>
