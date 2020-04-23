@@ -52,12 +52,11 @@ $(function() {
 				maxlength : 80
 			},
 			hasTag : {
-				required : true,
 				maxlength : 80
 			},
 			pContents : {
 				required : true,
-				maxlength : 2000
+				maxlength : 5000
 			}
 		},
 		submitHandler : function() {
