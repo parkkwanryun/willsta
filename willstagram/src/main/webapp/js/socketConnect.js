@@ -62,9 +62,6 @@ function message_send_form(target){
    htmlData +=         "<button type='submit' id='btnSend'>Send</button>";
    htmlData +=         "</div>";
    htmlData +=         "<ul>";
-   htmlData +=            "<li><a href='#' title=''><i class='fa fa-smile-o'></i></a></li>";
-   htmlData +=            "<li><a href='#' title=''><i class='fa fa-camera'></i></a></li>";
-   htmlData +=            "<li><a href='#' title=''><i class='fa fa-paperclip'></i></a></li>";
    htmlData +=         "</ul>";
    htmlData +=      "</form>";
    htmlData +=   "</div>";
