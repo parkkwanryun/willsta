@@ -15,6 +15,9 @@ public interface CommentsService {
 	//댓글 수정
 	int updateComments(Comments comments) throws Exception;
 	
+	////댓글 작성시 Post ViewCount 증가
+	int postUpViewCount(int pNo) throws Exception;
+	
 	//댓글 삭제 전 삭제될 결과의 수 확인
 	int removeCommentsCountCheck(int cNo) throws Exception;
 

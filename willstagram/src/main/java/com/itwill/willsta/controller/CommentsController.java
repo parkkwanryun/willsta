@@ -41,6 +41,7 @@ public class CommentsController {
 	@PostMapping(value = "/postCommentsList", produces = "application/json;charset=UTF-8")
 	public List<Comments> postCommentsList(@RequestParam(value = "pNo") int pNo) throws Exception {
 		List<Comments> postCommentsList = commentsService.postCommentsList(pNo);
+		commentsService.postUpViewCount(pNo);
 		return postCommentsList;
 	}
 	
@@ -60,6 +61,7 @@ public class CommentsController {
 		int createResult = commentsService.createReComments(comments);
 		if(createResult == 1) {
 			result = "true";
+			
 		} else {
 			result = "false";
 		}

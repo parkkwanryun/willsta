@@ -27,6 +27,10 @@ public interface CommentsMapper {
 	@Update("UPDATE comments SET cContents = #{cContents} WHERE cNo = #{cNo}")
 	public Integer updateComments(Comments comments);
 	
+	//댓글 작성시 Post ViewCount 증가
+	@Update("UPDATE post SET pViewCount = pViewCount + 1 WHERE pNo = #{pNo}")
+	public int postUpViewCount(@Param("pNo") int pNo);
+	
 	//댓글 삭제 전 삭제될 결과의 수 확인
 	@Select("SELECT	count(*) " +
 			"FROM (SELECT  cno " +

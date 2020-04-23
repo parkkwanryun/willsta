@@ -6,8 +6,12 @@ function postCommentsListFunction(e){
 	//console.log(params);
 	if($postComments.children().length > 1){
 		$postComments.children().fadeToggle(500);
+		setTimeout(function() {
+			window.location.reload();
+		}, 500);
 	}else {
 		$.ajax({
+			async: false,
 			url : "postCommentsList",
 			data : params,
 			method : "POST",
@@ -114,9 +118,12 @@ function commentsInsertActionFunction(e){
 		dataType : "text",
 		success : function(result) {
 			if(result.trim() == "true"){
+				postCommentsListFunction(e);
+				/*
 				setTimeout(function() {
 					window.location.reload();
 				}, 500);
+				*/
 			}else if(result.trim() == "false"){
 				alert("댓글 쓰기를 실패했습니다.");
 				$comments.find(".cContents").select();

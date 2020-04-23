@@ -51,9 +51,6 @@ $(function() {
 				required : true,
 				maxlength : 80
 			},
-			hasTag : {
-				maxlength : 80
-			},
 			pContents : {
 				required : true,
 				maxlength : 2000

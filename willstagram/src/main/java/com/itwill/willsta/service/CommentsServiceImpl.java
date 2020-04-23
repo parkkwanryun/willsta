@@ -31,6 +31,11 @@ public class CommentsServiceImpl implements CommentsService {
 		return commentsDao.updateComments(comments);
 	}
 	
+	//댓글 작성시 Post ViewCount 증가
+	public int postUpViewCount(int pNo) throws Exception {
+		return commentsDao.postUpViewCount(pNo);
+	}
+	
 	//댓글 삭제 전 삭제될 결과의 수 확인
 	@Override
 	public int removeCommentsCountCheck(int cNo) throws Exception {
