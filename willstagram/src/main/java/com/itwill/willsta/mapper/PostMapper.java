@@ -75,6 +75,28 @@ public interface PostMapper {
 			"</script>"})
 	public List<Post> selectMyList(@Param("lastpNo")Integer lastpNo, @Param("mId")String mId, @Param("queryGbn")Integer queryGbn);
 	  
+	@Select({"<script>",
+		" SELECT A.* ",
+		" FROM (SELECT P.PNO, P.PTITLE, P.PCONTENTS, P.HASTAG, P.PDATE, P.MID, M.MNAME, M.MIMAGE, PVIEWCOUNT, ",
+		"         (SELECT COUNT(*) FROM LIKES X WHERE X.PNO = P.PNO) AS likeCount, ",
+		"         (SELECT COUNT(*) FROM LIKES X WHERE X.PNO = P.PNO AND MIDYOU = #{youId}) AS myLike, ",
+		"         (SELECT MIN(X.FILENAME) AS FILENAME FROM POST_IMAGE X WHERE X.PNO = P.PNO) AS FILENAME, ",
+		"   CASE WHEN ROUND((SYSDATE - P.PDATE)) > 0 ",
+		"        THEN ROUND((SYSDATE - P.PDATE)) || '일 전' ",
+	    "        ELSE CASE WHEN ROUND((SYSDATE - P.PDATE)*24) > 0  ",
+	    "                  THEN ROUND((SYSDATE - P.PDATE)*24) || '시간 전' ",
+	    "                  ELSE ROUND((SYSDATE - P.PDATE)*24*60) || '분 전' ",
+	    "             END ",
+	    "   END AS AGO, P.STATUS ",
+		" FROM POST P INNER JOIN MEMBER M ON P.MID = M.MID ",
+		" WHERE (P.MID = #{youId} ",
+		"      <if test='queryGbn eq 0'> AND P.STATUS='A'</if>) ",
+		"  <if test='lastpNo gt 0'><![CDATA[AND P.PNO < #{lastpNo} ]]></if>",
+		" ORDER BY P.PNO DESC) A ",
+		"  <![CDATA[WHERE ROWNUM < 6]]>",
+			"</script>"})
+	public List<Post> selectYouList(@Param("lastpNo")Integer lastpNo, @Param("youId")String youId, @Param("queryGbn")Integer queryGbn);
+	  
 	//POST 한개 가져오기
 		@Select(" SELECT P.PNO, P.PTITLE, P.PCONTENTS, P.HASTAG, P.PDATE, P.MID, M.MNAME, M.MIMAGE, PVIEWCOUNT,"
 				+"         (SELECT COUNT(*) FROM LIKES X WHERE X.PNO = P.PNO) AS likeCount, "

@@ -24,6 +24,8 @@ public interface PostService {
 	
 	List<Post> selectMyList(Integer lastpNo, String userId, Integer queryGbn);
 	
+	List<Post> selectYouList(Integer lastpNo, String userId, Integer queryGbn);
+
 	Post selectPost(Integer pNo, String mId);
  
 	List<PostImage> selectContents(Integer pNo);

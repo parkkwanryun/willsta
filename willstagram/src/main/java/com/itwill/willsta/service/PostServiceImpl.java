@@ -172,6 +172,11 @@ public class PostServiceImpl implements PostService {
 	public List<Post> selectMyList(Integer lastpNo, String userId, Integer queryGbn) {
 		return postDao.selectMyList(lastpNo, userId, queryGbn);
 	}
+	
+	@Override
+	public List<Post> selectYouList(Integer lastpNo, String userId, Integer queryGbn) {
+		return postDao.selectYouList(lastpNo, userId, queryGbn);
+	}
 
 	@Override
 	public Post selectPost(Integer pNo, String mId) {
@@ -234,7 +239,7 @@ public class PostServiceImpl implements PostService {
 		mv.addObject("memberYou", memberYou);
 		mv.addObject("memberList", memberList);
 		mv.addObject("postRankList", postRankList);
-		List<Post> postList = selectMyList(0, mIdYou, 0);
+		List<Post> postList = selectYouList(0, mIdYou, 0);
 		for (Post post : postList) {
 			post.setTagArray(post.getHasTag().split(" "));
 		}
