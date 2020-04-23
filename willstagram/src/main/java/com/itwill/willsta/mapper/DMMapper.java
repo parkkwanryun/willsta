@@ -18,7 +18,8 @@ public interface DMMapper {
 			"  (SELECT m.mImage FROM member m WHERE m.mId IN((SELECT d.mId FROM DM WHERE m.mId = d.mId))) as mImage, " + 
 			"  (SELECT count(dmChatRead) as dmChatReadCount FROM dm_contents dmc WHERE dmc.dmSenderId != #{mId} AND dmc.dmChatRead = 0 AND d.dmNo = dmc.dmNo) as dmChatReadCount " + 
 			"FROM dm d " + 
-			"WHERE d.mId != #{mId} AND d.dmNo IN(SELECT DMNO FROM DM WHERE mId = #{mId})")
+			"WHERE d.mId != #{mId} AND d.dmNo IN(SELECT DMNO FROM DM WHERE mId = #{mId}) "+
+			"ORDER BY dmChatReadCount DESC")
 	public List<DM> dmRoomSelectAll(@Param("mId") String mId);
 	
 	//현재 생성된 마지막 방번호 조회
