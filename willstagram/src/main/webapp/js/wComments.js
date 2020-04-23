@@ -243,7 +243,6 @@ $(function() {
 		//DOM tree 생성 후 포스트-댓글 수 나타내기
 		postCommentsCount2($('.comment_list_click'));
 	});
-	
 	//무한스크롤 관련 이벤트
 	$(document).scroll(function(){
 		//포스트-댓글 수 나타내기
@@ -253,7 +252,9 @@ $(function() {
 	//포스트-댓글 전체 보이기
 	$(document).on("click", ".comment_list_click", function(e){
 		//console.log(e.target);
-		postCommentsListFunction(e);
+		if($(e.target).text().substr(length - 1) != 0){
+			postCommentsListFunction(e);
+		}
 		e.preventDefault();
 	});
 	
