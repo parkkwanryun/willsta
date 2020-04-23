@@ -1,8 +1,8 @@
 var msg = {
-		Comments : "Comments",
+		Comment : "Comment",
 		Reply : "Reply",
 		Edit : "Edit",
 		Delete : "Delete",
-		ReComments : "Comments a recomments",
+		ReComments : "Comment a recomment",
 		Send : "Send"
 };
