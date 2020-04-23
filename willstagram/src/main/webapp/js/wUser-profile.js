@@ -98,6 +98,9 @@ $(function(){
 	$(document).on('click', 'button.btn-default', function(e) {
 		$('div.post_deatil').removeClass("active");
 		$(".wrapper").removeClass("overlay");
+		setTimeout(function() {
+			window.location.reload();
+		}, 500);
 		e.preventDefault();
 	});
 	
@@ -122,6 +125,9 @@ $(function(){
 									Number(likeCount) - 1);
 							$(e.target).removeClass("active");
 						}
+						setTimeout(function() {
+							window.location.reload();
+						}, 500);
 					}
 
 				});
