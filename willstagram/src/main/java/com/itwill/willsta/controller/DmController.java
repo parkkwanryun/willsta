@@ -104,4 +104,10 @@ public class DmController {
          }
       return rowCount;
    }
+   @ResponseBody
+   @RequestMapping(value = "/messages_delete", method = RequestMethod.POST)
+   public int messageDelete(@RequestParam("dmNo")int dmNo) {
+	   int rowCount = dmService.dmDelete(dmNo);
+	   return rowCount;
+   }
 }
