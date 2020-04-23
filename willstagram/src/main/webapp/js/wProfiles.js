@@ -70,7 +70,7 @@ $(function(){
     if (getParameterByName("search")=="") {
     	$(window).on("scroll", function(e){
     		//문서의높이에 윈도우높이를 제외한 값이 스크롤의 최대값이다
-    		if(($(document).height()-$(window).height()) != $(document).scrollTop()){
+    		if(($(document).height()-$(window).height()) > $(document).scrollTop()){
     			return;
     		}
     		var $member = $("div.company-up-info").last();
