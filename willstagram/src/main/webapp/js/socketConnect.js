@@ -137,6 +137,7 @@ function message_send_insert_function(jsonData){
       data : params,
       dataType : 'text',
       success : function(rowCount) {
+         console.log(rowCount);
       }
    });
 }
@@ -145,6 +146,7 @@ function message_send_insert_function(jsonData){
 function message_detail_function(target){
    var dmNo = $(target).attr('dmno');
    var params = "dmNo=" + dmNo;
+   
    $.ajax({
       url : 'messageRoom_detail',
       method : 'GET',
@@ -167,8 +169,11 @@ function message_detail_function(target){
 
 // 메세지 readCount 저장 
 function messages_readChat_function(jsonData){
+	console.log(jsonData);
    jsonData.dmChatRead = 1;
+   console.log("chatRead:"+jsonData.dmChatRead)
    var messages = jsonData.mId+","+jsonData.mIdYou+","+jsonData.msg+","+jsonData.msgDate+","+jsonData.dmNo+","+jsonData.dmContentsImage+","+jsonData.dmChatRead;
+   console.log(messages);
    var params = "messages="+messages;
    $.ajax({
       url:'messages_readChat',
@@ -176,6 +181,7 @@ function messages_readChat_function(jsonData){
       data : params,
       dataType : 'text',
       success : function(rowCount){
+         console.log("읽지않은 메세지수"+rowCount);
       }
    });
 }
@@ -197,9 +203,6 @@ function message_list_function(jsonArrayData){
    }
       /* jsonData.msg, jsonData.msgDate, dmSenderId */
 }
-
-   
-
 //  채팅방 생성 콜백함수
 function message_profile_create_function(mIdYou){
        if(loginId != null && mIdYou != null){
@@ -215,7 +218,6 @@ function message_profile_create_function(mIdYou){
           });
        }
 }
-   
 // 채팅 수신 시 작동되는 콜백함수
 function message_receive(event){
    var d = new Date();
@@ -254,29 +256,23 @@ function message_receive_noty(event){
 function message_room_open(e) {
    var nodeName = e.target.nodeName;
    var target=null;
-   //body > div > section > div > div > div > div.col-lg-4.col-md-12.no-pdd > div > div.messages-list > ul > li:nth-child(1) > div > div.usr-mg-info > span
+   
    $('div.messages-list > ul > li.active').removeClass('active');
    if(nodeName=='H3'){
       target = $(e.target).parents('.usr-msg-details');
       $(target).parent().addClass('active');
-      $('div.usr-mg-info span').text('0');
    }else if(nodeName=='SPAN'){
       target = $(e.target).parents('.usr-msg-details');
       $(target).parent().addClass('active');
-      $('div.usr-mg-info span').text('0');
     }else if(nodeName=='LI'){
        target = $(e.target).find('.usr-msg-details');
        $(e.target).addClass('active');
-       $('div.usr-mg-info span').text('0');
     }else if(nodeName=='DIV'){
        target = $(e.target);
        $(target).parent().addClass('active');
-       $('div.usr-mg-info span').text('0');
     } else if(nodeName =='IMG'){
        target = $(e.target).parents('.usr-msg-details');
-       $('div.usr-mg-info span').text('0');
     }
-   
    $('.main-conversation-box').html("");
    message_send_form(target);
    message_detail_function(target);
@@ -293,6 +289,7 @@ $(document).ready(function(){
       getLoginId();
       //채팅방 오픈
       $(document).find('div.messages-list > ul > li').on('click', function(e) {
+    	  $('div.usr-mg-info span').text('0');
          message_room_open(e);
       });
       $('.user_pro_status').find('.message-us').on('click',function(e){
@@ -302,8 +299,8 @@ $(document).ready(function(){
          message_profile_create_function(mIdYou);
       });
       //profile 탭에서 유저의 메세지 버튼 클릭시 방 생성
-      $(document).on('click', '.message-us' ,function(e){
-    	  e.preventDefault();
+      $(document).find('.message-us').on('click',function(e){
+         e.preventDefault();
          var mIdYou = $(e.target).parents('.company-up-info').attr('mIdYou');
          message_profile_create_function(mIdYou);
       });
@@ -312,8 +309,10 @@ function connectWS() {
    var ws = new WebSocket(contextPath+"/replyEcho");
    socket = ws;
    ws.onopen = function() { // connection이 open 되었을때 실행
+	   console.log('커넥션이 열렸습니다.')
       // connection 이 close 되었을때 실행
       ws.onclose = function(event) { 
+    	  console.log('커넥션이 끊어졌습니다.');
       setTimeout(function() {
                connectWS();
          }, 1000);
@@ -322,15 +321,21 @@ function connectWS() {
    ws.onerror = function(event) { 
       };
       ws.onmessage = function(event) { // socket.send() 후 ReplyEchoHandler가 handleTextMessage메소드로부터 메시지를 받아옴                                 
+         var senderId = (event.data).split(',')[0];
+    	 var mIdYou = (event.data).split(",")[1];
     	 var dmNo = (event.data).split(",")[4];
-         message_receive(event);
-         message_receive_noty(event);
+    	 if($('.main-conversation-box h3').text() == senderId){
+    		 console.log("방번호:"+dmNo);
+             message_receive(event);
+
+    	 }
+    	 message_receive_noty(event);
          let socketAlert = $('a#socketAlert');
          socketAlert.text(jsonData.mIdYou+"님이 메세지를 보냈습니다.");
          socketAlert.css('display', 'block');
          setTimeout(function() {
             socketAlert.css('display', 'none');
-         },3000);
+         },3000);	 
       };
    };   
 }

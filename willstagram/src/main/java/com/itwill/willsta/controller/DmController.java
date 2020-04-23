@@ -91,6 +91,7 @@ public class DmController {
    @RequestMapping(value = "/messages_readChat", method = RequestMethod.POST)
    public int messageChatRead(@RequestParam("messages") String messages) {
       String strs[] = messages.split(",");
+      System.out.println(strs.length);
       int rowCount = 0;
       if(strs != null && strs.length == 7) {
          String mId = strs[0];
@@ -100,6 +101,7 @@ public class DmController {
          String dmNo = strs[4];
          String dmContentsImage = strs[5];
          Integer dmChatRead = Integer.parseInt(strs[6]);
+         System.out.println("messages_readChat 탔냐?"+dmChatRead);
          rowCount = dmService.dmcReadChat(new DmContents(Integer.parseInt(dmNo), -999, null, null, mId, null, dmChatRead));
          }
       return rowCount;
