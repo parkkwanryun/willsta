@@ -287,13 +287,24 @@ public class MemberController {
 	@RequestMapping(value = "/add_profile", produces = "text/html;charset=utf-8")
 	public ModelAndView addMember(@RequestParam(value = "lastId", required = true)String lastId) {
 		ModelAndView mv=new ModelAndView();
-		System.out.println("###1 마지막 아이디 ->"+lastId);
 		List<Member> addMemberList=memberService.addMemberList(lastId);
 		mv.addObject("memberList",addMemberList);
 		mv.setViewName("profiles_scroll");
 		return mv;
 	}
 	
+	/*유저검색목록 스크롤*/
+	@MemberLoginCheck
+	@ResponseBody
+	@RequestMapping(value = "/add_find_profile", produces = "text/html;charset=utf-8")
+	public ModelAndView addFindMember(@RequestParam(value = "lastId", required = true)String lastId,
+									  @RequestParam(value = "search")String search) {
+		ModelAndView mv=new ModelAndView();
+		List<Member> addFindMemberList=memberService.addFindMemberList(lastId, search);
+		mv.addObject("memberList",addFindMemberList);
+		mv.setViewName("profiles_scroll");
+		return mv;
+	}
 	
 	/*상대방페이지*/
 	@MemberLoginCheck

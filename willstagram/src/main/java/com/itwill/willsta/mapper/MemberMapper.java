@@ -84,6 +84,10 @@ public interface MemberMapper {
 	public List<Member> addMemberList(@Param("lastId") String lastId);
 	
 	/* 유저 검색 */
-	@Select("SELECT mid, mname, mimage FROM member where mid like '%${search}%' or mname like '%${search}%'")
+	@Select("SELECT A.* FROM(SELECT mid, mname, mimage FROM member where mid like '%${search}%' or mname like '%${search}%' ORDER BY mid) A WHERE rownum < 13")
 	public List<Member> findMemberList(@Param("search") String search);
+	
+	/* 유저 검색 스크롤 */
+	@Select("SELECT A.* FROM(SELECT rownum, mid, mname, mimage FROM member where mid > #{lastId} ORDER BY mid) A WHERE rownum < 13 AND mid like '%${search}%' or mname like '%${search}%'")
+	public List<Member> findAddMemberList(@Param("lastId") String lastId, @Param("search") String search);
 }

@@ -59,28 +59,6 @@ $(function(){
 		e.preventDefault();
 	});
 	
-	/*
-	 * //사용자 검색
-	$('.userSearch').submit(function(e) {
-		
-		//키워드 값 변수에 저장
-		userKeyword="findId="+$('input[name=search]').val();
-		console.log(userKeyword);
-		
-		$.ajax({
-			url:'search_member',
-			method:'POST',
-			data:userKeyword,
-			dataType:'text',
-			success:function(resultText){
-				//console.log(resultText);
-				$('body').html(resultText);
-				$('div.company-title').children().text("Search Profile");
-			}
-		});
-		e.preventDefault();
-	});
-	 */
 	function getParameterByName(name) {
 	    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
 	    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -108,6 +86,24 @@ $(function(){
     		});
     		e.preventDefault();
     	});
+	}else {
+		$(window).on("scroll", function(e){
+			//문서의높이에 윈도우높이를 제외한 값이 스크롤의 최대값이다(검색결과 스크롤)
+			if(($(document).height()-$(window).height()) != $(document).scrollTop()){
+				return;
+			}
+			var $member = $("div.company-up-info").last();
+			var params = "lastId="+ $member.attr('mIdYou') + "&search="+getParameterByName("search");
+			$.ajax({
+				url:'add_find_profile',
+				method:'POST',
+				data:params,
+				dataType:'html',
+				success: function(resultText){
+					$('div.companies-list').append(resultText);
+				}
+			});
+			e.preventDefault();
+		});
 	}
-    
 }); 
