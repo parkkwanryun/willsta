@@ -176,7 +176,6 @@ function account_img_setting() {
 			if (jsonData.trim() == "true") {
 				member_img_modify_action.mId.value = jsonData.mId;
 				member_img_modify_action.uploadImg.value = jsonData.uploadImg;
-				alert('프로필 이미지 변경 성공');
 				location.href = '/willstagram/profile-account-setting';
 			} else {
 				alert('이미지 삽입 실패');

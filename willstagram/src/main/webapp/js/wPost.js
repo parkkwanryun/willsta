@@ -26,7 +26,6 @@ function post_write() {
 		type : "POST",
 		dataType : 'html',
 		success : function(resultText) {
-			//alert('포스트카 성공적.');
 			if (postno > 0) {
 				$('div.post-bar[post_no="' + postno + '"]').remove();
 			}
