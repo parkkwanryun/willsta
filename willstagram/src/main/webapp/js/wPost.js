@@ -26,7 +26,6 @@ function post_write() {
 		type : "POST",
 		dataType : 'html',
 		success : function(resultText) {
-			//alert('포스트카 성공적.');
 			if (postno > 0) {
 				$('div.post-bar[post_no="' + postno + '"]').remove();
 			}
@@ -115,24 +114,6 @@ $(function() {
 		$(".wrapper").addClass("overlay");
 	});
 
-	// 추가post가져오기
-	$(document).on("click", ".spinner", function(e) {
-		var $post = $("div.post-bar").last();
-		var params = "lastpNo=" + $post.attr('post_no');
-		$.ajax({
-			url : 'add_post',
-			method : 'POST',
-			data : params,
-			dataType : 'html',
-			success : function(resultText) {
-				$('div.posts-section').append(resultText);
-			}
-		});
-		e.preventDefault();
-	});
-
-	
-
 	// post숨기거나 보이기
 	$(document).on(
 			'click',
@@ -203,6 +184,9 @@ $(function() {
 	$(document).on('click', 'button.btn-default', function(e) {
 		$('div.post_deatil').removeClass("active");
 		$(".wrapper").removeClass("overlay");
+		setTimeout(function() {
+			window.location.reload();
+		}, 500);
 		e.preventDefault();
 	});
 
