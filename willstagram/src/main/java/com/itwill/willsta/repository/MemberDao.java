@@ -56,4 +56,7 @@ public interface MemberDao {
 	
 	/*사용자 검색*/
 	List<Member> findMemberList(String search);
+	
+	/*사용자 검색 다음목록*/
+	List<Member> addFindMemberList(String lastId, String search);
 }

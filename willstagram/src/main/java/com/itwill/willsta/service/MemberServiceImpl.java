@@ -123,6 +123,10 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public List<Member> addFindMemberList(String lastId, String search) {
+		return memberDao.addFindMemberList(lastId, search);
+	}
+	@Override
 	public Member signIn(String mId, String mPass)
 			throws Exception, PasswordMismatchException, MemberNotFoundException {
 		Member member = memberDao.selectById(mId);
@@ -145,6 +149,8 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> selectByRandom(String mId) {
 		return memberDao.selectByRandom(mId);
 	}
+
+	
 
 	
 }

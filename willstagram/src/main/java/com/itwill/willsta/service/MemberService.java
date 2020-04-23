@@ -41,5 +41,7 @@ public interface MemberService {
 	List<Member> addMemberList(String lastId);
 	
 	List<Member> findMemberList(String search);
+	
+	List<Member> addFindMemberList(String lastId, String search);
 
 }
