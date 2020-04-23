@@ -32,7 +32,7 @@ function postCommentsListFunction(e){
 					}
 					
 					html += "			<div class='comment'>"+
-							"				<h3>"+mId+"</h3>"+
+							"				<h3><a href='user-profile?youId="+mId+"'>"+mId+"</a></h3>"+
 							"				<span><img src='images/clock.png' alt=''>"+cTime+"</span>"+
 							"				<p>"+cContents+"</p>"+
 							"				<a href='#' class='active active-reply' comments_no='"+cNo+"'>"+
