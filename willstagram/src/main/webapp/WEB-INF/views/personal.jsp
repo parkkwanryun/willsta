@@ -229,6 +229,7 @@
 												</c:if>
 											</div>
 											<div class="job_descp">
+												<br>
 												<h3>${post.pTitle}</h3>
 												<p>${post.pContents}<br><a href="#" title=""><s:message code="post.view"/></a></p>
 												<ul class="skill-tags">
