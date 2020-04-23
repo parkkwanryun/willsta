@@ -179,7 +179,7 @@ public class MemberController {
 		String path = request.getSession().getServletContext().getRealPath("/")+"contents\\member_image\\";
 		System.out.println("## 이미지 저장경로:"+path);
 		
-		boolean updateMember = memberService.updateMember(new Member(mId, mPass, mName, mEmail, mPhone,",","off"));
+		boolean updateMember = memberService.updateMember(new Member(mId, mPass, mName, mEmail, mPhone,"","on"));
 		System.out.println(updateMember);
 		if(updateMember) {
 			System.out.println("회원 정보 수정 성공");

@@ -13,6 +13,7 @@
  5.아이디 / 비밀번호 공백 불가 조치 (완료)														
  6.Forgot Password 버튼 위치 조정 (그리드) (완료)
  7.비밀번호 찾기 (Forgot Password?)(완료) 
+ 8.비밀번호 틀렸을 시 validate 안뜸 (완료)	
 
  <<회원가입>> 
  (~4/14)
@@ -24,7 +25,10 @@
  (~4/14)
  1.UPDATE 
  - 회원 정보 수정 시 유효성 체크(validate) (완료)
+ - 이미지만 별도 업로드 처리/ alert 안내문구 처리(완료)
+ - 회원 정보 수정 시 이미지 초기화 문제 처리(완료)
  - 비밀번호 찾기 (Forgot Password?)(완료)
+  
  (~4/20)
  2.DELETE& UPDATE(mRetire=>off / mRetire=>on) 
  계정 비활성화 (완료)
@@ -57,8 +61,10 @@ function member_login_action_function() {
 			if (textData.trim() == "true") {
 				location.href = '/willstagram/main_post';
 			} else if (textData.trim() == "false1") {
+				alert('아이디를 다시 확인해주세요');
 				id_check();
 			} else if (textData.trim() == "false2") {
+				alert('비밀번호를 다시 확인해주세요');
 				password_check();
 			} else if (textData.trim() == "false3"){
 				alert('비활성화된 계정입니다. 활성화 상태창으로 이동합니다.');

@@ -42,7 +42,7 @@ public interface MemberMapper {
 	public Member selectById(@Param("mId") String mId);
 	
 	/* 회원정보 수정 */
-	@Update("UPDATE MEMBER SET mId=#{mId}, mPass=#{mPass}, mName=#{mName}, mEmail=#{mEmail}, mPhone=#{mPhone}, mImage=#{mImage}, mRetire=#{mRetire} WHERE mId=#{mId}")
+	@Update("UPDATE MEMBER SET mId=#{mId}, mPass=#{mPass}, mName=#{mName}, mEmail=#{mEmail}, mPhone=#{mPhone}, mRetire=#{mRetire} WHERE mId=#{mId}")
 	public boolean updateMember(Member memeber);
 
 	/* 계정 비활성화*/

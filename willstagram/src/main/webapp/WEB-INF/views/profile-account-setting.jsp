@@ -85,7 +85,7 @@ label.error {
 													<s:message code="modify.password" />
 												</h5>
 												<div class="cpp-fiel">
-													<input type="password" name="mPass" class="required" value="${sMemberId.mPass}"
+													<input type="password" name="mPass" class="required" 
 														placeholder="<s:message code="modify.password"/>">
 													<i class="la la-lock"></i>
 												</div>
