@@ -189,7 +189,7 @@
 												<c:if test="${fn:startsWith(post.fileName, 'img')}">
 													<div class="image">
 														<img class="center-block" style="margin:10px 0px;"
-															src="contents/post_image/${post.fileName}" alt="여기에이미지들어옴"
+															src="contents/post_image/${post.fileName}" alt="이미지"
 															width="500" height="300" >
 													</div>
 												</c:if>
