@@ -11,7 +11,6 @@ function postCommentsListFunction(e){
 		}, 500);
 	}else {
 		$.ajax({
-			async: false,
 			url : "postCommentsList",
 			data : params,
 			method : "POST",
@@ -40,14 +39,14 @@ function postCommentsListFunction(e){
 							"				<span><img src='images/clock.png' alt=''>"+cTime+"</span>"+
 							"				<p>"+cContents+"</p>"+
 							"				<a href='#' class='active active-reply' comments_no='"+cNo+"'>"+
-							"					<i class='fa fa-reply-all'> "+msg.Reply+"</i></a>";
+							"					<i class='fa fa-reply-all'> 댓글</i></a>";
 					
 					if(mId == loginId) { 
 						html += "				<a href='#' class='active active-edit' "+
 								"					data-toggle='modal' data-target='#updateCommentsModal' comments_no='"+cNo+"'>"+
-								"					<i class='fa fa-cog'> "+msg.Edit+"</i></a>"+
+								"					<i class='fa fa-cog'> 수정</i></a>"+
 								"				<a href='#' class='active active-delete' comments_no='"+cNo+"'>"+
-								"					<i class='fa fa-remove'> "+msg.Delete+"</i></a>";
+								"					<i class='fa fa-remove'> 삭제</i></a>";
 					}
 							
 					html +=	"			</div>"+
@@ -76,7 +75,7 @@ function postCommentsCount(e){
 		dataType : "text",
 		success : function(count){
 			//console.log(count);
-			$(e).html("<i class='fas fa-comment-alt'></i>"+"&nbsp;"+msg.Comments+"&nbsp;"+count);
+			$(e).html("<i class='fas fa-comment-alt'></i>"+"&nbsp;댓글&nbsp;"+count);
 		}
 	});
 }
@@ -95,7 +94,7 @@ function postCommentsCount2($aNodeList){
 			dataType : "text",
 			success : function(count){
 				//console.log(count);
-				$($aNodeList.get(i)).html("<i class='fas fa-comment-alt'></i>"+"&nbsp;"+msg.Comments+"&nbsp;"+count);
+				$($aNodeList.get(i)).html("<i class='fas fa-comment-alt'></i>"+"&nbsp;댓글&nbsp;"+count);
 			}
 		});
 	}
@@ -145,11 +144,11 @@ function reCommentsInsertFormShowFunction(e){
 	html += "<div class='post-comment' style='display:none'>" +
 			"	<div class='comment_box_inner'>" +
 			"		<form class='recomments_insert_form'>" +
-			"			<input type='text' placeholder='"+msg.ReComments+"'" +
+			"			<input type='text' placeholder='댓글을 입력하세요.'" +
 			"				name='cContents' class='cContents'>" +
 			"			<input type='hidden' name='cNo' value='"+cNo+"' >" +
 			"			<input type='hidden' name='pNo' value='"+pNo+"' >" +
-			"			<button type='button' class='recomments_insert_button'>"+msg.Send+"</button></div>" +
+			"			<button type='button' class='recomments_insert_button'>쓰기</button></div>" +
 			"		</form>" +
 			"	</div>" +
 			"</div>";
@@ -239,10 +238,12 @@ function commentsUpdateActionFunction(e){
 //document ready
 $(function() {
 	//Comments 관련 i18n js
+	/*
 	$.getScript("js/wComments_messages_"+navigator.language+".js", function(){
 		//DOM tree 생성 후 포스트-댓글 수 나타내기
 		postCommentsCount2($('.comment_list_click'));
 	});
+	*/
 	//무한스크롤 관련 이벤트
 	$(document).scroll(function(){
 		//포스트-댓글 수 나타내기
@@ -320,4 +321,7 @@ $(function() {
 		commentsUpdateActionFunction(e);
 		e.preventDefault();
 	})
+	
+	//DOM tree 생성 후 포스트-댓글 수 나타내기
+	postCommentsCount2($('.comment_list_click'));
 });
