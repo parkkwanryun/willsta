@@ -55,5 +55,5 @@ public interface MemberDao {
 	List<Member> addMemberList(String lastId);
 	
 	/*사용자 검색*/
-	List<Member> findMemberList(String findId);
+	List<Member> findMemberList(String search);
 }

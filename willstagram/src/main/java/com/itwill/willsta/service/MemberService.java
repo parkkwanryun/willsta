@@ -40,6 +40,6 @@ public interface MemberService {
 	
 	List<Member> addMemberList(String lastId);
 	
-	List<Member> findMemberList(String findId);
+	List<Member> findMemberList(String search);
 
 }

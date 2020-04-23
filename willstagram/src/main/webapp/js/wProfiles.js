@@ -1,5 +1,4 @@
 $(function(){
-	
 	var mIdArray=$('#mId-List').serializeArray();
 	//검색 결과 여부
 	if (mIdArray.length==0) {
@@ -27,8 +26,6 @@ $(function(){
 			}
 		});
 	}
-	 
-	
 	//팔로우
 	$(document).on('click','.follow',function(e){
 		var $mIdYou=$(e.target).parents("div.company-up-info");
@@ -45,7 +42,6 @@ $(function(){
 		});
 		e.preventDefault();
 	});
-	
 	//언팔로우
 	$(document).on('click','.unFollow',function(e){
 		var $mIdYou=$(e.target).parents("div.company-up-info");

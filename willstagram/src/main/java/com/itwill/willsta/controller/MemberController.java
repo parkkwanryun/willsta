@@ -267,6 +267,7 @@ public class MemberController {
 	@RequestMapping(value = "/profiles")
 	public ModelAndView memberList(@Param(value = "search") String search) {
 		ModelAndView mv=new ModelAndView();
+		System.out.println("##검색 ->"+search);
 		if (search==null) {
 			//유저목록
 			List<Member> memberList=memberService.memberList();
@@ -286,13 +287,13 @@ public class MemberController {
 	@RequestMapping(value = "/add_profile", produces = "text/html;charset=utf-8")
 	public ModelAndView addMember(@RequestParam(value = "lastId", required = true)String lastId) {
 		ModelAndView mv=new ModelAndView();
-		System.out.println("### 마지막 아이디 ->"+lastId);
+		System.out.println("###1 마지막 아이디 ->"+lastId);
 		List<Member> addMemberList=memberService.addMemberList(lastId);
 		mv.addObject("memberList",addMemberList);
 		mv.setViewName("profiles_scroll");
 		return mv;
-		
 	}
+	
 	
 	/*상대방페이지*/
 	@MemberLoginCheck
