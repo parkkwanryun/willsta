@@ -80,7 +80,7 @@ $(function(){
 												html += "<div class='suggestion-usd'>";
 												html += "<img src='contents/member_image/"
 													+ mImage
-													+ "' alt='' width='40px'>"
+													+ "' alt='' width='35px' height='35px'>"
 													+ "<div class='sgt-text'>"
 													+ "<h4>"
 													+ "<a href=user-profile?youId="+mId+">"
@@ -132,7 +132,7 @@ $(function(){
 									html += "<div class='suggestion-usd'>";
 									html += "<img src='contents/member_image/"
 										+ mImage
-										+ "' alt='' width='40px'>"
+										+ "' alt='' width='35px' height='35px'>"
 										+ "<div class='sgt-text'>"
 										+ "<h4>"
 										+ "<a href=user-profile?youId="+mId+">"
@@ -149,7 +149,7 @@ $(function(){
 										+ "</div>";
 								}
 							 	html+="</div>";
-							 
+							 	
 							 	$('div.suggestions').html(html);
 						
 							}

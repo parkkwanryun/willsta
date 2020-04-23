@@ -80,7 +80,7 @@ function message_leftInsert_html(jsonData){
    htmlData +=         "<span>"+jsonData.msgDate+"분</span>";
    htmlData +=      "</div>";
    htmlData +=      "<div class='messg-usr-img'>";
-   htmlData +=         "<img src='contents/member_image/"+jsonData.dmContentsImage+"' alt=''>"
+   htmlData +=         "<img src='contents/member_image/"+jsonData.dmContentsImage+"' alt='' width='35px' height='35px'>"
    htmlData +=      "</div>";
    htmlData +=   "</div>";
    $('.messages-line').append(htmlData);
