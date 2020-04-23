@@ -171,14 +171,11 @@ function account_img_setting() {
 		data : formData,
 		processData : false,
 		contentType : false,
-		dataType : 'json',
-		success : function(jsonData) {
-			if (jsonData.trim() == "true") {
-				member_img_modify_action.mId.value = jsonData.mId;
-				member_img_modify_action.uploadImg.value = jsonData.uploadImg;
-				alert('이미지 업로드 성공');
-				location.href = '/willstagram/profile-account-setting';
-			} else {
+		dataType : 'text',
+		success : function(textData) {
+			if (textData.trim() == "true") {
+				alert('프로필 이미지 업로드 완료');
+			}else {
 				alert('이미지 삽입 실패');
 			}
 		}
