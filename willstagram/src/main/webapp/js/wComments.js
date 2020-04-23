@@ -32,7 +32,7 @@ function postCommentsListFunction(e){
 					}
 					
 					html += "			<div class='comment'>"+
-							"				<h3>"+mId+"</h3>"+
+							"				<h3><a href='user-profile?youId="+mId+"'>"+mId+"</a></h3>"+
 							"				<span><img src='images/clock.png' alt=''>"+cTime+"</span>"+
 							"				<p>"+cContents+"</p>"+
 							"				<a href='#' class='active active-reply' comments_no='"+cNo+"'>"+
@@ -173,7 +173,7 @@ function reCommentsInsertActionFunction(e){
 					window.location.reload();
 				}, 500);
 			}else if(result.trim() == "false"){
-				alert("대댓글 쓰기를 실패했습니다.");
+				alert("댓글 쓰기를 실패했습니다.");
 				$reComments.find(".cContents").select();
 			}
 		} 
@@ -198,7 +198,7 @@ function removeCommentsActionFunction(e){
 			}else if(result.trim() == "fail"){
 				alert("댓글 삭제를 실패했습니다.")
 			}else if(result.trim() == "multiResult"){
-				alert("대댓글이 있는 댓글은 삭제할 수 없습니다.");
+				alert("댓글이 있으면 삭제할 수 없습니다.");
 			}
 		}
 	});
