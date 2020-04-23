@@ -24,6 +24,8 @@ public interface PostDao {
 	
 	public List<Post> selectMyList(Integer lastpNo, String userId, Integer queryGbn);
 	
+	public List<Post> selectYouList(Integer lastpNo, String userId, Integer queryGbn);
+
 	public Post selectPost(Integer pNo, String mId);
 	
 	public List<PostImage> selectContents(Integer pNo);
