@@ -145,7 +145,6 @@ function message_send_insert_function(jsonData){
 function message_detail_function(target){
    var dmNo = $(target).attr('dmno');
    var params = "dmNo=" + dmNo;
-   
    $.ajax({
       url : 'messageRoom_detail',
       method : 'GET',
