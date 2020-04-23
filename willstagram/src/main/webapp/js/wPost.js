@@ -51,6 +51,10 @@ $(function() {
 				required : true,
 				maxlength : 80
 			},
+			hastag : {
+				required: true,
+				maxlength : 80
+			},
 			pContents : {
 				required : true,
 				maxlength : 2000
