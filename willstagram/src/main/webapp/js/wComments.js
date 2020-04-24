@@ -175,11 +175,7 @@ function postCommentsCount2($aNodeList){
 			dataType : "text",
 			success : function(count){
 				//console.log(count);
-				if(navigator.language == "ko"){
-					$($aNodeList.get(i)).html("<i class='fas fa-comment-alt'></i>"+"&nbsp;댓글&nbsp;"+count);
-				}else if(navigator.language == "en"){
-					$($aNodeList.get(i)).html("<i class='fas fa-comment-alt'></i>"+"&nbsp;Comments&nbsp;"+count);
-				}
+				$($aNodeList.get(i)).html("<i class='fas fa-comment-alt'></i>"+"&nbsp;댓글&nbsp;"+count);
 			}
 		});
 	}
