@@ -45,9 +45,6 @@
 		 	width : 395px; 
 		 	height : 90px; 
 		 }
-		 .fas1 {
-	 		font-weight: 400;
-	 	}
 	</style>
 </head>
 <!--comment-update modal-->
@@ -218,7 +215,7 @@
 													</li>
 													<li>
 														<a href="#"  class="com comment_list_click" >
-															<i class="fas fa-comment-alt"></i> <s:message code="post.comment"/><i class="fas fas1"></i>
+															<i class="fas fa-comment-alt"></i><!-- 댓글(국제화) 수 -->
 														</a>
 													</li>
 												</ul>
