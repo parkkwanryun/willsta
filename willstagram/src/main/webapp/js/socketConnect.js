@@ -291,7 +291,7 @@ $(document).ready(function(){
          message_profile_create_function(mIdYou);
       });
       //profile 탭에서 유저의 메세지 버튼 클릭시 방 생성
-      $(document).find('.message-us').on('click',function(e){
+      $(document).on('click','.message-us',function(e){
          e.preventDefault();
          var mIdYou = $(e.target).parents('.company-up-info').attr('mIdYou');
          message_profile_create_function(mIdYou);
