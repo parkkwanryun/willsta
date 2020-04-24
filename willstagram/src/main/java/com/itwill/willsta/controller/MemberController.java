@@ -200,6 +200,7 @@ public class MemberController {
 								HttpServletRequest request,
 								HttpSession session) {
 		String path = request.getSession().getServletContext().getRealPath("/")+"contents\\member_image\\";
+		//String path = "contents\\member_image\\";
 		System.out.println("############ 이미지 저장경로:"+path);
 		boolean updateMemberImg = memberService.updateMemberImg(mId, uploadImg);
 		System.out.println(updateMemberImg);
