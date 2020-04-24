@@ -238,7 +238,7 @@ function message_receive_noty(event){
    htmlData +=         "<img src='contents/member_image/"+jsonData.dmContentsImage+"' alt=''>";
    htmlData +=      "</div>";
    htmlData +=      "<div class='notification-info'>";
-   htmlData +=         "<h3><a href='messages' title=''>"+jsonData.mId+"</a> </h3>";
+   htmlData +=         "<h3><a href='messages' title=''>"+jsonData.mIdYou+"</a> </h3>";
    htmlData +=         "<p>"+jsonData.msg+"</p>";
    htmlData +=         "<span>"+jsonData.msgDate+"</span>";
    htmlData +=      "</div>";
@@ -253,17 +253,22 @@ function message_room_open(e) {
    if(nodeName=='H3'){
       target = $(e.target).parents('.usr-msg-details');
       $(target).parent().addClass('active');
+      $(target).find('.msg-counts').text('0');
    }else if(nodeName=='SPAN'){
       target = $(e.target).parents('.usr-msg-details');
       $(target).parent().addClass('active');
+      $(target).find('.msg-counts').text('0');
     }else if(nodeName=='LI'){
        target = $(e.target).find('.usr-msg-details');
        $(e.target).addClass('active');
+       $(target).find('.msg-counts').text('0');
     }else if(nodeName=='DIV'){
        target = $(e.target);
        $(target).parent().addClass('active');
+       $(target).find('.msg-counts').text('0');
     } else if(nodeName =='IMG'){
        target = $(e.target).parents('.usr-msg-details');
+       $(target).find('.msg-counts').text('0');
     }
    $('.main-conversation-box').html("");
    message_send_form(target);
@@ -281,7 +286,6 @@ $(document).ready(function(){
       getLoginId();
       //채팅방 오픈
       $(document).find('div.messages-list > ul > li').on('click', function(e) {
-    	  $('div.usr-mg-info span').text('0');
          message_room_open(e);
       });
       $('.user_pro_status').find('.message-us').on('click',function(e){
@@ -316,7 +320,6 @@ function connectWS() {
     	 var dmNo = (event.data).split(",")[4];
     	 if($('.main-conversation-box h3').text() == senderId){
              message_receive(event);
-
     	 }
     	 message_receive_noty(event);
          let socketAlert = $('a#socketAlert');
