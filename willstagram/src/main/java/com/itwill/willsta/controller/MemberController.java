@@ -214,8 +214,8 @@ public class MemberController {
 		}
 	return updateMemberImg+"";
 	}
-
-	/*비밀번호 찾기 - 페이지 이동*/ 
+	
+	/*비밀번호 찾기 - 페이지 이동....*/ 
 	@RequestMapping(value="findPw", method= {RequestMethod.GET,RequestMethod.POST}, produces="text/plain; charset=UTF-8")
 	public String findPw() {
 		return "findPw";
