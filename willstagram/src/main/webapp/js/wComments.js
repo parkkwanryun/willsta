@@ -55,13 +55,31 @@ function ko_postCommentsListFunction(e){
 							"</ul>"+
 							"</div>";
 				});
-				postCommentsCount(e);
+				ko_postCommentsCount(e);
 				$postComments.append(html);
 				$postComments.children().fadeToggle(500);
 			}
 		});
 	}
 }
+
+//ko 포스트-댓글 수 ajax 요청
+function ko_postCommentsCount(e){
+	var params = "pNo="+$(e.target).parents(".post-bar").attr("post_no");
+	//console.log(params);
+	$.ajax({
+		url : "postCommentsCount",
+		data : params,
+		method : "POST",
+		dataType : "text",
+		success : function(count){
+			//console.log(count);
+			$(e).html("<i class='fas fa-comment-alt'></i>"+"&nbsp;댓글&nbsp;"+count);
+		}
+	});
+}
+
+
 //en 포스트-댓글 전체 보이기 ajax요청
 function en_postCommentsListFunction(e){
 	var $postComments = $(e.target).parents(".post-bar").find(".comment-section");
@@ -119,7 +137,7 @@ function en_postCommentsListFunction(e){
 							"</ul>"+
 							"</div>";
 				});
-				postCommentsCount(e);
+				en_postCommentsCount(e);
 				$postComments.append(html);
 				$postComments.children().fadeToggle(500);
 			}
@@ -127,9 +145,8 @@ function en_postCommentsListFunction(e){
 	}
 }
 
-
-//포스트-댓글 수 ajax 요청
-function postCommentsCount(e){
+//en 포스트-댓글 수 ajax 요청
+function en_postCommentsCount(e){
 	var params = "pNo="+$(e.target).parents(".post-bar").attr("post_no");
 	//console.log(params);
 	$.ajax({
@@ -139,7 +156,7 @@ function postCommentsCount(e){
 		dataType : "text",
 		success : function(count){
 			//console.log(count);
-			$(e).children(".fas1").html("&nbsp;"+count);
+			$(e).html("<i class='fas fa-comment-alt'></i>"+"&nbsp;Comments&nbsp;"+count);
 		}
 	});
 }
@@ -158,7 +175,11 @@ function postCommentsCount2($aNodeList){
 			dataType : "text",
 			success : function(count){
 				//console.log(count);
-				$($aNodeList.get(i)).children(".fas1").html("&nbsp;"+count);
+				if(navigator.language == "ko"){
+					$($aNodeList.get(i)).html("<i class='fas fa-comment-alt'></i>"+"&nbsp;댓글&nbsp;"+count);
+				}else if(navigator.language == "en"){
+					$($aNodeList.get(i)).html("<i class='fas fa-comment-alt'></i>"+"&nbsp;Comments&nbsp;"+count);
+				}
 			}
 		});
 	}
@@ -347,7 +368,7 @@ $(function() {
 	//포스트-댓글 전체 보이기
 	$(document).on("click", ".comment_list_click", function(e){
 		//console.log(e.target);
-		if($(e.target).find("i.fas1").text() != 0){
+		if($(e.target).text().substr(length - 1) != 0){
 			if(navigator.language == "ko"){
 				ko_postCommentsListFunction(e);
 			}else if(navigator.language == "en"){
