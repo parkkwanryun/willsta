@@ -139,7 +139,7 @@ function postCommentsCount(e){
 		dataType : "text",
 		success : function(count){
 			//console.log(count);
-			$(e).children("i.fas1").html("&nbsp;"+count);
+			$(e).children(".fas1").html("&nbsp;"+count);
 		}
 	});
 }
@@ -158,7 +158,7 @@ function postCommentsCount2($aNodeList){
 			dataType : "text",
 			success : function(count){
 				//console.log(count);
-				$($aNodeList.get(i)).children("i.fas1").html("&nbsp;"+count);
+				$($aNodeList.get(i)).children(".fas1").html("&nbsp;"+count);
 			}
 		});
 	}
@@ -337,6 +337,7 @@ $(function() {
 		postCommentsCount2($('.comment_list_click'));
 	});
 	*/
+	
 	//무한스크롤 관련 이벤트
 	$(document).scroll(function(){
 		//포스트-댓글 수 나타내기

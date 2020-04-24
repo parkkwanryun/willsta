@@ -73,7 +73,8 @@
 				</li> 
 				<li>
 					<a href="#"  class="com comment_list_click" >
-				    <i class="fas fa-comment-alt"></i> <s:message code="post.comment"/> </a>
+				   		<i class="fas fa-comment-alt"></i> <s:message code="post.comment"/><i class="fas fas1"></i> 
+				   	</a>
 				</li>
 			</ul>
 			<a href="#"><i class="fas fa-eye"></i><s:message code="post.views"/> ${post.pViewCount}</a>
