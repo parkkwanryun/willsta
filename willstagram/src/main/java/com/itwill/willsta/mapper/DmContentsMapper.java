@@ -20,7 +20,7 @@ public interface DmContentsMapper {
 			"ORDER BY dmContentsDate ASC")
 	public List<DmContents> dmcSelectAll();
 	
-	@Select("SELECT d.dmNo, d.dmContentsNo, d.dmContentsMessage, to_char(d.dmContentsDate,'DD/HH24/MI') as dmContentsDate, d.dmSenderId, " + 
+	@Select("SELECT d.dmNo, d.dmContentsNo, d.dmContentsMessage, FUNC_TERM(dmContentsDate) as dmContentsDate, d.dmSenderId, " + 
 			"  (SELECT m.mImage FROM member m WHERE m.mId IN( "+ 
 			"    (SELECT d.dmSenderId FROM DM_CONTENTS WHERE m.mId = d.dmSenderId))) as dmContentsImage, dmChatRead " + 
 			"FROM dm_contents d " + 

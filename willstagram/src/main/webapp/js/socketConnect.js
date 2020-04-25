@@ -77,7 +77,7 @@ function message_leftInsert_html(jsonData){
    htmlData +=         "<div class='message-inner-dt'>";
    htmlData +=            "<p>"+jsonData.msg+"</p>";
    htmlData +=         "</div>";
-   htmlData +=         "<span>"+jsonData.msgDate+"분</span>";
+   htmlData +=         "<span>"+jsonData.msgDate+"</span>";
    htmlData +=      "</div>";
    htmlData +=      "<div class='messg-usr-img'>";
    htmlData +=         "<img src='contents/member_image/"+jsonData.dmContentsImage+"' alt='' width='35px' height='35px'>"
@@ -94,7 +94,7 @@ function message_rightInsert_html(jsonData){
    htmlData +=            "<div class='message-inner-dt'>";
    htmlData +=               "<p style='width:auto'>"+jsonData.msg+"</p>";
    htmlData +=            "</div>";
-   htmlData +=            "<p style='float:right;'>"+jsonData.msgDate+"분</p>";
+   htmlData +=            "<p style='float:right;'>"+jsonData.msgDate+"</p>";
    htmlData +=         "</div>";
    htmlData +=   "</div>";
    
@@ -111,7 +111,7 @@ function message_send_function(target){
       jsonData.mId = loginId;                                    //보낸사람
       jsonData.mIdYou = $(target).find('.usr-mg-info h3').text();         //받는사람
       jsonData.msg = $('#msg').val();                              //내용
-      jsonData.msgDate = d.getHours() + "시" + d.getMinutes();         //보낸시간
+      jsonData.msgDate = d.getHours() + "시" + d.getMinutes() +"분";         //보낸시간
       jsonData.dmNo = $(target).attr('dmno');                        //방번호
       jsonData.dmContentsImage = mImage;                           //보낸사람 프로필 이미지
       jsonData.dmChatRead = 0;                                 //메세지 read 유무 flag
@@ -181,12 +181,12 @@ function messages_readChat_function(jsonData){
 //유저 채팅리스트 출력 콜백함수
 function message_list_function(jsonArrayData){
    for (var i = 0; i < jsonArrayData.length; i++) {
-      var date = jsonArrayData[i].dmContentsDate.split('/');
+      var date = jsonArrayData[i].dmContentsDate;
       jsonData.msg = jsonArrayData[i].dmContentsMessage;
-      jsonData.msgDate = date[0]+'일'+date[1]+'시'+date[2];
+      jsonData.msgDate = date;
+      console.log(jsonData.msgDate);
       jsonData.dmContentsImage = jsonArrayData[i].dmContentsImage;
       var dmSenderId = jsonArrayData[i].dmSenderId;
-      
       if(loginId == dmSenderId){
          message_rightInsert_html(jsonData);
       } else {
@@ -217,7 +217,7 @@ function message_receive(event){
    jsonData.mIdYou = msgArray[0];   // 보낸사람 (너)
    jsonData.mId = msgArray[1];      // 받는사람 (나)
    jsonData.msg = msgArray[2];   // 내용
-   jsonData.msgDate = d.getHours() + "시" + d.getMinutes(); // 시간
+   jsonData.msgDate = d.getHours() + "시" + d.getMinutes()+ "분"; // 시간
    jsonData.dmContentsImage = msgArray[5];   // 보낸사람 프로필 이미지
    if(jsonData.msg != null || jsonData.msg != ""){
       message_leftInsert_html(jsonData);
@@ -315,7 +315,7 @@ function connectWS() {
    ws.onerror = function(event) { 
       };
       ws.onmessage = function(event) { // socket.send() 후 ReplyEchoHandler가 handleTextMessage메소드로부터 메시지를 받아옴                                 
-         var senderId = (event.data).split(',')[0];
+    	 var senderId = (event.data).split(',')[0];
     	 var mIdYou = (event.data).split(",")[1];
     	 var dmNo = (event.data).split(",")[4];
     	 if($('.main-conversation-box h3').text() == senderId){
