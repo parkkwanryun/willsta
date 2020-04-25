@@ -64,6 +64,62 @@ function postCommentsListFunction(e){
 }
 
 
+//댓글 수정 or 대댓글 쓴 후 포스트-댓글 ajax 요청
+function postCommentsListFunction2(e){
+	var $postComments2 = $(e.target).parents(".post-bar").find(".comment-section");
+	var params = "pNo="+$(e.target).parents(".post-bar").attr("post_no");
+	$.ajax({
+		url : "postCommentsList2",
+		data : params,
+		method : "POST",
+		dataType : "json",
+		success : function(jsonArray){
+			var html = "";
+			$.each(jsonArray, function(i, jsonObject){
+				jsonObject = jsonArray[i];
+				var cNo = jsonObject.cNo;
+				var cTime = jsonObject.cTime;
+				var cContents = jsonObject.cContents;
+				var recNo = jsonObject.recNo;
+				var mId = jsonObject.mId;
+				
+				html += "<div class='comment-sec' comments_no='"+cNo+"'>"+
+						"<ul>"+
+						"	<li>"+
+						"		<div class='comment-list'>";
+				
+				if(recNo > 0){
+					html += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+				}
+				
+				html += "			<div class='comment'>"+
+						"				<h3><a href='user-profile?youId="+mId+"'>"+mId+"</a></h3>"+
+						"				<span><img src='images/clock.png' alt=''>"+cTime+"</span>"+
+						"				<p>"+cContents+"</p>"+
+						"				<a href='#' class='active active-reply' comments_no='"+cNo+"'>"+
+						"					<i class='fa fa-reply-all'> 댓글</i></a>";
+				
+				if(mId == loginId) { 
+					html += "				<a href='#' class='active active-edit' "+
+							"					data-toggle='modal' data-target='#updateCommentsModal' comments_no='"+cNo+"'>"+
+							"					<i class='fa fa-cog'> 수정</i></a>"+
+							"				<a href='#' class='active active-delete' comments_no='"+cNo+"'>"+
+							"					<i class='fa fa-remove'> 삭제</i></a>";
+				}
+						
+				html +=	"			</div>"+
+						" 		</div>"+
+						"	</li>"+
+						"</ul>"+
+						"</div>";
+			});
+			postCommentsCount(e);
+			$postComments2.html(html);
+		}
+	});
+}
+
+
 //포스트-댓글 수 ajax 요청
 function postCommentsCount(e){
 	var params = "pNo="+$(e.target).parents(".post-bar").attr("post_no");
@@ -118,6 +174,7 @@ function commentsInsertActionFunction(e){
 		success : function(result) {
 			if(result.trim() == "true"){
 				postCommentsListFunction(e);
+				$comments.find(".cContents").val("");
 				/*
 				setTimeout(function() {
 					window.location.reload();
@@ -145,7 +202,7 @@ function reCommentsInsertFormShowFunction(e){
 			"	<div class='comment_box_inner'>" +
 			"		<form class='recomments_insert_form'>" +
 			"			<input type='text' placeholder='댓글을 입력하세요.'" +
-			"				name='cContents' class='cContents'>" +
+			"				name='recContents' class='recContents'>" +
 			"			<input type='hidden' name='cNo' value='"+cNo+"' >" +
 			"			<input type='hidden' name='pNo' value='"+pNo+"' >" +
 			"			<button type='button' class='recomments_insert_button'>쓰기</button></div>" +
@@ -162,12 +219,9 @@ function reCommentsInsertFormShowFunction(e){
 //대댓글 쓰기 ajax요청
 function reCommentsInsertActionFunction(e){
 	//console.log($(e.target).parents(".comment-section"));
-	var pNo = $(e.target).parents('.post-bar').attr("post_no");
 	var $reComments = $(e.target).parents(".comment-section").find(".recomments_insert_form");
 	var params = $reComments.serialize();
 	//console.log(params);
-	//console.log(pNo);
-	
 	$.ajax({
 		url : "reCommentsInsert",
 		data : params,
@@ -175,12 +229,15 @@ function reCommentsInsertActionFunction(e){
 		dataType : "text",
 		success : function(result){
 			if(result.trim() == "true"){
+				postCommentsListFunction2(e);
+				/*
 				setTimeout(function() {
 					window.location.reload();
 				}, 500);
+				*/
 			}else if(result.trim() == "false"){
 				alert("댓글 쓰기를 실패했습니다.");
-				$reComments.find(".cContents").select();
+				$reComments.find(".recContents").select();
 			}
 		} 
 	});
@@ -254,9 +311,7 @@ $(function() {
 	//포스트-댓글 전체 보이기
 	$(document).on("click", ".comment_list_click", function(e){
 		//console.log(e.target);
-		if($(e.target).text().substr($(e.target).text().length - 1) != 0){
-			postCommentsListFunction(e);
-		}
+		postCommentsListFunction(e);
 		e.preventDefault();
 	});
 	
@@ -286,13 +341,11 @@ $(function() {
 		//console.log(e.target);
 		reCommentsInsertActionFunction(e);
 		e.preventDefault();
-		e.stopPropagation();
 	});
-	$(document).on("keydown", ".cContents", function(e){
+	$(document).on("keydown", ".recContents", function(e){
 		if(e.keyCode == 13){
 			reCommentsInsertActionFunction(e);
 			e.preventDefault();
-			e.stopPropagation();
 		}
 	});
 	

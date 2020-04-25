@@ -46,10 +46,17 @@ public class CommentsController {
 	}
 	
 	@MemberLoginCheck
+	@PostMapping(value = "/postCommentsList2", produces = "application/json;charset=UTF-8")
+	public List<Comments> postCommentsList2(@RequestParam(value = "pNo") int pNo) throws Exception {
+		List<Comments> postCommentsList2 = commentsService.postCommentsList(pNo);
+		return postCommentsList2;
+	}
+	
+	@MemberLoginCheck
 	@PostMapping(value = "/reCommentsInsert", produces = "text/plain;charset=UTF-8")
 	public String reCommentsInsert(@RequestParam(value = "cNo") int recNo,
 								   @RequestParam(value = "pNo") int pNo,
-								   @RequestParam String cContents,
+								   @RequestParam(value = "recContents") String cContents,
 								   HttpSession session) throws Exception {
 		String result = "";
 		Comments comments = new Comments();
