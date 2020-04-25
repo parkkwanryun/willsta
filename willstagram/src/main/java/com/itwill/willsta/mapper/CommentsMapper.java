@@ -44,13 +44,13 @@ public interface CommentsMapper {
 	public Integer removeComments(@Param("cNo") int cNo);
 	
 	//댓글 조회
-	@Select("SELECT cNo, pNo, mId, cContents, cTime " +
+	@Select("SELECT cNo, pNo, mId, cContents, FUNC_TERM(cTime) as cTime " +
 			"FROM	comments " +
 			"WHERE  cNo = #{cNo}")
 	public Comments findComments(@Param("cNo") int cNo);
 	
 	//댓글 전체 조회
-	@Select("SELECT	cNo, pNo, mId, cContents, cTime " + 
+	@Select("SELECT	cNo, pNo, mId, cContents, FUNC_TERM(cTime) as cTime " + 
 			"FROM	comments")
 	public List<Comments> findCommentsList();
 	
@@ -61,7 +61,7 @@ public interface CommentsMapper {
 	public Integer postCommentsCount(@Param("pNo") int pNo);
 	
 	//하나의 포스트에 달린 댓글 전체 조회
-	@Select("SELECT  mId, to_char(cTime + 9/24,'YYYY-MM-DD HH24:MI:SS') as cTime, cNo, recNo, cContents, pNo " + 
+	@Select("SELECT  mId, FUNC_TERM(cTime) as cTime, cNo, recNo, cContents, pNo " + 
 			"FROM    comments " + 
 			"WHERE   pNo = #{pNo} " + 
 			"START WITH  recNo = 0 " + 
