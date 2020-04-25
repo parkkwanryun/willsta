@@ -254,7 +254,7 @@ $(function() {
 	//포스트-댓글 전체 보이기
 	$(document).on("click", ".comment_list_click", function(e){
 		//console.log(e.target);
-		if($(e.target).text().substr(length - 1) != 0){
+		if($(e.target).text().substr($(e.target).text().length - 1) != 0){
 			postCommentsListFunction(e);
 		}
 		e.preventDefault();
