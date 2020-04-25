@@ -286,6 +286,10 @@ $(document).ready(function(){
       //채팅방 오픈
       $(document).find('div.messages-list > ul > li').on('click', function(e) {
          message_room_open(e);
+         setTimeout(function(){
+        	 var messagebar = $('.message-bar-head');
+        	 messagebar.css('display', 'none');
+         },1000);
       });
       $('.user_pro_status').find('.message-us').on('click',function(e){
          var url = decodeURIComponent(location.href);
