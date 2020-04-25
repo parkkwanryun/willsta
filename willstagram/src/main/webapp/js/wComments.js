@@ -64,7 +64,7 @@ function postCommentsListFunction(e){
 }
 
 
-//댓글 수정 or 대댓글 쓴 후 포스트-댓글 ajax 요청
+//대댓글 쓴 후 포스트-댓글 ajax 요청
 function postCommentsListFunction2(e){
 	var $postComments2 = $(e.target).parents(".post-bar").find(".comment-section");
 	var params = "pNo="+$(e.target).parents(".post-bar").attr("post_no");
