@@ -184,7 +184,6 @@ function message_list_function(jsonArrayData){
       var date = jsonArrayData[i].dmContentsDate;
       jsonData.msg = jsonArrayData[i].dmContentsMessage;
       jsonData.msgDate = date;
-      console.log(jsonData.msgDate);
       jsonData.dmContentsImage = jsonArrayData[i].dmContentsImage;
       var dmSenderId = jsonArrayData[i].dmSenderId;
       if(loginId == dmSenderId){
