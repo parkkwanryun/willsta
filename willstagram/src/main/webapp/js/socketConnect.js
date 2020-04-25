@@ -229,7 +229,7 @@ function message_receive_noty(event){
    jsonData.mIdYou = msgArray[0];   // 보낸사람 (너)
    jsonData.mId = msgArray[1];      // 받는사람 (나)
    jsonData.msg = msgArray[2];   // 내용
-   jsonData.msgDate = d.getHours() + "시" + d.getMinutes(); // 시간
+   jsonData.msgDate = d.getHours() + "시" + d.getMinutes()+ "분"; // 시간
    jsonData.dmContentsImage = msgArray[5];
    var htmlData = "";
    htmlData +="<div class='notfication-details'>";
