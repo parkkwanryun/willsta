@@ -1,4 +1,4 @@
-/*--------------------------DROP--------------------------*/
+﻿/*--------------------------DROP--------------------------*/
 /*회원*/
 DROP TABLE member CASCADE CONSTRAINTS;
 /*포스트(게시판)*/
@@ -25,7 +25,8 @@ CREATE TABLE member(
 	mEmail	varchar2(50)    NOT NULL,
 	mPhone	varchar2(50)    NOT NULL,
 	mNick	varchar2(50)    NOT NULL,
-	mImage	varchar2(100)
+	mImage	varchar2(100),
+	MRETIRE CHAR(10) DEFAULT 'on'
 );
 
 COMMENT ON TABLE member IS '회원정보';
@@ -44,17 +45,20 @@ COMMENT ON COLUMN member.mNick IS '닉네임';
 
 COMMENT ON COLUMN member.mImage IS '프로필이미지';
 
+COMMENT ON COLUMN MEMBER.MRETIRE IS '탈퇴유무';
+
 ALTER TABLE member ADD CONSTRAINT PK_MEMBER PRIMARY KEY (mId);
 
 /*--------------------------2.POST--------------------------*/
 CREATE TABLE post (
-	pNo     	number(5)	    NOT NULL,
-	mId	        varchar2(50)	NOT NULL,
-	pTitle	    varchar2(50)	NOT NULL,
-	pContents   varchar2(500)	NOT NULL,
-	hasTag  	varchar2(50)	NOT NULL,
-	pViewCount	number(10),
-	pDate	    DATE
+	pNo     	 number(5)	    NOT NULL,
+	mId	       varchar2(50)	NOT NULL,
+	pTitle	   varchar2(50)	NOT NULL,
+	pContents  varchar2(500)	NOT NULL,
+	hasTag  	 varchar2(50)	NOT NULL,
+	pViewCount number(10),
+	pDate	     DATE,
+	status		varchar2(1)
 );
 COMMENT ON TABLE post IS '포스트';
 
@@ -72,12 +76,12 @@ COMMENT ON COLUMN post.pViewCount IS '조회수';
 
 COMMENT ON COLUMN post.pDate IS '작성시간';
 
-ALTER TABLE post ADD CONSTRAINT PK_POST PRIMARY KEY (pNo,mId);
+ALTER TABLE post ADD CONSTRAINT PK_POST PRIMARY KEY (pNo);
 
 /*--------------------------3.POST_IMAGE--------------------------*/
 CREATE TABLE post_Image (
-	pNo	number(5)	            NOT NULL,
-	fileName	varchar2(100)	NOT NULL
+	pNo				number(5)				NOT NULL,
+	fileName	varchar2(100)		NOT NULL
 );
 
 COMMENT ON TABLE post_Image IS '포스트이미지';
@@ -90,11 +94,10 @@ ALTER TABLE post_image ADD CONSTRAINT PK_POST_IMAGE PRIMARY KEY (pNo);
 
 /*--------------------------4.FOLLOW--------------------------*/
 CREATE TABLE follow (
-	mId	    varchar2(50)	NOT NULL,
-	mIdYou	varchar2(50)	NULL,
-	followingCount number(5) NULL,	
-	followerCount number(5) NULL	
+	mId	    				varchar2(50)	NOT NULL,
+	mIdYou					varchar2(50)	NULL
 );
+
 ALTER TABLE follow ADD CONSTRAINT PK_FOLLOW PRIMARY KEY (mId);
 
 COMMENT ON TABLE follow IS '팔로우';
@@ -103,17 +106,14 @@ COMMENT ON COLUMN follow.mId IS '팔로잉';
 
 COMMENT ON COLUMN follow.mIdYou IS '팔로워';
 
-COMMENT ON COLUMN follow.followingCount IS '팔로잉수';
-
-COMMENT ON COLUMN follow.followerCount IS '팔로워수';
 
 /*--------------------------5.LIKES--------------------------*/
 CREATE TABLE likes (
-	pNo	        number(5)	    NOT NULL,
+	pNo	      number(5)	    NOT NULL,
 	mIdYou  	varchar2(50)	NULL
 );
 
-ALTER TABLE likes ADD CONSTRAINT PK_LIKE PRIMARY KEY (pNo,mIdYou);
+ALTER TABLE likes ADD CONSTRAINT PK_LIKE PRIMARY KEY (pNo);
 
 COMMENT ON TABLE likes IS '좋아요';
 
@@ -121,16 +121,18 @@ COMMENT ON COLUMN likes.pNo IS '포스트번호';
 
 COMMENT ON COLUMN likes.mIdYou IS '상대방아이디';
 
+
 /*--------------------------6.COMMENTS--------------------------*/
 CREATE TABLE comments (
-	cNo	            number(5)	    NOT NULL,
-	pNo	            number(5)	    NOT NULL,
-	mId	            varchar2(50)	NOT NULL,
+	cNo	          number(5)	    NOT NULL,
+	pNo	          number(5)	    NOT NULL,
+	mId	          varchar2(50)	NOT NULL,
 	cContents	    varchar2(300)	NOT NULL,
-	cTime	        DATE
+	cTime	        DATE,
+	recNo NUMBER(5,0)
 );
 
-ALTER TABLE comments ADD CONSTRAINT PK_COMMENTS PRIMARY KEY (cNo,pNo,mId);
+ALTER TABLE comments ADD CONSTRAINT PK_COMMENTS PRIMARY KEY (cNo);
 
 COMMENT ON TABLE comments IS '댓글';
 
@@ -144,51 +146,44 @@ COMMENT ON COLUMN comments.cContents IS '댓글내용';
 
 COMMENT ON COLUMN comments.cTime IS '댓글작성시간';
 
+COMMENT ON COLUMN comments.recNo IS '참고댓글번호';
+
 /*--------------------------7.DM--------------------------*/
 CREATE TABLE dm (
-	dNo	        number(5)	    NOT NULL,
+	dmNo	      number(5)	    NOT NULL,
 	mId     	varchar2(50)	NOT NULL,
-	mIdYou	    varchar2(50)	NULL,
-	dDate	    Date
+	dmDate	    Date
 );
 
-ALTER TABLE dm ADD CONSTRAINT PK_DM PRIMARY KEY (dNo,mIdYou);
-
+ALTER TABLE dm ADD CONSTRAINT PK_DM PRIMARY KEY (dmNo);
+ALTER TABLE dm ADD CONSTRAINT UK_DM UNIQUE (mId);
 COMMENT ON TABLE dm IS '디엠';
 
-COMMENT ON COLUMN dm.dNo IS 'DM방 번호';
+COMMENT ON COLUMN dm.dmNo IS 'DM방 번호';
 
 COMMENT ON COLUMN dm.mId IS '아이디';
 
-COMMENT ON COLUMN dm.mIdYou IS '상대방아이디';
-
-COMMENT ON COLUMN dm.dDate IS '송수신일';
+COMMENT ON COLUMN dm.dmDate IS '송수신일';
 
 /*--------------------------8.DM_CONTENTS--------------------------*/
 CREATE TABLE dm_contents (
-	dNo	        number(5)	    NOT NULL,
-	mIdYou      varchar2(50)    NOT NULL,
-	dContents	varchar2(300)	NOT NULL,
-	dDate	    DATE,
-	dImage	    varchar2(100)	NULL,
-	mID     	varchar2(10)	NOT NULL
+	"DMNO" NUMBER(5,0), 
+	"DMCONTENTSNO" NUMBER(10,0), 
+	"DMCONTENTSMESSAGE" VARCHAR2(300), 
+	"DMCONTENTSDATE" DATE DEFAULT sysdate, 
+	"DMSENDERID" VARCHAR2(100), 
+	"DMCONTENTSIMAGE" VARCHAR2(100), 
+	"DMCHATREAD" NUMBER(1,0)
 );
 
-ALTER TABLE dm_contents ADD CONSTRAINT PK_DM_CONTENTS PRIMARY KEY (dNo);
+ALTER TABLE dm_contents ADD CONSTRAINT PK_DM_CONTENTS PRIMARY KEY (dmNo);
 
-COMMENT ON TABLE dm_contents IS 'DM내용(채팅내용)';
-
-COMMENT ON COLUMN dm_contents.dNo IS 'DM방번호';
-
-COMMENT ON COLUMN dm_contents.mIdYou IS '상대방아이디';
-
-COMMENT ON COLUMN dm_contents.dContents IS '내용';
-
-COMMENT ON COLUMN dm_contents.dDate IS '송수신시간';
-
-COMMENT ON COLUMN dm_contents.dImage IS '첨부이미지';
-
-COMMENT ON COLUMN dm_contents.mId IS '아이디';
+COMMENT ON COLUMN DM_CONTENTS.DMNO IS 'DM방번호';
+COMMENT ON COLUMN DM_CONTENTS.DMCONTENTSNO IS 'DM번호';
+COMMENT ON COLUMN DM_CONTENTS.DMCONTENTSMESSAGE IS 'DM내용(채팅내용)';
+COMMENT ON COLUMN DM_CONTENTS.DMCONTENTSDATE IS '송수신시간';
+COMMENT ON COLUMN DM_CONTENTS.DMSENDERID IS '송신자아이디';
+COMMENT ON COLUMN DM_CONTENTS.DMCONTENTSIMAGE IS '유저이미지';
 
 /***********************************SEQUENCE********************************/
 drop sequence comments_number_seq;
@@ -208,39 +203,32 @@ commit;
 ALTER TABLE post MODIFY (pViewCount DEFAULT 0);   
 ALTER TABLE post MODIFY (pDate DEFAULT sysdate);       
 ALTER TABLE comments MODIFY (cTime DEFAULT sysdate);   
-ALTER TABLE dm MODIFY (dDate DEFAULT sysdate);  
-ALTER TABLE dm_contents MODIFY (dDate DEFAULT sysdate);  
-ALTER TABLE follow MODIFY (followingCount DEFAULT 0);
-ALTER TABLE follow MODIFY (followerCount DEFAULT 0);
+ALTER TABLE dm MODIFY (dmDate DEFAULT sysdate);  
+ALTER TABLE dm_contents MODIFY (DMCONTENTSDATE DEFAULT sysdate);  
 commit;
 
 /****************************************************************************/
 
+ALTER TABLE post ADD CONSTRAINT FK_mId_TO_Post FOREIGN KEY (mId)
+REFERENCES member (mId);
 
-
-ALTER TABLE post ADD CONSTRAINT FK_User_TO_Post_1 FOREIGN KEY (mId)
-REFERENCES user (mId);
-
-ALTER TABLE post_image ADD CONSTRAINT FK_Post_TO_POST_Image_1 FOREIGN KEY (pNo)
+ALTER TABLE post_image ADD CONSTRAINT FK_Post_TO_POST_Image FOREIGN KEY (pNo)
 REFERENCES post (pNo);
 
-ALTER TABLE follow ADD CONSTRAINT FK_User_TO_Follow_1 FOREIGN KEY (mId)
-REFERENCES user (mId);
+ALTER TABLE follow ADD CONSTRAINT FK_mId_TO_Follow FOREIGN KEY (mId)
+REFERENCES member (mId);
 
-ALTER TABLE likes ADD CONSTRAINT FK_Post_TO_Like_1 FOREIGN KEY (pNo)
-REFERENCES post (pNo);
+ALTER TABLE likes ADD CONSTRAINT FK_mId_TO_Like FOREIGN KEY (mIdYou)
+REFERENCES member (mId);
 
-ALTER TABLE likes ADD CONSTRAINT FK_User_TO_Like_1 FOREIGN KEY (mIdYou)
-REFERENCES user (mId);
-
-ALTER TABLE comments ADD CONSTRAINT FK_Post_TO_Comments_1 FOREIGN KEY (pNo)
+ALTER TABLE comments ADD CONSTRAINT FK_Post_TO_Comments FOREIGN KEY (pNo)
 REFERENCES post(pNo);
 
-ALTER TABLE comments ADD CONSTRAINT FK_User_TO_Comments_1 FOREIGN KEY (mId)
-REFERENCES user (mId);
+ALTER TABLE comments ADD CONSTRAINT FK_mId_TO_Comments FOREIGN KEY (mId)
+REFERENCES member (mId);
 
-ALTER TABLE dm ADD CONSTRAINT FK_User_TO_DM_1 FOREIGN KEY (mId)
-REFERENCES user(mId);
+ALTER TABLE dm ADD CONSTRAINT FK_mId_TO_DM FOREIGN KEY (mId)
+REFERENCES member(mId);
 
-ALTER TABLE dm_contents ADD CONSTRAINT FK_DM_TO_DM_CONTENTS_1 FOREIGN KEY (dNo)
-REFERENCES dm(dNo);
+ALTER TABLE dm_contents ADD CONSTRAINT FK_DM_TO_DM_CONTENTS FOREIGN KEY (dmNo)
+REFERENCES dm(dmNo);
